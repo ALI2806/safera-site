@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Safera: İş sağlığı ve güvenliğinde yeni bir dönem</title>
+<meta name="description" content="Safera; şirketlerle İSG profesyonellerini tek platformda buluşturur, operasyonları otonom yapay zekâ ajanlarıyla yönetir. Daha hızlı, erişilebilir ve verimli İSG hizmeti.">
+<meta property="og:title" content="Safera: İş sağlığı ve güvenliğinde yeni bir dönem">
+<meta property="og:description" content="Şirketler ve İSG profesyonelleri tek platformda buluşur; evrak, mevzuat, planlama ve raporlamayı otonom yapay zekâ ajanları yönetir.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,620&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,640&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS — Safera app paleti (washi/sumi + çam-teal + ember mühür + antika gold) ── */
+:root{
+  --bg:#F8F5EE;
+  --bg-subtle:#F3EFE6;
+  --bg-card:#FCFAF5;
+  --bg-dark:#0D352E;
+  --ink:#28241F;
+  --ink-2:#6A6253;
+  --ink-3:#9C927B;
+  --hairline:rgba(181,169,138,.32);
+  --hairline-d:rgba(255,255,255,.12);
+  --accent:#1A6A5B;
+  --accent-deep:#11473D;
+  --accent-mint:#74B4A6;
+  --accent-wash:rgba(26,106,91,.08);
+  --gold:#B08A3C;
+  --gold-wash:rgba(176,138,60,.14);
+  --ember:#C0593C;
+  --radius-card:20px;
+  --radius-btn:12px;
+  --radius-icon:11px;
+  --radius-phone:40px;
+  --radius-screen:32px;
+  --radius-pill:999px;
+  --border:1px solid var(--hairline);
+  --shadow-soft:0 1px 2px rgba(26,23,20,.04),0 12px 32px rgba(26,23,20,.06);
+  --shadow-card-hover:0 16px 48px rgba(26,23,20,.10);
+  --shadow-phone:0 40px 80px rgba(13,53,46,.22);
+  --ease-out:cubic-bezier(.22,.61,.36,1);
+}
+
+/* ─── RESET + BASE ────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-feature-settings:"cv11","ss01";
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  background:var(--bg);color:var(--ink);
+  font-size:17px;line-height:1.6;
+}
+a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
+a:hover{text-decoration-thickness:2px;}
+img{display:block;max-width:100%;height:auto;}
+
+/* ─── LAYOUT ─────────────────────────────────────────────── */
+.container{max-width:1120px;margin:0 auto;padding:0 24px;}
+section{padding:128px 0;}
+.pad-lg{padding:160px 0;}
+.bg-subtle{background:var(--bg-subtle);}
+.bg-dark{
+  background:var(--bg-dark);
+  background-image:radial-gradient(1200px 600px at 50% -10%,rgba(116,180,166,.12),transparent 60%);
+}
+
+/* ─── KOYU BÖLÜM ─────────────────────────────────────────── */
+.bg-dark{color:rgba(255,255,255,.72);}
+.bg-dark h1,.bg-dark h2,.bg-dark h3{color:#fff;}
+.bg-dark .eyebrow{color:var(--accent-mint);}
+.bg-dark p,.bg-dark li,.bg-dark .section-desc{color:rgba(255,255,255,.72);}
+.bg-dark .stat-num,.bg-dark .mono-accent{color:var(--accent-mint);}
+.bg-dark .stat{border-left-color:var(--accent-mint);}
+.bg-dark a:not(.btn-primary){color:var(--accent-mint);}
+
+/* ─── TYPE COMPONENTS ─────────────────────────────────────── */
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1;
+  font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent);display:block;margin-bottom:12px;
+}
+.section-head h2{
+  font-family:'Fraunces',Georgia,serif;
+  font-size:clamp(30px,4vw,46px);line-height:1.1;
+  font-weight:600;letter-spacing:-.01em;color:var(--ink);margin-bottom:16px;
+}
+.section-desc{
+  font-size:17px;line-height:1.6;color:var(--ink-2);
+  max-width:680px;margin-bottom:48px;
+}
+.bg-dark .section-head h2{color:#fff;}
+
+/* ─── BUTTONS ─────────────────────────────────────────────── */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--accent);color:#fff;
+  font-family:'Inter',sans-serif;font-size:16px;line-height:1;
+  font-weight:600;letter-spacing:-.01em;
+  padding:14px 26px;border-radius:var(--radius-btn);border:0;
+  text-decoration:none;cursor:pointer;
+  transition:background .15s var(--ease-out),transform .15s var(--ease-out);
+}
+.btn-primary:hover{background:var(--accent-deep);transform:translateY(-1px);color:#fff;}
+.btn-primary:focus-visible{outline:2px solid var(--accent-mint);outline-offset:3px;}
+.btn-lg{padding:16px 32px;font-size:17px;}
+
+/* ─── CARDS ───────────────────────────────────────────────── */
+.card{
+  background:var(--bg-card);border:var(--border);
+  border-radius:var(--radius-card);padding:28px;
+  transition:border-color .2s var(--ease-out),box-shadow .2s var(--ease-out),transform .2s var(--ease-out);
+}
+.card:hover{border-color:rgba(26,106,91,.35);box-shadow:var(--shadow-card-hover);transform:translateY(-2px);}
+.bg-subtle .card{background:var(--bg-card);}
+.card-icon{
+  width:40px;height:40px;background:#FFFDF8;border-radius:var(--radius-icon);
+  box-shadow:var(--shadow-soft);display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;
+}
+.card-icon svg{color:var(--accent);}
+.card h3{font-size:20px;line-height:1.25;font-weight:600;letter-spacing:-.01em;color:var(--ink);margin-bottom:8px;}
+.card p{font-size:15px;line-height:1.6;color:var(--ink-2);}
+.card ul{list-style:none;}
+.card ul li{
+  font-size:15px;line-height:1.85;color:var(--ink-2);
+  padding-left:18px;position:relative;
+}
+.card ul li::before{
+  content:'';position:absolute;left:0;top:.68em;
+  width:6px;height:6px;border-radius:50%;background:var(--accent);
+}
+.card ul li em{font-style:italic;color:var(--ink-3);}
+.card-tag{
+  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);
+  display:inline-block;margin-bottom:10px;
+}
+.card-note{font-size:13px;color:var(--ink-3);margin-top:10px;}
+
+/* ─── STAT ────────────────────────────────────────────────── */
+.stat{border-left:3px solid var(--accent);padding-left:16px;}
+.stat-num{
+  font-family:'JetBrains Mono',monospace;font-size:40px;line-height:1;
+  font-weight:600;letter-spacing:-.01em;color:var(--ink);display:block;
+}
+.stat-num.mint{color:var(--accent-mint);}
+.stat-label{font-size:14px;line-height:1.45;color:var(--ink-3);margin-top:8px;display:block;}
+
+/* ─── PHONE MOCK ──────────────────────────────────────────── */
+.phone-shot{border-radius:var(--radius-screen);width:100%;height:auto;display:block;}
+.phone-wrap{position:relative;display:flex;align-items:center;justify-content:center;}
+.phone-wrap::before{
+  content:'';position:absolute;
+  width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(94,196,180,.12),transparent 70%);
+  z-index:0;
+}
+.phone{
+  width:260px;border:8px solid #1A1714;
+  border-radius:var(--radius-phone);background:#1A1714;padding:8px;
+  box-shadow:var(--shadow-phone);position:relative;z-index:1;
+}
+
+/* ─── EKRAN GALERİSİ ──────────────────────────────────────── */
+.shots-row{
+  display:grid;grid-auto-flow:column;grid-auto-columns:236px;gap:28px;
+  overflow-x:auto;scroll-snap-type:x proximity;
+  padding:12px 4px 20px;-webkit-overflow-scrolling:touch;
+}
+.shots-row::-webkit-scrollbar{height:8px;}
+.shots-row::-webkit-scrollbar-thumb{background:var(--hairline);border-radius:4px;}
+.shot{scroll-snap-align:center;}
+.shot .phone{width:236px;padding:7px;border-width:7px;border-radius:36px;box-shadow:0 24px 56px rgba(13,53,46,.16);}
+.shot .phone-shot{border-radius:29px;}
+.shot-cap{
+  margin-top:14px;text-align:center;font-size:13.5px;line-height:1.45;color:var(--ink-2);
+}
+.shot-cap b{display:block;font-size:14px;color:var(--ink);font-weight:600;margin-bottom:2px;}
+.shot-role{
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--accent);display:inline-block;margin-bottom:6px;
+  background:var(--accent-wash);padding:3px 9px;border-radius:var(--radius-pill);
+}
+.shot-role.ember{color:var(--ember);background:rgba(192,89,60,.10);}
+.shot-role.gold{color:var(--gold);background:var(--gold-wash);}
+.shots-hint{font-size:13px;color:var(--ink-3);text-align:center;margin-top:6px;}
+@media(max-width:640px){.shots-row{grid-auto-columns:200px;gap:20px;}.shot .phone{width:200px;}}
+
+/* ─── NAV ─────────────────────────────────────────────────── */
+header{
+  position:sticky;top:0;z-index:100;height:64px;
+  background:rgba(248,245,238,.8);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--hairline);
+}
+header .container{height:100%;display:flex;align-items:center;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-name{font-family:'Fraunces',Georgia,serif;font-size:19px;font-weight:620;color:var(--accent-deep);letter-spacing:0;}
+.nav-icon{height:clamp(28px,4vw,36px);width:auto;border-radius:clamp(6px,1vw,10px);}
+.footer-icon{height:clamp(24px,3.5vw,30px);width:auto;border-radius:clamp(5px,1vw,8px);opacity:.7;}
+
+/* ─── HERO ────────────────────────────────────────────────── */
+#hero{padding:120px 0 96px;}
+.hero-grid{display:grid;grid-template-columns:58% 42%;gap:56px;align-items:center;}
+.hero-text{max-width:540px;}
+#hero h1{
+  font-family:'Fraunces',Georgia,serif;
+  font-size:clamp(38px,6.4vw,66px);line-height:1.07;
+  font-weight:620;letter-spacing:-.02em;color:var(--ink);margin-bottom:20px;
+}
+.h1-gold{display:inline;border-bottom:4px solid var(--ember);padding-bottom:2px;}
+.hero-sub{
+  font-size:clamp(17px,2.2vw,20px);line-height:1.55;
+  color:var(--ink-2);margin-bottom:32px;font-weight:400;
+}
+.hero-sub strong{color:var(--accent);font-weight:600;}
+.hero-cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px;}
+.hero-meta{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--ink-3);}
+.hero-trust{font-size:13px;color:var(--ink-3);display:flex;gap:16px;flex-wrap:wrap;}
+.hero-trust span{display:flex;align-items:center;gap:5px;}
+.trust-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;flex-shrink:0;}
+
+/* ─── STATS GRID ──────────────────────────────────────────── */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+
+/* ─── STEPS ───────────────────────────────────────────────── */
+.step-num{
+  font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;
+  color:var(--accent);margin-bottom:12px;display:block;
+}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative;}
+.step-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  font-size:18px;color:var(--ink-3);pointer-events:none;
+}
+.step-arrow-1{left:calc(33.33% - 12px);}
+.step-arrow-2{left:calc(66.66% - 12px);}
+
+/* ─── BENTO ───────────────────────────────────────────────── */
+.bento{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.span-2{grid-column:span 2;}
+
+/* ─── ROLES ───────────────────────────────────────────────── */
+.roles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.role-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.role-icon{
+  width:28px;height:28px;border-radius:6px;
+  background:var(--accent-wash);display:flex;align-items:center;justify-content:center;
+}
+.role-icon svg{color:var(--accent);}
+.role-head h3{font-size:20px;font-weight:600;letter-spacing:-.01em;color:var(--ink);}
+.honest-note{font-size:13px;color:var(--ink-3);margin-top:24px;text-align:center;}
+
+/* ─── WHY NOW ─────────────────────────────────────────────── */
+.timeline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+.tl-date{
+  font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;
+  color:var(--accent-mint);display:block;margin-bottom:12px;
+}
+.timeline-item p{font-size:16px;line-height:1.6;}
+.why-close{
+  text-align:center;font-size:18px;color:#fff !important;
+  max-width:720px;margin:48px auto 0;line-height:1.7;
+}
+
+/* ─── DIFF ────────────────────────────────────────────────── */
+.diff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+
+/* ─── VISION ──────────────────────────────────────────────── */
+.vision-body{max-width:680px;}
+.vision-body p{font-size:17px;line-height:1.7;color:var(--ink-2);margin-bottom:20px;}
+.vision-body p strong{color:var(--ink);font-weight:600;}
+.vision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.vision-grid .stat-num{font-size:15px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);}
+.vision-grid .stat-label{font-size:14.5px;color:var(--ink-2);line-height:1.55;}
+
+/* ─── PRICING ─────────────────────────────────────────────── */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.price-card{background:var(--bg-card);border:var(--border);border-radius:var(--radius-card);padding:28px;}
+.price-card.featured{border:1.5px solid var(--accent);box-shadow:0 0 0 4px var(--accent-wash);}
+.plan-name{
+  font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;
+  color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;
+  display:block;margin-bottom:8px;
+}
+.plan-price{
+  font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:600;
+  letter-spacing:-.01em;color:var(--ink);display:block;margin-bottom:20px;line-height:1;
+}
+.plan-price small{font-size:.42em;color:var(--ink-3);font-weight:500;}
+.plan-features{list-style:none;margin-bottom:16px;}
+.plan-features li{
+  font-size:15px;line-height:1.85;color:var(--ink-2);
+  padding-left:22px;position:relative;
+}
+.plan-features li::before{
+  content:'✓';position:absolute;left:0;color:var(--accent);font-size:14px;font-weight:600;line-height:1.85;
+}
+.plan-note{font-size:13px;color:var(--ink-3);}
+.price-note{text-align:center;font-size:14px;color:var(--ink-3);margin-top:24px;}
+
+/* ─── TEAM ────────────────────────────────────────────────── */
+.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;}
+.team-member{text-align:center;}
+.team-avatar{
+  width:96px;height:96px;border-radius:50%;
+  background:var(--accent-wash);border:2px solid var(--hairline);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 16px;
+}
+.team-avatar span{
+  font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:600;color:var(--accent);
+}
+.team-member h3{font-size:18px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.team-role{
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-3);
+  display:block;margin-bottom:12px;
+}
+.team-member p{font-size:15px;color:var(--ink-2);max-width:320px;margin:0 auto;}
+.team-narrative{
+  text-align:center;font-size:17px;color:var(--ink-2);
+  max-width:680px;margin:48px auto 0;line-height:1.7;
+}
+.team-narrative strong{color:var(--ink);font-weight:600;}
+
+/* ─── DOWNLOAD ────────────────────────────────────────────── */
+.dl-wrap{margin-top:48px;display:flex;flex-direction:column;align-items:center;gap:12px;}
+.dl-text{text-align:center;}
+.dl-meta{font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(255,255,255,.4);margin-top:14px;}
+
+/* ─── FOOTER ──────────────────────────────────────────────── */
+footer{background:var(--bg-dark);border-top:1px solid var(--hairline-d);padding:48px 0;}
+footer .container{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
+.footer-brand{display:flex;align-items:center;gap:8px;}
+.footer-slogan{font-size:13px;color:rgba(255,255,255,.4) !important;}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.25) !important;}
+
+/* ─── REVEAL ─────────────────────────────────────────────── */
+html.js .reveal{
+  opacity:0;transform:translateY(14px);
+  transition:opacity .55s var(--ease-out),transform .55s var(--ease-out);
+}
+html.js .reveal.in{opacity:1;transform:none;}
+
+/* ─── RESPONSIVE TABLET ──────────────────────────────────── */
+@media(max-width:1024px){
+  section{padding:96px 0;}
+  .pad-lg{padding:112px 0;}
+  #hero{padding:80px 0 64px;}
+  .hero-grid{grid-template-columns:1fr;gap:48px;}
+  .phone{width:240px;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+}
+
+/* ─── RESPONSIVE MOBILE ──────────────────────────────────── */
+@media(max-width:640px){
+  .container{padding:0 20px;}
+  section{padding:72px 0;}
+  .pad-lg{padding:80px 0;}
+  #hero{padding:64px 0 48px;}
+  #hero h1{font-size:38px;}
+  .phone{width:220px;}
+  .stats-grid{grid-template-columns:1fr;}
+  .stat-num{font-size:34px;}
+  .steps-grid,.roles-grid,.timeline-grid,.diff-grid,.team-grid,.vision-grid{grid-template-columns:1fr;}
+  .step-arrow{display:none;}
+  .bento{grid-template-columns:1fr;}
+  .span-2{grid-column:span 1;}
+  .price-grid{grid-template-columns:1fr;}
+}
+
+/* ─── REDUCED MOTION ─────────────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:opacity .2s ease!important;}
+  html.js .reveal{transform:none;}
+}
+
+/* ─── LANG TOGGLE ─────────────────────────────────────────── */
+#lang-toggle{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.04em;background:transparent;border:1px solid var(--hairline);color:var(--ink-2);padding:5px 11px;border-radius:var(--radius-pill);cursor:pointer;display:inline-flex;gap:5px;align-items:center;line-height:1;}
+#lang-toggle:hover{border-color:var(--accent);color:var(--accent);}
+#lang-toggle .sep{opacity:.4;}
+#lang-toggle [data-l]{opacity:.45;transition:opacity .2s;}
+#lang-toggle [data-l].on{opacity:1;color:var(--accent);font-weight:600;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header>
+  <div class="container">
+    <a class="nav-brand" href="#hero" aria-label="Safera ana sayfa">
+      <img src="img/icon.png" alt="" class="nav-icon">
+      <span class="nav-name">Safera</span>
+    </a>
+    <button id="lang-toggle" type="button" aria-label="Türkçe / English"><span data-l="tr">TR</span><span class="sep">·</span><span data-l="en">EN</span></button>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow reveal" style="transition-delay:0ms" data-en="OHS PLATFORM">İSG PLATFORMU</span>
+        <h1 class="reveal" style="transition-delay:80ms" data-en="A new era in occupational<br><span class='h1-gold'>health &amp; safety.</span>">
+          İş sağlığı ve güvenliğinde<br>
+          <span class="h1-gold">yeni bir dönem.</span>
+        </h1>
+        <p class="hero-sub reveal" style="transition-delay:160ms" data-en="In Türkiye, receiving OHS services is a legal requirement for every workplace. Safera matches companies with OHS professionals <strong>free of charge, with no commission</strong>; paperwork, regulatory tracking, planning and reporting are carried by AI. The decision always stays with people.">
+          Türkiye'de her işyerinin İSG hizmeti alması yasal bir zorunluluk. Safera, şirketlerle İSG profesyonellerini <strong>ücretsiz ve komisyonsuz</strong> eşleştirir; evrak, mevzuat takibi, planlama ve raporlamayı yapay zekâ üstlenir. Karar her zaman insanda kalır.
+        </p>
+        <div class="hero-cta reveal" style="transition-delay:240ms">
+          <a class="btn-primary" href="#indir" data-en="Download the App">Uygulamayı İndir</a>
+          <span class="hero-meta" data-en="Android · APK · Free">Android · APK · Ücretsiz</span>
+        </div>
+        <div class="hero-trust reveal" style="transition-delay:320ms">
+          <span data-en="<span class='trust-dot' aria-hidden='true'></span> Free matching, no commission"><span class="trust-dot" aria-hidden="true"></span> Ücretsiz eşleşme, komisyon yok</span>
+          <span data-en="<span class='trust-dot' aria-hidden='true'></span> The heavy lifting is on AI"><span class="trust-dot" aria-hidden="true"></span> İşin yükü yapay zekâda</span>
+          <span data-en="<span class='trust-dot' aria-hidden='true'></span> Audit-ready records"><span class="trust-dot" aria-hidden="true"></span> Denetime hazır kayıtlar</span>
+        </div>
+      </div>
+      <div class="phone-wrap reveal" style="transition-delay:120ms">
+        <div class="phone">
+          <img class="phone-shot" src="img/app/intro.png" alt="Safera açılış ekranı" width="330" height="715" loading="eager">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SORUN -->
+<section class="bg-subtle">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal" data-en="THE PROBLEM">SORUN</span>
+      <h2 class="reveal" data-en="The heavy lifting of compliance still rests on people's shoulders.">Uyumun ağır işi hâlâ insanların sırtında.</h2>
+      <p class="section-desc reveal">
+<span data-en="Independent OHS professionals have to handle client acquisition, paperwork, regulatory tracking, planning and reporting on their own. That's why the model can't scale in practice. Companies, in turn, must manage compliance risk and find the right professional. Regulation demands more documents every year; contracts and assignments now run digitally on İSG-KATİP. Doing this by hand is no longer sustainable.">Bireysel İSG profesyonelleri; müşteri bulma, evrak, mevzuat takibi, planlama ve raporlamayı tek başına yürütmek zorunda. Bu yüzden model pratikte ölçeklenemiyor. Şirketler ise uyum riskini yönetmek ve doğru profesyoneli bulmak zorunda. Mevzuat her yıl daha fazla belge istiyor; sözleşme ve görevlendirmeler artık İSG-KATİP üzerinden dijital yürütülüyor. Bu işi elle yürütmek artık sürdürülebilir değil.</span>
+      </p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat reveal" style="transition-delay:0ms">
+        <span class="stat-num">2,23M</span>
+        <span class="stat-label" data-en="New workplaces required to receive OHS services after the January 2025 scope expansion">Ocak 2025 kapsam genişlemesiyle İSG hizmeti almak zorunda olan yeni işyeri</span>
+      </div>
+      <div class="stat reveal" style="transition-delay:60ms">
+        <span class="stat-num">12+</span>
+        <span class="stat-label" data-en="Separate compliance and document areas to maintain for a single workplace">Tek bir işyeri için tutulması gereken ayrı uyum ve belge alanı</span>
+      </div>
+      <div class="stat reveal" style="transition-delay:120ms">
+        <span class="stat-num" data-en="₺88,663">88.663 ₺</span>
+        <span class="stat-label" data-en="Monthly penalty risk for a missing or late document">Eksik veya geç belgede aylık ceza riski</span>
+      </div>
+      <div class="stat reveal" style="transition-delay:180ms">
+        <span class="stat-num mint" data-en="İSG-KATİP">İSG-KATİP</span>
+        <span class="stat-label" data-en="Contracts and assignments now run digitally; the compliance flow is rapidly going digital">Sözleşme ve görevlendirmeler artık dijital yürütülüyor; uyum süreci hızla dijitalleşiyor</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NASIL ÇALIŞIR -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal" data-en="HOW IT WORKS">NASIL ÇALIŞIR</span>
+      <h2 class="reveal" data-en="Three steps for company and expert.">Şirket ve uzman için üç adım.</h2>
+    </div>
+    <div class="steps-grid">
+      <span class="step-arrow step-arrow-1" aria-hidden="true">→</span>
+      <span class="step-arrow step-arrow-2" aria-hidden="true">→</span>
+      <div class="card reveal" style="transition-delay:0ms">
+        <span class="step-num">01</span>
+        <h3 data-en="Define">Tanımla</h3>
+        <p data-en="The company enters its sector, headcount and hazard class; the expert or physician opens a profile. Era produces the legal OHS plan in seconds.">Şirket sektörünü, çalışan sayısını ve tehlike sınıfını girer; uzman ya da hekim profilini açar. Era saniyeler içinde yasal İSG planını çıkarır.</p>
+      </div>
+      <div class="card reveal" style="transition-delay:60ms">
+        <span class="step-num">02</span>
+        <h3 data-en="Match">Eşleş</h3>
+        <p data-en="The best-fit party ranks first by % compliance score. Matching is free, with no commission.">En uygun taraf % uyum skoruyla önde gelir; ücretsiz, komisyonsuz.</p>
+      </div>
+      <div class="card reveal" style="transition-delay:120ms">
+        <span class="step-num">03</span>
+        <h3 data-en="Era does the work">Era işi yapar</h3>
+        <p data-en="Risk plans, reports, CAPAs, checklists and reminders are generated automatically; every side sees the same compliance picture.">Risk planı, rapor, DÖF, checklist ve hatırlatmalar otomatik üretilir; tüm taraflar aynı uyum tablosunu görür.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section id="platform" class="bg-subtle pad-lg">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal">PLATFORM</span>
+      <h2 class="reveal" data-en="A platform that runs OHS end to end.">İSG'yi uçtan uca yürüten bir platform.</h2>
+    </div>
+    <div class="bento">
+
+      <div class="card span-2 reveal">
+        <span class="card-tag">ERA</span>
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h3 data-en="Ask; the rest gets done">Sor; gerisi tamamlanır</h3>
+        <p data-en="“What am I missing?” Era finds the answer in your real data, prepares the needed document, and starts the right step. Your status is in front of you at any moment; approval stays with you.">“Eksiğim ne?” diye sorarsınız. Era cevabı gerçek verinizden bulur, gereken belgeyi hazırlar, doğru adımı başlatır. Durumunuz her an önünüzde; onay sizde kalır.</p>
+      </div>
+
+      <div class="card reveal" style="transition-delay:0ms">
+        <span class="card-tag" data-en="THE FEED">AKIŞ</span>
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 data-en="The right match in minutes, free">Dakikalar içinde doğru eşleşme, ücretsiz</h3>
+        <p data-en="The % fit score brings the best-fit party to the top; listing, application and agreement flow in one stream. Matching is free and commission-free; the earnings stay with the sides.">% uyum skoru en uygun tarafı öne getirir; ilan, başvuru ve anlaşma tek akışta ilerler. Eşleşme ücretsiz ve komisyonsuz; kazanç tarafların.</p>
+      </div>
+
+      <div class="card reveal" style="transition-delay:60ms">
+        <span class="card-tag" data-en="OPERATIONS">OPERASYON</span>
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3 data-en="The entire operation, on one panel">Tüm operasyon tek panelde</h3>
+        <p data-en="Audit Readiness scores you before any inspection; documents are tracked with approval and validity; tasks and the calendar never let a deadline slip. A brand-new company sees its legal roadmap within minutes.">Denetim Hazırlığı denetimden önce puanınızı verir; belgeler onay ve geçerlilikle izlenir; görevler ve takvim son tarih kaçırtmaz. Sıfırdan başlayan bir şirket yasal yol haritasını dakikalar içinde görür.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EKRANLAR -->
+<section id="ekranlar">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal" data-en="INSIDE THE APP">UYGULAMADAN KARELER</span>
+      <h2 class="reveal" data-en="Real screens, live product.">Gerçek ekranlar, canlı ürün.</h2>
+      <p class="section-desc reveal" data-en="Every frame is a screenshot from the running product: the three core functions (Era, the feed, operations) plus a few deep dives.">Her kare çalışan üründen alınmış gerçek ekran görüntüsü: üç ana işlev (Era, akış, operasyon) ve birkaç derinlemesine bakış.</p>
+    </div>
+    <div class="shots-row reveal">
+      <figure class="shot">
+        <div class="phone"><img class="phone-shot" src="img/app/uzman-ozet.png" alt="Era ile açılan günlük özet ekranı" width="236" height="511" loading="lazy"></div>
+        <figcaption class="shot-cap"><span class="shot-role ember">ERA</span><b data-en="The day opens with Era">Era ile açılan gün</b><span data-en="Income, contracts and pending items, summarized on arrival">Gelir, sözleşmeler ve bekleyenler özetle karşınızda</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="phone"><img class="phone-shot" src="img/app/uzman-akis.png" alt="Akış: % uyum skorlu iş ilanları" width="236" height="511" loading="lazy"></div>
+        <figcaption class="shot-cap"><span class="shot-role">AKIŞ</span><b data-en="Matching by % fit">% uyumla eşleşme</b><span data-en="The best-fit job and professional come first">En uygun iş ve profesyonel öne gelir</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="phone"><img class="phone-shot" src="img/app/sirket-operasyon.png" alt="Operasyon merkezi" width="236" height="511" loading="lazy"></div>
+        <figcaption class="shot-cap"><span class="shot-role">OPERASYON</span><b data-en="Everything in one place">Her şey bir arada</b><span data-en="Documents, tasks, team, employees and the calendar">Belgeler, görevler, ekip, çalışanlar ve takvim</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="phone"><img class="phone-shot" src="img/app/era-chat.png" alt="Era sohbeti: eksik belgelerin canlı tespiti" width="236" height="511" loading="lazy"></div>
+        <figcaption class="shot-cap"><span class="shot-role ember">ERA</span><b data-en="Ask; the answer is ready">Sorun, cevap hazır</b><span data-en="The gap is found in your real data; the needed document is prepared">Eksik gerçek veriden bulunur; gereken belge hazırlanır</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="phone"><img class="phone-shot" src="img/app/sirket-belgeler.png" alt="Belgeler: onay ve geçerlilik takibi" width="236" height="511" loading="lazy"></div>
+        <figcaption class="shot-cap"><span class="shot-role gold">BELGELER</span><b data-en="A living archive">Yaşayan arşiv</b><span data-en="Approval and validity on every file; an ending term is noticed at once">Onay ve geçerlilik her dosyanın üstünde; biten süre hemen fark edilir</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="phone"><img class="phone-shot" src="img/app/uzman-crm.png" alt="Çalıştıklarım: müşteri ve gelir takibi" width="236" height="511" loading="lazy"></div>
+        <figcaption class="shot-cap"><span class="shot-role gold">CRM</span><b data-en="Income at a glance">Gelir tek bakışta</b><span data-en="Clients, contracts and renewals move along automatically">Müşteri, sözleşme ve yenileme takibi otomatik ilerler</span></figcaption>
+      </figure>
+    </div>
+    <p class="shots-hint reveal" data-en="Scroll sideways for more screens →">Daha fazla ekran için yana kaydır →</p>
+  </div>
+</section>
+
+<!-- KİMLER İÇİN -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal" data-en="WHO IT'S FOR">KİMLER İÇİN</span>
+      <h2 class="reveal" data-en="One platform for every side.">Tüm taraflara tek platform.</h2>
+    </div>
+    <div class="roles-grid">
+      <div class="card reveal" style="transition-delay:0ms">
+        <div class="role-head">
+          <div class="role-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3 data-en="OHS Expert">İSG Uzmanı</h3>
+        </div>
+        <ul>
+          <li data-en="Offload the paperwork to Era">Evrak yükünü Era'ya bırak</li>
+          <li data-en="Report by voice in the field">Sahada sesle raporla</li>
+          <li data-en="Client tracking with Solo CRM">Solo CRM ile müşteri takibi</li>
+          <li data-en="% compatible jobs come first, commission-free">% uyumlu işler önce gelir, komisyonsuz</li>
+        </ul>
+      </div>
+      <div class="card reveal" style="transition-delay:60ms">
+        <div class="role-head">
+          <div class="role-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M16 11h6M19 8v6"/></svg>
+          </div>
+          <h3 data-en="Workplace Physician">İşyeri Hekimi</h3>
+        </div>
+        <ul>
+          <li data-en="Periodic examination calendar">Periyodik muayene takvimi</li>
+          <li data-en="Automatic regulation reminders">Otomatik mevzuat hatırlatmaları</li>
+          <li data-en="Reports in a single tap">Raporlar tek dokunuşla</li>
+          <li data-en="Direct contract with the company">Şirketle doğrudan sözleşme</li>
+          <li data-en="<em>e-Prescription integration (soon)</em>"><em>e-Reçete entegrasyonu (yakında)</em></li>
+        </ul>
+      </div>
+      <div class="card reveal" style="transition-delay:120ms">
+        <div class="role-head">
+          <div class="role-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3 data-en="Company">Şirket</h3>
+        </div>
+        <ul>
+          <li data-en="Reach a compliant professional in minutes">Uyumlu profesyonele dakikalar içinde ulaş</li>
+          <li data-en="Workplace Setup Wizard">İşyeri Kurulum Sihirbazı</li>
+          <li data-en="Risk preview with Audit Readiness">Denetim Hazırlığı ile risk önizleme</li>
+          <li data-en="End-to-end compliance panel">Uçtan uca uyum paneli</li>
+        </ul>
+      </div>
+    </div>
+    <p class="honest-note reveal" data-en="Workplace Nurse, DSP and Employee roles coming soon.">İşyeri Hemşiresi, DSP ve Çalışan rolleri yakında.</p>
+  </div>
+</section>
+
+<!-- NEDEN ŞİMDİ -->
+<section class="bg-dark pad-lg">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal" data-en="WHY NOW">NEDEN ŞİMDİ</span>
+      <h2 class="reveal" data-en="Demand is mandatory, the load is growing, the technology is ready.">Talep zorunlu, yük büyüyor, teknoloji hazır.</h2>
+    </div>
+    <div class="timeline-grid">
+      <div class="timeline-item reveal" style="transition-delay:0ms">
+        <span class="tl-date" data-en="DEMAND">TALEP</span>
+        <p data-en="Since Jan 2025, Law 6331 covers all 2.23 million workplaces: OHS service is mandatory for every one of them. Demand multiplied overnight; the number of professionals stayed the same.">Oca 2025'ten beri 6331, 2,23 milyon işyerinin tamamını kapsıyor: her biri için İSG hizmeti zorunlu. Talep bir gecede katlandı; profesyonel sayısı aynı kaldı.</p>
+      </div>
+      <div class="timeline-item reveal" style="transition-delay:60ms">
+        <span class="tl-date" data-en="LOAD">YÜK</span>
+        <p data-en="Compliance runs digitally on İSG-KATİP and asks for more documents every year. Handling this by hand doesn't scale; the gap for a purpose-built tool is wide open.">Uyum süreci İSG-KATİP üzerinde dijital yürüyor ve her yıl daha fazla belge istiyor. Bunu elle yürütmek ölçeklenmiyor; amaca uygun bir aracın boşluğu ortada.</p>
+      </div>
+      <div class="timeline-item reveal" style="transition-delay:120ms">
+        <span class="tl-date" data-en="TECHNOLOGY">TEKNOLOJİ</span>
+        <p data-en="AI no longer just answers; it can run processes from start to finish. Connecting that capability to OHS's real workload is possible exactly now.">Yapay zekâ artık yalnızca yanıt vermiyor; süreçleri baştan sona yürütebiliyor. Bu kapasiteyi İSG'nin gerçek ihtiyacına bağlamak tam şimdi mümkün.</p>
+      </div>
+    </div>
+    <p class="why-close reveal" data-en="Mandatory demand, a growing load and matured technology are crossing at the same moment. Safera was built for this window: it carries the load, and matches the sides for free.">Zorunlu talep, büyüyen yük ve olgunlaşan teknoloji aynı anda kesişiyor. Safera bu pencere için kuruldu: yükü taşıyor, tarafları ücretsiz eşleştiriyor.</p>
+  </div>
+</section>
+
+<!-- FARK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal" data-en="THE EDGE">FARK</span>
+      <h2 class="reveal" data-en="Why Safera?">Neden Safera?</h2>
+      <p class="section-desc reveal">
+<span data-en="Not a feature list; the value it produces: who does the heavy lifting, who keeps the earnings, how fast results arrive.">Özellik listesi değil, ürettiği değer: ağır tarafı kim çekiyor, kazanç kimde kalıyor, sonuç ne kadar sürede geliyor.</span>
+      </p>
+    </div>
+    <div class="diff-grid">
+      <div class="card reveal" style="transition-delay:0ms">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h3 data-en="Era takes the grunt work; the call is yours">Emek Era'da, karar sizde</h3>
+        <p data-en="Era prepares the document, finds the gap, and points to the next step. In the field, speaking is enough; the record and the report write themselves.">Era belgeyi hazırlar, eksiği bulur, sıradaki adımı gösterir. Sahada konuşmanız yeter; kayıt ve rapor kendiliğinden oluşur.</p>
+      </div>
+      <div class="card reveal" style="transition-delay:60ms">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+        </div>
+        <h3 data-en="Matching is free; the earnings are yours">Eşleşme ücretsiz, kazanç sizin</h3>
+        <p data-en="The right professional and the right workplace meet by % fit score. No commission is taken; the full value stays with the people doing the work.">Doğru profesyonel ile doğru işyeri % uyum skoruyla buluşur. Komisyon alınmaz; ürettiğiniz değerin tamamı sizde kalır.</p>
+      </div>
+      <div class="card reveal" style="transition-delay:0ms">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 data-en="Months of work, down to minutes">Aylar süren iş, dakikalara iner</h3>
+        <p data-en="From setup to inspection: a process that drags on with scattered folders comes together on one panel. Deadlines are reminded automatically; an overdue file becomes visible at once.">Kurulumdan denetime: dağınık klasörlerle uzayan süreç tek panelde toparlanır. Son tarihler otomatik hatırlatılır; süresi geçen belge anında görünür.</p>
+      </div>
+      <div class="card reveal" style="transition-delay:60ms">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+        </div>
+        <h3 data-en="Order that maintains itself">Düzen kendini korur</h3>
+        <p data-en="Risk, training, documents and reporting live in one place. Compliance isn't set up once and left alone; it is kept alive every day.">Risk, eğitim, belge ve rapor aynı yerde yaşar. Uyum bir kez kurulup bırakılmaz; her gün canlı tutulur.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VİZYON -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal" data-en="VISION">VİZYON</span>
+      <h2 class="reveal" data-en="The field teaches, Era remembers.">Alan öğretir, Era hatırlar.</h2>
+    </div>
+    <div class="vision-body">
+      <p class="reveal" data-en="Today Era does the heavy lifting of compliance. But the real point is what comes next. Everything that happens in the field (visits, near-misses, periodic checks, records) turns into structured <strong>real field data</strong>.">Bugün Era, uyumun ağır tarafını sırtlanıyor. Ama asıl mesele bundan sonrası. Sahada olup biten her şey: ziyaretler, ramak kalalar, periyodik kontroller, kayıtlar; tümü yapılandırılmış <strong>gerçek alan verisine</strong> dönüşüyor.</p>
+      <p class="reveal" data-en="As this data accumulates across many workplaces, patterns emerge on their own: which conditions recur before an accident, which measure actually works. Just as in clinical medicine, knowledge comes not from pre-written rules but from accumulated real cases.">Bu veri çok sayıda işyerinde biriktikçe örüntüler kendiliğinden belirir: hangi koşullar bir kazadan önce tekrar eder, hangi önlem gerçekten işe yarar. Tıpkı klinik tıpta bilginin önceden yazılmış kurallardan değil, biriken gerçek vakalardan gelmesi gibi.</p>
+      <p class="reveal" data-en="Era's long-term role is to turn these patterns into <strong>foresight</strong>: to flag risk before an accident happens. Era doesn't replace the expert's judgment; it strengthens it. The decision always stays with the human.">Era'nın uzun vadeli rolü bu örüntüleri <strong>öngörüye</strong> çevirmek: bir kaza olmadan riski işaret etmek. Era uzmanın yargısının yerine geçmez; onu güçlendirir. Karar her zaman insanda kalır.</p>
+    </div>
+    <div class="vision-grid">
+      <div class="stat reveal" style="transition-delay:0ms">
+        <span class="stat-num" data-en="Today">Bugün</span>
+        <span class="stat-label" data-en="Do the work of compliance; match company and professional directly.">Uyumun işini yap; şirketle profesyoneli doğrudan eşleştir.</span>
+      </div>
+      <div class="stat reveal" style="transition-delay:60ms">
+        <span class="stat-num" data-en="Near term">Yakın vade</span>
+        <span class="stat-label" data-en="Patterns from accumulated field data: smart reminders, risk prioritization, sharper simulation.">Biriken alan verisinden örüntü: akıllı hatırlatma, risk önceliklendirme, keskinleşen simülasyon.</span>
+      </div>
+      <div class="stat reveal" style="transition-delay:120ms">
+        <span class="stat-num" data-en="Long term">Uzun vade</span>
+        <span class="stat-label" data-en="Foresight: warning before an accident, evidence-based prevention advice. Human decision at the center.">Öngörü: kaza olmadan uyarı, kanıta dayalı önlem önerisi. İnsan kararı merkezde.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FİYATLANDIRMA -->
+<section id="fiyat" class="bg-subtle">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal" data-en="PRICING">FİYATLANDIRMA</span>
+      <h2 class="reveal" data-en="No commission. Transparent subscription.">Komisyon yok. Şeffaf abonelik.</h2>
+    </div>
+    <div class="price-grid">
+      <div class="price-card reveal" style="transition-delay:0ms">
+        <span class="plan-name">Free</span>
+        <span class="plan-price" data-en="₺0">0 ₺</span>
+        <ul class="plan-features">
+          <li data-en="Basic matching">Temel eşleşme</li>
+          <li data-en="View profiles and listings">Profil ve ilan görüntüleme</li>
+          <li data-en="Limited modules">Sınırlı modüller</li>
+        </ul>
+        <p class="plan-note" data-en="Upgrade in-app.">Uygulama içinden yükselt.</p>
+      </div>
+      <div class="price-card featured reveal" style="transition-delay:60ms">
+        <span class="plan-name">Pro</span>
+        <span class="plan-price" data-en="₺499<small> /mo</small>">499 ₺<small> /ay</small></span>
+        <ul class="plan-features">
+          <li data-en="Unlimited Era usage">Era sınırsız kullanım</li>
+          <li data-en="Voice field reporting">Sesli saha raporlama</li>
+          <li data-en="Unlimited listings and applications">Sınırsız ilan ve başvuru</li>
+          <li data-en="All compliance modules">Tüm uyum modülleri</li>
+          <li data-en="Full Solo CRM access">Solo CRM tam erişim</li>
+        </ul>
+        <p class="plan-note" data-en="Upgrade in-app.">Uygulama içinden yükselt.</p>
+      </div>
+      <div class="price-card reveal" style="transition-delay:120ms">
+        <span class="plan-name" data-en="Full Pro">Tam Pro</span>
+        <span class="plan-price" data-en="₺999<small> /mo</small>">999 ₺<small> /ay</small></span>
+        <ul class="plan-features">
+          <li data-en="Expanded capacity, all modules">Genişletilmiş kapasite, tüm modüller</li>
+          <li data-en="Unlimited users">Sınırsız kullanıcı</li>
+          <li data-en="Bulk listings &amp; reporting">Toplu ilan &amp; raporlama</li>
+        </ul>
+        <p class="plan-note" data-en="Upgrade in-app.">Uygulama içinden yükselt.</p>
+      </div>
+    </div>
+    <p class="price-note reveal" data-en="No marketplace commission: all the earnings are yours.">Pazar yeri komisyonu yok, kazancın tamamı senin.</p>
+  </div>
+</section>
+
+<!-- EKİP -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal" data-en="TEAM">EKİP</span>
+      <h2 class="reveal" data-en="Founded by physicians who see workplace accidents firsthand in the ER.">İş kazalarını acil serviste birinci elden gören hekimler kurdu.</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-member reveal" style="transition-delay:0ms">
+        <div class="team-avatar"><span aria-label="FK">FK</span></div>
+        <h3>Dr. Furkan Kızılışık</h3>
+        <span class="team-role">CEO</span>
+        <p data-en="Background in workplace medicine and neuroscience.">İşyeri hekimliği ve nörobilim arka planı.</p>
+      </div>
+      <div class="team-member reveal" style="transition-delay:60ms">
+        <div class="team-avatar"><span aria-label="AA">AA</span></div>
+        <h3>Dr. Ali Aday</h3>
+        <span class="team-role">CTO</span>
+        <p data-en="Flutter developer; builds the product himself.">Flutter geliştiricisi; ürünü bizzat inşa ediyor.</p>
+      </div>
+    </div>
+    <p class="team-narrative reveal">
+<span data-en="Two emergency physicians: a team that sees the consequences of workplace accidents firsthand at the hospital door and codes the product itself. Knowing both the clinical and the technical side from the inside: a <strong>rare founder-market fit.</strong>">İki acil hekimi: iş kazalarının sonucunu hastane kapısında birinci elden gören ve ürünü bizzat kodlayan bir ekip. Hem klinik hem teknik tarafı içeriden bilen, <strong>nadir bir founder-market fit.</strong></span>
+    </p>
+  </div>
+</section>
+
+<!-- İNDİR -->
+<section id="indir" class="bg-dark pad-lg">
+  <div class="container">
+    <div class="section-head" style="margin-bottom:0">
+      <span class="eyebrow reveal" data-en="GET STARTED">BAŞLA</span>
+      <h2 class="reveal" data-en="Download Safera today.">Safera'yı bugün indir.</h2>
+      <p class="section-desc reveal" style="margin-bottom:0" data-en="Free for Android. One tap to download, start right away.">Android için ücretsiz. Tek tıkla indir, hemen başla.</p>
+    </div>
+    <div class="dl-wrap">
+      <div class="dl-text reveal">
+        <a class="btn-primary btn-lg" href="./safera.apk" download="safera.apk">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-en="Download the APK">APK'yı İndir</span>
+        </a>
+        <p class="dl-meta" data-en="Android 8+ · ~70 MB · Universal">Android 8+ · ~70 MB · Evrensel</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-brand">
+      <img src="img/icon.png" alt="" class="footer-icon">
+      <span style="font-size:15px;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:-.01em;">Safera</span>
+    </div>
+    <p class="footer-slogan" data-en="Occupational safety, digital and audit-ready.">İş güvenliği, dijital ve denetime hazır.</p>
+    <p class="footer-copy" data-en="© 2026 Safera. All rights reserved.">© 2026 Safera. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+  });
+});
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+  });
+},{threshold:.15,rootMargin:'0px 0px -10% 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+document.querySelectorAll('#hero .reveal').forEach(function(el){el.classList.add('in');});
+
+/* ── i18n · TR ⇄ EN in-place toggle ── */
+(function(){
+  var KEY='safera-lang';
+  function cur(){ return localStorage.getItem(KEY)==='en' ? 'en' : 'tr'; }
+  function apply(lang){
+    document.documentElement.lang=lang;
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      if(el.getAttribute('data-tr')===null) el.setAttribute('data-tr', el.innerHTML);
+      el.innerHTML = (lang==='en') ? el.getAttribute('data-en') : el.getAttribute('data-tr');
+    });
+    var ts=document.querySelectorAll('#lang-toggle [data-l]');
+    for(var i=0;i<ts.length;i++) ts[i].classList.toggle('on', ts[i].getAttribute('data-l')===lang);
+    try{ localStorage.setItem(KEY,lang); }catch(e){}
+  }
+  apply(cur());
+  var b=document.getElementById('lang-toggle');
+  if(b) b.addEventListener('click',function(){ apply(cur()==='en'?'tr':'en'); });
+}());
+</script>
+</body>
+</html>

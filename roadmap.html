@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safera — Tüm Özellikler & Yol Haritası</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#12100D; --bg2:#1A1714; --bg3:#221E18; --bg4:#2A251E;
+  --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.12);
+  --ink:#F0EDE5; --ink2:#B8B4A8; --mut:#8A8272;
+  --gold:#CFAE5B; --gold-lt:#E0C988; --gold-dk:#8E6E2F;
+  --p-now:#74B4A6; --p-soon:#D9A93C; --p-far:#DC8B70; --p-vision:#7FA6AA;
+  --t-s:#E0C988; --t-a:#7FA6AA; --t-b:#A39C8D; --t-layer:#8A7D6B;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Fraunces',serif;background:var(--bg);color:var(--ink);line-height:1.55;
+  background-image:radial-gradient(circle at 15% 10%,rgba(207,174,91,.04),transparent 40%),
+    radial-gradient(circle at 85% 90%,rgba(116,180,166,.05),transparent 40%);min-height:100vh}
+::selection{background:var(--gold);color:var(--bg)}
+.mono{font-family:'IBM Plex Mono',monospace}
+
+header{position:sticky;top:0;z-index:50;background:rgba(13,14,18,.92);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:1.1rem 2rem}
+.hwrap{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.brand{display:flex;align-items:baseline;gap:.7rem}
+.brand .n{font-size:1.4rem;font-weight:500}
+.brand .sub{font-size:.72rem;color:var(--mut);letter-spacing:.2em;text-transform:uppercase}
+.back{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--gold);text-decoration:none;letter-spacing:.1em}
+.back:hover{color:var(--gold-lt)}
+.legend{display:flex;gap:1rem;font-size:.74rem;color:var(--ink2);flex-wrap:wrap}
+.legend .li{display:flex;align-items:center;gap:.4rem}
+.dot{width:8px;height:8px;border-radius:50%}
+
+.intro{max-width:1400px;margin:2.5rem auto 1rem;padding:0 2rem}
+.intro h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;letter-spacing:-.02em;line-height:1.1;margin-bottom:.8rem}
+.intro h1 em{font-style:italic;color:var(--gold-lt)}
+.intro p{color:var(--ink2);max-width:780px;font-size:1.02rem}
+.intro .meta{margin-top:1rem;display:flex;gap:1.5rem;flex-wrap:wrap;font-size:.8rem;color:var(--mut)}
+.intro .meta b{color:var(--gold)}
+
+.controls{max-width:1400px;margin:1.5rem auto;padding:0 2rem;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.ctl-label{font-size:.72rem;color:var(--mut);letter-spacing:.15em;text-transform:uppercase;margin-right:.3rem}
+.chip{font-family:'IBM Plex Mono',monospace;font-size:.76rem;padding:.4rem .85rem;border:1px solid var(--line2);
+  border-radius:100px;background:var(--bg2);color:var(--ink2);cursor:pointer;transition:.2s;user-select:none}
+.chip:hover{border-color:var(--gold-dk);color:var(--ink)}
+.chip.active{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:500}
+
+.timeline{max-width:1400px;margin:2rem auto 4rem;padding:0 2rem}
+
+.phase{margin-bottom:3rem;border-radius:16px;overflow:hidden;
+  border:1px solid var(--line);background:linear-gradient(160deg,var(--bg2),rgba(20,22,28,.4))}
+.phase.hidden{display:none}
+.phase-head{padding:1.4rem 1.8rem;display:flex;align-items:center;gap:1.2rem;cursor:pointer;position:relative}
+.phase-head::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
+.phase[data-phase="now"]  .phase-head::before{background:var(--p-now)}
+.phase[data-phase="soon"] .phase-head::before{background:var(--p-soon)}
+.phase[data-phase="far"]  .phase-head::before{background:var(--p-far)}
+.phase[data-phase="vision"] .phase-head::before{background:var(--p-vision)}
+.phase-num{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--mut);min-width:64px}
+.phase-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
+.phase[data-phase="now"]    .phase-icon{background:rgba(63,178,127,.14);color:var(--p-now)}
+.phase[data-phase="soon"]   .phase-icon{background:rgba(217,154,60,.14);color:var(--p-soon)}
+.phase[data-phase="far"]    .phase-icon{background:rgba(125,107,212,.14);color:var(--p-far)}
+.phase[data-phase="vision"] .phase-icon{background:rgba(90,143,214,.14);color:var(--p-vision)}
+.phase-title{flex:1}
+.phase-title h2{font-size:1.35rem;font-weight:500;letter-spacing:-.01em}
+.phase-title .when{font-size:.8rem;color:var(--mut);margin-top:.15rem}
+.phase-badge{font-family:'IBM Plex Mono',monospace;font-size:.68rem;padding:.3rem .7rem;border-radius:100px;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.phase[data-phase="now"]    .phase-badge{background:rgba(63,178,127,.18);color:var(--p-now)}
+.phase[data-phase="soon"]   .phase-badge{background:rgba(217,154,60,.18);color:var(--p-soon)}
+.phase[data-phase="far"]    .phase-badge{background:rgba(125,107,212,.18);color:var(--p-far)}
+.phase[data-phase="vision"] .phase-badge{background:rgba(90,143,214,.18);color:var(--p-vision)}
+.phase-toggle{color:var(--mut);font-size:1.2rem;transition:.3s;margin-left:.5rem}
+.phase.collapsed .phase-toggle{transform:rotate(-90deg)}
+.phase-goal{padding:0 1.8rem 1.2rem;color:var(--ink2);font-size:.94rem;font-style:italic;border-bottom:1px solid var(--line)}
+.phase.collapsed .phase-body,.phase.collapsed .phase-goal{display:none}
+.phase-body{padding:1.5rem 1.8rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem}
+
+.card{border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;background:var(--bg3);
+  cursor:pointer;transition:.25s;position:relative;overflow:hidden}
+.card:hover{border-color:var(--line2);background:var(--bg4);transform:translateY(-2px)}
+.card.hidden{display:none}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.6rem;margin-bottom:.6rem}
+.card-icon{font-size:1.6rem;line-height:1}
+.card[data-tier="s"]     .card-icon{color:var(--t-s)}
+.card[data-tier="a"]     .card-icon{color:var(--t-a)}
+.card[data-tier="b"]     .card-icon{color:var(--t-b)}
+.card[data-tier="layer"] .card-icon{color:var(--t-layer)}
+.tier-tag{font-family:'IBM Plex Mono',monospace;font-size:.62rem;padding:.2rem .5rem;border-radius:5px;
+  letter-spacing:.1em;font-weight:500;white-space:nowrap}
+.card[data-tier="s"]     .tier-tag{background:rgba(230,201,122,.16);color:var(--t-s)}
+.card[data-tier="a"]     .tier-tag{background:rgba(127,179,212,.16);color:var(--t-a)}
+.card[data-tier="b"]     .tier-tag{background:rgba(154,154,166,.16);color:var(--t-b)}
+.card[data-tier="layer"] .tier-tag{background:rgba(138,125,107,.16);color:var(--t-layer)}
+.card h3{font-size:1.05rem;font-weight:500;margin-bottom:.2rem}
+.card .rom{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--mut);letter-spacing:.1em;text-transform:uppercase}
+.card .desc{font-size:.86rem;color:var(--ink2);margin-top:.5rem}
+.card .status{margin-top:.7rem;display:flex;align-items:center;gap:.4rem;font-family:'IBM Plex Mono',monospace;font-size:.68rem}
+.status-dot{width:7px;height:7px;border-radius:50%}
+.s-done{background:var(--p-now)}
+.s-build{background:var(--p-soon)}
+.s-todo{background:var(--mut)}
+
+.modal-bg{position:fixed;inset:0;background:rgba(5,6,9,.8);backdrop-filter:blur(6px);z-index:100;
+  display:none;align-items:center;justify-content:center;padding:2rem}
+.modal-bg.open{display:flex}
+.modal{max-width:620px;width:100%;max-height:85vh;overflow-y:auto;background:var(--bg2);
+  border:1px solid var(--line2);border-radius:18px;padding:2rem}
+.modal-head{display:flex;align-items:flex-start;gap:1.2rem;margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--line)}
+.modal-icon{font-size:3rem;line-height:1}
+.modal-head h2{font-size:1.5rem;font-weight:500}
+.modal-head .rom{font-family:'IBM Plex Mono',monospace;font-size:.74rem;color:var(--mut);letter-spacing:.12em;text-transform:uppercase;margin-top:.2rem}
+.modal-close{margin-left:auto;background:var(--bg4);border:none;color:var(--ink2);width:34px;height:34px;
+  border-radius:9px;cursor:pointer;font-size:1.1rem;transition:.2s}
+.modal-close:hover{background:var(--gold);color:var(--bg)}
+.modal-sec{margin-bottom:1.1rem}
+.modal-sec .lbl{font-family:'IBM Plex Mono',monospace;font-size:.66rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem}
+.modal-sec p{font-size:.94rem;color:var(--ink2)}
+.modal-sec.limit .lbl{color:var(--p-soon)}
+.modal-meta{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.3rem}
+.mtag{font-family:'IBM Plex Mono',monospace;font-size:.7rem;padding:.3rem .6rem;border-radius:6px;background:var(--bg4);color:var(--ink2)}
+
+.summary{max-width:1400px;margin:0 auto 3rem;padding:0 2rem}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.scard{border:1px solid var(--line);border-radius:12px;padding:1.3rem;background:var(--bg2)}
+.scard .v{font-size:2rem;font-weight:300;font-style:italic;color:var(--gold-lt);line-height:1}
+.scard .l{font-size:.78rem;color:var(--mut);margin-top:.4rem}
+
+.fnote{max-width:1400px;margin:0 auto 4rem;padding:1.5rem 2rem;border-top:1px solid var(--line);
+  color:var(--mut);font-size:.84rem;font-style:italic}
+.fnote b{color:var(--ink2);font-style:normal}
+
+@media(max-width:640px){
+  header{padding:.9rem 1rem}
+  .intro,.controls,.timeline,.summary,.fnote{padding-left:1rem;padding-right:1rem}
+  .cards{grid-template-columns:1fr}
+  .legend{font-size:.68rem;gap:.7rem}
+  .phase-head{flex-wrap:wrap;gap:.7rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hwrap">
+    <div class="brand">
+      <span class="n">Safera</span>
+      <span class="sub">Tüm Özellikler &amp; Yol Haritası</span>
+    </div>
+    <a href="https://neosgb-sunum.surge.sh/deck.html" class="back">← Pitch Deck</a>
+    <div class="legend">
+      <span class="li"><span class="dot" style="background:var(--p-now)"></span> Şimdi (1 ay)</span>
+      <span class="li"><span class="dot" style="background:var(--p-soon)"></span> Yakın (ay 2-7)</span>
+      <span class="li"><span class="dot" style="background:var(--p-far)"></span> Uzak (ay 7-24)</span>
+      <span class="li"><span class="dot" style="background:var(--p-vision)"></span> Vizyon</span>
+    </div>
+  </div>
+</header>
+
+<section class="intro">
+  <h1>Nereye gidiyoruz, <em>ne zaman</em>, hangi <em>sırayla</em>.</h1>
+  <p>Her faz, her tier, her özellik burada. Filtrele, kartlara tıkla, detayını oku.
+  Yeşil olanlar 1 ayda bitiyor — TÜBİTAK demosunun omurgası bunlar.
+  Turuncu/mor olanları demoda "yakında" olarak gösteriyoruz.</p>
+  <div class="meta">
+    <span><b>Stack:</b> Flutter + Supabase + AI (ücretsiz katman)</span>
+    <span><b>İlk hedef:</b> TÜBİTAK BiGG demo (3 Tem 2026)</span>
+    <span><b>MVP:</b> 1 ay vibe-coding</span>
+  </div>
+</section>
+
+<div class="controls">
+  <span class="ctl-label">Faz</span>
+  <span class="chip active" data-filter="phase" data-val="all">Tümü</span>
+  <span class="chip" data-filter="phase" data-val="now">Şimdi</span>
+  <span class="chip" data-filter="phase" data-val="soon">Yakın</span>
+  <span class="chip" data-filter="phase" data-val="far">Uzak</span>
+  <span class="chip" data-filter="phase" data-val="vision">Vizyon</span>
+  <span style="width:1px;height:24px;background:var(--line2);margin:0 .5rem"></span>
+  <span class="ctl-label">Tier</span>
+  <span class="chip active" data-filter="tier" data-val="all">Tümü</span>
+  <span class="chip" data-filter="tier" data-val="s">Tier S</span>
+  <span class="chip" data-filter="tier" data-val="a">Tier A</span>
+  <span class="chip" data-filter="tier" data-val="b">Tier B</span>
+  <span class="chip" data-filter="tier" data-val="layer">Katman</span>
+</div>
+
+<div class="timeline" id="timeline"></div>
+
+<section class="summary">
+  <div class="sgrid">
+    <div class="scard"><div class="v">5</div><div class="l">MVP'de çalışan AI özelliği (1 ay)</div></div>
+    <div class="scard"><div class="v">6</div><div class="l">Tier S çıkışı planlanmış</div></div>
+    <div class="scard"><div class="v">7</div><div class="l">Uygulama katmanı (UI hazır)</div></div>
+    <div class="scard"><div class="v">$0</div><div class="l">MVP altyapı maliyeti</div></div>
+    <div class="scard"><div class="v">2.23M</div><div class="l">Hedef işyeri (zorunlu İSG)</div></div>
+  </div>
+</section>
+
+<div class="fnote">
+  <b>Konuşma notu:</b> Yeşil olanlar 1 ayda bitiyor — TÜBİTAK demosunun
+  omurgası bunlar. Turuncu/mor olanları demoda "yakında" olarak gösteriyoruz
+  (vizyon). Mevzuat motoru (FUDÖ) uzak fazda ama hikayede bugün anlatılıyor
+  çünkü en güçlü moat o. Tartışılacak: 1 ayda hangi 2 özelliği "wow"
+  seviyesine çıkaralım?
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script>
+var DATA = [
+  {
+    phase:"now", num:"FAZ 0–1", icon:"🌱", title:"Çalışan MVP – Omurga",
+    when:"Ay 1 · vibe-coding · TÜBİTAK demo hedefi",
+    goal:"Şirket 5 dakikada kurulsun, uzman sesle DÖF açsın, AI belge yazsın. Telefondan canlı gösterilebilir, gerçek backend.",
+    items:[
+      {icon:"⚡",tier:"a",name:"SHUN",rom:"Instant Bootstrap",status:"build",
+       desc:"Şirket 5 dk'da kurulur. Sektör+çalışan+şehir → AI tam compliance iskeleti.",
+       problem:"Şirket İSG kurulumunu bilmiyor, 2 haftalık onboarding korkutucu.",
+       design:"Sektör→tehlike sınıfı (kural) + Gemini ile RAM/eğitim/kurul/yıllık plan iskeleti.",
+       tech:"Edge function + Gemini flash + companies tablosu",
+       demo:"⭐⭐⭐ Ana wow anı — '5 dakikada şirket kuruyorum'",
+       why:"Demo'nun açılışı. MAMORI'nin somut yüzü."},
+      {icon:"🎤",tier:"s",name:"KOE",rom:"Voice Intent",status:"build",
+       desc:"Sesle operasyon. 'Yangın tüpü tarihi geçmiş' → AI DÖF açar.",
+       problem:"Saha çalışanı eldivenle form dolduramaz; veri girişi en büyük darboğaz.",
+       design:"speech_to_text → intent classifier (Gemini) → DÖF/checklist/RAM kararı + mevzuat ref.",
+       tech:"Global mic button + Web Speech API + edge function",
+       demo:"⭐⭐⭐ Ana wow anı — 'sesle DÖF açıyorum'",
+       why:"UI'ı bypass eden çekirdek. AI-native iddiasının kanıtı.",
+       limit:"Çok gürültüde ses+görsel onay birlikte gerekebilir."},
+      {icon:"📄",tier:"a",name:"FUDE",rom:"AI Document",status:"build",
+       desc:"RAM, DÖF, tutanak AI yazar. Uzman onaylar.",
+       problem:"Uzman zamanının %70'i evrak. İş, işi engelliyor.",
+       design:"Context-aware prompt → yapılandırılmış belge içeriği → mevcut PDF generation'a besle.",
+       tech:"Edge function + Gemini + documents tablosu",
+       demo:"⭐⭐ 'AI bu RAM'i yazdı'",
+       why:"Evrak yükünü kaldıran somut araç."},
+      {icon:"🔗",tier:"s",name:"EN",rom:"Smart Match",status:"build",
+       desc:"Akıllı eşleşme + filtreli marketplace. Aracısız, doğru buluşma.",
+       problem:"Şirket doğru uzmanı bulamıyor, aracı pahalıya dolduruyor.",
+       design:"Çok-faktörlü skor (sektör/lokasyon/müsaitlik/deneyim) + neden açıklaması.",
+       tech:"Edge function + matches tablosu",
+       demo:"⭐⭐ 'doğru uzmanla eşleşti, %96'",
+       why:"Aracıyı gereksiz kılan katman. Eşitlikçi (ücretsiz herkes).",
+       limit:"Değer likiditeye bağlı; 15.000 hekim ağı cold-start'ı çözer."},
+      {icon:"📍",tier:"layer",name:"KURA",rom:"Belge Arşivi",status:"done",
+       desc:"Onaylı belge arşivi + geçerlilik takibi.",
+       problem:"Denetimde dağınık, süresi geçmiş ya da onaysız belge.",
+       design:"PDF arşiv + onay kaydı + geçerlilik tarihi → belge tablosu.",
+       tech:"Supabase storage + documents + valid_until",
+       demo:"⭐ 'onaylı ve süresi geçerli belge'",
+       why:"Denetim hazırlığının temeli; süresi dolan belge kendini belli eder."},
+      {icon:"🚪",tier:"layer",name:"TORII",rom:"Kimlik / 9 Rol",status:"done",
+       desc:"9 kullanıcı rolü tek kapıdan giriş. Auth + yetki.",
+       problem:"Çok paydaşlı sistem tek kimlik katmanı gerektirir.",
+       design:"Supabase auth + 9 rol enum + RLS.",
+       tech:"supabase.auth + profiles tablosu + RLS",
+       demo:"Altyapı — görünmez ama temel",
+       why:"Tüm sistemin kapısı."},
+      {icon:"🗂️",tier:"layer",name:"MICHI",rom:"Compliance Workflow",status:"build",
+       desc:"RAM, DÖF, checklist, kurul, eğitim — uyum iskeleti.",
+       problem:"Compliance modülleri dağınık olmamalı.",
+       design:"documents tablosu + FUDE bağlantısı.",
+       tech:"document_repository + edge functions",
+       demo:"Omurga — FUDE/KOE çıktıları buraya akar",
+       why:"İSG operasyonunun kalbi."}
+    ]
+  },
+  {
+    phase:"soon", num:"FAZ 2–3", icon:"⚙️", title:"AI Orkestrasyon – Ölçek",
+    when:"Ay 2–7 · yatırım sonrası",
+    goal:"Bir uzman 50 şirket yönetebilsin. AI operasyonu ölçekler, insan değil. Marketplace likiditesi otursun.",
+    items:[
+      {icon:"🎯",tier:"s",name:"GUNZO",rom:"Multi-Company Orchestration",status:"todo",
+       desc:"1 kişi = 50 şirket. AI operasyonu ölçekler, insan değil.",
+       problem:"Uzman tek başına 5 şirketten fazlasına bakamıyor — aracıya mahkum.",
+       design:"Multi-tenant state machine + AI scheduler + onay kuyruğu. Sabah toplu onay.",
+       tech:"Orchestration engine + cron + AI prioritization",
+       demo:"Demo'da 'yakında' — vizyonun kalbi",
+       why:"Ekonomik denklemi tersine çeviren ana özellik (1 emek = 100 kazanç).",
+       limit:"Her şirket gerçek onay gerektirir (HITL) — yasal geçerlilik."},
+      {icon:"📡",tier:"s",name:"SAKI",rom:"Proactive Compliance",status:"todo",
+       desc:"AI sormadan açığı bulur. 'Bu şirket 18 gün içinde uygunsuz düşebilir.'",
+       problem:"İnsan bilmediğini soramaz; reaktif sistem geç kalır.",
+       design:"Trend analizi (eğitim süresi, DÖF pattern, periyodik) → tahmin → proaktif bildirim.",
+       tech:"Trend modeli + tetikleyici motor + bildirim",
+       demo:"'Yakında' — radar metaforu",
+       why:"Compliance'ı 'yapılacaklar' değil 'canlı radar' yapar."},
+      {icon:"🔍",tier:"a",name:"UTSUSHI",rom:"Shadow Inspection",status:"todo",
+       desc:"AI denetçi gibi davranır, eksikleri hukuki+finansal etkiyle simüle eder.",
+       problem:"Şirket denetimde ne çıkacağını bilmiyor, hazırlıksız.",
+       design:"Mevzuat corpus + denetçi-persona LLM → sanal denetim raporu.",
+       tech:"RAG corpus + Gemini persona",
+       demo:"'Yakında'",
+       why:"Belirsizliği kesinliğe çevirir."},
+      {icon:"👥",tier:"a",name:"KUMI",rom:"Squad Mode",status:"todo",
+       desc:"OSGB olmadan ekip kur. Hekim+uzman+hemşire tek squad.",
+       problem:"Yasal olarak ekip için OSGB'ye mahkum.",
+       design:"Squad oluşturma + görev bölüşümü + AI koordinasyon. Saf yazılım (ödeme/sözleşme yok).",
+       tech:"Squad tabloları + match + koordinasyon",
+       demo:"'Yakında' — HERO özellik",
+       why:"Sektör topolojisini değiştirir. Globalde tek (Squad+Solo combo)."},
+      {icon:"💼",tier:"a",name:"KYAKU",rom:"Solo CRM",status:"todo",
+       desc:"Tüm müşteriler tek ekran. Uzman kendi portföyünü yönetir.",
+       problem:"Bireysel uzmanın satış/portföy gücü yok.",
+       design:"Müşteri/teklif/görev/gelir tek akış.",
+       tech:"CRM tabloları + dashboard",
+       demo:"'Yakında' — HERO özellik",
+       why:"Uzmanın tam bağımsızlığı."}
+    ]
+  },
+  {
+    phase:"far", num:"FAZ 4–5", icon:"🏔️", title:"Kategori Yaratıcı – Moat",
+    when:"Ay 7–24 · network effect + savunulamaz fark",
+    goal:"Safera 'OSGB yazılımı' olmaktan çıksın, AI-native compliance OS olsun. Kopyalanamaz hale gel.",
+    items:[
+      {icon:"⚖️",tier:"s",name:"FUDÖ",rom:"Self-Updating Regulation",status:"todo",
+       desc:"Mevzuat değişince sistem kendi kurallarını kendi yazar.",
+       problem:"Mevzuat sürekli değişiyor; yazılımlar manuel güncellenir, hep geride.",
+       design:"Resmî Gazete crawler + rule-diff + structured extraction + HITL onay → sistem davranışı güncellenir.",
+       tech:"Crawler + LLM rule extraction + onay zinciri",
+       demo:"Demo'da HİKAYE — bugün anlatılır (en güçlü moat)",
+       why:"Sektörde hiç denenmedi. Zamanla açılan, kapatılamayan fark.",
+       limit:"Tam otonom değil — her değişiklik uzman onayından geçer."},
+      {icon:"🌲",tier:"b",name:"MORI",rom:"Collective Intelligence",status:"todo",
+       desc:"Anonim uzman öğrenme ağı. Sistem risk pattern'lerini öğrenir.",
+       problem:"Her uzman tekerleği yeniden icat ediyor.",
+       design:"Anonimleştirilmiş veri → pattern öğrenme → öneri.",
+       tech:"Veri pipeline + ML (uzun vade)",
+       demo:"Veri moat — pitch'te 'data flywheel'",
+       why:"Veri derinleştikçe sistem akıllanır; rakip yakalayamaz."},
+      {icon:"🪞",tier:"b",name:"KAGAMI",rom:"Durum Aynası",status:"todo",
+       desc:"Şirketin anlık uyum durumu — 'şu an müfettiş gelse ne olur'.",
+       problem:"Belirsizlik felç ediyor.",
+       design:"Mevcut veriden canlı uyum skoru + eksik listesi. (Reputation değil — sadece durum aynası.)",
+       tech:"Skor motoru + dashboard",
+       demo:"Destek özelliği",
+       why:"Belirsizliği kesinliğe çevirir."}
+    ]
+  },
+  {
+    phase:"vision", num:"VİZYON", icon:"🌐", title:"+1 – Universal Compliance Agent",
+    when:"Ay 24+ · kategori ötesi · TÜBİTAK panelinde YOK, sadece Seed'de",
+    goal:"Safera ajanı herhangi bir compliance yazılımının üstünde çalışsın. Compliance'ın Stripe'ı ol.",
+    items:[
+      {icon:"🤖",tier:"s",name:"UNIVERSAL",rom:"Compliance Agent",status:"todo",
+       desc:"Ajan müşterinin var olan yazılımlarını (SAP, Logo, ETA) ekran okuyup kullanır.",
+       problem:"Her şirketin farklı eski yazılımı var; entegrasyon cehennemi.",
+       design:"Computer Use API + MCP protokolü + vision. 'Logo'dan al, Safera'ye aktar' → ajan yapar.",
+       tech:"Anthropic Computer Use + MCP + multi-modal vision",
+       demo:"Seed pitch sonu '+1 vision' — TÜBİTAK'ta YOK",
+       why:"Yazılım katmanı değil, işletim sistemi olmak. Stripe momenti."}
+    ]
+  }
+];
+
+var tl = document.getElementById('timeline');
+
+function render(){
+  tl.innerHTML = DATA.map(function(p, pi){
+    return '<div class="phase" data-phase="'+p.phase+'">' +
+      '<div class="phase-head" onclick="this.parentElement.classList.toggle(\'collapsed\')">' +
+        '<span class="phase-num mono">'+p.num+'</span>' +
+        '<span class="phase-icon">'+p.icon+'</span>' +
+        '<span class="phase-title"><h2>'+p.title+'</h2><div class="when">'+p.when+'</div></span>' +
+        '<span class="phase-badge">'+(p.phase==='now'?'Şimdi':p.phase==='soon'?'Yakın':p.phase==='far'?'Uzak':'Vizyon')+'</span>' +
+        '<span class="phase-toggle">▾</span>' +
+      '</div>' +
+      '<div class="phase-goal">'+p.goal+'</div>' +
+      '<div class="phase-body"><div class="cards">' +
+        p.items.map(function(it, ii){
+          return '<div class="card" data-tier="'+it.tier+'" onclick="openModal('+pi+','+ii+')">' +
+            '<div class="card-top">' +
+              '<span class="card-icon">'+it.icon+'</span>' +
+              '<span class="tier-tag">'+(it.tier==='layer'?'KATMAN':'TIER '+it.tier.toUpperCase())+'</span>' +
+            '</div>' +
+            '<h3>'+it.name+'</h3>' +
+            '<div class="rom">'+it.rom+'</div>' +
+            '<div class="desc">'+it.desc+'</div>' +
+            '<div class="status">' +
+              '<span class="status-dot '+(it.status==='done'?'s-done':it.status==='build'?'s-build':'s-todo')+'"></span>' +
+              (it.status==='done'?'UI hazır':it.status==='build'?'1 ayda yapılıyor':'roadmap') +
+            '</div>' +
+          '</div>';
+        }).join('') +
+      '</div></div></div>';
+  }).join('');
+}
+render();
+
+function openModal(pi, ii){
+  var it = DATA[pi].items[ii];
+  var m = document.getElementById('modalContent');
+  m.innerHTML =
+    '<div class="modal-head">' +
+      '<span class="modal-icon" style="color:var(--t-'+(it.tier==='layer'?'layer':it.tier)+')">'+it.icon+'</span>' +
+      '<div><h2>'+it.name+'</h2><div class="rom">'+it.rom+' · '+(it.tier==='layer'?'Katman':'Tier '+it.tier.toUpperCase())+'</div></div>' +
+      '<button class="modal-close" onclick="closeModal()">✕</button>' +
+    '</div>' +
+    '<div class="modal-sec"><div class="lbl">Ne yapar</div><p>'+it.desc+'</p></div>' +
+    '<div class="modal-sec"><div class="lbl">Hangi problemi çözer</div><p>'+it.problem+'</p></div>' +
+    '<div class="modal-sec"><div class="lbl">Tasarım / nasıl çalışır</div><p>'+it.design+'</p></div>' +
+    '<div class="modal-sec"><div class="lbl">Teknik</div><div class="modal-meta"><span class="mtag">'+it.tech+'</span></div></div>' +
+    '<div class="modal-sec"><div class="lbl">Demo değeri</div><p>'+it.demo+'</p></div>' +
+    '<div class="modal-sec"><div class="lbl">Neden önemli</div><p>'+it.why+'</p></div>' +
+    (it.limit ? '<div class="modal-sec limit"><div class="lbl">Gerçek sınır</div><p>'+it.limit+'</p></div>' : '');
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+}
+
+document.getElementById('modal').addEventListener('click', function(e){
+  if(e.target.id === 'modal') closeModal();
+});
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeModal();
+});
+
+var fPhase = 'all', fTier = 'all';
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click', function(){
+    var type = c.dataset.filter, val = c.dataset.val;
+    document.querySelectorAll('.chip[data-filter="'+type+'"]').forEach(function(x){ x.classList.remove('active'); });
+    c.classList.add('active');
+    if(type === 'phase') fPhase = val; else fTier = val;
+    applyFilter();
+  });
+});
+
+function applyFilter(){
+  document.querySelectorAll('.phase').forEach(function(ph){
+    var phMatch = fPhase === 'all' || ph.dataset.phase === fPhase;
+    var anyVisible = false;
+    ph.querySelectorAll('.card').forEach(function(cd){
+      var tMatch = fTier === 'all' || cd.dataset.tier === fTier;
+      var show = phMatch && tMatch;
+      cd.classList.toggle('hidden', !show);
+      if(show) anyVisible = true;
+    });
+    ph.classList.toggle('hidden', !phMatch || (!anyVisible && fTier !== 'all'));
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,597 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safera — Yatırımcı Sunumu & MVP Pilot · Haziran 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3EFE6; --surface:#FCFAF5; --surface-2:#F8F5EE;
+  --ink:#28241F; --ink-soft:#6A6253; --ink-faint:#9C927B;
+  --line:rgba(181,169,138,.30); --line-strong:rgba(181,169,138,.52);
+  --accent:#1A6A5B; --accent-deep:#11473D;
+  --accent-mint:#74B4A6; --accent-wash:rgba(26,106,91,.07);
+  --gold:#B08A3C; --gold-wash:rgba(176,138,60,.12);
+  --danger:#B3261E;
+  --radius:14px; --radius-sm:10px; --maxw:1060px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);
+  line-height:1.62;font-size:16px;-webkit-font-smoothing:antialiased;font-feature-settings:"cv05","ss01";-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.mono{font-family:'JetBrains Mono',monospace}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.25rem,4vw,2rem)}
+.num{font-variant-numeric:tabular-nums}
+
+/* progress */
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0%;z-index:200;transition:width .08s linear}
+
+/* header */
+header.bar{position:sticky;top:0;z-index:120;background:rgba(246,246,244,.88);
+  -webkit-backdrop-filter:saturate(160%) blur(14px);backdrop-filter:saturate(160%) blur(14px);
+  border-bottom:1px solid var(--line)}
+.bar-in{display:flex;align-items:center;gap:.7rem;height:58px}
+.logo-link{display:flex;align-items:center;gap:.55rem;text-decoration:none}
+.logo-link img{height:22px}
+.wordmark{font-weight:800;letter-spacing:-.02em;font-size:1rem;color:var(--ink)}
+.bar-tag{font-size:.66rem;color:var(--ink-faint);letter-spacing:.16em;text-transform:uppercase;
+  border-left:1px solid var(--line);padding-left:.7rem;margin-left:.15rem}
+.bar-nav{margin-left:auto;display:flex;gap:1.4rem;align-items:center}
+.bar-nav a{color:var(--ink-soft);text-decoration:none;font-size:.74rem;letter-spacing:.06em;
+  text-transform:uppercase;transition:color .2s}
+.bar-nav a:hover{color:var(--accent)}
+.bar-nav a.back-link{font-family:'JetBrains Mono',monospace;color:var(--accent);
+  border:1px solid rgba(26,106,91,.25);border-radius:99px;padding:.25rem .65rem;font-size:.67rem}
+.bar-nav a.back-link:hover{background:var(--accent-wash)}
+@media(max-width:760px){.bar-nav .hide-sm,.bar-tag{display:none}}
+
+/* type */
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:inline-block}
+h1{font-weight:800;letter-spacing:-.035em;line-height:1.04;font-size:clamp(2.1rem,5.5vw,4rem)}
+h2{font-weight:800;letter-spacing:-.03em;line-height:1.08;font-size:clamp(1.5rem,3.2vw,2.35rem)}
+h3{font-weight:700;letter-spacing:-.018em;font-size:1.05rem;line-height:1.3}
+.lead{font-size:clamp(.98rem,1.6vw,1.2rem);color:var(--ink-soft);line-height:1.6;font-weight:400}
+.section-head p{color:var(--ink-soft);margin-top:.85rem;font-size:.98rem;max-width:56ch}
+section.s{padding:clamp(3rem,7vw,6rem) 0;border-top:1px solid var(--line)}
+section.tint{background:var(--surface-2)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease);
+  transition-delay:calc(var(--i,0)*60ms)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* hero */
+.hero{padding:clamp(2.5rem,7vw,5.5rem) 0 clamp(2rem,4.5vw,4rem)}
+.hero-accent{color:var(--accent)}
+.hero .lead{margin-top:1.4rem;max-width:58ch}
+
+/* stat strip */
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:clamp(1.8rem,4vw,2.8rem);
+  background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.stat{background:var(--surface);padding:1.2rem 1.1rem}
+.stat .v{font-family:'JetBrains Mono',monospace;font-weight:600;
+  font-size:clamp(1.4rem,2.8vw,2rem);letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.stat .v.tealv{color:var(--accent)}
+.stat .v.goldv{color:var(--gold)}
+.stat .k{font-size:.74rem;color:var(--ink-faint);margin-top:.5rem;line-height:1.35}
+@media(max-width:680px){.stat-strip{grid-template-columns:repeat(2,1fr)}}
+
+/* section headers */
+.section-head{margin-bottom:2.2rem}
+.section-head .eyebrow{margin-bottom:.85rem}
+.section-head h2{max-width:22ch}
+
+/* cards grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+@media(max-width:880px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem}
+@media(max-width:640px){.grid-2{grid-template-columns:1fr}}
+
+/* comp cards */
+.ccard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.4rem;display:flex;flex-direction:column;gap:.5rem;transition:border-color .22s,transform .22s}
+.ccard:hover{border-color:var(--accent);transform:translateY(-3px)}
+.ccard h3{font-size:1rem}
+.ccard .top{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem}
+.badge{font-family:'JetBrains Mono',monospace;font-size:.61rem;font-weight:600;letter-spacing:.05em;
+  text-transform:uppercase;padding:.22rem .5rem;border-radius:99px;white-space:nowrap;border:1px solid transparent;flex:0 0 auto;margin-top:.15rem}
+.b-live{background:var(--accent-wash);color:var(--accent);border-color:rgba(26,106,91,.22)}
+.b-new{background:var(--gold-wash);color:#8a6f22;border-color:rgba(176,138,60,.32)}
+.b-soft{background:rgba(40,36,31,.04);color:var(--ink-soft);border-color:var(--line)}
+.ccard .desc{font-size:.88rem;color:var(--ink-soft);line-height:1.52}
+.ccard .meta{font-size:.82rem;color:var(--ink);border-top:1px solid var(--line);padding-top:.55rem;margin-top:.1rem;line-height:1.45}
+.ccard .meta b{font-weight:600}
+.ccard .src{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--ink-faint);margin-top:.1rem}
+.origin{display:inline-flex;align-items:center;gap:.3rem;font-family:'JetBrains Mono',monospace;
+  font-size:.63rem;font-weight:600;color:var(--gold);background:var(--gold-wash);
+  border:1px solid rgba(176,138,60,.28);padding:.18rem .42rem;border-radius:99px;flex:0 0 auto;margin-top:.12rem}
+.subhead{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-soft);margin:2.2rem 0 .8rem;display:flex;align-items:center;gap:.7rem}
+.subhead::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* problem / opportunity */
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:2.2rem}
+@media(max-width:680px){.prob-grid{grid-template-columns:1fr}}
+.pbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem}
+.pbox.uzman{border-top:3px solid var(--accent)}
+.pbox.sirket{border-top:3px solid var(--gold)}
+.pbox-label{font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem;display:block}
+.pbox.uzman .pbox-label{color:var(--accent)}
+.pbox.sirket .pbox-label{color:var(--gold)}
+.pbox h3{font-size:1.05rem;margin-bottom:.65rem}
+.pbox ul{list-style:none}
+.pbox li{font-size:.88rem;color:var(--ink-soft);padding:.32rem 0 .32rem 1.15rem;
+  position:relative;border-top:1px solid var(--line)}
+.pbox li:first-of-type{border-top:none}
+.pbox li::before{content:"";position:absolute;left:0;top:.7em;width:4px;height:4px;
+  border-radius:50%;background:var(--accent-mint)}
+.pbox.sirket li::before{background:var(--gold)}
+
+/* change arrow */
+.change-arrow{display:flex;align-items:stretch;gap:1.1rem;margin-top:2.2rem}
+@media(max-width:680px){.change-arrow{flex-direction:column}}
+.ca-before,.ca-after{flex:1;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:1.35rem}
+.ca-before{border-top:3px solid var(--danger)}
+.ca-after{border-top:3px solid var(--accent)}
+.ca-label{font-family:'JetBrains Mono',monospace;font-size:.63rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.65rem}
+.ca-before .ca-label{color:var(--danger)}
+.ca-after .ca-label{color:var(--accent)}
+.ca-body{font-size:.88rem;color:var(--ink-soft);line-height:1.6}
+.ca-arr{display:flex;align-items:center;justify-content:center;font-size:1.7rem;color:var(--accent);
+  padding:0 .2rem;flex:0 0 auto}
+@media(max-width:680px){.ca-arr{transform:rotate(90deg)}}
+
+.law-block{margin-top:2rem;background:linear-gradient(135deg,rgba(26,106,91,.06),rgba(176,138,60,.04));
+  border:1px solid rgba(26,106,91,.2);border-radius:var(--radius);padding:1.6rem}
+.law-block .law-date{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:600;
+  color:var(--accent);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.55rem}
+.law-block p{font-size:.95rem;color:var(--ink-soft);line-height:1.65}
+.law-block p b{color:var(--ink);font-weight:600}
+.law-block .sub{font-size:.84rem;color:var(--ink-faint);margin-top:.8rem}
+
+/* bento takeaways */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.2rem}
+@media(max-width:780px){.bento{grid-template-columns:1fr}}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.5rem;transition:border-color .22s,transform .22s}
+.tcard:hover{border-color:var(--accent);transform:translateY(-3px)}
+.tcard .n{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);
+  font-weight:600;letter-spacing:.1em;margin-bottom:.5rem}
+.tcard h3{margin-bottom:.5rem}
+.tcard p{font-size:.91rem;color:var(--ink-soft)}
+
+/* timeline */
+.tl{margin-top:2.4rem;position:relative;padding-left:1.5rem}
+.tl::before{content:"";position:absolute;left:5px;top:.35rem;bottom:.35rem;
+  width:1px;background:var(--line-strong)}
+.tl-item{position:relative;padding:0 0 1.7rem .85rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-1.5rem;top:.32rem;width:11px;height:11px;border-radius:50%;
+  background:var(--surface);border:2px solid var(--accent-mint);transition:background .4s,transform .4s;transform:scale(.85)}
+.reveal.in .tl-dot{background:var(--accent);border-color:var(--accent);transform:scale(1)}
+.tl-dot.gd{border-color:var(--gold)}
+.reveal.in .tl-dot.gd{background:var(--gold);border-color:var(--gold)}
+.tl-date{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--accent);font-weight:600}
+.tl-date.gold{color:var(--gold)}
+.tl-item h3{margin:.22rem 0 .18rem;font-size:.98rem}
+.tl-item p{font-size:.88rem;color:var(--ink-soft);line-height:1.55}
+.tl-tag{font-family:'JetBrains Mono',monospace;font-size:.58rem;font-weight:600;letter-spacing:.05em;
+  text-transform:uppercase;padding:.15rem .42rem;border-radius:99px;margin-left:.4rem;vertical-align:middle;border:1px solid transparent}
+.tl-tag.reg{background:rgba(176,138,60,.1);color:#8a6f22;border-color:rgba(176,138,60,.28)}
+.tl-tag.ai{background:var(--accent-wash);color:var(--accent);border-color:rgba(26,106,91,.2)}
+
+/* scroll table */
+.tbl-scroll{overflow-x:auto;margin-top:2rem;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--surface)}
+table.main{width:100%;border-collapse:collapse;min-width:760px;font-size:.87rem}
+table.main th,table.main td{text-align:left;padding:.85rem 1rem;border-bottom:1px solid var(--line)}
+table.main thead th{font-family:'JetBrains Mono',monospace;font-size:.64rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);background:var(--surface-2)}
+table.main tbody tr:last-child td{border-bottom:none}
+table.main tbody tr:hover{background:var(--accent-wash)}
+table.main tr.us-row{background:linear-gradient(90deg,rgba(26,106,91,.06),transparent)!important}
+table.main tr.us-row td:first-child{font-weight:700;color:var(--accent)}
+td.yes{color:#0B7A5A;font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600}
+td.no{color:#DC2626;font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600}
+td.part{color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600}
+td.co{font-weight:600}
+td.co .co-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--ink-faint);
+  font-weight:400;display:block;margin-top:.15rem}
+
+/* funding table */
+table.fund{width:100%;border-collapse:collapse;min-width:680px;font-size:.87rem}
+table.fund th,table.fund td{text-align:left;padding:.82rem 1rem;border-bottom:1px solid var(--line)}
+table.fund thead th{font-family:'JetBrains Mono',monospace;font-size:.63rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);background:var(--surface-2)}
+table.fund tbody tr:last-child td{border-bottom:none}
+table.fund tbody tr:hover{background:var(--accent-wash)}
+table.fund td.amt{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--accent)}
+table.fund td.co{font-weight:600}
+.tag-vc{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.13rem .38rem;
+  border-radius:5px;background:rgba(26,106,91,.08);color:var(--accent)}
+.tag-pe{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.13rem .38rem;
+  border-radius:5px;background:rgba(40,36,31,.05);color:var(--ink-soft)}
+
+/* market */
+.mkt{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:2.2rem}
+@media(max-width:820px){.mkt{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.mkt{grid-template-columns:1fr}}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem}
+.mcard .big{font-family:'JetBrains Mono',monospace;font-weight:600;letter-spacing:-.02em;
+  font-size:clamp(1.6rem,3vw,2.2rem);line-height:1;color:var(--accent)}
+.mcard .lbl{font-size:.88rem;color:var(--ink-soft);margin-top:.65rem}
+.mcard .src{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--ink-faint);margin-top:.5rem}
+
+/* vertical categories */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.2rem}
+@media(max-width:820px){.vgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.vgrid{grid-template-columns:1fr}}
+.vcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.4rem;transition:border-color .22s}
+.vcard:hover{border-color:var(--accent)}
+.vcard .vt{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+.vcard .vsize{font-size:1.45rem;font-weight:800;letter-spacing:-.03em;color:var(--ink);margin-bottom:.2rem}
+.vcard .vproof{font-size:.82rem;color:var(--ink-faint);margin-bottom:.8rem}
+.vcard .vgap{font-size:.88rem;color:var(--ink-soft);padding-top:.8rem;border-top:1px solid var(--line)}
+.vcard .vgap b{color:var(--ink);font-weight:600}
+.vcard.us{border-color:rgba(26,106,91,.3);background:var(--accent-wash)}
+.vcard.us .vt{color:var(--accent-deep)}
+
+.intersection{margin-top:2.2rem;padding:1.8rem;border-radius:var(--radius);
+  border:1px solid rgba(26,106,91,.22);background:linear-gradient(135deg,rgba(26,106,91,.06),rgba(176,138,60,.03))}
+.intersection p{font-size:1.02rem;color:var(--ink-soft);line-height:1.65}
+.intersection p b{color:var(--accent-deep);font-weight:600}
+
+/* signature matrix */
+.legend{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1.3rem;font-size:.8rem;color:var(--ink-soft)}
+.legend span{display:inline-flex;align-items:center;gap:.42rem}
+.mark{width:19px;height:19px;border-radius:50%;display:inline-grid;place-items:center;
+  font-size:.7rem;font-weight:700;flex:0 0 auto}
+.mark.yes{background:var(--accent);color:#fff}
+.mark.no{background:transparent;border:1.5px solid var(--line-strong);color:var(--ink-faint)}
+.mark.part{background:var(--gold-wash);border:1.5px solid var(--gold);color:#8a6f22}
+.mtx-scroll{overflow-x:auto;margin-top:1.8rem;border:1px solid var(--line-strong);
+  border-radius:var(--radius);background:var(--surface)}
+table.mtx{border-collapse:collapse;width:100%;min-width:820px}
+table.mtx th,table.mtx td{padding:.75rem .6rem;border-bottom:1px solid var(--line);
+  text-align:center;vertical-align:middle}
+table.mtx thead th{font-family:'JetBrains Mono',monospace;font-size:.64rem;font-weight:600;
+  letter-spacing:.04em;color:var(--ink-soft);background:var(--surface-2);
+  position:sticky;top:0;line-height:1.3;padding-top:.9rem;padding-bottom:.9rem}
+table.mtx tbody tr:last-child td{border-bottom:none}
+table.mtx th.dim,table.mtx td.dim{text-align:left;position:sticky;left:0;background:var(--surface);
+  z-index:2;font-size:.84rem;font-weight:500;color:var(--ink);min-width:220px;
+  border-right:1px solid var(--line)}
+table.mtx thead th.dim{background:var(--surface-2);z-index:3;font-weight:600}
+table.mtx th.saf{color:var(--accent-deep);background:linear-gradient(180deg,rgba(26,106,91,.12),var(--accent-wash));
+  border-top:3px solid var(--gold);font-weight:700;font-size:.7rem}
+table.mtx td.saf{background:var(--accent-wash)}
+table.mtx .star{color:var(--gold)}
+table.mtx tbody tr.flip{background:rgba(40,36,31,.012)}
+.mtx-cap{margin-top:1.2rem;font-size:.9rem;color:var(--ink-soft);max-width:64ch;
+  border-left:2px solid var(--accent);padding-left:.9rem}
+.mtx-hint{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--ink-faint);
+  margin-top:.65rem;display:none}
+@media(max-width:860px){.mtx-hint{display:block}}
+
+/* strategy */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.2rem}
+@media(max-width:780px){.phases{grid-template-columns:1fr}}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.5rem;transition:border-color .22s,transform .22s}
+.pcard:hover{border-color:var(--accent);transform:translateY(-3px)}
+.pcard .ph{font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.pcard h3{margin-bottom:.65rem}
+.pcard ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.pcard li{font-size:.87rem;color:var(--ink-soft);padding-left:1.05rem;position:relative}
+.pcard li::before{content:"";position:absolute;left:0;top:.52em;width:4px;height:4px;
+  border-radius:50%;background:var(--accent-mint)}
+
+/* signals */
+.signals{margin-top:2rem;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:1.6rem}
+.signals h3{margin-bottom:.9rem;font-size:.98rem}
+.signals .row{display:flex;gap:.75rem;padding:.65rem 0;border-top:1px solid var(--line);
+  font-size:.88rem;color:var(--ink-soft)}
+.signals .row:first-of-type{border-top:none;padding-top:0}
+.signals .arr{color:var(--accent);font-weight:700;flex:0 0 auto;margin-top:.05rem}
+
+/* takeaway */
+.takeaway{margin:2rem 0;padding:1.2rem 1.5rem;border-left:2px solid var(--accent);
+  background:linear-gradient(90deg,rgba(26,106,91,.06),transparent);border-radius:0 8px 8px 0}
+.takeaway .tl-lbl{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--accent);
+  letter-spacing:.15em;text-transform:uppercase;margin-bottom:.45rem}
+.takeaway p{font-size:.93rem;color:var(--ink-soft);margin:0}
+.takeaway p b{color:var(--accent-deep);font-weight:600}
+
+/* pitch cta */
+.pitch-box{margin-top:2rem;padding:1.6rem;border-radius:var(--radius);
+  background:linear-gradient(135deg,rgba(26,106,91,.08),rgba(176,138,60,.05));
+  border:1px solid rgba(26,106,91,.2)}
+.pitch-box .lbl{font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+.pitch-box p{font-size:1rem;color:var(--ink-soft);line-height:1.65}
+.pitch-box p b{color:var(--accent-deep);font-weight:700}
+
+/* caveat */
+.caveat{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.6rem;margin-top:2rem}
+.caveat h3{font-size:.86rem;margin-bottom:.85rem;color:var(--ink-soft);
+  font-family:'JetBrains Mono',monospace;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.caveat ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.caveat li{font-size:.84rem;color:var(--ink-faint);padding-left:1.05rem;position:relative;line-height:1.5}
+.caveat li::before{content:"—";position:absolute;left:0;color:var(--line-strong)}
+
+/* scrollcue */
+.scrollcue{margin-top:2.2rem;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-faint);display:flex;align-items:center;gap:.55rem}
+.scrollcue .ln{width:28px;height:1px;background:var(--line-strong)}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:2.5rem 0 3.5rem;background:var(--surface-2)}
+.foot-in{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.foot-logo img{height:20px;opacity:.55}
+.foot-meta{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:.66rem;
+  color:var(--ink-faint);text-align:right;line-height:1.65}
+@media(max-width:580px){.foot-meta{margin-left:0;text-align:left;width:100%}}
+
+/* lang toggle */
+#lang-toggle{font-family:'JetBrains Mono',monospace;font-size:.67rem;letter-spacing:.06em;background:transparent;border:1px solid var(--line-strong);color:var(--ink-soft);padding:.25rem .6rem;border-radius:99px;cursor:pointer;display:inline-flex;gap:5px;align-items:center;line-height:1}
+#lang-toggle:hover{border-color:var(--accent);color:var(--accent)}
+#lang-toggle .sep{opacity:.4}
+#lang-toggle [data-l]{opacity:.45;transition:opacity .2s}
+#lang-toggle [data-l].on{opacity:1;color:var(--accent);font-weight:600}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <a href="./index.html" class="logo-link"><img src="logo.svg" alt="Safera" width="88" height="22"></a>
+    <span class="bar-tag">Yatırımcı Sunumu · MVP Pilot · Haz 2026</span>
+    <nav class="bar-nav">
+      <a href="#demo" class="hide-sm">Demo</a>
+      <a href="#anlati" class="hide-sm">Anlatı</a>
+      <a href="#gorusme" class="hide-sm">Görüşme</a>
+      <a href="#kpi" class="hide-sm">KPI</a>
+      <a href="./rakip.html" class="back-link">Rakip Analizi →</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="wrap hero">
+  <span class="eyebrow reveal">Yatırımcı Sunumu · MVP Pilot</span>
+  <h1 class="reveal" style="--i:1">İSG'de aracısız dönem<br><span class="hero-accent">başladı.</span> İşte canlı kanıt.</h1>
+  <p class="lead reveal" style="--i:2">
+    Safera bir slayt değil — çalışan bir ürün. Agentic asistan "Era" gerçek Türkçe sorgularda
+    doğru aracı doğru argümanla çağırıyor; onay-kapılı, denetlenebilir, KVKK-uyumlu. Bu belge:
+    yatırımcıya <b>nerede ne diyeceğimiz</b>, canlı demo akışı ve simüle edilmiş gerçek bir yatırımcı görüşmesinin tam dökümü.
+  </p>
+  <div class="stat-strip reveal" style="--i:3">
+    <div class="stat"><div class="v num" data-count="82" data-suffix="/82">0</div><div class="k">otomatik test geçiyor · flutter analyze = 0</div></div>
+    <div class="stat"><div class="v tealv num" data-count="13" data-suffix="/13">0</div><div class="k">canlı Türkçe niyet → doğru tool+argüman (Groq/Llama 3.3 70B)</div></div>
+    <div class="stat"><div class="v num" data-count="2.23" data-suffix="M" data-dec="2">0</div><div class="k">zorunlu İSG işyeri (6331, Oca 2025)</div></div>
+    <div class="stat"><div class="v goldv num" data-count="1" data-prefix="~£" data-suffix="B">0</div><div class="k">Ideagen değerlemesi (Hg, 2022) — kategori kanıtı</div></div>
+  </div>
+  <div class="scrollcue reveal" style="--i:4"><span class="ln"></span> kaydırarak oku</div>
+</div>
+
+<!-- 60 SANİYE -->
+<section class="s tint" id="anlati">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Anlatı</span>
+      <h2 style="--i:1">Önce 60 saniye, sonra 5 dakika.</h2>
+      <p style="--i:2">Toplantı bu sırayla açılır: kısa kanca → canlı demo → pazar → moat → ask. Demo "konuşmadan" gösterilir; rakamlar demoyu destekler, demonun yerine geçmez.</p>
+    </div>
+    <div class="pitch-box reveal">
+      <div class="lbl">60 saniyelik açılış (ezbere)</div>
+      <p>"Ocak 2025'te 6331 sayılı Kanun <b>2,23 milyon işyerine</b> genişledi — az tehlikeli, tek çalışanlı, kamu dahil. Ama süreç hâlâ opak: KOBİ ne yapacağını bilmiyor, bireysel İSG uzmanı OSGB aracısına mahkûm. Biz Safera'da bürokrasiyi <b>Türkçe konuşan, onaya tabi bir yapay zekâya</b> devrediyoruz ve uzmanı doğrudan işe bağlıyoruz. En yakın küresel vizyon — İngiltere'de <b>~£1 milyar</b> değerlenen Ideagen'in Mazlan'ı — kategorinin gerçek olduğunu kanıtladı; biz onu Türkçe + KOBİ + bireysel-uzman + pazar yeri kesişimine taşıyoruz. Ve bu çalışıyor — göstereyim."</p>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO SCRIPTİ -->
+<section class="s" id="demo">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Canlı Demo Akışı</span>
+      <h2 style="--i:1">Ekran ekran: ne açılır, ne söylenir, ne gösterilir.</h2>
+      <p style="--i:2">Demo hesabıyla giriş → sandbox otomatik kurulur (rol-özgün gerçek demo dünyası). Her adımda <b>tek cümle</b> söyle, sonra ekranı konuştur. Hız: ~5 dakika.</p>
+    </div>
+    <div class="tl reveal">
+      <div class="tl-item"><span class="tl-dot"></span>
+        <div class="tl-date">01 · Giriş / Sandbox</div>
+        <h3>"Yeni bir kullanıcı gibi giriyorum — sistem bana rolüme özel gerçek bir demo dünyası kuruyor."</h3>
+        <p>Demo hesabıyla gir; çalışan/RAM/ilan/başvuru/ekip/belge otomatik gelir. Vurgu: "Bunlar mockup değil — gerçek Supabase satırları, her şeyi gerçekten yapabiliyorum."</p>
+      </div>
+      <div class="tl-item"><span class="tl-dot"></span>
+        <div class="tl-date">02 · Era — kaza kaydı <span class="tl-tag ai">canlı</span></div>
+        <h3>"Bugün üretim hattında bir işçi parmağını makineye kaptırdı, yaralandı." yazıyorum.</h3>
+        <p>Era kaza kaydını <b>hazırlar</b>, SGK 3-iş-günü son tarihini deterministik hesaplar ve <b>onay ister</b> — kendiliğinden yazmaz. Onayla. Vurgu: "Yapay zekâ eyleme geçmeden önce insan onayı; İSG'de bu kritik."</p>
+      </div>
+      <div class="tl-item"><span class="tl-dot"></span>
+        <div class="tl-date">03 · Era — mevzuat <span class="tl-tag reg">guardrail</span></div>
+        <h3>"Yüksekte çalışmada hangi yönetmelik geçerli?" sor.</h3>
+        <p>Era <b>uydurmaz</b> — yalnız doğrulanmış mevzuat kaynağından çeker (lookup); guardrail doğrulanmamış atfı reddeder. Vurgu: "Halüsinasyon riski mimari olarak kapatıldı; hukuki geçerlilik iddiası yok, izlenebilir kayıt var."</p>
+      </div>
+      <div class="tl-item"><span class="tl-dot"></span>
+        <div class="tl-date">04 · Akış (pazar yeri)</div>
+        <h3>"Burası uzman ↔ işyeri eşleşmesi — ama LLM değil, deterministik."</h3>
+        <p>Demo ilanı aç, eşleşme yüzdesini göster (konum+tehlike+sektör+rol ağırlıklı), başvur → kabul. Vurgu: "Aracı yok, komisyon yok; uzman doğrudan işe ulaşıyor."</p>
+      </div>
+      <div class="tl-item"><span class="tl-dot"></span>
+        <div class="tl-date">05 · Ekip <span class="tl-tag ai">canlı</span></div>
+        <h3>"Ekibimi yönetiyorum — 3 üyeli demo ekip hazır; handle ile yeni üye ekleyebiliyorum."</h3>
+        <p>Ekip ekranında üyeleri göster; "Üye ekle" sheet'inden handle ile ekle (canlı, isimle listeye düşer). Vurgu: tek, amaca uygun akış — üç tıkta gerçek işlem.</p>
+      </div>
+      <div class="tl-item"><span class="tl-dot gd"></span>
+        <div class="tl-date gold">06 · Belge + elektronik onay</div>
+        <h3>"Era belgeyi üretir; onay kaydı (kim, ne zaman) tutulur ve onay sonrası belge düzenlemeye kilitlenir."</h3>
+        <p>Demo risk değerlendirme / acil durum planı + belge arşivi. Vurgu: "Denetime hazır, izlenebilir kayıt — geçerlilik süresi ve onay durumu tek bakışta."</p>
+      </div>
+      <div class="tl-item"><span class="tl-dot gd"></span>
+        <div class="tl-date gold">07 · Kapanış</div>
+        <h3>"Gördüğünüz her şey bugün çalışıyor. Henüz olmayan: canlı tahsilat ve gerçek KATİP entegrasyonu — pilotun konusu."</h3>
+        <p>Dürüst kapan. Mazlan/£1B kategori kanıtına ve 2,23M pazara bağla → ask'e geç.</p>
+      </div>
+    </div>
+    <div class="caveat reveal">
+      <h3>Demoda DİKKAT</h3>
+      <ul>
+        <li>Era canlı çağrı yapar — internet + edge anahtarı hazır olsun; yedek olarak ekran kaydı bulundur.</li>
+        <li>"Henüz yok" listesini sen söyle (tahsilat, gerçek KATİP API, mağaza yayını) — yatırımcı yakalamadan dürüstlük puanı topla.</li>
+        <li>Vanity metrik (kayıt/DAU) gösterme; ödeme-niyeti ve zaman-tasarrufu anlat.</li>
+        <li>Müfettiş/süreç simülatörü yol haritasında — demoda söz ver, çalışırmış gibi gösterme.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- YATIRIMCI GÖRÜŞMESİ -->
+<section class="s tint" id="gorusme">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Simüle Yatırımcı Görüşmesi</span>
+      <h2 style="--i:1">Şüpheci bir VC ile iki tur — tam döküm.</h2>
+      <p style="--i:2">Aşağısı, deneyimli (B2B SaaS + dikey-AI) bir Türk yatırımcı personası ile yapılan iki turlu sorgunun gerçek dökümüdür. Sert sorular → kurucu cevapları → term-sheet kararı.</p>
+    </div>
+
+    <div class="subhead reveal">Tur 1 · İlk tepki</div>
+    <div class="takeaway reveal">
+      <div class="tl-lbl">Yatırımcı</div>
+      <p>"Sevdiğim: regülasyon-tetiklenmesi gerçek bir 'şimdi' yaratıyor ve çoğu pre-seed'in aksine <b>kod gerçekten var</b>, Era canlı tool-calling yapıyor, 'henüz yok' listesini dürüstçe veriyorsun. Şüphelendiğim: '5'li kesişim' dili beni geriyor — tek güçlü wedge yerine beş zayıf özellik savunmak zorunda kalan ürünlerin dili. Ve tüm tez sahip olmadığın bir entegrasyona (KATİP) ve halüsinasyon yapmaması gereken bir LLM'e dayanıyor. Asıl risk teknolojide değil — dağıtım ve sorumlulukta."</p>
+    </div>
+
+    <div class="subhead reveal">Tur 1 · 7 sert soru → kurucu cevabı → yatırımcı hükmü</div>
+    <div class="grid-2">
+      <div class="ccard reveal"><div class="top"><h3>S1 · Pazar gerçekçiliği</h3><span class="badge b-live">Tatmin</span></div>
+        <div class="desc"><b>Soru:</b> 2,23M TAM değil kapsam. Gerçek ödeyen SAM ve ARPU?</div>
+        <div class="meta"><b>Cevap:</b> ~120-150k sertifikalı uzman, aktif ~70-90k; erken SAM dijital-yerli serbest ~15-25k. Pro ~₺6-12k/yıl (iş gideri) + token. Para uzmanda, mikro-KOBİ'de değil — uzman üzerinden gelir.</div>
+      </div>
+      <div class="ccard reveal" style="--i:1"><div class="top"><h3>S2 · Soğuk başlangıç</h3><span class="badge b-live">Tatmin ★</span></div>
+        <div class="desc"><b>Soru:</b> İki-taraflı pazar yeri tavuk-yumurta; ilk 100 uzman nasıl, değer ne?</div>
+        <div class="meta"><b>Cevap:</b> Wedge pazar yeri değil — Era'yı uzmanın MEVCUT müşterileri için kullandığı tek-taraflı araç; sıfır eşleşmeyle bile değer var. İlk 100: akademi mezunları + OSGB'den çıkanlar + simülatör hunisi. <i>Yatırımcı: tek başına beni "erken"den "koşullu evet"e taşıyan cevap.</i></div>
+      </div>
+      <div class="ccard reveal" style="--i:2"><div class="top"><h3>S3 · KATİP bağımlılığı</h3><span class="badge b-new">Kısmen</span></div>
+        <div class="desc"><b>Soru:</b> Değer vaadinin son adımı sahip olmadığın entegrasyon. Programatik mümkün mü?</div>
+        <div class="meta"><b>Cevap:</b> Açık API yok; "hazırla-insan-gönderir" (R3 kapalı — güvenlik duruşu). Taslak-hazırlama bile RAM süresini ~2 saat→~15 dk indirir. Programatik yol: İBYS yetkili-entegratör rotası (yol haritası). <i>Pilotun #1 kanıtlayacağı şey.</i></div>
+      </div>
+      <div class="ccard reveal" style="--i:3"><div class="top"><h3>S4 · LLM güveni/sorumluluk</h3><span class="badge b-new">Kısmen</span></div>
+        <div class="desc"><b>Soru:</b> Yanlış mevzuat → ceza/kaza → sorumluluk kimde? Halüsinasyon oranı?</div>
+        <div class="meta"><b>Cevap:</b> Mevzuat yalnız verified lookup; guardrail reddeder; insan onayı; geçerlilik iddiası yok. Ölçek-halüsinasyon henüz ölçülmedi — pilot KPI. Canlı test 13/13 + tarih bug'ı yakalanıp düzeltildi. <i>Yatırımcı: niyet doğru, ölçüm yok; izliyorum.</i></div>
+      </div>
+      <div class="ccard reveal" style="--i:4"><div class="top"><h3>S5 · Moat</h3><span class="badge b-new">Kısmen</span></div>
+        <div class="desc"><b>Soru:</b> İBYS oyuncusu chatbot eklerse 18 aylık avans ne kadar savunulur?</div>
+        <div class="meta"><b>Cevap:</b> "Türkçe+KOBİ" kopyalanabilir; gerçek savunma veri/network + KATİP entegrasyon derinliği + kategori-marka (çoğu gelecek zaman). Bugünkü moat: agentic derinlik + hız. <i>Yatırımcı: pre-seed için yeterli; Seri A'da veri-network etkisini göster.</i></div>
+      </div>
+      <div class="ccard reveal" style="--i:5"><div class="top"><h3>S6 · Unit economics</h3><span class="badge b-soft">En zayıf</span></div>
+        <div class="desc"><b>Soru:</b> Ölçekte token COGS? CAC kanıtı? LTV/CAC?</div>
+        <div class="meta"><b>Cevap:</b> Manuel aksiyon=0 token → COGS alt-lineer; Groq→kendi modeli yolu. CAC hâlâ inanç (traction öncesi); SEO+simülatör+elle kohort hipotezi pilotta ölçülecek. <i>Yatırımcı: pre-seed'de kabul, ama kalbi bu.</i></div>
+      </div>
+    </div>
+    <div class="ccard reveal" style="margin-top:1.1rem"><div class="top"><h3>S7 · Ekip / neden-siz / exit</h3><span class="badge b-new">Kısmen</span></div>
+      <div class="desc"><b>Soru:</b> Tek mi inşa ettin? İSG-dağıtımını içeriden bilen kim? Exit?</div>
+      <div class="meta"><b>Cevap:</b> Ekip küçük; İSG-domain kurucu-ortak/danışman ihtiyacı gerçek, kapatılıyor. Exit: Ideagen/İBYS satın alma ya da GCC bölgesel genişleme (OSHAD-SF, Arapça). <i>Yatırımcı: en büyük yapısal risk; şart koşacağım.</i></div>
+    </div>
+
+    <div class="subhead reveal">Tur 2 · Nihai karar</div>
+    <div class="intersection reveal">
+      <p><b>"Çeki yazıyorum. Koşullu pre-seed, lead olarak."</b> Beni taşıyan iki şey: S2'nin soğuk-başlangıç riskini mimari olarak çözmesi (kırılgan marketplace → savunulabilir tek-taraflı SaaS + upside) ve kurucunun dört kritik soruda savunma yerine zayıflığı kabul etmesi. Pre-seed'de ürüne değil, <b>kurucunun gerçeği görme netliğine</b> yatırım yaparım.</p>
+    </div>
+    <div class="grid-2" style="margin-top:1.1rem">
+      <div class="pbox uzman reveal">
+        <span class="pbox-label">Term-sheet mantığı</span>
+        <ul>
+          <li><b>Enstrüman:</b> SAFE (post-money cap), kademeli.</li>
+          <li><b>Miktar:</b> $400K, iki dilim — $200K hemen, $200K pilot KPI'larının ≥3/4'ü tutarsa.</li>
+          <li><b>Cap:</b> ~$3.0M–$3.5M post-money (≈%10-13 dilution).</li>
+          <li><b>Şart:</b> 60 gün içinde İSG-domain kurucu-ortak/kurucu-seviye danışman bağlanır — pazarlık dışı.</li>
+        </ul>
+      </div>
+      <div class="pbox sirket reveal" style="--i:1">
+        <span class="pbox-label">Sonraki tur tetikleyici KPI (pilot çıkışı)</span>
+        <ul>
+          <li><b>≥25 aktif ödeme-niyetli uzman</b> (ödeyen ya da net taahhüt) — en sert eşik.</li>
+          <li>KATİP taslak-hazırlama zaman-tasarrufu: ≥15-20 uzmanda ölçülmüş "2 saat → X dk".</li>
+          <li>Halüsinasyon/yorum-doğruluğu: red-team sonrası kritik-yanlış ≈ %0 (n≥100).</li>
+          <li>Domain kurucu-ortak bağlandı (şartla aynı).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KPI & ODAK -->
+<section class="s" id="kpi">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pilot · Tek Odak</span>
+      <h2 style="--i:1">Yatırımcının son tavsiyesi.</h2>
+    </div>
+    <div class="pitch-box reveal">
+      <div class="lbl">Pilotta tek bir şey</div>
+      <p><b>Ödeme-niyeti kanıtı.</b> "Bir uzman, Era için cebinden para çıkarır mı, ne kadar, neden?" Halüsinasyon metriği, KATİP zaman-tasarrufu, network etkisi — hepsi bu sorunun alt-bileşeni. Vanity metriğin (kayıt, simülatör denemesi, DAU) peşine düşme. Pilot sonunda elinde <b>"şu 25 uzman şu sebeple ayda ₺X ödüyor"</b> cümlesi varsa, Seri A'da değerlemeyi sen belirlersin.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <a href="./index.html" class="foot-logo"><img src="logo.svg" alt="Safera"></a>
+    <a href="./rakip.html" class="back-link" style="font-family:'JetBrains Mono',monospace;color:var(--accent);border:1px solid rgba(26,106,91,.25);border-radius:99px;padding:.25rem .65rem;font-size:.67rem;text-decoration:none">Rakip Analizi →</a>
+    <div class="foot-meta">Safera · Yatırımcı Sunumu &amp; MVP Pilot · Haziran 2026 · İç belge.<br>Yatırımcı görüşmesi, şüpheci bir VC personasıyla yapılan simülasyondur; gerçek bir teklif değildir. Ürün/test durumu kod tabanından doğrulanmıştır (analyze=0, 151/151).</div>
+  </div>
+</footer>
+<script>
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var bar = document.getElementById('progress');
+  function onScroll(){ var h=document.documentElement; bar.style.width=(h.scrollHeight-h.clientHeight>0?h.scrollTop/(h.scrollHeight-h.clientHeight)*100:0)+'%'; }
+  document.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  var revs = document.querySelectorAll('.reveal');
+  if(rm){ revs.forEach(function(el){el.classList.add('in');}); }
+  else if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+    },{threshold:0.1,rootMargin:'0px 0px -6% 0px'});
+    revs.forEach(function(el){io.observe(el);});
+  } else { revs.forEach(function(el){el.classList.add('in');}); }
+
+  function fmt(v,dec){ return dec>0?v.toFixed(dec):Math.round(v).toString(); }
+  function animate(el){
+    var target=parseFloat(el.getAttribute('data-count'));
+    var dec=parseInt(el.getAttribute('data-dec')||'0',10);
+    var pre=el.getAttribute('data-prefix')||'';
+    var suf=el.getAttribute('data-suffix')||'';
+    if(rm||isNaN(target)){el.textContent=pre+fmt(target||0,dec)+suf;return;}
+    var dur=1100,t0=null;
+    function step(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/dur,1),eased=1-Math.pow(1-p,3);
+      el.textContent=pre+fmt(target*eased,dec)+suf; if(p<1)requestAnimationFrame(step); else el.textContent=pre+fmt(target,dec)+suf; }
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window&&!rm){
+    var co=new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){animate(e.target);co.unobserve(e.target);} }); },{threshold:0.5});
+    document.querySelectorAll('[data-count]').forEach(function(el){co.observe(el);});
+  } else { document.querySelectorAll('[data-count]').forEach(animate); }
+})();
+</script>
+
+</body>
+</html>

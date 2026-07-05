@@ -1,0 +1,799 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safera — Rakip & Pazar Analizi · Haziran 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3EFE6; --surface:#FCFAF5; --surface-2:#F8F5EE;
+  --ink:#28241F; --ink-soft:#6A6253; --ink-faint:#9C927B;
+  --line:rgba(181,169,138,.30); --line-strong:rgba(181,169,138,.52);
+  --accent:#1A6A5B; --accent-deep:#11473D;
+  --accent-mint:#74B4A6; --accent-wash:rgba(26,106,91,.07);
+  --gold:#B08A3C; --gold-wash:rgba(176,138,60,.12);
+  --danger:#B3261E;
+  --radius:14px; --radius-sm:10px; --maxw:1060px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);
+  line-height:1.62;font-size:16px;-webkit-font-smoothing:antialiased;font-feature-settings:"cv05","ss01";-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.mono{font-family:'JetBrains Mono',monospace}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.25rem,4vw,2rem)}
+.num{font-variant-numeric:tabular-nums}
+
+/* progress */
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0%;z-index:200;transition:width .08s linear}
+
+/* header */
+header.bar{position:sticky;top:0;z-index:120;background:rgba(246,246,244,.88);
+  -webkit-backdrop-filter:saturate(160%) blur(14px);backdrop-filter:saturate(160%) blur(14px);
+  border-bottom:1px solid var(--line)}
+.bar-in{display:flex;align-items:center;gap:.7rem;height:58px}
+.logo-link{display:flex;align-items:center;gap:.55rem;text-decoration:none}
+.logo-link img{height:22px}
+.wordmark{font-weight:800;letter-spacing:-.02em;font-size:1rem;color:var(--ink)}
+.bar-tag{font-size:.66rem;color:var(--ink-faint);letter-spacing:.16em;text-transform:uppercase;
+  border-left:1px solid var(--line);padding-left:.7rem;margin-left:.15rem}
+.bar-nav{margin-left:auto;display:flex;gap:1.4rem;align-items:center}
+.bar-nav a{color:var(--ink-soft);text-decoration:none;font-size:.74rem;letter-spacing:.06em;
+  text-transform:uppercase;transition:color .2s}
+.bar-nav a:hover{color:var(--accent)}
+.bar-nav a.back-link{font-family:'JetBrains Mono',monospace;color:var(--accent);
+  border:1px solid rgba(26,106,91,.25);border-radius:99px;padding:.25rem .65rem;font-size:.67rem}
+.bar-nav a.back-link:hover{background:var(--accent-wash)}
+@media(max-width:760px){.bar-nav .hide-sm,.bar-tag{display:none}}
+
+/* type */
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:inline-block}
+h1{font-weight:800;letter-spacing:-.035em;line-height:1.04;font-size:clamp(2.1rem,5.5vw,4rem)}
+h2{font-weight:800;letter-spacing:-.03em;line-height:1.08;font-size:clamp(1.5rem,3.2vw,2.35rem)}
+h3{font-weight:700;letter-spacing:-.018em;font-size:1.05rem;line-height:1.3}
+.lead{font-size:clamp(.98rem,1.6vw,1.2rem);color:var(--ink-soft);line-height:1.6;font-weight:400}
+.section-head p{color:var(--ink-soft);margin-top:.85rem;font-size:.98rem;max-width:56ch}
+section.s{padding:clamp(3rem,7vw,6rem) 0;border-top:1px solid var(--line)}
+section.tint{background:var(--surface-2)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease);
+  transition-delay:calc(var(--i,0)*60ms)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* hero */
+.hero{padding:clamp(2.5rem,7vw,5.5rem) 0 clamp(2rem,4.5vw,4rem)}
+.hero-accent{color:var(--accent)}
+.hero .lead{margin-top:1.4rem;max-width:58ch}
+
+/* stat strip */
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:clamp(1.8rem,4vw,2.8rem);
+  background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.stat{background:var(--surface);padding:1.2rem 1.1rem}
+.stat .v{font-family:'JetBrains Mono',monospace;font-weight:600;
+  font-size:clamp(1.4rem,2.8vw,2rem);letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.stat .v.tealv{color:var(--accent)}
+.stat .v.goldv{color:var(--gold)}
+.stat .k{font-size:.74rem;color:var(--ink-faint);margin-top:.5rem;line-height:1.35}
+@media(max-width:680px){.stat-strip{grid-template-columns:repeat(2,1fr)}}
+
+/* section headers */
+.section-head{margin-bottom:2.2rem}
+.section-head .eyebrow{margin-bottom:.85rem}
+.section-head h2{max-width:22ch}
+
+/* cards grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+@media(max-width:880px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem}
+@media(max-width:640px){.grid-2{grid-template-columns:1fr}}
+
+/* comp cards */
+.ccard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.4rem;display:flex;flex-direction:column;gap:.5rem;transition:border-color .22s,transform .22s}
+.ccard:hover{border-color:var(--accent);transform:translateY(-3px)}
+.ccard h3{font-size:1rem}
+.ccard .top{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem}
+.badge{font-family:'JetBrains Mono',monospace;font-size:.61rem;font-weight:600;letter-spacing:.05em;
+  text-transform:uppercase;padding:.22rem .5rem;border-radius:99px;white-space:nowrap;border:1px solid transparent;flex:0 0 auto;margin-top:.15rem}
+.b-live{background:var(--accent-wash);color:var(--accent);border-color:rgba(26,106,91,.22)}
+.b-new{background:var(--gold-wash);color:#8a6f22;border-color:rgba(176,138,60,.32)}
+.b-soft{background:rgba(40,36,31,.04);color:var(--ink-soft);border-color:var(--line)}
+.ccard .desc{font-size:.88rem;color:var(--ink-soft);line-height:1.52}
+.ccard .meta{font-size:.82rem;color:var(--ink);border-top:1px solid var(--line);padding-top:.55rem;margin-top:.1rem;line-height:1.45}
+.ccard .meta b{font-weight:600}
+.ccard .src{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--ink-faint);margin-top:.1rem}
+.origin{display:inline-flex;align-items:center;gap:.3rem;font-family:'JetBrains Mono',monospace;
+  font-size:.63rem;font-weight:600;color:var(--gold);background:var(--gold-wash);
+  border:1px solid rgba(176,138,60,.28);padding:.18rem .42rem;border-radius:99px;flex:0 0 auto;margin-top:.12rem}
+.subhead{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-soft);margin:2.2rem 0 .8rem;display:flex;align-items:center;gap:.7rem}
+.subhead::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* problem / opportunity */
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:2.2rem}
+@media(max-width:680px){.prob-grid{grid-template-columns:1fr}}
+.pbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem}
+.pbox.uzman{border-top:3px solid var(--accent)}
+.pbox.sirket{border-top:3px solid var(--gold)}
+.pbox-label{font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem;display:block}
+.pbox.uzman .pbox-label{color:var(--accent)}
+.pbox.sirket .pbox-label{color:var(--gold)}
+.pbox h3{font-size:1.05rem;margin-bottom:.65rem}
+.pbox ul{list-style:none}
+.pbox li{font-size:.88rem;color:var(--ink-soft);padding:.32rem 0 .32rem 1.15rem;
+  position:relative;border-top:1px solid var(--line)}
+.pbox li:first-of-type{border-top:none}
+.pbox li::before{content:"";position:absolute;left:0;top:.7em;width:4px;height:4px;
+  border-radius:50%;background:var(--accent-mint)}
+.pbox.sirket li::before{background:var(--gold)}
+
+/* change arrow */
+.change-arrow{display:flex;align-items:stretch;gap:1.1rem;margin-top:2.2rem}
+@media(max-width:680px){.change-arrow{flex-direction:column}}
+.ca-before,.ca-after{flex:1;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:1.35rem}
+.ca-before{border-top:3px solid var(--danger)}
+.ca-after{border-top:3px solid var(--accent)}
+.ca-label{font-family:'JetBrains Mono',monospace;font-size:.63rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.65rem}
+.ca-before .ca-label{color:var(--danger)}
+.ca-after .ca-label{color:var(--accent)}
+.ca-body{font-size:.88rem;color:var(--ink-soft);line-height:1.6}
+.ca-arr{display:flex;align-items:center;justify-content:center;font-size:1.7rem;color:var(--accent);
+  padding:0 .2rem;flex:0 0 auto}
+@media(max-width:680px){.ca-arr{transform:rotate(90deg)}}
+
+.law-block{margin-top:2rem;background:linear-gradient(135deg,rgba(26,106,91,.06),rgba(176,138,60,.04));
+  border:1px solid rgba(26,106,91,.2);border-radius:var(--radius);padding:1.6rem}
+.law-block .law-date{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:600;
+  color:var(--accent);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.55rem}
+.law-block p{font-size:.95rem;color:var(--ink-soft);line-height:1.65}
+.law-block p b{color:var(--ink);font-weight:600}
+.law-block .sub{font-size:.84rem;color:var(--ink-faint);margin-top:.8rem}
+
+/* bento takeaways */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.2rem}
+@media(max-width:780px){.bento{grid-template-columns:1fr}}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.5rem;transition:border-color .22s,transform .22s}
+.tcard:hover{border-color:var(--accent);transform:translateY(-3px)}
+.tcard .n{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);
+  font-weight:600;letter-spacing:.1em;margin-bottom:.5rem}
+.tcard h3{margin-bottom:.5rem}
+.tcard p{font-size:.91rem;color:var(--ink-soft)}
+
+/* timeline */
+.tl{margin-top:2.4rem;position:relative;padding-left:1.5rem}
+.tl::before{content:"";position:absolute;left:5px;top:.35rem;bottom:.35rem;
+  width:1px;background:var(--line-strong)}
+.tl-item{position:relative;padding:0 0 1.7rem .85rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-1.5rem;top:.32rem;width:11px;height:11px;border-radius:50%;
+  background:var(--surface);border:2px solid var(--accent-mint);transition:background .4s,transform .4s;transform:scale(.85)}
+.reveal.in .tl-dot{background:var(--accent);border-color:var(--accent);transform:scale(1)}
+.tl-dot.gd{border-color:var(--gold)}
+.reveal.in .tl-dot.gd{background:var(--gold);border-color:var(--gold)}
+.tl-date{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--accent);font-weight:600}
+.tl-date.gold{color:var(--gold)}
+.tl-item h3{margin:.22rem 0 .18rem;font-size:.98rem}
+.tl-item p{font-size:.88rem;color:var(--ink-soft);line-height:1.55}
+.tl-tag{font-family:'JetBrains Mono',monospace;font-size:.58rem;font-weight:600;letter-spacing:.05em;
+  text-transform:uppercase;padding:.15rem .42rem;border-radius:99px;margin-left:.4rem;vertical-align:middle;border:1px solid transparent}
+.tl-tag.reg{background:rgba(176,138,60,.1);color:#8a6f22;border-color:rgba(176,138,60,.28)}
+.tl-tag.ai{background:var(--accent-wash);color:var(--accent);border-color:rgba(26,106,91,.2)}
+
+/* scroll table */
+.tbl-scroll{overflow-x:auto;margin-top:2rem;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--surface)}
+table.main{width:100%;border-collapse:collapse;min-width:760px;font-size:.87rem}
+table.main th,table.main td{text-align:left;padding:.85rem 1rem;border-bottom:1px solid var(--line)}
+table.main thead th{font-family:'JetBrains Mono',monospace;font-size:.64rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);background:var(--surface-2)}
+table.main tbody tr:last-child td{border-bottom:none}
+table.main tbody tr:hover{background:var(--accent-wash)}
+table.main tr.us-row{background:linear-gradient(90deg,rgba(26,106,91,.06),transparent)!important}
+table.main tr.us-row td:first-child{font-weight:700;color:var(--accent)}
+td.yes{color:#0B7A5A;font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600}
+td.no{color:#DC2626;font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600}
+td.part{color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600}
+td.co{font-weight:600}
+td.co .co-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--ink-faint);
+  font-weight:400;display:block;margin-top:.15rem}
+
+/* funding table */
+table.fund{width:100%;border-collapse:collapse;min-width:680px;font-size:.87rem}
+table.fund th,table.fund td{text-align:left;padding:.82rem 1rem;border-bottom:1px solid var(--line)}
+table.fund thead th{font-family:'JetBrains Mono',monospace;font-size:.63rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);background:var(--surface-2)}
+table.fund tbody tr:last-child td{border-bottom:none}
+table.fund tbody tr:hover{background:var(--accent-wash)}
+table.fund td.amt{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--accent)}
+table.fund td.co{font-weight:600}
+.tag-vc{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.13rem .38rem;
+  border-radius:5px;background:rgba(26,106,91,.08);color:var(--accent)}
+.tag-pe{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.13rem .38rem;
+  border-radius:5px;background:rgba(40,36,31,.05);color:var(--ink-soft)}
+
+/* market */
+.mkt{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:2.2rem}
+@media(max-width:820px){.mkt{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.mkt{grid-template-columns:1fr}}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem}
+.mcard .big{font-family:'JetBrains Mono',monospace;font-weight:600;letter-spacing:-.02em;
+  font-size:clamp(1.6rem,3vw,2.2rem);line-height:1;color:var(--accent)}
+.mcard .lbl{font-size:.88rem;color:var(--ink-soft);margin-top:.65rem}
+.mcard .src{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--ink-faint);margin-top:.5rem}
+
+/* vertical categories */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.2rem}
+@media(max-width:820px){.vgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.vgrid{grid-template-columns:1fr}}
+.vcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.4rem;transition:border-color .22s}
+.vcard:hover{border-color:var(--accent)}
+.vcard .vt{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+.vcard .vsize{font-size:1.45rem;font-weight:800;letter-spacing:-.03em;color:var(--ink);margin-bottom:.2rem}
+.vcard .vproof{font-size:.82rem;color:var(--ink-faint);margin-bottom:.8rem}
+.vcard .vgap{font-size:.88rem;color:var(--ink-soft);padding-top:.8rem;border-top:1px solid var(--line)}
+.vcard .vgap b{color:var(--ink);font-weight:600}
+.vcard.us{border-color:rgba(26,106,91,.3);background:var(--accent-wash)}
+.vcard.us .vt{color:var(--accent-deep)}
+
+.intersection{margin-top:2.2rem;padding:1.8rem;border-radius:var(--radius);
+  border:1px solid rgba(26,106,91,.22);background:linear-gradient(135deg,rgba(26,106,91,.06),rgba(176,138,60,.03))}
+.intersection p{font-size:1.02rem;color:var(--ink-soft);line-height:1.65}
+.intersection p b{color:var(--accent-deep);font-weight:600}
+
+/* signature matrix */
+.legend{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1.3rem;font-size:.8rem;color:var(--ink-soft)}
+.legend span{display:inline-flex;align-items:center;gap:.42rem}
+.mark{width:19px;height:19px;border-radius:50%;display:inline-grid;place-items:center;
+  font-size:.7rem;font-weight:700;flex:0 0 auto}
+.mark.yes{background:var(--accent);color:#fff}
+.mark.no{background:transparent;border:1.5px solid var(--line-strong);color:var(--ink-faint)}
+.mark.part{background:var(--gold-wash);border:1.5px solid var(--gold);color:#8a6f22}
+.mtx-scroll{overflow-x:auto;margin-top:1.8rem;border:1px solid var(--line-strong);
+  border-radius:var(--radius);background:var(--surface)}
+table.mtx{border-collapse:collapse;width:100%;min-width:820px}
+table.mtx th,table.mtx td{padding:.75rem .6rem;border-bottom:1px solid var(--line);
+  text-align:center;vertical-align:middle}
+table.mtx thead th{font-family:'JetBrains Mono',monospace;font-size:.64rem;font-weight:600;
+  letter-spacing:.04em;color:var(--ink-soft);background:var(--surface-2);
+  position:sticky;top:0;line-height:1.3;padding-top:.9rem;padding-bottom:.9rem}
+table.mtx tbody tr:last-child td{border-bottom:none}
+table.mtx th.dim,table.mtx td.dim{text-align:left;position:sticky;left:0;background:var(--surface);
+  z-index:2;font-size:.84rem;font-weight:500;color:var(--ink);min-width:220px;
+  border-right:1px solid var(--line)}
+table.mtx thead th.dim{background:var(--surface-2);z-index:3;font-weight:600}
+table.mtx th.saf{color:var(--accent-deep);background:linear-gradient(180deg,rgba(26,106,91,.12),var(--accent-wash));
+  border-top:3px solid var(--gold);font-weight:700;font-size:.7rem}
+table.mtx td.saf{background:var(--accent-wash)}
+table.mtx .star{color:var(--gold)}
+table.mtx tbody tr.flip{background:rgba(40,36,31,.012)}
+.mtx-cap{margin-top:1.2rem;font-size:.9rem;color:var(--ink-soft);max-width:64ch;
+  border-left:2px solid var(--accent);padding-left:.9rem}
+.mtx-hint{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--ink-faint);
+  margin-top:.65rem;display:none}
+@media(max-width:860px){.mtx-hint{display:block}}
+
+/* strategy */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.2rem}
+@media(max-width:780px){.phases{grid-template-columns:1fr}}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.5rem;transition:border-color .22s,transform .22s}
+.pcard:hover{border-color:var(--accent);transform:translateY(-3px)}
+.pcard .ph{font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.pcard h3{margin-bottom:.65rem}
+.pcard ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.pcard li{font-size:.87rem;color:var(--ink-soft);padding-left:1.05rem;position:relative}
+.pcard li::before{content:"";position:absolute;left:0;top:.52em;width:4px;height:4px;
+  border-radius:50%;background:var(--accent-mint)}
+
+/* signals */
+.signals{margin-top:2rem;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:1.6rem}
+.signals h3{margin-bottom:.9rem;font-size:.98rem}
+.signals .row{display:flex;gap:.75rem;padding:.65rem 0;border-top:1px solid var(--line);
+  font-size:.88rem;color:var(--ink-soft)}
+.signals .row:first-of-type{border-top:none;padding-top:0}
+.signals .arr{color:var(--accent);font-weight:700;flex:0 0 auto;margin-top:.05rem}
+
+/* takeaway */
+.takeaway{margin:2rem 0;padding:1.2rem 1.5rem;border-left:2px solid var(--accent);
+  background:linear-gradient(90deg,rgba(26,106,91,.06),transparent);border-radius:0 8px 8px 0}
+.takeaway .tl-lbl{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--accent);
+  letter-spacing:.15em;text-transform:uppercase;margin-bottom:.45rem}
+.takeaway p{font-size:.93rem;color:var(--ink-soft);margin:0}
+.takeaway p b{color:var(--accent-deep);font-weight:600}
+
+/* pitch cta */
+.pitch-box{margin-top:2rem;padding:1.6rem;border-radius:var(--radius);
+  background:linear-gradient(135deg,rgba(26,106,91,.08),rgba(176,138,60,.05));
+  border:1px solid rgba(26,106,91,.2)}
+.pitch-box .lbl{font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+.pitch-box p{font-size:1rem;color:var(--ink-soft);line-height:1.65}
+.pitch-box p b{color:var(--accent-deep);font-weight:700}
+
+/* caveat */
+.caveat{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.6rem;margin-top:2rem}
+.caveat h3{font-size:.86rem;margin-bottom:.85rem;color:var(--ink-soft);
+  font-family:'JetBrains Mono',monospace;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.caveat ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.caveat li{font-size:.84rem;color:var(--ink-faint);padding-left:1.05rem;position:relative;line-height:1.5}
+.caveat li::before{content:"—";position:absolute;left:0;color:var(--line-strong)}
+
+/* scrollcue */
+.scrollcue{margin-top:2.2rem;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-faint);display:flex;align-items:center;gap:.55rem}
+.scrollcue .ln{width:28px;height:1px;background:var(--line-strong)}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:2.5rem 0 3.5rem;background:var(--surface-2)}
+.foot-in{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.foot-logo img{height:20px;opacity:.55}
+.foot-meta{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:.66rem;
+  color:var(--ink-faint);text-align:right;line-height:1.65}
+@media(max-width:580px){.foot-meta{margin-left:0;text-align:left;width:100%}}
+
+/* lang toggle */
+#lang-toggle{font-family:'JetBrains Mono',monospace;font-size:.67rem;letter-spacing:.06em;background:transparent;border:1px solid var(--line-strong);color:var(--ink-soft);padding:.25rem .6rem;border-radius:99px;cursor:pointer;display:inline-flex;gap:5px;align-items:center;line-height:1}
+#lang-toggle:hover{border-color:var(--accent);color:var(--accent)}
+#lang-toggle .sep{opacity:.4}
+#lang-toggle [data-l]{opacity:.45;transition:opacity .2s}
+#lang-toggle [data-l].on{opacity:1;color:var(--accent);font-weight:600}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <a href="./index.html" class="logo-link">
+      <img src="logo.svg" alt="Safera" width="88" height="22">
+    </a>
+    <span class="bar-tag" data-en="Competitor & Market Analysis · Jun 2026">Rakip & Pazar Analizi · Haz 2026</span>
+    <nav class="bar-nav">
+      <a href="#pazar" class="hide-sm" data-en="Market">Pazar</a>
+      <a href="#global" class="hide-sm" data-en="Competitors">Rakipler</a>
+      <a href="#matris" class="hide-sm" data-en="Matrix">Matris</a>
+      <a href="#turkiye" class="hide-sm" data-en="Türkiye">Türkiye</a>
+      <a href="#konum" class="hide-sm" data-en="Position">Konum</a>
+      <a href="./deck.html" class="back-link">← Deck</a>
+      <button id="lang-toggle" type="button" aria-label="Türkçe / English"><span data-l="tr">TR</span><span class="sep">·</span><span data-l="en">EN</span></button>
+    </nav>
+  </div>
+</header>
+
+
+<!-- ══ HERO ══════════════════════════════════════════════════ -->
+<div class="wrap hero">
+  <span class="eyebrow reveal" data-en="Competitor & Market Analysis · June 2026">Rakip & Pazar Analizi · Haziran 2026</span>
+  <h1 class="reveal" style="--i:1" data-en="The intermediary-free era in OHS<br>has <span class='hero-accent'>begun.</span> So what about the competitors?">
+    İSG'de aracısız dönem<br>
+    <span class="hero-accent">başladı.</span> Peki rakipler?
+  </h1>
+  <p class="lead reveal" style="--i:2" data-en="In January 2025, Law 6331 expanded to 2.23 million workplaces. At the same time, an agentic AI wave hit the global EHS arena — five major launches in four months. The critical question for Türkiye: <b>who wins from this shift?</b> A two-layer map and an up-to-date competitor analysis.">
+    Ocak 2025'te 6331 sayılı Kanun 2,23 milyon işyerine genişledi.
+    Eş zamanlı olarak küresel EHS arenasında agentic AI dalgası kıyıya vurdu —
+    dört ayda beş büyük lansman. Türkiye için kritik soru: <b>bu değişimden kim kazanıyor?</b>
+    İki katmanlı harita ve güncel rakip analizi.
+  </p>
+  <div class="stat-strip reveal" style="--i:3">
+    <div class="stat"><div class="v num" data-count="2.23" data-prefix="" data-suffix="M" data-dec="2">0</div><div class="k" data-en="workplaces — entered mandatory OHS scope in Jan 2025">işyeri — Oca 2025'te zorunlu İSG kapsamına girdi</div></div>
+    <div class="stat"><div class="v tealv num" data-count="5" data-suffix="">0</div><div class="k" data-en="global agentic EHS launches — in just 4 months (Oct 25 – Feb 26)">küresel agentic EHS lansmanı — yalnızca 4 ayda (Eki 25 – Şub 26)</div></div>
+    <div class="stat"><div class="v goldv num" data-count="0" data-suffix="">0</div><div class="k" data-en="Turkish solo-OHS agentic products — the window is open">Türk bireysel İSG agentic ürün — pencere açık</div></div>
+    <div class="stat"><div class="v num" data-count="4.5" data-prefix="$" data-suffix="B" data-dec="1">0</div><div class="k" data-en="2029 global EHS software market (Verdantix)">2029 küresel EHS yazılım pazarı (Verdantix)</div></div>
+  </div>
+  <div class="scrollcue reveal" style="--i:4"><span class="ln"></span> <span data-en="scroll to read">kaydırarak oku</span></div>
+</div>
+
+
+
+<!-- ══ 0 · PAZAR & ÖZET ════════════════════════════════════════ -->
+<section class="s tint" id="pazar">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Market & Executive Summary">Pazar &amp; Yönetici Özeti</span>
+      <h2 style="--i:1" data-en="A consolidated global oligopoly — and an open Turkish window.">Konsolide küresel oligopol — ve açık bir Türkiye penceresi.</h2>
+      <p style="--i:2" data-en="The global EHS software category consolidated around six enterprise platforms. By the end of 2025 most vendors shipped agentic AI — the market is shifting from record-keeping to work-doing agents. Safera is born at the Turkish + SME + solo-expert edge of that wave.">Küresel EHS yazılım kategorisi altı kurumsal platform etrafında konsolide oldu. 2025 sonunda çoğu satıcı agentic AI çıkardı — pazar "kayıt-tutan"dan "iş-yapan ajan"a dönüyor. Safera bu dalganın Türkçe + KOBİ + bireysel-uzman ucunda doğdu.</p>
+    </div>
+
+    <div class="mkt">
+      <div class="mcard reveal"><div class="big num" data-count="2.24" data-prefix="$" data-suffix="B" data-dec="2">0</div><div class="lbl" data-en="Global EHS software market (2025) → $3.73B by 2030, 10.7% CAGR">Küresel EHS yazılım pazarı (2025) → 2030'da $3,73B, %10,7 CAGR</div><div class="src">Mordor Intelligence</div></div>
+      <div class="mcard reveal" style="--i:1"><div class="big">%37–44</div><div class="lbl" data-en="North America share · Europe 27–31% · APAC 22–23% (fastest) · MEA 6%">Kuzey Amerika payı · Avrupa %27–31 · APAC %22–23 (en hızlı) · MEA %6</div><div class="src">Verdantix / Mordor</div></div>
+      <div class="mcard reveal" style="--i:2"><div class="big num" data-count="2.23" data-suffix="M" data-dec="2">0</div><div class="lbl" data-en="Mandatory-OHS workplaces in Türkiye (Law 6331, full effect Jan 2025)">Türkiye'de İSG zorunlu işyeri (6331, Ocak 2025 tam yürürlük)</div><div class="src">ÇSGB</div></div>
+      <div class="mcard reveal" style="--i:3"><div class="big">~₺20B</div><div class="lbl" data-en="Estimated annual Turkish OHS spend (internal) — a newly opened market">TR İSG yıllık harcama tahmini (iç) — yeni açılan pazar</div><div class="src">Safera</div></div>
+    </div>
+
+    <div class="takeaway reveal">
+      <div class="tl-lbl" data-en="In one sentence">Tek cümle</div>
+      <p data-en="Global EHS software is an enterprise, English-only, consultant-dependent and expensive oligopoly (VelocityEHS, Cority, Enablon, Sphera, Intelex, Ideagen). Our closest <b>vision</b> rival is Ideagen <b>Mazlan</b> (agentic AI for EHSQ) — but it too targets large regulated enterprises in English. The Turkish side is an <b>IBYS-integrator + OSGB-software</b> ecosystem focused on data-transfer and paperwork automation — not guided, not agentic, not a marketplace. The gap: Turkish + SME &amp; solo-expert + free simulator + role-specific guidance + marketplace + approval-gated agentic Era. <b>No one holds that intersection.</b>">Global EHS yazılımı kurumsal, İngilizce, danışman-bağımlı ve pahalı bir oligopol (VelocityEHS, Cority, Enablon, Sphera, Intelex, Ideagen). En yakın <b>vizyon</b> rakibimiz Ideagen <b>Mazlan</b> (EHSQ için agentic AI) — ama o da büyük regülasyonlu kurumlara/İngilizceye odaklı. Türkiye tarafı ise <b>İBYS entegratörü + OSGB yazılımı</b> ekosistemi — veri-aktarımı/evrak otomasyonu odaklı; rehberli/agentic/pazar-yeri değil. Boşluk: Türkçe + KOBİ &amp; bireysel-uzman + ücretsiz simülatör + rol-özgün rehber + pazar yeri + onaylı agentic Era. <b>Bu kesişimi tutan kimse yok.</b></p>
+    </div>
+    <p class="mtx-hint" style="display:block" data-en="Market sizing varies by source (Mordor: $2.24B→$3.73B; CMI/Grand View give larger figures). VelocityEHS ~12% global share (20,000+ sites), SAP ~10%.">Pazar büyüklüğü kaynağa göre değişir (Mordor: $2,24B→$3,73B; CMI/Grand View daha büyük rakamlar verir). VelocityEHS ~%12 global pay (20.000+ saha), SAP ~%10.</p>
+  </div>
+</section>
+
+<!-- ══ 1 · GLOBAL RAKİPLER ════════════════════════════════════ -->
+<section class="s" id="global">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Global Competitors (50+)">Global Rakipler (50+)</span>
+      <h2 style="--i:1" data-en="Who is closest to our vision?">Vizyonumuza en yakın kim?</h2>
+      <p style="--i:2" data-en="Vision-proximity (V): 5 = agentic AI + SME/self-serve · 4 = mobile/self-serve · 3 = modular mid-market · 2 = enterprise · 1 = niche/infrastructure. Below: the strategically relevant players in detail, then the rest of the field grouped.">Vizyon yakınlığı (V): 5 = agentic AI + KOBİ/self-servis · 4 = mobil/self-servis · 3 = modüler mid-market · 2 = kurumsal · 1 = niş/altyapı. Aşağıda stratejik açıdan önemli oyuncular ayrıntılı, ardından kalan alan gruplu.</p>
+    </div>
+
+    <div class="subhead reveal" data-en="Vision-near &amp; AI-forward">Vizyon-yakın &amp; AI-öncü</div>
+    <div class="grid">
+      <div class="ccard reveal" style="grid-column:1/-1;border-color:var(--accent);background:linear-gradient(135deg,var(--accent-wash),transparent)">
+        <div class="top"><h3>Ideagen — Mazlan <span style="color:var(--accent)">★ vizyon kıyas noktamız</span></h3><span class="badge b-live">V5 · AI · PoC</span></div>
+        <div class="desc" data-en="UK · EHSQ + GRC, 17,000+ customers, ~250M GBP revenue. <b>Ideagen was taken private by Hg Capital at a ~£1 billion valuation (2022)</b> and is a leader in UK OHS/compliance software. <b>Mazlan</b> is its agentic-AI move: an AI that runs the workflow (incident→regulation→compliance), not just records it. 9 acquisitions in 2025 (SafetyStratus, Casper, ProcessMAP).">İngiltere · EHSQ + GRC, 17.000+ müşteri, ~£250M ciro. <b>Ideagen, Hg Capital tarafından ~£1 milyar değerleme ile özelleştirildi (2022)</b> ve İngiltere İSG/uyum yazılımında lider. <b>Mazlan</b> onun agentic-AI hamlesi: işi sadece kaydetmeyen, <b>yürüten</b> bir yapay zekâ (kaza→mevzuat→uyum). 2025'te 9 satın alma (SafetyStratus, Casper, ProcessMAP).</div>
+        <div class="meta" data-en="<b>Why this is good news for us:</b> a ~£1B agentic-EHS player is living proof the category is real, fundable and inevitable — it de-risks our thesis. Mazlan validates &quot;agentic AI runs OHS&quot;; Safera takes that proven engine to the place Mazlan can’t reach: <b>Turkish + SME &amp; solo-expert + free simulator + marketplace.</b> We sit one notch ahead on that intersection — see the matrix below."><b>Bu neden bizim için iyi haber:</b> ~£1 milyarlık agentic-EHS oyuncusu, kategorinin gerçek, yatırım-alabilir ve kaçınılmaz olduğunun canlı kanıtı — tezimizin riskini düşürür. Mazlan “agentic AI İSG’yi yürütür”ü doğruluyor; Safera bu kanıtlanmış motoru Mazlan’ın ulaşamadığı yere taşıyor: <b>Türkçe + KOBİ &amp; bireysel-uzman + ücretsiz simülatör + pazar yeri.</b> O kesişimde bir adım öndeyiz — alttaki matrise bak.</div>
+      </div>
+      <div class="ccard reveal" style="--i:1">
+        <div class="top"><h3>SafetyCulture (iAuditor)</h3><span class="badge b-live">V4</span></div>
+        <div class="desc" data-en="Australia · mobile-first field operations platform; audits/checklists/hazard reports; SME + field-team friendly, self-serve. Adding AI features.">Avustralya · mobil-öncelikli saha operasyon platformu; denetim/checklist/hazard raporu; KOBİ + saha-ekibi dostu, self-servis. AI ekleniyor.</div>
+        <div class="meta" data-en="Self-serve adjacency — no Turkish regulation, no marketplace.">Self-servis komşuluk — Türkçe mevzuat yok, pazar yeri yok.</div>
+      </div>
+      <div class="ccard reveal" style="--i:2">
+        <div class="top"><h3>Benchmark Gensuite — Genie</h3><span class="badge b-live">V4 · AI</span></div>
+        <div class="desc" data-en="US · mid-market multi-site, modular; added the &quot;Genie&quot; AI assistant. Enterprise-leaning AI, not SME self-serve.">ABD · mid-market çok-sahalı, modüler; "Genie" AI asistanı ekledi. Kurumsala yakın AI, KOBİ self-servis değil.</div>
+        <div class="meta" data-en="AI wave proof — but enterprise distribution.">AI dalgası kanıtı — ama kurumsal dağıtım.</div>
+      </div>
+    </div>
+
+    <div class="subhead reveal" data-en="Enterprise oligopoly (leaders)">Kurumsal oligopol (liderler)</div>
+    <div class="tbl-scroll reveal">
+      <table class="main">
+        <thead><tr>
+          <th data-en="Company">Şirket</th><th data-en="Region">Bölge</th><th data-en="Role &amp; capabilities">Rol &amp; yapabildikleri</th><th>V</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="co">VelocityEHS</td><td>ABD</td><td data-en="Market leader (~12%, 20k+ sites); OSHA PSM, chemical management, ergonomics (Humantech), deep US regulation.">Pazar lideri (~%12, 20k+ saha); OSHA PSM, kimyasal yönetimi, ergonomi (Humantech), ABD regülasyon derinliği.</td><td><span class="badge b-soft">2</span></td></tr>
+          <tr><td class="co">Cority (Medgate)</td><td>Kanada</td><td data-en="Fortune 500; occupational health + ESG depth. Enterprise.">Fortune 500; mesleki sağlık + ESG derinliği. Kurumsal.</td><td><span class="badge b-soft">2</span></td></tr>
+          <tr><td class="co">Enablon (Wolters Kluwer)</td><td>Belçika/ABD</td><td data-en="Largest enterprise distribution scale; global standard, heavy enterprise.">En büyük kurumsal dağıtım ölçeği; global standart, ağır kurumsal.</td><td><span class="badge b-soft">1</span></td></tr>
+          <tr><td class="co">Sphera</td><td>ABD</td><td data-en="Asset-intensive (oil/gas, chemicals, mining); process safety + ESG/LCA.">Varlık-yoğun (petrol/gaz, kimya, maden); proses güvenliği + ESG/LCA.</td><td><span class="badge b-soft">2</span></td></tr>
+          <tr><td class="co">Intelex (Fortive)</td><td>Kanada</td><td data-en="Integrated EHSQ; medium-large operations.">Entegre EHSQ; orta-büyük operasyon.</td><td><span class="badge b-new">3</span></td></tr>
+          <tr><td class="co">EcoOnline</td><td>Norveç/UK</td><td data-en="EHSQ + chemicals + ESG; grew by acquisition; European SME-mid.">EHSQ + kimyasal + ESG; satın almalarla büyüdü; Avrupa KOBİ-orta.</td><td><span class="badge b-new">3</span></td></tr>
+          <tr><td class="co">Quentic (AMCS)</td><td>Almanya</td><td data-en="DACH/Europe leader; ISO 45001/14001, DGUV; 1,100+ customers.">DACH/Avrupa lideri; ISO 45001/14001, DGUV; 1.100+ müşteri.</td><td><span class="badge b-new">3</span></td></tr>
+          <tr><td class="co">Evotix</td><td>UK/ABD</td><td data-en="People-centric, mobile-first; behavioural safety, field teams.">İnsan-odaklı, mobil-öncelikli; davranışsal güvenlik, saha ekibi.</td><td><span class="badge b-live">4</span></td></tr>
+          <tr><td class="co">SAP EHS</td><td>Almanya</td><td data-en="ERP-integrated EHS; 100+ countries, ~10% share; large enterprise.">ERP-entegre EHS; 100+ ülke, ~%10 pay; büyük kurumsal.</td><td><span class="badge b-soft">1</span></td></tr>
+          <tr><td class="co">Safesite</td><td>ABD</td><td data-en="Free-tier SME safety app; self-serve. (Freemium precedent.)">Ücretsiz-katmanlı KOBİ güvenlik uygulaması; self-servis. (Freemium emsali.)</td><td><span class="badge b-live">4</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="caveat reveal">
+      <h3 data-en="Rest of the field (≈50)">Kalan alan (≈50)</h3>
+      <ul>
+        <li data-en="<b>Ideagen portfolio:</b> ProcessMAP, SafetyStratus, Reactec, WorkSafe Guardian, Beakon, Envirosuite — acquired, AI-converging."><b>Ideagen portföyü:</b> ProcessMAP, SafetyStratus, Reactec, WorkSafe Guardian, Beakon, Envirosuite — satın alındı, AI'a yakınsıyor.</li>
+        <li data-en="<b>Mid-market / mobile:</b> SAI360, Riskonnect, HSI Donesafe, KPA, Vector Solutions, Origami Risk, SiteDocs, Salus, Vatix, Notify, Capptions, Evalu-8, EHS Insight."><b>Mid-market / mobil:</b> SAI360, Riskonnect, HSI Donesafe, KPA, Vector Solutions, Origami Risk, SiteDocs, Salus, Vatix, Notify, Capptions, Evalu-8, EHS Insight.</li>
+        <li data-en="<b>Environmental / quality niche:</b> Mapistry, Encamp, Locus, ETQ Reliance, Alcumus, Frontline, Dakota, Perillon, MasterControl, Pro-Sapien, IBM Maximo, Preventeo."><b>Çevresel / kalite niş:</b> Mapistry, Encamp, Locus, ETQ Reliance, Alcumus, Frontline, Dakota, Perillon, MasterControl, Pro-Sapien, IBM Maximo, Preventeo.</li>
+        <li data-en="<b>GCC / Middle East:</b> SmartQHSE (UAE, OSHAD-SF), Sodales (SAP+HR, high-risk MENA) — Arabic/Turkish AI guidance still empty."><b>GCC / Orta Doğu:</b> SmartQHSE (BAE, OSHAD-SF), Sodales (SAP+İK, yüksek-riskli MENA) — Arapça/Türkçe AI rehber hâlâ boş.</li>
+        <li data-en="None target the Turkish-regulation + SME + solo-expert + marketplace quartet.">Hiçbiri Türkçe-mevzuat + KOBİ + bireysel-uzman + pazar-yeri dörtlüsünü hedeflemiyor.</li>
+      </ul>
+    </div>
+    <p class="mtx-hint" style="display:block" data-en="List is for analysis; verifiable independent rankings are in Verdantix Green Quadrant, Gartner Peer Insights, G2/Capterra (see Sources).">Liste analiz-amaçlı; doğrulanabilir bağımsız sıralamalar Verdantix Green Quadrant, Gartner Peer Insights, G2/Capterra'dadır (Kaynaklar).</p>
+  </div>
+</section>
+
+<!-- ══ 2 · YETENEK MATRİSİ ════════════════════════════════════ -->
+<section class="s tint" id="matris">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Capability Matrix">Yetenek Matrisi</span>
+      <h2 style="--i:1" data-en="The five-way intersection no one holds.">Kimsenin tutmadığı beşli kesişim.</h2>
+      <p style="--i:2" data-en="Each category exists somewhere. The intersection of all of them — in Turkish, for SMEs and solo experts — does not. That intersection is the moat.">Her kategori bir yerde var. Hepsinin kesişimi — Türkçe, KOBİ ve bireysel uzman için — yok. Bu kesişim hendektir (moat).</p>
+    </div>
+    <div class="legend reveal">
+      <span><span class="mark yes">✓</span> <span data-en="holds it">tutuyor</span></span>
+      <span><span class="mark part">◐</span> <span data-en="partial / adjacent">kısmî / komşu</span></span>
+      <span><span class="mark no">–</span> <span data-en="absent">yok</span></span>
+    </div>
+    <div class="mtx-scroll reveal">
+      <table class="mtx">
+        <thead><tr>
+          <th class="dim" data-en="Capability">Yetenek</th>
+          <th class="saf">Safera</th>
+          <th>Ideagen<br>Mazlan</th>
+          <th>Safety<br>Culture</th>
+          <th>Benchmark<br>Genie</th>
+          <th data-en="TR IBYS<br>(Kontinus…)">TR İBYS<br>(Kontinus…)</th>
+          <th>OSGB</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="dim" data-en="Turkish legislation + IBYS/KATİP">Türkçe mevzuat + İBYS/KATİP</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark yes">✓</span></td><td><span class="mark yes">✓</span></td></tr>
+          <tr class="flip"><td class="dim" data-en="SME &amp; solo-expert focus">KOBİ &amp; bireysel-uzman odağı</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark no">–</span></td><td><span class="mark part">◐</span></td><td><span class="mark no">–</span></td><td><span class="mark part">◐</span></td><td><span class="mark part">◐</span></td></tr>
+          <tr><td class="dim" data-en="Free role-specific simulator">Ücretsiz rol-özgün simülatör</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td></tr>
+          <tr class="flip"><td class="dim" data-en="Approval-gated agentic AI">Onaylı agentic AI</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark yes">✓</span></td><td><span class="mark part">◐</span></td><td><span class="mark part">◐</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td></tr>
+          <tr><td class="dim" data-en="Deterministic marketplace (no intermediary)">Deterministik pazar yeri (aracısız)</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td></tr>
+          <tr class="flip"><td class="dim" data-en="Approval log + edit lock (audit-ready)">Onay kaydı + düzenleme kilidi (denetime hazır)</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark part">◐</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td></tr>
+          <tr><td class="dim" data-en="Mobile-first field use">Mobil-öncelikli saha kullanımı</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark part">◐</span></td><td><span class="mark yes">✓</span></td><td><span class="mark part">◐</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mtx-cap reveal" data-en="Ideagen Mazlan is the closest on AI; the TR IBYS ecosystem is closest on Turkish compliance. Only Safera holds every row at once.">Ideagen Mazlan AI'da en yakın; TR İBYS ekosistemi Türkçe uyumda en yakın. Her satırı aynı anda tutan tek oyuncu Safera.</p>
+    <p class="mtx-hint">← <span data-en="scroll the table horizontally">tabloyu yatay kaydır</span></p>
+  </div>
+</section>
+
+<!-- ══ 3 · TÜRKİYE EKOSİSTEMİ ═════════════════════════════════ -->
+<section class="s" id="turkiye">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Türkiye Ecosystem (30+)">Türkiye Ekosistemi (30+)</span>
+      <h2 style="--i:1" data-en="Three layers — none of them agentic.">Üç katman — hiçbiri agentic değil.</h2>
+      <p style="--i:2" data-en="In Türkiye the &quot;competitors&quot; come in three layers: (A) IBYS-integrator / OHS software (data-transfer + paperwork), (B) OSGB service chains (manpower), (C) training academies. The Ministry recognizes 71 authorized integrators / 77 software (official: ibys.csgb.gov.tr). None is an agentic agent + marketplace + free simulator.">TR'de "rakip" üç katman: (A) İBYS entegratör / İSG yazılımı (veri-aktarımı + evrak), (B) OSGB hizmet zincirleri (insan gücü), (C) eğitim akademileri. Bakanlık 71 yetkili entegratör / 77 yazılım tanımış (resmi: ibys.csgb.gov.tr). Hiçbiri agentic ajan + pazar yeri + ücretsiz simülatör değil.</p>
+    </div>
+    <div class="tbl-scroll reveal">
+      <table class="main">
+        <thead><tr><th data-en="Player">Oyuncu</th><th data-en="Layer">Katman</th><th data-en="Role &amp; capabilities">Rol &amp; yapabildikleri</th></tr></thead>
+        <tbody>
+          <tr><td class="co">Kontinus</td><td>İBYS</td><td data-en="Ankara; IBYS + İSG-KATİP firm transfer, OHS process management.">Ankara; İBYS + İSG-KATİP firma aktarımı, İSG süreç yönetimi.</td></tr>
+          <tr><td class="co">Uludağ Bilişim — NBYS</td><td>İBYS</td><td data-en="Authorized integrator; comprehensive IBYS program.">Yetkili entegratör; kapsamlı İBYS programı.</td></tr>
+          <tr><td class="co">AKY Bilişim — İSGBYS</td><td>İBYS</td><td data-en="Full IBYS for OSGB/workplace/expert; Ministry-authorized.">OSGB/işyeri/uzman için tam İBYS; Bakanlık yetkili.</td></tr>
+          <tr><td class="co">Halim ASA — Healthy İSG</td><td>İBYS</td><td data-en="Bursa; İSG-KATİP contract/assignment tracking, ~300k training certificates submitted.">Bursa; İSG-KATİP sözleşme/atama takibi, ~300k eğitim sertifikası gönderimi.</td></tr>
+          <tr><td class="co">eRevir</td><td data-en="IBYS + health">İBYS + sağlık</td><td data-en="OSGB health + OHS single platform; e-Prescription, Medula, İSG-KATİP transfer.">OSGB sağlık + İSG tek platform; e-Reçete, Medula, İSG-KATİP aktarımı.</td></tr>
+          <tr><td class="co">İSGSİS · MedicoSoft · İSGERP · ModernİSG</td><td>İBYS</td><td data-en="IBYS-compliant OHS process / ERP-style management; integrator content.">İBYS-uyumlu İSG süreç / ERP-tarzı yönetim; entegratör içerik.</td></tr>
+          <tr><td class="co">71 yetkili entegratör / 77 yazılım</td><td data-en="IBYS registry">İBYS registry</td><td data-en="Ministry-approved, data-sharing contracted. Full list: ibys.csgb.gov.tr. Mostly data-transfer only.">Bakanlık onaylı, veri-paylaşım sözleşmeli. Tam liste: ibys.csgb.gov.tr. Çoğu yalnız veri-aktarımı.</td></tr>
+          <tr><td class="co">Net OSGB · General · Nida · Esem · Anka Tek · EYS</td><td data-en="OSGB chains">OSGB zincirleri</td><td data-en="Field service with expert + physician + health staff; assignment by hazard class.">Uzman + hekim + sağlık personeli ile saha hizmeti; tehlike sınıfına göre görevlendirme.</td></tr>
+          <tr><td class="co">İSGT · Bulut · Yöntem · Kariyer Akademi</td><td data-en="Training">Eğitim/akademi</td><td data-en="180-hour expert training + exam prep + consultancy.">180 saat uzmanlık eğitimi + sınav hazırlık + danışmanlık.</td></tr>
+          <tr><td class="co">turkiyeosgbplatformu · osgblistesi · birosgb</td><td data-en="Directory">Dizin</td><td data-en="OSGB company listings — passive directory (the opposite of Safera's active matching).">OSGB firma listeleri — pasif dizin (Safera'nın aktif eşleştirmesinin tersi).</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mtx-hint" style="display:block" data-en="⚠ TR software names verified by live search; the full &amp; official record is the Ministry's 71-firm IBYS list. This layer is a &quot;compliance-paperwork automation&quot; market; the guided-simulation + solo-expert-marketplace + agentic-Era category is empty in Türkiye.">⚠ TR yazılım adları canlı aramayla doğrulandı; tam &amp; resmi kayıt Bakanlığın 71-firmalık İBYS listesidir. Bu katman "uyum-evrakı otomasyonu" pazarıdır; rehberli-simülasyon + bireysel-uzman-pazar-yeri + agentic-Era kategorisi TR'de boştur.</p>
+  </div>
+</section>
+
+<!-- ══ 4 · MEVZUAT & SÜREÇ ════════════════════════════════════ -->
+<section class="s tint" id="mevzuat">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Legislation &amp; Manual Process">Mevzuat &amp; Manuel Süreç</span>
+      <h2 style="--i:1" data-en="Mandatory — but how, from whom, at what cost?">Zorunlu — ama nasıl, kimden, ne ücretle?</h2>
+    </div>
+    <div class="prob-grid">
+      <div class="pbox uzman reveal">
+        <span class="pbox-label" data-en="Legal backbone (6331)">Yasal omurga (6331)</span>
+        <h3 data-en="Mandatory for almost everyone since Jan 2025">Ocak 2025'ten beri neredeyse herkese zorunlu</h3>
+        <ul>
+          <li data-en="<b>Jan 2025:</b> full effect — low-hazard &lt;50 and single-employee workplaces + public sector require an OHS expert + workplace physician (opened after 5 postponements)."><b>Ocak 2025:</b> tam yürürlük — az tehlikeli &lt;50 ve tek-çalışanlı işyerleri + kamu, İSG uzmanı + işyeri hekimi gerektirir (5 ertelemeden sonra açıldı).</li>
+          <li data-en="<b>Hazard class:</b> Low / Hazardous / Very Hazardous → sets all obligations (training hours, risk-assessment cycle, exams)."><b>Tehlike sınıfı:</b> Az / Tehlikeli / Çok Tehlikeli → tüm yükümlülükleri belirler (eğitim saati, RAM periyodu, muayene).</li>
+          <li data-en="<b>Certification:</b> 180-hour training → ÖSYM exam (≥70) → class C → experience → B → A."><b>Sertifika:</b> 180 saat eğitim → ÖSYM sınavı (≥70) → C → deneyim → B → A.</li>
+          <li data-en="<b>Service time:</b> expert 10 min/employee/month · physician 5 min/employee/month."><b>Hizmet süresi:</b> uzman 10 dk/çalışan/ay · hekim 5 dk/çalışan/ay.</li>
+        </ul>
+      </div>
+      <div class="pbox sirket reveal" style="--i:1">
+        <span class="pbox-label" data-en="Manual service-procurement flow (today)">Manuel hizmet-alma akışı (bugün)</span>
+        <h3 data-en="Closed, manual, consultant-dependent">Kapalı, manuel, danışman-bağımlı</h3>
+        <ul>
+          <li data-en="Find an OSGB / freelance expert-physician (usually by phone/contacts).">OSGB / serbest uzman-hekim bul (genelde telefon/tanıdık).</li>
+          <li data-en="Sign a contract → mutual approval on <b>İSG-KATİP</b>.">Sözleşme imzala → <b>İSG-KATİP</b>'te karşılıklı onay.</li>
+          <li data-en="e-Beyan notification within <b>7 business days</b> (skipped = service deemed not received)."><b>7 iş günü</b> içinde e-Beyan bildirimi (atlanırsa hizmet alınmamış sayılır).</li>
+          <li data-en="Risk assessment, emergency plan, training, health surveillance → produce documents, transfer to the Ministry via IBYS.">RAM, acil durum planı, eğitim, sağlık gözetimi → evrak üret, İBYS ile Bakanlığa aktar.</li>
+          <li data-en="Gap at audit → heavy administrative fine.">Denetimde eksik → ağır idari para cezası.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="takeaway reveal">
+      <div class="tl-lbl" data-en="Safera's answer">Safera'nın cevabı</div>
+      <p data-en="This flow is opaque for the SME doing it for the first time / once a year. Safera makes it <b>guided + simulatable + self-serve</b> — Era prepares the documents, the human approves.">Bu akış ilk-kez/yılda-bir yapan KOBİ için opak. Safera bunu <b>rehberli + simüle-edilebilir + self-servis</b> yapıyor — Era evrakı hazırlar, insan onaylar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 5 · SAHA İÇGÖRÜLERİ ════════════════════════════════════ -->
+<section class="s" id="saha">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Field Insights">Saha İçgörüleri</span>
+      <h2 style="--i:1" data-en="How you become an expert / how you buy the service.">Nasıl uzman olunur / nasıl hizmet alınır.</h2>
+    </div>
+    <div class="prob-grid">
+      <div class="pbox uzman reveal">
+        <span class="pbox-label" data-en="Solo-expert journey (supply side)">Bireysel uzman yolculuğu (arz)</span>
+        <ul>
+          <li data-en="Engineer/architect/technical-teacher/associate-OHS degree → 180 hours → exam → starts as <b>class C</b>.">Mühendis/mimar/teknik öğretmen/ön-lisans İSG → 180 saat → sınav → <b>C sınıfı</b> başlar.</li>
+          <li data-en="<b>Most start their career at an OSGB</b> (many workplaces at once → fast experience) — but the OSGB is a commission/intermediary layer."><b>Çoğu kariyere OSGB'de başlar</b> (aynı anda çok işyeri → hızlı deneyim) — ama OSGB komisyon/aracı katmanı.</li>
+          <li data-en="Salary: low at start (OSGB), rises with experience + class; different in the public sector.">Maaş: başta düşük (OSGB), deneyim + sınıf ile artar; kamuda farklı.</li>
+          <li data-en="<b>Insight:</b> the expert wants direct work + fair earnings + visibility → Safera marketplace thesis (no intermediary)."><b>İçgörü:</b> uzman doğrudan iş + adil kazanç + görünürlük istiyor → Safera pazar yeri tezi (aracısız).</li>
+        </ul>
+      </div>
+      <div class="pbox sirket reveal" style="--i:1">
+        <span class="pbox-label" data-en="SME / employer (demand side)">KOBİ / işveren (talep)</span>
+        <ul>
+          <li data-en="Most employers do OHS <b>for the first time or once a year</b> → the process is scary/unknown.">Çoğu işveren İSG'yi <b>ilk kez ya da yılda bir</b> yapıyor → süreç korkutucu/bilinmez.</li>
+          <li data-en="Cost is per-employee over gross minimum wage; OSGB for &lt;50, mixed-freelance advantageous for 50+.">Maliyet çalışan-başı brüt asgari ücret üzerinden; &lt;50 için OSGB, 50+ için serbest karma avantajlı.</li>
+          <li data-en="Those who think &quot;I got the service&quot; but skip e-Beyan/KATİP approval → fined.">"Hizmet aldım" sanıp e-Beyan/KATİP onayını atlayan → cezalı.</li>
+          <li data-en="<b>Insight:</b> guidance + &quot;see/try first&quot; + automatic KATİP/paperwork = the biggest pain → Safera Simulator + Era."><b>İçgörü:</b> rehber + "önce gör/dene" + otomatik KATİP/evrak = en büyük acı → Safera Simülatör + Era.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="mtx-hint" style="display:block" data-en="The YouTube/blog ecosystem is full of &quot;how to become an OHS expert&quot; (cert/salary/exam) and &quot;how to buy OHS service&quot; (contract/KATİP/cost) — high search volume = high organic traction potential (the free simulator flows here).">YouTube/blog ekosistemi "nasıl İSG uzmanı olunur" (sertifika/maaş/sınav) ve "OSGB hizmeti nasıl alınır" (sözleşme/KATİP/maliyet) ile dolu — yüksek arama hacmi = yüksek organik traction (ücretsiz simülatör buraya akar).</p>
+  </div>
+</section>
+
+<!-- ══ 6 · BÖLGE & ÜLKE ═══════════════════════════════════════ -->
+<section class="s tint" id="bolge">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Region &amp; Country">Bölge &amp; Ülke</span>
+      <h2 style="--i:1" data-en="Where the demand — and the gaps — are.">Talep ve boşluklar nerede.</h2>
+    </div>
+    <div class="tbl-scroll reveal">
+      <table class="main">
+        <thead><tr><th data-en="Region / Country">Bölge / Ülke</th><th data-en="Market &amp; regulation">Pazar &amp; regülasyon</th><th data-en="Dominant players">Baskın oyuncular</th><th data-en="Need gap">İhtiyaç boşluğu</th></tr></thead>
+        <tbody>
+          <tr><td class="co">Kuzey Amerika</td><td data-en="37–44% share; mature OSHA culture, early AI adoption; PSM, chemicals.">%37–44 pay; olgun OSHA kültürü, erken AI; PSM, kimyasal.</td><td>VelocityEHS, Cority, Intelex</td><td data-en="Enterprise saturated; SME self-serve + AI still open.">Kurumsal doygun; KOBİ self-servis + AI hâlâ açık.</td></tr>
+          <tr><td class="co">Avrupa</td><td data-en="27–31%; ISO 45001/14001, CSRD/ESG, DGUV; EU directives.">%27–31; ISO 45001/14001, CSRD/ESG, DGUV; AB direktifleri.</td><td>Quentic, EcoOnline, Enablon</td><td data-en="Multi-country compliance + ESG integration; SME guidance.">Çoklu-ülke uyum + ESG; KOBİ rehberlik.</td></tr>
+          <tr><td class="co">APAC</td><td data-en="22–23%, fastest (~10% CAGR); industrialization + developing regulation.">%22–23, en hızlı (~%10 CAGR); sanayileşme + gelişen mevzuat.</td><td data-en="Global players' expansion + local">Global yayılım + yerel</td><td data-en="Local-regulation + mobile-field + affordable — big gap.">Yerel-mevzuat + mobil-saha + uygun fiyat — büyük boşluk.</td></tr>
+          <tr><td class="co">Orta Doğu / GCC</td><td data-en="UAE OSHAD-SF (Abu Dhabi), Federal 33/2021; Saudi 2025 (A/B/C, OHS officer 100+); heat-stress bans.">BAE OSHAD-SF (Abu Dabi), Federal 33/2021; S.Arabistan 2025 (A/B/C, OHS officer 100+); sıcaklık-stresi yasakları.</td><td>SmartQHSE, Sodales</td><td data-en="Multi-jurisdiction + heat + contractor; Arabic/Turkish AI guidance empty.">Çoklu-yargı + sıcaklık + yüklenici; Arapça/Türkçe AI rehber boş.</td></tr>
+          <tr class="us-row"><td class="co">Türkiye</td><td data-en="2.23M mandatory workplaces; 6331; İSG-KATİP/IBYS; newly opened + SME-heavy.">2,23M zorunlu işyeri; 6331; İSG-KATİP/İBYS; yeni-açılan + KOBİ-ağırlıklı.</td><td data-en="IBYS integrators + OSGB chains (paperwork/people)">İBYS entegratörleri + OSGB (evrak/insan)</td><td data-en="Agentic guidance + solo-expert marketplace + free simulator = SAFERA.">Agentic rehber + bireysel-uzman pazar yeri + ücretsiz simülatör = SAFERA.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 7 · ŞİRKET TÜRÜ İHTİYAÇLARI ════════════════════════════ -->
+<section class="s" id="ihtiyac">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Needs by Company Type">Şirket Türüne Göre İhtiyaç</span>
+      <h2 style="--i:1" data-en="Today's solution vs. the Safera answer.">Bugünkü çözüm vs. Safera karşılığı.</h2>
+    </div>
+    <div class="tbl-scroll reveal">
+      <table class="main">
+        <thead><tr><th data-en="Company type">Şirket türü</th><th data-en="Most critical need">En kritik ihtiyaç</th><th data-en="Solved today by">Bugün nasıl çözülüyor</th><th data-en="Safera answer">Safera karşılığı</th></tr></thead>
+        <tbody>
+          <tr><td class="co">Mikro/KOBİ — Az Tehlikeli</td><td data-en="Knowing what to do + cheap compliance + KATİP automation">Ne yapacağını bilme + ucuz uyum + KATİP otomasyonu</td><td data-en="Full-package to an OSGB (opaque), consultant-dependent">OSGB'ye tam-paket (opak), danışmana bağımlı</td><td data-en="Role-specific <b>Simulator</b> + free trial + find an expert + Era produces documents">Rol-özgün <b>Simülatör</b> + ücretsiz dene + uzman bul + Era evrak üretir</td></tr>
+          <tr><td class="co">KOBİ — Tehlikeli</td><td data-en="Risk assessment + training + periodic checks + audit prep">RAM + eğitim + periyodik kontrol + denetim hazırlık</td><td data-en="OSGB + Excel + manual paperwork">OSGB + Excel + manuel evrak</td><td data-en="Era risk-assessment/training/checks + <b>Audit Readiness</b> score">Era RAM/eğitim/kontrol + <b>Denetim Hazırlığı</b> skoru</td></tr>
+          <tr><td class="co">Çok Tehlikeli</td><td data-en="Deep risk + field evidence + occupational disease + inspector focus">Derin risk + saha kanıtı + meslek hastalığı + müfettiş odağı</td><td data-en="Senior consultant + enterprise software (expensive)">Senior danışman + kurumsal yazılım (pahalı)</td><td data-en="Sector-smart Era + <b>approved document archive</b> + audit-ready records">Sektör-zekâlı Era + <b>onaylı belge arşivi</b> + denetime hazır kayıt</td></tr>
+          <tr class="us-row"><td class="co">Bireysel uzman / hekim</td><td data-en="Direct work (no intermediary) + document generation + CRM + evidence">Doğrudan iş (aracısız) + belge üretimi + CRM + kanıt</td><td data-en="Tied to an OSGB (commission) or scattered tools">OSGB'ye bağlı (komisyon) veya dağınık araçlar</td><td data-en="<b>Marketplace</b> (deterministic matching) + Era documents + CRM + evidence"><b>Pazar yeri</b> (deterministik eşleşme) + Era belge + CRM + kanıt</td></tr>
+          <tr><td class="co">OSGB</td><td data-en="Expert pool + multi-client + IBYS transfer">Uzman havuzu + çok-müşteri + İBYS aktarım</td><td data-en="Existing IBYS software">İBYS yazılımı (mevcut)</td><td data-en="Not an enemy, a customer — uses Era for pool/compliance management">Düşman değil müşteri — Era'yı havuz/uyum yönetimi için kullanır</td></tr>
+          <tr><td class="co">Çoklu-ülke / GCC</td><td data-en="Multi-jurisdiction compliance (TR+GCC+ISO 45001)">Çoklu-yargı uyum (TR+GCC+ISO 45001)</td><td data-en="Several consultants/tools">Birden çok danışman/araç</td><td data-en="Expansion: i18n + country-regulation modules (Phase 4)">Genişleme: i18n + ülke-mevzuat modülleri (Faz 4)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 8 · KONUMLANDIRMA & BOŞLUK ═════════════════════════════ -->
+<section class="s tint" id="konum">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Positioning &amp; Gap">Konumlandırma &amp; Boşluk</span>
+      <h2 style="--i:1" data-en="The moat: an intersection no one holds.">Hendek: kimsenin tutmadığı kesişim.</h2>
+    </div>
+    <div class="intersection reveal">
+      <p data-en="Enterprise global players are <b>English + large-company + expensive + consultant-led</b>; even the closest vision (Ideagen Mazlan) targets <b>large regulated enterprises</b>. The TR IBYS ecosystem automates <b>paperwork/data-transfer</b>; OSGBs are <b>manpower + intermediary</b>.">Kurumsal global oyuncular <b>İngilizce + büyük şirket + pahalı + danışman</b>; en yakın vizyon (Ideagen Mazlan) bile <b>büyük regülasyonlu kurum</b> odaklı. TR İBYS ekosistemi <b>evrak/veri-aktarımı</b> otomatikleştirir; OSGB'ler <b>insan-gücü + aracı</b>.</p>
+      <p style="margin-top:1rem" data-en="<b>Safera = Turkish + SME &amp; solo-expert + free role-specific Simulator (frictionless acquisition) + deterministic marketplace (no intermediary) + approval-gated agentic Era (turns bureaucracy into conversation) + audit-ready records.</b> We haven't identified a player holding this five-way intersection — global or Turkish."><b>Safera = Türkçe + KOBİ &amp; bireysel-uzman + ücretsiz rol-özgün Simülatör (sürtünmesiz edinim) + deterministik pazar yeri (aracısız) + onaylı agentic Era (bürokrasiyi sohbete çevirir) + denetime hazır kayıt düzeni.</b> Bu beşli kesişimi birlikte tutan bir oyuncu tespit etmedik — ne globalde ne TR'de.</p>
+    </div>
+    <div class="grid-2" style="margin-top:1.6rem">
+      <div class="pbox uzman reveal">
+        <span class="pbox-label" data-en="Safera's advantage">Safera'nın avantajı</span>
+        <ul>
+          <li data-en="Frictionless entry to the newly opened 2.23M mandatory market (free simulator, low cash-CAC).">Yeni-açılan 2,23M zorunlu pazara sürtünmesiz giriş (ücretsiz simülatör, düşük nakit-CAC).</li>
+          <li data-en="Two-sided network effect (expert↔SME) + organic data → accident-prediction moat.">İki-taraflı ağ etkisi (uzman↔KOBİ) + organik veri → kaza-tahmin moat.</li>
+          <li data-en="Agentic Era + deterministic guardrail (trust you can sell in a regulated field).">Agentic Era + deterministik guardrail (regülasyonda satılabilir güven).</li>
+          <li data-en="Low COGS (Groq free tier + manual = 0 tokens) + mandatory regulation = low churn.">Düşük COGS (Groq ücretsiz katman + manuel = 0 token) + zorunlu regülasyon = düşük churn.</li>
+        </ul>
+      </div>
+      <div class="pbox sirket reveal" style="--i:1">
+        <span class="pbox-label" data-en="Risks / to close">Riskler / kapatılacaklar</span>
+        <ul>
+          <li data-en="Global players are turning agentic (Ideagen Mazlan, Gensuite Genie) → could come to TR; local-regulation + Turkish + SME depth is the defense.">Global oyuncular agentic'e dönüyor (Ideagen Mazlan, Gensuite Genie) → TR'ye inebilir; yerel-mevzuat + Türkçe + KOBİ derinliği savunma.</li>
+          <li data-en="IBYS integration (real KATİP) = lock-in; priority.">İBYS entegrasyonu (gerçek KATİP) = kilitlenme; öncelik.</li>
+          <li data-en="Make OSGBs a channel, not a rival (see Needs table).">OSGB'leri rakip değil kanal yap (İhtiyaç tablosu).</li>
+          <li data-en="Payments/live billing (Phase 2) + KVKK/local-server trust.">Ödeme/canlı tahsilat (Faz 2) + KVKK/yerel-sunucu güveni.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pitch-box reveal">
+      <div class="lbl" data-en="Bottom line">Sonuç</div>
+      <p data-en="The category Safera competes in <b>does not yet exist</b> — we have to build it and educate the market. The closest threats are not the global agentic players but <b>the inertia of Excel/OSGB</b> and simple AI bolted onto existing IBYS software. Speed + local depth is the moat.">Safera'nın yarıştığı kategori <b>henüz yok</b> — onu inşa edip pazarı eğitmemiz gerek. En yakın tehdit global agentic oyuncular değil, <b>Excel/OSGB ataleti</b> ve mevcut İBYS yazılımına eklenmiş basit AI. Hız + yerel derinlik hendektir.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 9 · KAYNAKLAR ══════════════════════════════════════════ -->
+<section class="s" id="kaynak">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Sources">Kaynaklar</span>
+      <h2 style="--i:1" data-en="Live web research, June 2026">Canlı web araması, Haziran 2026</h2>
+    </div>
+    <div class="caveat reveal">
+      <ul>
+        <li data-en="EHS software rankings: gartner.com/reviews/market/ehs-software · verdantix.com (Green Quadrant 2025) · G2 / Capterra">EHS yazılım sıralama: gartner.com/reviews/market/ehs-software · verdantix.com (Green Quadrant 2025) · G2 / Capterra</li>
+        <li data-en="Ideagen / Mazlan / acquisitions: ideagen.com/products/ideagen-ehs · ideagen.com/company/news · verdantix.com (Mazlan agentic AI EHSQ)">Ideagen / Mazlan / satın almalar: ideagen.com/products/ideagen-ehs · ideagen.com/company/news · verdantix.com (Mazlan agentic AI EHSQ)</li>
+        <li data-en="Market size / region: mordorintelligence.com · custommarketinsights.com · grandviewresearch.com · marketsandmarkets.com">Pazar büyüklüğü / bölge: mordorintelligence.com · custommarketinsights.com · grandviewresearch.com · marketsandmarkets.com</li>
+        <li data-en="Europe / Quentic / Preventeo: quentic.com · verdantix.com (European EHS trends)">Avrupa / Quentic / Preventeo: quentic.com · verdantix.com (Avrupa EHS trendleri)</li>
+        <li data-en="GCC / UAE OSHAD-SF / Saudi: smartqhse.com · middleeastbriefing.com · sodalessolutions.com · u.ae">GCC / BAE OSHAD-SF / Suudi: smartqhse.com · middleeastbriefing.com · sodalessolutions.com · u.ae</li>
+        <li data-en="Türkiye IBYS/OSGB software: ibys.csgb.gov.tr/yetkilifirmalar.aspx · kontinus.com · uludagbilisim.com · isgbys.com · erevir.com · halimasa.com.tr · osgb.net">Türkiye İBYS/OSGB yazılım: ibys.csgb.gov.tr/yetkilifirmalar.aspx · kontinus.com · uludagbilisim.com · isgbys.com · erevir.com · halimasa.com.tr · osgb.net</li>
+        <li data-en="TR legislation / process / cost: csgb.gov.tr · turkiye.gov.tr/acshb-isg-katip · nidaosgb.com.tr · ankatekosgb.com.tr">TR mevzuat / süreç / maliyet: csgb.gov.tr · turkiye.gov.tr/acshb-isg-katip · nidaosgb.com.tr · ankatekosgb.com.tr</li>
+        <li data-en="Becoming an expert / buying service: isgtakademi.com · bulutakademi.com.tr · yontemakademi.com.tr · generalosgb.com · meslekmaas.com">Uzman olma / hizmet alma: isgtakademi.com · bulutakademi.com.tr · yontemakademi.com.tr · generalosgb.com · meslekmaas.com</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════ -->
+<footer>
+  <div class="wrap foot-in">
+    <a href="./index.html" class="foot-logo"><img src="logo.svg" alt="Safera"></a>
+    <a href="./deck.html" class="back-link" style="font-family:'JetBrains Mono',monospace;color:var(--accent);border:1px solid rgba(26,106,91,.25);border-radius:99px;padding:.25rem .65rem;font-size:.67rem;text-decoration:none">← Deck</a>
+    <div class="foot-meta" data-en="Safera · Sector &amp; Competitor Analysis · June 2026 · Internal strategy.<br>Compiled via live web research; market figures vary by source. The official/complete record of TR software is ibys.csgb.gov.tr (71 firms / 77 software). Competitor scores are interpretation by Safera vision-proximity.">Safera · Sektörel &amp; Rakip Analizi · Haziran 2026 · İç strateji.<br>Canlı web aramasıyla derlendi; pazar rakamları kaynağa göre değişir. TR yazılımın resmi/eksiksiz kaydı ibys.csgb.gov.tr'dir (71 firma / 77 yazılım). Rakip skorları Safera vizyon-yakınlığına göre yorumdur.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var bar = document.getElementById('progress');
+  function onScroll(){ var h=document.documentElement; bar.style.width=(h.scrollHeight-h.clientHeight>0?h.scrollTop/(h.scrollHeight-h.clientHeight)*100:0)+'%'; }
+  document.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  var revs = document.querySelectorAll('.reveal');
+  if(rm){ revs.forEach(function(el){el.classList.add('in');}); }
+  else if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+    },{threshold:0.1,rootMargin:'0px 0px -6% 0px'});
+    revs.forEach(function(el){io.observe(el);});
+  } else { revs.forEach(function(el){el.classList.add('in');}); }
+
+  function fmt(v,dec){ return dec>0?v.toFixed(dec):Math.round(v).toString(); }
+  function animate(el){
+    var target=parseFloat(el.getAttribute('data-count'));
+    var dec=parseInt(el.getAttribute('data-dec')||'0',10);
+    var pre=el.getAttribute('data-prefix')||'';
+    var suf=el.getAttribute('data-suffix')||'';
+    if(rm||isNaN(target)){el.textContent=pre+fmt(target||0,dec)+suf;return;}
+    var dur=1100,t0=null;
+    function step(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/dur,1),eased=1-Math.pow(1-p,3);
+      el.textContent=pre+fmt(target*eased,dec)+suf; if(p<1)requestAnimationFrame(step); else el.textContent=pre+fmt(target,dec)+suf; }
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window&&!rm){
+    var co=new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){animate(e.target);co.unobserve(e.target);} }); },{threshold:0.5});
+    document.querySelectorAll('[data-count]').forEach(function(el){co.observe(el);});
+  } else { document.querySelectorAll('[data-count]').forEach(animate); }
+})();
+</script>
+
+<script>
+/* ── i18n · TR ⇄ EN in-place toggle ── */
+(function(){
+  var KEY='safera-lang';
+  function cur(){ return localStorage.getItem(KEY)==='en' ? 'en' : 'tr'; }
+  function apply(lang){
+    document.documentElement.lang=lang;
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      if(el.getAttribute('data-tr')===null) el.setAttribute('data-tr', el.innerHTML);
+      el.innerHTML = (lang==='en') ? el.getAttribute('data-en') : el.getAttribute('data-tr');
+    });
+    var ts=document.querySelectorAll('#lang-toggle [data-l]');
+    for(var i=0;i<ts.length;i++) ts[i].classList.toggle('on', ts[i].getAttribute('data-l')===lang);
+    try{ localStorage.setItem(KEY,lang); }catch(e){}
+  }
+  apply(cur());
+  var b=document.getElementById('lang-toggle');
+  if(b) b.addEventListener('click',function(){ apply(cur()==='en'?'tr':'en'); });
+}());
+</script>
+</body>
+</html>
