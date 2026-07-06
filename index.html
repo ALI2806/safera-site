@@ -1069,7 +1069,7 @@ var io=new IntersectionObserver(function(entries){
   entries.forEach(function(en){
     if(en.isIntersecting){markIn(en.target);io.unobserve(en.target);}
   });
-},{threshold:.15,rootMargin:'0px 0px -10% 0px'});
+},{threshold:0,rootMargin:'0px 0px -8% 0px'}); /* clip-path'li öğede ratio ~%2 kalır; eşik 0 şart */
 document.querySelectorAll('.reveal,.seal').forEach(function(el){io.observe(el);});
 document.querySelectorAll('#hero .reveal').forEach(function(el){io.unobserve(el);markIn(el);});
 
