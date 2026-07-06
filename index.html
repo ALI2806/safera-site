@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,620&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,640&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,560;0,9..144,620;1,9..144,560;1,9..144,620&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,640&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 /* ─── TOKENS — Safera app paleti (washi/sumi + çam-teal + ember mühür + antika gold) ── */
 :root{
@@ -59,6 +59,17 @@ body{
 }
 a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
 a:hover{text-decoration-thickness:2px;}
+/* soldan çizilen, sağa doğru silinen alt çizgi (buton/marka hariç) */
+main a:not(.btn-primary){
+  text-decoration:none;padding-bottom:1px;
+  background-image:linear-gradient(currentColor,currentColor),
+    linear-gradient(color-mix(in srgb,currentColor 28%,transparent),color-mix(in srgb,currentColor 28%,transparent));
+  background-repeat:no-repeat;
+  background-size:0% 1px,100% 1px;
+  background-position:100% 100%,0 100%;
+  transition:background-size .4s var(--ease-out);
+}
+main a:not(.btn-primary):hover{background-size:100% 1px,100% 1px;background-position:0 100%,0 100%;}
 img{display:block;max-width:100%;height:auto;}
 
 /* ─── LAYOUT ─────────────────────────────────────────────── */
@@ -69,7 +80,15 @@ section{padding:128px 0;}
 .bg-dark{
   background:var(--bg-dark);
   background-image:radial-gradient(1200px 600px at 50% -10%,rgba(116,180,166,.12),transparent 60%);
+  position:relative;
 }
+/* washi ↔ sumi arasında yumuşak ton köprüsü */
+.bg-dark::before,.bg-dark::after{
+  content:'';position:absolute;left:0;right:0;height:120px;pointer-events:none;
+}
+.bg-dark::before{top:0;background:linear-gradient(180deg,var(--bg),rgba(248,245,238,0));}
+.bg-dark::after{bottom:0;background:linear-gradient(0deg,var(--bg),rgba(248,245,238,0));}
+#indir.bg-dark::after{display:none;} /* altı koyu footer'a bağlanır */
 
 /* ─── KOYU BÖLÜM ─────────────────────────────────────────── */
 .bg-dark{color:rgba(255,255,255,.72);}
@@ -86,6 +105,16 @@ section{padding:128px 0;}
   font-weight:500;letter-spacing:.08em;text-transform:uppercase;
   color:var(--accent);display:block;margin-bottom:12px;
 }
+/* görünür olunca soldan sağa çizilen gold hairline */
+.eyebrow::after{
+  content:'';display:block;width:44px;height:1px;margin-top:10px;
+  background:var(--gold);opacity:.8;
+  transform:scaleX(0);transform-origin:left center;
+  transition:transform .8s var(--ease-out) .25s;
+}
+.eyebrow.in::after{transform:scaleX(1);}
+/* Fraunces italik vurgu kelimeleri */
+.fx-em{font-style:italic;}
 .section-head h2{
   font-family:'Fraunces',Georgia,serif;
   font-size:clamp(30px,4vw,46px);line-height:1.1;
@@ -100,24 +129,35 @@ section{padding:128px 0;}
 /* ─── BUTTONS ─────────────────────────────────────────────── */
 .btn-primary{
   display:inline-flex;align-items:center;gap:8px;
-  background:var(--accent);color:#fff;
+  background-color:var(--accent);color:#fff;
+  background-image:linear-gradient(var(--accent-deep),var(--accent-deep));
+  background-repeat:no-repeat;background-size:0% 100%;background-position:left center;
   font-family:'Inter',sans-serif;font-size:16px;line-height:1;
   font-weight:600;letter-spacing:-.01em;
   padding:14px 26px;border-radius:var(--radius-btn);border:0;
   text-decoration:none;cursor:pointer;
-  transition:background .15s var(--ease-out),transform .15s var(--ease-out);
+  transition:background-size .45s var(--ease-out),transform .15s var(--ease-out);
 }
-.btn-primary:hover{background:var(--accent-deep);transform:translateY(-1px);color:#fff;}
+.btn-primary:hover{background-size:100% 100%;transform:translateY(-1px);color:#fff;}
 .btn-primary:focus-visible{outline:2px solid var(--accent-mint);outline-offset:3px;}
 .btn-lg{padding:16px 32px;font-size:17px;}
 
 /* ─── CARDS ───────────────────────────────────────────────── */
 .card{
   background:var(--bg-card);border:var(--border);
-  border-radius:var(--radius-card);padding:28px;
+  border-radius:var(--radius-card);padding:28px;position:relative;
   transition:border-color .2s var(--ease-out),box-shadow .2s var(--ease-out),transform .2s var(--ease-out);
 }
-.card:hover{border-color:rgba(26,106,91,.35);box-shadow:var(--shadow-card-hover);transform:translateY(-2px);}
+.card:hover{border-color:rgba(26,106,91,.2);box-shadow:var(--shadow-card-hover);transform:translateY(-2px);}
+/* hover'da kartın çevresinde çizilen pine mürekkep hattı (SVG, JS enjekte) */
+.ink-frame{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;display:block;}
+.ink-frame rect{
+  x:1px;y:1px;width:calc(100% - 2px);height:calc(100% - 2px);rx:19px;
+  fill:none;stroke:var(--accent);stroke-width:1.5;
+  stroke-dasharray:1;stroke-dashoffset:1;
+  transition:stroke-dashoffset .9s var(--ease-out);
+}
+.card:hover .ink-frame rect,.price-card:hover .ink-frame rect{stroke-dashoffset:0;}
 .bg-subtle .card{background:var(--bg-card);}
 .card-icon{
   width:40px;height:40px;background:#FFFDF8;border-radius:var(--radius-icon);
@@ -199,9 +239,15 @@ header{
   background:rgba(248,245,238,.8);
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
   border-bottom:1px solid var(--hairline);
+  transition:background .35s var(--ease-out),box-shadow .35s var(--ease-out);
+}
+header.scrolled{
+  background:rgba(248,245,238,.74);
+  box-shadow:0 8px 24px rgba(26,23,20,.05);
 }
 header .container{height:100%;display:flex;align-items:center;}
-.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;transition:transform .35s var(--ease-out);transform-origin:left center;}
+header.scrolled .nav-brand{transform:scale(.93);}
 .nav-name{font-family:'Fraunces',Georgia,serif;font-size:19px;font-weight:620;color:var(--accent-deep);letter-spacing:0;}
 .nav-icon{height:clamp(28px,4vw,36px);width:auto;border-radius:clamp(6px,1vw,10px);}
 .footer-icon{height:clamp(24px,3.5vw,30px);width:auto;border-radius:clamp(5px,1vw,8px);opacity:.7;}
@@ -305,6 +351,26 @@ header .container{height:100%;display:flex;align-items:center;}
 }
 .plan-note{font-size:13px;color:var(--ink-3);}
 .price-note{text-align:center;font-size:14px;color:var(--ink-3);margin-top:24px;}
+.price-card{position:relative;transition:box-shadow .2s var(--ease-out),transform .2s var(--ease-out);}
+.price-card:hover{box-shadow:var(--shadow-card-hover);transform:translateY(-2px);}
+
+/* ─── EMBER MÜHÜR (tek damga anı) ─────────────────────────── */
+.section-head{position:relative;}
+.seal{
+  position:absolute;right:4px;top:-4px;width:80px;height:80px;
+  border:2px solid var(--ember);border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  color:var(--ember);background:rgba(192,89,60,.05);
+  transform:rotate(-8deg);
+}
+.seal b{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;letter-spacing:-.02em;line-height:1;}
+.seal span{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;line-height:1;}
+html.js .seal{
+  opacity:0;transform:scale(1.55) rotate(-22deg);
+  transition:transform .55s cubic-bezier(.3,1.35,.55,1),opacity .25s ease;
+}
+html.js .seal.in{opacity:1;transform:scale(1) rotate(-8deg);}
+@media(max-width:640px){.seal{position:static;margin:18px 0 0;width:68px;height:68px;}}
 
 /* ─── TEAM ────────────────────────────────────────────────── */
 .team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;}
@@ -342,12 +408,56 @@ footer .container{display:flex;flex-direction:column;align-items:center;gap:8px;
 .footer-slogan{font-size:13px;color:rgba(255,255,255,.4) !important;}
 .footer-copy{font-size:13px;color:rgba(255,255,255,.25) !important;}
 
-/* ─── REVEAL ─────────────────────────────────────────────── */
+/* ─── REVEAL — perde (clip) + hafif yükselme ─────────────── */
 html.js .reveal{
-  opacity:0;transform:translateY(14px);
-  transition:opacity .55s var(--ease-out),transform .55s var(--ease-out);
+  opacity:0;transform:translateY(16px);
+  clip-path:inset(0 0 98% 0);
+  transition:opacity .6s var(--ease-out),transform .6s var(--ease-out),clip-path .6s var(--ease-out);
 }
-html.js .reveal.in{opacity:1;transform:none;}
+html.js .reveal.in{opacity:1;transform:none;clip-path:inset(0 0 0% 0);}
+html.js .reveal.done{clip-path:none;} /* geçiş bitince maske kalkar (gölgeler kırpılmasın) */
+
+/* ─── HERO SATIR MASKESİ ─────────────────────────────────── */
+.hl{display:block;overflow:hidden;padding:.06em 0 .14em;margin:-.06em 0 -.14em;}
+html.js .hl-in{display:block;transform:translateY(112%);transition:transform .9s var(--ease-out);}
+html.js .hl-go .hl-in{transform:none;}
+
+/* ─── WASHI KAĞIT GRENİ ──────────────────────────────────── */
+body::after{
+  content:'';position:fixed;inset:0;z-index:2400;pointer-events:none;opacity:.045;
+  background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
+  background-size:240px 240px;
+}
+
+/* ─── VİTRİN — masaüstü sticky ekran turu ────────────────── */
+.vitrine{display:none;}
+@media(min-width:900px){
+  .shots-row,.shots-hint{display:none;}
+  .vitrine{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:64px;align-items:start;}
+  .vitrine-steps{list-style:none;padding-bottom:8vh;}
+  .vstep{
+    min-height:44vh;display:flex;flex-direction:column;justify-content:center;
+    padding:24px 32px 24px 24px;border-left:1px solid var(--hairline);
+    opacity:.32;cursor:pointer;position:relative;
+    transition:opacity .45s var(--ease-out);
+  }
+  .vstep::before{
+    content:'';position:absolute;left:-1px;top:50%;width:2px;height:0;
+    background:var(--accent);
+    transition:height .5s var(--ease-out),top .5s var(--ease-out);
+  }
+  .vstep.on{opacity:1;}
+  .vstep.on::before{top:22%;height:56%;}
+  .vstep-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-3);display:block;margin-bottom:10px;letter-spacing:.06em;}
+  .vstep .shot-role{margin-bottom:10px;align-self:flex-start;}
+  .vstep h3{font-family:'Fraunces',Georgia,serif;font-size:23px;font-weight:600;letter-spacing:-.01em;color:var(--ink);margin-bottom:8px;line-height:1.2;}
+  .vstep p{font-size:15px;line-height:1.6;color:var(--ink-2);max-width:400px;}
+  .vitrine-stage{position:sticky;top:max(84px,7.5vh);display:flex;justify-content:center;}
+  .vitrine-stage .phone{width:min(300px,37vh);}
+  .vscreen{display:grid;}
+  .vscreen .phone-shot{grid-area:1/1;opacity:0;transition:opacity .55s var(--ease-out);}
+  .vscreen .phone-shot.on{opacity:1;}
+}
 
 /* ─── RESPONSIVE TABLET ──────────────────────────────────── */
 @media(max-width:1024px){
@@ -379,7 +489,11 @@ html.js .reveal.in{opacity:1;transform:none;}
 /* ─── REDUCED MOTION ─────────────────────────────────────── */
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:opacity .2s ease!important;}
-  html.js .reveal{transform:none;}
+  html.js .reveal{transform:none;clip-path:none;}
+  html.js .hl-in{transform:none;}
+  html.js .seal{opacity:1;transform:rotate(-8deg);}
+  .eyebrow::after{transform:scaleX(1);}
+  .ink-frame{display:none;}
 }
 
 /* ─── LANG TOGGLE ─────────────────────────────────────────── */
@@ -411,10 +525,7 @@ html.js .reveal.in{opacity:1;transform:none;}
     <div class="hero-grid">
       <div class="hero-text">
         <span class="eyebrow reveal" style="transition-delay:0ms" data-en="OHS PLATFORM">İSG PLATFORMU</span>
-        <h1 class="reveal" style="transition-delay:80ms" data-en="A new era in occupational<br><span class='h1-gold'>health &amp; safety.</span>">
-          İş sağlığı ve güvenliğinde<br>
-          <span class="h1-gold">yeni bir dönem.</span>
-        </h1>
+        <h1 id="hero-title" data-en="A <em class='fx-em'>new era</em> in occupational<br><span class='h1-gold'>health &amp; safety.</span>">İş sağlığı ve güvenliğinde<br><span class="h1-gold fx-em">yeni bir dönem.</span></h1>
         <p class="hero-sub reveal" style="transition-delay:160ms" data-en="In Türkiye, receiving OHS services is a legal requirement for every workplace. Safera matches companies with OHS professionals <strong>free of charge, with no commission</strong>; paperwork, regulatory tracking, planning and reporting are carried by AI. The decision always stays with people.">
           Türkiye'de her işyerinin İSG hizmeti alması yasal bir zorunluluk. Safera, şirketlerle İSG profesyonellerini <strong>ücretsiz ve komisyonsuz</strong> eşleştirir; evrak, mevzuat takibi, planlama ve raporlamayı yapay zekâ üstlenir. Karar her zaman insanda kalır.
         </p>
@@ -542,9 +653,63 @@ html.js .reveal.in{opacity:1;transform:none;}
   <div class="container">
     <div class="section-head">
       <span class="eyebrow reveal" data-en="INSIDE THE APP">UYGULAMADAN KARELER</span>
-      <h2 class="reveal" data-en="Real screens, live product.">Gerçek ekranlar, canlı ürün.</h2>
+      <h2 class="reveal" data-en="Real screens, <em class='fx-em'>live product.</em>">Gerçek ekranlar, <em class="fx-em">canlı ürün.</em></h2>
       <p class="section-desc reveal" data-en="Every frame is a screenshot from the running product: the three core functions (Era, the feed, operations) plus a few deep dives.">Her kare çalışan üründen alınmış gerçek ekran görüntüsü: üç ana işlev (Era, akış, operasyon) ve birkaç derinlemesine bakış.</p>
     </div>
+    <!-- masaüstü: sticky ekran turu -->
+    <div class="vitrine">
+      <ol class="vitrine-steps">
+        <li class="vstep on" data-i="0">
+          <span class="vstep-num">01</span>
+          <span class="shot-role ember">ERA</span>
+          <h3 data-en="The day opens with Era">Era ile açılan gün</h3>
+          <p data-en="Income, contracts and pending items, summarized on arrival">Gelir, sözleşmeler ve bekleyenler özetle karşınızda</p>
+        </li>
+        <li class="vstep" data-i="1">
+          <span class="vstep-num">02</span>
+          <span class="shot-role" data-en="THE FEED">AKIŞ</span>
+          <h3 data-en="Matching by % fit">% uyumla eşleşme</h3>
+          <p data-en="The best-fit job and professional come first">En uygun iş ve profesyonel öne gelir</p>
+        </li>
+        <li class="vstep" data-i="2">
+          <span class="vstep-num">03</span>
+          <span class="shot-role" data-en="OPERATIONS">OPERASYON</span>
+          <h3 data-en="Everything in one place">Her şey bir arada</h3>
+          <p data-en="Documents, tasks, team, employees and the calendar">Belgeler, görevler, ekip, çalışanlar ve takvim</p>
+        </li>
+        <li class="vstep" data-i="3">
+          <span class="vstep-num">04</span>
+          <span class="shot-role ember">ERA</span>
+          <h3 data-en="Ask; the answer is ready">Sorun, cevap hazır</h3>
+          <p data-en="The gap is found in your real data; the needed document is prepared">Eksik gerçek veriden bulunur; gereken belge hazırlanır</p>
+        </li>
+        <li class="vstep" data-i="4">
+          <span class="vstep-num">05</span>
+          <span class="shot-role gold" data-en="DOCUMENTS">BELGELER</span>
+          <h3 data-en="A living archive">Yaşayan arşiv</h3>
+          <p data-en="Approval and validity on every file; an ending term is noticed at once">Onay ve geçerlilik her dosyanın üstünde; biten süre hemen fark edilir</p>
+        </li>
+        <li class="vstep" data-i="5">
+          <span class="vstep-num">06</span>
+          <span class="shot-role gold">CRM</span>
+          <h3 data-en="Income at a glance">Gelir tek bakışta</h3>
+          <p data-en="Clients, contracts and renewals move along automatically">Müşteri, sözleşme ve yenileme takibi otomatik ilerler</p>
+        </li>
+      </ol>
+      <div class="vitrine-stage reveal">
+        <div class="phone">
+          <div class="vscreen">
+            <img class="phone-shot on" src="img/app/uzman-ozet.png" alt="Era ile açılan günlük özet ekranı" width="330" height="715" loading="lazy">
+            <img class="phone-shot" src="img/app/uzman-akis.png" alt="Akış: % uyum skorlu iş ilanları" width="330" height="715" loading="lazy">
+            <img class="phone-shot" src="img/app/sirket-operasyon.png" alt="Operasyon merkezi" width="330" height="715" loading="lazy">
+            <img class="phone-shot" src="img/app/era-chat.png" alt="Era sohbeti: eksik belgelerin canlı tespiti" width="330" height="715" loading="lazy">
+            <img class="phone-shot" src="img/app/sirket-belgeler.png" alt="Belgeler: onay ve geçerlilik takibi" width="330" height="715" loading="lazy">
+            <img class="phone-shot" src="img/app/uzman-crm.png" alt="Çalıştıklarım: müşteri ve gelir takibi" width="330" height="715" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- mobil/tablet: yatay film şeridi -->
     <div class="shots-row reveal">
       <figure class="shot">
         <div class="phone"><img class="phone-shot" src="img/app/uzman-ozet.png" alt="Era ile açılan günlük özet ekranı" width="236" height="511" loading="lazy"></div>
@@ -661,7 +826,7 @@ html.js .reveal.in{opacity:1;transform:none;}
   <div class="container">
     <div class="section-head">
       <span class="eyebrow reveal" data-en="THE EDGE">FARK</span>
-      <h2 class="reveal" data-en="Why Safera?">Neden Safera?</h2>
+      <h2 class="reveal" data-en="Why <em class='fx-em'>Safera?</em>">Neden <em class="fx-em">Safera?</em></h2>
       <p class="section-desc reveal">
 <span data-en="Not a feature list; the value it produces: who does the heavy lifting, who keeps the earnings, how fast results arrive.">Özellik listesi değil, ürettiği değer: ağır tarafı kim çekiyor, kazanç kimde kalıyor, sonuç ne kadar sürede geliyor.</span>
       </p>
@@ -704,7 +869,7 @@ html.js .reveal.in{opacity:1;transform:none;}
   <div class="container">
     <div class="section-head">
       <span class="eyebrow reveal" data-en="VISION">VİZYON</span>
-      <h2 class="reveal" data-en="The field teaches, Era remembers.">Alan öğretir, Era hatırlar.</h2>
+      <h2 class="reveal" data-en="The field teaches, Era <em class='fx-em'>remembers.</em>">Alan öğretir, Era <em class="fx-em">hatırlar.</em></h2>
     </div>
     <div class="vision-body">
       <p class="reveal" data-en="Today Era does the heavy lifting of compliance. But the real point is what comes next. Everything that happens in the field (visits, near-misses, periodic checks, records) turns into structured <strong>real field data</strong>.">Bugün Era, uyumun ağır tarafını sırtlanıyor. Ama asıl mesele bundan sonrası. Sahada olup biten her şey: ziyaretler, ramak kalalar, periyodik kontroller, kayıtlar; tümü yapılandırılmış <strong>gerçek alan verisine</strong> dönüşüyor.</p>
@@ -734,6 +899,7 @@ html.js .reveal.in{opacity:1;transform:none;}
     <div class="section-head">
       <span class="eyebrow reveal" data-en="PRICING">FİYATLANDIRMA</span>
       <h2 class="reveal" data-en="No commission. Transparent subscription.">Komisyon yok. Şeffaf abonelik.</h2>
+      <span class="seal" aria-hidden="true"><b>%0</b><span data-en="COMMISSION">KOMİSYON</span></span>
     </div>
     <div class="price-grid">
       <div class="price-card reveal" style="transition-delay:0ms">
@@ -835,26 +1001,135 @@ html.js .reveal.in{opacity:1;transform:none;}
 
 <script>
 document.documentElement.classList.add('js');
+var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.querySelectorAll('a[href^="#"]').forEach(function(a){
   a.addEventListener('click',function(e){
     var t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+    if(t){e.preventDefault();t.scrollIntoView({behavior:RM?'auto':'smooth'});}
   });
 });
+
+/* ── hero satır maskesi: <br> segmentleri perdeyle açılır ── */
+function splitHero(){
+  var h=document.getElementById('hero-title');
+  if(!h)return;
+  if(RM){h.classList.add('hl-go');return;}
+  var parts=h.innerHTML.split(/<br\s*\/?>/i);
+  h.innerHTML=parts.map(function(p,i){
+    return '<span class="hl"><span class="hl-in" style="transition-delay:'+(120+i*140)+'ms">'+p+'</span></span>';
+  }).join('');
+  h.classList.remove('hl-go');
+  requestAnimationFrame(function(){requestAnimationFrame(function(){h.classList.add('hl-go');});});
+}
+
+/* ── count-up: rakamlar görünür olunca sayarak gelir ── */
+var fxCounts=[];
+function fxStopCounts(){fxCounts.forEach(function(c){c();});fxCounts=[];}
+function countUp(el){
+  if(RM||el.dataset.counted)return;
+  el.dataset.counted='1';
+  var txt=el.textContent,m=txt.match(/\d[\d.,]*\d|\d/);
+  if(!m)return;
+  var raw=m[0],dec=null,grp=null;
+  var lastDot=raw.lastIndexOf('.'),lastCom=raw.lastIndexOf(',');
+  if(lastDot>-1&&lastCom>-1){dec=lastDot>lastCom?'.':',';grp=dec==='.'?',':'.';}
+  else if(lastDot>-1){if(raw.length-lastDot-1===3){grp='.';}else{dec='.';}}
+  else if(lastCom>-1){if(raw.length-lastCom-1===3){grp=',';}else{dec=',';}}
+  var clean=raw;
+  if(grp){clean=clean.split(grp).join('');}
+  if(dec&&dec!=='.'){clean=clean.replace(dec,'.');}
+  var target=parseFloat(clean);
+  if(isNaN(target))return;
+  var decimals=dec?(raw.length-Math.max(lastDot,lastCom)-1):0;
+  function fmt(n){
+    var s=n.toFixed(decimals),pp=s.split('.'),ip=pp[0];
+    if(grp)ip=ip.replace(/\B(?=(\d{3})+(?!\d))/g,grp);
+    return dec?ip+dec+pp[1]:ip;
+  }
+  var t0=null,dur=900,alive=true;
+  fxCounts.push(function(){alive=false;});
+  function step(ts){
+    if(!alive)return;
+    if(!t0)t0=ts;
+    var p=Math.min(1,(ts-t0)/dur),e=1-Math.pow(1-p,3);
+    el.textContent=txt.replace(raw,fmt(target*e));
+    if(p<1){requestAnimationFrame(step);}else{alive=false;}
+  }
+  requestAnimationFrame(step);
+}
+
+/* ── reveal: perde açılır, bitince maske kalkar ── */
+function markIn(el){
+  el.classList.add('in');
+  setTimeout(function(){el.classList.add('done');},1200);
+  el.querySelectorAll('.stat-num').forEach(countUp);
+}
 var io=new IntersectionObserver(function(entries){
   entries.forEach(function(en){
-    if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+    if(en.isIntersecting){markIn(en.target);io.unobserve(en.target);}
   });
 },{threshold:.15,rootMargin:'0px 0px -10% 0px'});
-document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
-document.querySelectorAll('#hero .reveal').forEach(function(el){el.classList.add('in');});
+document.querySelectorAll('.reveal,.seal').forEach(function(el){io.observe(el);});
+document.querySelectorAll('#hero .reveal').forEach(function(el){io.unobserve(el);markIn(el);});
+
+/* ── kart mürekkep çerçeveleri (hover'da çizilen SVG hattı) ── */
+if(!RM){
+  var NS='http://www.w3.org/2000/svg';
+  document.querySelectorAll('.card,.price-card').forEach(function(c){
+    var s=document.createElementNS(NS,'svg');
+    s.setAttribute('class','ink-frame');s.setAttribute('aria-hidden','true');
+    var r=document.createElementNS(NS,'rect');r.setAttribute('pathLength','1');
+    s.appendChild(r);c.appendChild(s);
+  });
+}
+
+/* ── header yoğunlaşması + hero parallax ── */
+var hd=document.querySelector('header'),
+    heroPhone=document.querySelector('#hero .phone'),
+    heroSec=document.getElementById('hero'),tick=false;
+function onScroll(){
+  if(tick)return;
+  tick=true;
+  requestAnimationFrame(function(){
+    var y=window.scrollY||document.documentElement.scrollTop;
+    if(hd)hd.classList.toggle('scrolled',y>10);
+    if(!RM&&heroPhone&&heroSec&&y<heroSec.offsetTop+heroSec.offsetHeight){
+      heroPhone.style.transform='translate3d(0,'+(y*.08).toFixed(1)+'px,0)';
+    }
+    tick=false;
+  });
+}
+addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+
+/* ── vitrin: scroll'a bağlı sticky ekran turu ── */
+(function(){
+  var steps=[].slice.call(document.querySelectorAll('.vstep'));
+  var shots=[].slice.call(document.querySelectorAll('.vscreen .phone-shot'));
+  if(!steps.length)return;
+  function act(i){
+    steps.forEach(function(s,k){
+      s.classList.toggle('on',k===i);
+      if(k===i){s.setAttribute('aria-current','true');}else{s.removeAttribute('aria-current');}
+    });
+    shots.forEach(function(s,k){s.classList.toggle('on',k===i);});
+  }
+  var vio=new IntersectionObserver(function(es){
+    es.forEach(function(en){if(en.isIntersecting)act(+en.target.getAttribute('data-i'));});
+  },{rootMargin:'-42% 0px -42% 0px',threshold:0});
+  steps.forEach(function(s){
+    vio.observe(s);
+    s.addEventListener('click',function(){s.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'});});
+  });
+}());
 
 /* ── i18n · TR ⇄ EN in-place toggle ── */
 (function(){
   var KEY='safera-lang';
   function cur(){ return localStorage.getItem(KEY)==='en' ? 'en' : 'tr'; }
   function apply(lang){
+    fxStopCounts();
     document.documentElement.lang=lang;
     document.querySelectorAll('[data-en]').forEach(function(el){
       if(el.getAttribute('data-tr')===null) el.setAttribute('data-tr', el.innerHTML);
@@ -863,6 +1138,7 @@ document.querySelectorAll('#hero .reveal').forEach(function(el){el.classList.add
     var ts=document.querySelectorAll('#lang-toggle [data-l]');
     for(var i=0;i<ts.length;i++) ts[i].classList.toggle('on', ts[i].getAttribute('data-l')===lang);
     try{ localStorage.setItem(KEY,lang); }catch(e){}
+    splitHero();
   }
   apply(cur());
   var b=document.getElementById('lang-toggle');
