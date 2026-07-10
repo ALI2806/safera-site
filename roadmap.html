@@ -6,6 +6,7 @@
 <link rel="apple-touch-icon" href="img/icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Safera — Tüm Özellikler & Yol Haritası</title>
+<meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -155,7 +156,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(13,14,18,.92);
       <span class="n">Safera</span>
       <span class="sub">Tüm Özellikler &amp; Yol Haritası</span>
     </div>
-    <a href="https://neosgb-sunum.surge.sh/deck.html" class="back">← Pitch Deck</a>
+    <a href="./deck.html" class="back">← Pitch Deck</a>
     <div class="legend">
       <span class="li"><span class="dot" style="background:var(--p-now)"></span> Şimdi (1 ay)</span>
       <span class="li"><span class="dot" style="background:var(--p-soon)"></span> Yakın (ay 2-7)</span>
@@ -167,9 +168,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(13,14,18,.92);
 
 <section class="intro">
   <h1>Nereye gidiyoruz, <em>ne zaman</em>, hangi <em>sırayla</em>.</h1>
-  <p>Her faz, her tier, her özellik burada. Filtrele, kartlara tıkla, detayını oku.
-  Yeşil olanlar 1 ayda bitiyor — TÜBİTAK demosunun omurgası bunlar.
-  Turuncu/mor olanları demoda "yakında" olarak gösteriyoruz.</p>
+  <p>Her faz, her tier, her özellik burada. Filtrele, kartlara tıkla, detayını oku.</p>
   <div class="meta">
     <span><b>Stack:</b> Flutter + Supabase + AI (ücretsiz katman)</span>
     <span><b>İlk hedef:</b> TÜBİTAK BiGG demo (3 Tem 2026)</span>
@@ -205,13 +204,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(13,14,18,.92);
   </div>
 </section>
 
-<div class="fnote">
-  <b>Konuşma notu:</b> Yeşil olanlar 1 ayda bitiyor — TÜBİTAK demosunun
-  omurgası bunlar. Turuncu/mor olanları demoda "yakında" olarak gösteriyoruz
-  (vizyon). Mevzuat motoru (FUDÖ) uzak fazda ama hikayede bugün anlatılıyor
-  çünkü en güçlü moat o. Tartışılacak: 1 ayda hangi 2 özelliği "wow"
-  seviyesine çıkaralım?
-</div>
+
 
 <div class="modal-bg" id="modal">
   <div class="modal" id="modalContent"></div>
@@ -351,7 +344,7 @@ var DATA = [
   },
   {
     phase:"vision", num:"VİZYON", icon:"🌐", title:"+1 – Universal Compliance Agent",
-    when:"Ay 24+ · kategori ötesi · TÜBİTAK panelinde YOK, sadece Seed'de",
+    when:"Ay 24+ · kategori ötesi",
     goal:"Safera ajanı herhangi bir compliance yazılımının üstünde çalışsın. Compliance'ın Stripe'ı ol.",
     items:[
       {icon:"🤖",tier:"s",name:"UNIVERSAL",rom:"Compliance Agent",status:"todo",
@@ -359,7 +352,7 @@ var DATA = [
        problem:"Her şirketin farklı eski yazılımı var; entegrasyon cehennemi.",
        design:"Computer Use API + MCP protokolü + vision. 'Logo'dan al, Safera'ye aktar' → ajan yapar.",
        tech:"Anthropic Computer Use + MCP + multi-modal vision",
-       demo:"Seed pitch sonu '+1 vision' — TÜBİTAK'ta YOK",
+       demo:"Uzun vade vizyonu",
        why:"Yazılım katmanı değil, işletim sistemi olmak. Stripe momenti."}
     ]
   }
