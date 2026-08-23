@@ -519,6 +519,7 @@ html.js .seal.in{opacity:1;transform:scale(1) rotate(-8deg);}
 .dl-guide[open] summary::before{transform:rotate(45deg);}
 .dl-guide ol{margin:14px 0 0 18px;font-size:14.5px;line-height:1.8;}
 .dl-hash{font-family:'JetBrains Mono','Inter',monospace;font-size:11px;line-height:1.5;overflow-wrap:anywhere;color:rgba(255,255,255,.55) !important;margin-top:12px;}
+.dl-hash-not{font-size:11.5px;line-height:1.55;color:rgba(255,255,255,.5) !important;margin-top:6px;}
 
 /* ─── FOOTER ──────────────────────────────────────────────── */
 footer{background:var(--bg-dark);border-top:1px solid var(--hairline-d);padding:48px 0;}
@@ -1144,7 +1145,9 @@ body::after{
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span data-en="Download the APK">APK'yı İndir</span>
         </a>
-        <p class="dl-meta" data-en="v1.0 · Jul 2026 · 72 MB · Android 8+">v1.0 · Tem 2026 · 72 MB · Android 8+</p>
+        <!-- Boyut ve ozet ELLE yazilmaz: tools/claims/olcum_kaynak.py --yaz
+             yayimlanan site/safera.apk dosyasindan hesaplayip buraya basar. -->
+        <p class="dl-meta"><span data-en="v1.0 · Jul 2026 · ">v1.0 · Tem 2026 · </span><span data-olcum="apk_mib">74,2 MiB</span><span data-en=" · Android 8+"> · Android 8+</span></p>
         <p class="dl-alt" data-en="Using iPhone? &lt;a href='#pilot'&gt;Join the pilot list&lt;/a&gt;; we'll let you know when iOS is ready.">iPhone mu kullanıyorsun? <a href="#pilot">Pilot listesine yazıl</a>, iOS hazır olunca haber verelim.</p>
       </div>
       <details class="dl-guide reveal">
@@ -1154,7 +1157,8 @@ body::after{
           <li data-en="If Android asks, allow installs from this source once.">Android sorarsa bu kaynağa bir defalık izin ver.</li>
           <li data-en="Tap “Install”, then open Safera and sign up for free.">“Yükle”ye dokun; Safera'yı aç ve ücretsiz kaydol.</li>
         </ol>
-        <p class="dl-hash">SHA-256: acf82d20fade1b9eb350f0d94cc1d6408bfb16c4f69c289044e907fdc34d997b</p>
+        <p class="dl-hash">SHA-256: <span data-olcum="apk_sha256">ecaeeb0cbac7ecaf6f80105d620072b659de9d7c50678a155d892449dda0b56a</span></p>
+        <p class="dl-hash-not"><span data-en="This digest is computed from the published file at publish time. If it does not match your download, do not install the file.">Bu özet, yayım anında yayımlanan dosyanın kendisinden hesaplanır. İndirdiğin dosyanın özeti buradakiyle aynı değilse dosyayı kurma.</span></p>
       </details>
     </div>
   </div>
@@ -1172,6 +1176,7 @@ body::after{
     <nav class="footer-links" aria-label="Alt bağlantılar">
       <a href="gizlilik.html" data-en="Privacy">Gizlilik</a>
       <a href="kosullar.html" data-en="Terms">Koşullar</a>
+      <a href="hesap-silme.html" data-en="Delete account">Hesap silme</a>
       <a href="mailto:iletisim@safera.solutions">iletisim@safera.solutions</a>
     </nav>
     <p class="footer-copy" data-en="© 2026 Safera. All rights reserved.">© 2026 Safera. Tüm hakları saklıdır.</p>

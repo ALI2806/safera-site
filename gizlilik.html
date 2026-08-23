@@ -5,7 +5,7 @@
 <link rel="icon" type="image/png" href="img/icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gizlilik ve Kişisel Veriler · Safera</title>
-<meta name="description" content="Safera web sitesinin gizlilik ve kişisel veri uygulamaları: çerezsiz statik site, pilot formu e-postalarının kullanımı ve iletişim.">
+<meta name="description" content="Safera uygulaması ve web sitesinin gizlilik politikası: hangi veriler işlenir, nerede saklanır, sağlık verisi nasıl korunur, haklarınız ve hesap silme.">
 <link rel="canonical" href="https://safera.solutions/gizlilik.html">
 <meta name="theme-color" content="#F8F5EE">
 <style>
@@ -22,10 +22,21 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#F8F5EE;color:#2824
 h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(28px,5vw,40px);font-weight:620;line-height:1.15;letter-spacing:-.01em;margin-bottom:10px;}
 .updated{font-size:13px;color:#756B54;margin-bottom:40px;}
 h2{font-family:'Fraunces',Georgia,serif;font-size:21px;font-weight:600;margin:36px 0 10px;}
+h3{font-family:'Inter',sans-serif;font-size:15px;font-weight:640;margin:22px 0 4px;color:#28241F;}
 p,li{color:#4E4639;}
+p{margin:10px 0;}
 ul{margin:10px 0 10px 20px;}
+li{margin:5px 0;}
 a{color:#1A6A5B;text-underline-offset:3px;}
+strong{color:#28241F;font-weight:640;}
 .hairline{border:0;border-top:1px solid rgba(181,169,138,.32);margin:44px 0;}
+.lede{font-size:17.5px;color:#3D3629;}
+.note{border-left:2px solid #B5A98A;padding:2px 0 2px 16px;margin:20px 0;font-size:15.5px;}
+.tblwrap{overflow-x:auto;margin:14px 0 18px;}
+table{width:100%;border-collapse:collapse;font-size:15px;}
+th,td{text-align:left;padding:9px 14px 9px 0;border-bottom:1px solid rgba(181,169,138,.28);vertical-align:top;}
+th{font-weight:640;color:#28241F;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;}
+td{color:#4E4639;}
 footer{font-size:13px;color:#756B54;}
 </style>
 </head>
@@ -33,35 +44,179 @@ footer{font-size:13px;color:#756B54;}
 <div class="wrap">
   <a class="brand" href="./"><img src="img/icon.png" alt=""><span>Safera</span></a>
   <h1>Gizlilik ve Kişisel Veriler</h1>
-  <p class="updated">Son güncelleme: 10 Temmuz 2026</p>
+  <p class="updated">Son güncelleme: 28 Temmuz 2026</p>
 
-  <p>Bu sayfa, safera.solutions web sitesinin kişisel verilerle ilişkisini olduğu gibi, sade bir dille anlatır.</p>
+  <p class="lede">Bu sayfa, Safera uygulamasını ve safera.solutions sitesini kullandığında hangi bilgilerin toplandığını, neden toplandığını, nerede saklandığını ve bu bilgiler üzerinde hangi haklara sahip olduğunu sade bir dille anlatır.</p>
 
-  <h2>Bu site ne toplar?</h2>
+  <div class="note">
+    <strong>Kısa özet.</strong> Kayıtların Avrupa Birliği (Frankfurt) bölgesindeki sunucularda tutulur. Reklam yoktur, reklam kimliği toplanmaz, verilerin satılmaz. Sağlık verileri en yüksek korumaya tabidir. Era'ya yazdığın metin, cevabı üretmek için bir yapay zekâ sağlayıcısına anlık olarak gider; kimlik numarası, telefon ve sağlık alanları bu gönderimden önce otomatik maskelenir.
+  </div>
+
+  <h2>1. Veri sorumlusu ve iletişim</h2>
+  <p>Bu uygulamayı geliştiren ve işleten Safera ekibidir.</p>
+  <ul>
+    <li>İletişim: <a href="mailto:hello@safera.solutions">hello@safera.solutions</a></li>
+    <li>Web: <a href="https://safera.solutions">safera.solutions</a></li>
+  </ul>
+  <p>Kişisel verilerinle ilgili her soru, talep ve şikâyet için bu adrese yazabilirsin. Taleplere en geç <strong>30 gün</strong> içinde ücretsiz olarak yanıt verilir.</p>
+
+  <h2>2. Hangi bilgileri, neden işliyoruz?</h2>
+
+  <h3>Hesabın için</h3>
+  <div class="tblwrap"><table>
+    <tr><th>Bilgi</th><th>Neden</th></tr>
+    <tr><td>Ad, e-posta adresi, şifre (şifrelenmiş olarak)</td><td>Hesabını oluşturmak ve girişini doğrulamak</td></tr>
+    <tr><td>Rol seçimin (İSG uzmanı · işyeri hekimi · şirket)</td><td>Sana doğru ekranları ve yetkileri açmak</td></tr>
+    <tr><td>Telefon numarası (isteğe bağlı)</td><td>Karşı tarafın seninle iletişim kurabilmesi</td></tr>
+    <tr><td>İl, unvan, sertifikalar, uzmanlık alanları, meslekî özet</td><td>Profilini oluşturmak ve uygun eşleşmeyi hesaplamak</td></tr>
+  </table></div>
+
+  <h3>İşyeri ve uyum kayıtların için</h3>
+  <div class="tblwrap"><table>
+    <tr><th>Bilgi</th><th>Neden</th></tr>
+    <tr><td>İşyeri adı, NACE kodu, tehlike sınıfı, çalışan sayısı, il</td><td>Yasal yükümlülük listeni çıkarmak ve belgeleri işyerine göre doldurmak</td></tr>
+    <tr><td>Çalışan listesi: ad, SGK numarası, görev, işe giriş tarihi</td><td>Sağlık gözetimi ve eğitim takibini yürütmek</td></tr>
+    <tr><td>Belgeler, risk değerlendirmeleri, görevler, ziyaret kayıtları, sözleşme bilgileri</td><td>Uygulamanın asıl işini yapması</td></tr>
+    <tr><td>İlanlar, başvurular, uyum yüzdesi</td><td>Uzman ya da hekim ile işyerini eşleştirmek</td></tr>
+    <tr><td>Uygulama içi mesajlar</td><td>Tarafların doğrudan yazışması</td></tr>
+  </table></div>
+
+  <h3>Uygulamanın çalışması ve iyileştirilmesi için</h3>
+  <div class="tblwrap"><table>
+    <tr><th>Bilgi</th><th>Neden</th></tr>
+    <tr><td>Çökme kayıtları, cihaz modeli, işletim sistemi ve uygulama sürümü</td><td>Hataları bulmak ve gidermek</td></tr>
+    <tr><td>Sınırlı kullanım olayları: Era'ya soru soruldu, belge üretildi, belge onaylandı, ilana başvuruldu</td><td>Hangi bölümün işe yaradığını anlamak. Bu kayıtlarda serbest metin, ad ve sağlık verisi yoktur</td></tr>
+    <tr><td>Gönderirsen: geri bildirim mesajın ve hangi ekrandan gönderildiği</td><td>Sorunu yerinde çözmek</td></tr>
+  </table></div>
+
+  <p><strong>Reklam kimliği, konum, rehber, takvim, SMS ve tarayıcı geçmişi toplanmaz.</strong> Uygulama konum ve kamera izni istemez.</p>
+
+  <h2>3. Sağlık verileri — özel nitelikli kişisel veri</h2>
+  <p>İşyeri hekimliği işlevleri gereği uygulamada sağlık verisi işlenir. Bu veri, 6698 sayılı Kişisel Verilerin Korunması Kanunu'nda <strong>özel nitelikli kişisel veri</strong> olarak tanımlanır ve ayrı bir koruma rejimine tabidir.</p>
+
+  <h3>İşlenen sağlık verileri</h3>
+  <ul>
+    <li>İşe giriş ve periyodik muayenelerin tarihi, geçerlilik süresi ve işe uygunluk kanaati (uygun · şartlı uygun · uygun değil)</li>
+    <li>Hassas çalışan grubu bilgisi: gebe, genç çalışan, kronik hastalığı olan, engelli</li>
+    <li>Çalışanın maruz kaldığı tehlike bilgisi</li>
+    <li>İş kazası, ramak kala ve meslek hastalığı kayıtları</li>
+    <li>Kullanıcının kendi yüklediği sağlık raporu dosyaları</li>
+  </ul>
+
+  <h3>Hukuki dayanak</h3>
+  <p>6331 sayılı İş Sağlığı ve Güvenliği Kanunu'nun işverene yüklediği sağlık gözetimi yükümlülüğü ve ilgili yönetmelikler; ayrıca çalışanın açık rızası. Muayene kaydını uygulamaya giren taraf (işyeri hekimi ya da işveren), çalışandan gerekli aydınlatmayı yapmak ve rızayı almakla yükümlüdür.</p>
+
+  <h3>Kim görebilir</h3>
+  <ul>
+    <li>Kaydın ait olduğu işyeri (işveren yetkilisi)</li>
+    <li>O işyerine görevli işyeri hekimi</li>
+    <li><strong>İSG uzmanı muayene sonuçlarını göremez.</strong> Bu, arayüzde gizleme değil, veritabanı seviyesinde uygulanan bir erişim kilididir.</li>
+  </ul>
+
+  <h3>Yapay zekâ tarafına ne gider</h3>
+  <p>Era'ya bir soru sorduğunda, cevabı üretebilmek için ilgili kayıtların bir kopyası dil modeli sağlayıcısına gönderilir. Muayene kaydının sağlık alanları bu kopyada <strong>maskelenir</strong>; maskelenen alanlar tek tek şunlardır: <strong>fizik muayene bulgusu, yapılan tetkikler, hekim kanaati (işe uygunluk sonucu), hassas grup bilgisi, maruziyetler, aşı ve bağışıklama durumu</strong>, bunlara ek olarak <strong>T.C. kimlik numarası, SGK sicil numarası ve telefon numarası</strong>. Maskelenen bir alanın adı gider, içeriği gitmez: değerin yerine yıldız işareti konur. Ayrıca sunucuda ikinci bir süzgeç, metnin içinde geçen T.C. kimlik numarası, telefon numarası ve IBAN benzeri dizileri temizler.</p>
+  <p class="note">Bu liste, uygulamanın içindeki maskeleme listesiyle <strong>aynı alan adlarına</strong> bağlıdır; iki taraf ayrışırsa bu sayfa değil, ürün yanlıştır. Bu sayfada saymadığımız bir alanın maskelendiğini iddia etmiyoruz: çalışanın <em>adı</em> maskelenmez, çünkü Era'nın hangi çalışan hakkında konuştuğunu bilmesi gerekir.</p>
+  <p><strong>Era teşhis koymaz, tedavi ya da ilaç önermez.</strong> Sağlıkla ilgili tüm kanaat işyeri hekimine aittir.</p>
+
+  <h2>4. Nerede saklanıyor, nereye gidiyor?</h2>
+  <p>Tüm veritabanı kayıtların ve yüklediğin dosyalar, altyapı sağlayıcımız Supabase üzerinden <strong>Frankfurt (Almanya, Avrupa Birliği)</strong> bölgesindeki sunucularda tutulur.</p>
+
+  <div class="tblwrap"><table>
+    <tr><th>Kim</th><th>Ne işler</th><th>Nerede</th><th>Saklıyor mu</th></tr>
+    <tr><td>Supabase</td><td>Veritabanı, kimlik doğrulama, dosya saklama</td><td>Frankfurt · AB</td><td>Evet (asıl saklama yeri)</td></tr>
+    <tr><td>Sentry</td><td>Çökme ve performans kayıtları; kullanıcı adı ve IP adresi gönderilmez</td><td>Almanya · AB</td><td>Evet, sınırlı süre</td></tr>
+    <tr><td>Yapay zekâ sağlayıcısı</td><td>Era'nın cevabını üretmek; sesle konuşulduğunda ses kaydını yazıya çevirmek</td><td>ABD</td><td><strong>Hayır</strong> — anlık işlenir</td></tr>
+    <tr><td>Resend</td><td>Yalnız e-posta doğrulama iletisi gönderilirken e-posta adresin</td><td>AB / ABD</td><td>Hayır (iletim amaçlı)</td></tr>
+    <tr><td>Google Play Billing</td><td>Abonelik satın alımı yapılırsa doğrulama</td><td>Google altyapısı</td><td>Google'ın politikası geçerlidir</td></tr>
+  </table></div>
+
+  <div class="note">
+    <strong>Yurt dışına aktarım hakkında açık olalım.</strong> Verilerinin saklandığı yer AB'dir. Ancak Era'ya yazdığın metin ve söylediğin ses, cevabın üretilebilmesi için ABD'de bulunan bir yapay zekâ sağlayıcısına anlık olarak gönderilir. Bu gönderimde yukarıda sayılan alanlar maskelenmiş olur; sağlayıcı veriyi saklamaz ve reklam amacıyla kullanmaz. Era'yı hiç kullanmazsan bu aktarım da gerçekleşmez; uygulamanın diğer tüm bölümleri Era'sız çalışır.
+  </div>
+
+  <p>Verilerin hiçbir koşulda satılmaz, reklam ağlarıyla paylaşılmaz, veri simsarlarına verilmez.</p>
+
+  <h2>5. Ses kayıtları</h2>
+  <p>Era ile sesle konuşmayı seçersen mikrofon izni istenir. Kayıt cihazının geçici klasörüne yazılır, yazıya çevrilmek üzere sunucuya gönderilir ve <strong>hiçbir yerde saklanmaz</strong> — geriye yalnız metne dönüşmüş hâli kalır. Mikrofon izni vermezsen uygulama tam olarak çalışmaya devam eder; yalnız sesle giriş kapalı olur.</p>
+
+  <h2>6. Cihazında ne saklanıyor?</h2>
+  <ul>
+    <li>Oturum bilgin (giriş jetonu)</li>
+    <li>Era sohbet geçmişin (son oturumlar)</li>
+    <li>Gönderilememiş mesajların, bağlantı geri geldiğinde gönderilmek üzere</li>
+    <li>Bildirim tercihlerin ve tanışma ekranını görüp görmediğin</li>
+  </ul>
+  <p>Bu kayıtlar cihazından ayrılmaz. Uygulamayı kaldırdığında hepsi silinir. Yalnızca çıkış yapman Era sohbet geçmişini cihazdan silmez; tamamen kaldırmak için uygulamayı cihazdan kaldırabilirsin.</p>
+
+  <h2>7. Ne kadar süre saklanıyor?</h2>
+  <ul>
+    <li><strong>Hesap verilerin:</strong> hesabın açık kaldığı sürece.</li>
+    <li><strong>İSG kayıtları</strong> (belge, muayene, kaza, eğitim): İSG mevzuatı bu kayıtların belirli süreler boyunca saklanmasını zorunlu tutar. Bu kayıtlar, hesabın kapatılsa bile ilgili işyerinin kaydı olarak kalır.</li>
+    <li><strong>Çökme kayıtları:</strong> sağlayıcının varsayılan saklama süresi kadar, 90 güne kadar.</li>
+    <li><strong>Ses kayıtları:</strong> saklanmaz.</li>
+  </ul>
+
+  <h2>8. Hesabını silmek</h2>
+  <p>Uygulama içinden <strong>Ayarlar → Hesabı sil</strong> adımıyla hesabını kapatabilirsin. Uygulamaya erişimin olmasa bile <a href="mailto:hello@safera.solutions">hello@safera.solutions</a> adresine yazarak aynı talebi iletebilirsin. Ayrıntılar: <a href="hesap-silme.html">hesap silme sayfası</a>.</p>
+
+  <h3>Silindiğinde ne olur</h3>
+  <ul>
+    <li>Girişin kalıcı olarak kapatılır; hesapla bir daha oturum açılamaz.</li>
+    <li>Profilin yayından kaldırılır, ilanların kapatılır; arama ve eşleşme sonuçlarında görünmezsin.</li>
+    <li>Geçmiş çalışma ilişkilerinde adın "İnaktif üye" olarak değiştirilir.</li>
+    <li>Yalnız senin üyesi olduğun ekipler ve o ekiplere ait sohbetler tamamen silinir.</li>
+  </ul>
+
+  <h3>Silinmeyen ve bunun nedeni</h3>
+  <ul>
+    <li><strong>İşyeri, çalışan, muayene, belge ve kaza kayıtları</strong> silinmez. Bunlar hukuken işyerinin kayıtlarıdır ve İSG mevzuatı bu kayıtların saklanmasını zorunlu kılar; bir kullanıcının hesabını kapatmasıyla ortadan kaldırılamaz.</li>
+    <li>Karşı tarafla yapılmış birebir yazışmalar, karşı tarafın kaydı olarak durur.</li>
+    <li>Yasal saklama yükümlülüğü kapsamındaki işlem kayıtları saklanır.</li>
+  </ul>
+  <p>Bunun ötesinde belirli bir kaydın silinmesini istiyorsan <a href="mailto:hello@safera.solutions">hello@safera.solutions</a> adresine yazabilirsin; talep, yasal saklama yükümlülüğü çerçevesinde değerlendirilir ve sana yazılı olarak yanıt verilir.</p>
+
+  <h2>9. Haklarınız (KVKK madde 11)</h2>
+  <ul>
+    <li>İşlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme</li>
+    <li>İşlenme amacını ve amaca uygun kullanılıp kullanılmadığını öğrenme</li>
+    <li>Yurt içinde ya da yurt dışında verinin aktarıldığı üçüncü kişileri bilme</li>
+    <li>Eksik ya da yanlış işlenmişse düzeltilmesini isteme</li>
+    <li>Kanundaki şartlar çerçevesinde silinmesini ya da yok edilmesini isteme</li>
+    <li>Düzeltme ve silme işlemlerinin, verinin aktarıldığı üçüncü kişilere bildirilmesini isteme</li>
+    <li>Yalnızca otomatik sistemlerle analiz edilmesi sonucu aleyhine bir sonuç doğmasına itiraz etme</li>
+    <li>Kanuna aykırı işleme nedeniyle zarara uğramışsan zararın giderilmesini talep etme</li>
+  </ul>
+  <p>Bu haklarını kullanmak için <a href="mailto:hello@safera.solutions">hello@safera.solutions</a> adresine yazman yeterlidir.</p>
+
+  <h2>10. Güvenlik</h2>
+  <ul>
+    <li>Tüm veri iletimi HTTPS/TLS ile şifrelenir; sunucuda diskte şifreli tutulur.</li>
+    <li>Her kayıt satırı, veritabanı seviyesinde erişim kurallarıyla korunur: yetkisi olmayan bir kullanıcı, uygulamayı değiştirse bile başkasının verisini okuyamaz.</li>
+    <li>Yüklenen dosyalar herkese açık olmayan alanlarda tutulur; paylaşım yalnız kısa ömürlü, imzalı bağlantılarla yapılır.</li>
+    <li>Şifreler geri döndürülemez biçimde saklanır; kimse tarafından görülemez.</li>
+    <li>Uygulamanın içinde hiçbir gizli anahtar taşınmaz; yapay zekâ ve e-posta anahtarları yalnız sunucu tarafında bulunur.</li>
+  </ul>
+  <p>Buna rağmen internet üzerinden yapılan hiçbir aktarımın ya da elektronik saklamanın yüzde yüz güvenli olduğu söylenemez. Bir güvenlik olayı yaşanırsa etkilenen kullanıcılara ve ilgili kuruma mevzuatın öngördüğü sürede bildirim yapılır.</p>
+
+  <h2>11. Çocuklar</h2>
+  <p>Safera 18 yaşından küçüklere yönelik değildir; çocuklardan bilerek veri toplanmaz. Böyle bir kaydın oluştuğunu fark edersek siler ve bildiren kişiye bilgi veririz.</p>
+
+  <h2>12. Beta sürüm hakkında</h2>
+  <p>Safera şu anda beta aşamasındadır. Yeni bir hesapta rolüne uygun, gerçekçi bir <strong>demo dünyası</strong> otomatik oluşturulur: demo ilanlar, demo müşteriler, demo belgeler. Demo kayıtlar uygulamada "Demo" etiketiyle işaretlenir, gerçek kayıtlarınla karışmaz ve gerçek bir kişiye ya da işyerine ait değildir. Beta boyunca özellikler değişebilir.</p>
+
+  <h2>13. Bu metin değişirse</h2>
+  <p>Politikada bir değişiklik olursa bu sayfanın üstündeki "son güncelleme" tarihi değişir. Önemli bir değişiklikte uygulama içinden ayrıca bildirim yapılır.</p>
+
+  <h2>14. Web sitesi hakkında</h2>
   <ul>
     <li>Site statiktir: çerez kullanmaz, hesap oluşturmaz, üçüncü taraf izleme ya da reklam kodu içermez.</li>
-    <li>Ana sayfa ile gizlilik ve koşullar sayfaları, yazı tiplerini ve tüm görselleri doğrudan safera.solutions üzerinden sunar; bu sayfaları açtığında başka bir şirketin sunucusuna istek gitmez. Arşiv niteliğindeki sunum sayfaları (deck, roadmap gibi) yazı tiplerini Google Fonts'tan yükleyebilir.</li>
+    <li>Ana sayfa ile gizlilik, koşullar ve hesap silme sayfaları yazı tiplerini ve tüm görselleri doğrudan safera.solutions üzerinden sunar; bu sayfaları açtığında başka bir şirketin sunucusuna istek gitmez. Arşiv niteliğindeki sunum sayfaları (deck, roadmap gibi) yazı tiplerini Google Fonts'tan yükleyebilir.</li>
     <li>Barındırma GitHub Pages üzerindedir; bağlantının kurulabilmesi için gereken teknik erişim kayıtları (IP adresi gibi) barındırma sağlayıcısı tarafından işlenebilir.</li>
+    <li>Sitedeki pilot formuna yazdığın e-posta adresi yalnız pilot programı iletişimi için kullanılır, üçüncü kişilerle paylaşılmaz. Form iletimi FormSubmit hizmeti aracılığıyla ulaşır.</li>
   </ul>
-
-  <h2>Pilot formu</h2>
-  <ul>
-    <li>Pilot formuna yazdığın e-posta adresi yalnız pilot programı iletişimi için kullanılır; başka amaçla kullanılmaz, üçüncü kişilerle paylaşılmaz.</li>
-    <li>Form iletimi FormSubmit hizmeti aracılığıyla iletisim@safera.solutions adresine ulaşır.</li>
-    <li>Dilediğin an <a href="mailto:iletisim@safera.solutions">iletisim@safera.solutions</a> adresine yazarak kaydının silinmesini isteyebilirsin.</li>
-  </ul>
-
-  <h2>Safera uygulaması</h2>
-  <ul>
-    <li>Uygulama içindeki veriler Avrupa Birliği (Frankfurt) bölgesindeki sunucularda saklanır.</li>
-    <li>Uygulamaya özgü ayrıntılı aydınlatma, uygulama içinde kayıt sırasında sunulur.</li>
-  </ul>
-
-  <h2>İletişim</h2>
-  <p>Kişisel verilerinle ilgili her soru ve talep için: <a href="mailto:iletisim@safera.solutions">iletisim@safera.solutions</a></p>
 
   <hr class="hairline">
-  <footer>© 2026 Safera · <a href="./">Ana sayfa</a> · <a href="kosullar.html">Kullanım Koşulları</a></footer>
+  <footer>© 2026 Safera · <a href="./">Ana sayfa</a> · <a href="kosullar.html">Kullanım Koşulları</a> · <a href="hesap-silme.html">Hesap Silme</a> · <a href="mailto:hello@safera.solutions">hello@safera.solutions</a></footer>
 </div>
 </body>
 </html>
