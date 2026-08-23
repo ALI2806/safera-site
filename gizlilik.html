@@ -49,7 +49,7 @@ footer{font-size:13px;color:#756B54;}
   <p class="lede">Bu sayfa, Safera uygulamasını ve safera.solutions sitesini kullandığında hangi bilgilerin toplandığını, neden toplandığını, nerede saklandığını ve bu bilgiler üzerinde hangi haklara sahip olduğunu sade bir dille anlatır.</p>
 
   <div class="note">
-    <strong>Kısa özet.</strong> Kayıtların Avrupa Birliği (Frankfurt) bölgesindeki sunucularda tutulur. Reklam yoktur, reklam kimliği toplanmaz, verilerin satılmaz. Sağlık verileri en yüksek korumaya tabidir. Era'ya yazdığın metin, cevabı üretmek için bir yapay zekâ sağlayıcısına anlık olarak gider; kimlik numarası, telefon ve sağlık alanları bu gönderimden önce otomatik maskelenir.
+    <strong>Kısa özet.</strong> Kayıtların Avrupa Birliği (Frankfurt) bölgesindeki sunucularda tutulur. Reklam yoktur, reklam kimliği toplanmaz, verilerin satılmaz. Sağlık verileri en yüksek korumaya tabidir. Era'ya yazdığın metin, cevabı üretmek için bir yapay zekâ sağlayıcısına anlık olarak gider; kimlik ve iletişim bilgilerin ile sağlık belgelerinin kişiye ait alanları bu gönderimden önce otomatik maskelenir.
   </div>
 
   <h2>1. Veri sorumlusu ve iletişim</h2>
@@ -114,8 +114,8 @@ footer{font-size:13px;color:#756B54;}
   </ul>
 
   <h3>Yapay zekâ tarafına ne gider</h3>
-  <p>Era'ya bir soru sorduğunda, cevabı üretebilmek için ilgili kayıtların bir kopyası dil modeli sağlayıcısına gönderilir. Muayene kaydının sağlık alanları bu kopyada <strong>maskelenir</strong>; maskelenen alanlar tek tek şunlardır: <strong>fizik muayene bulgusu, yapılan tetkikler, hekim kanaati (işe uygunluk sonucu), hassas grup bilgisi, maruziyetler, aşı ve bağışıklama durumu</strong>, bunlara ek olarak <strong>T.C. kimlik numarası, SGK sicil numarası ve telefon numarası</strong>. Maskelenen bir alanın adı gider, içeriği gitmez: değerin yerine yıldız işareti konur. Ayrıca sunucuda ikinci bir süzgeç, metnin içinde geçen T.C. kimlik numarası, telefon numarası ve IBAN benzeri dizileri temizler.</p>
-  <p class="note">Bu liste, uygulamanın içindeki maskeleme listesiyle <strong>aynı alan adlarına</strong> bağlıdır; iki taraf ayrışırsa bu sayfa değil, ürün yanlıştır. Bu sayfada saymadığımız bir alanın maskelendiğini iddia etmiyoruz: çalışanın <em>adı</em> maskelenmez, çünkü Era'nın hangi çalışan hakkında konuştuğunu bilmesi gerekir.</p>
+  <p>Era'ya bir soru sorduğunda, cevabı üretebilmek için ilgili kayıtların bir kopyası dil modeli sağlayıcısına gönderilir. Bu kopyada iki grup alan <strong>maskelenir</strong>.<br><br><strong>1. Sağlık belgelerinin kişiye ait alanlarının tamamı.</strong> Bunlar işe giriş ve periyodik muayene formu ile sağlık gözetimi planıdır. Maskelenen alanlar: çalışanın adı, T.C. kimlik numarası, maruziyetleri, fizik muayene bulguları, yapılan tetkikler, hekim kanaati (işe uygunluk sonucu), hassas grup bilgisi, öneriler, ek tetkikler, aşı ve bağışıklama durumu; sağlık gözetimi planında ayrıca çalışan-maruziyet matrisi, tetkik takvimi, hassas grup izlemi ve aşılama planı.<br><br><strong>2. Hangi kayıt olursa olsun kimlik ve iletişim anahtarları.</strong> T.C. kimlik numarası, SGK sicil numarası, telefon, e-posta, adres ve tanık bilgisi.<br><br>Maskelenen bir alanın adı gider, içeriği gitmez: değerin yerine yıldız işareti konur. Ayrıca sunucuda ikinci bir süzgeç, metnin içinde geçen T.C. kimlik numarası, telefon numarası ve IBAN benzeri dizileri temizler.</p>
+  <p class="note"><strong>Neyi maskelemediğimizi de yazalım.</strong> Belgenin bağlam alanları maskelenmez: işyeri unvanı, işyerinin tehlike sınıfı, tarihler, plan dönemi, çalışanın görevi ve bölümü, belgeyi onaylayan hekimin adı. Era bunlar olmadan hangi işyeri için ne yaptığını bilemez. Sağlık dışındaki belgelerin alanları da toptan maskelenmez; orada yalnız yukarıdaki ikinci gruptaki kimlik ve iletişim alanları maskelenir. Bu liste elle tutulmuyor: uygulama maskelenecek alanları <strong>belge şemasından türetiyor</strong>, yani şemaya yeni bir sağlık alanı eklendiğinde liste kendiliğinden büyüyor.</p>
   <p><strong>Era teşhis koymaz, tedavi ya da ilaç önermez.</strong> Sağlıkla ilgili tüm kanaat işyeri hekimine aittir.</p>
 
   <h2>4. Nerede saklanıyor, nereye gidiyor?</h2>
@@ -131,7 +131,7 @@ footer{font-size:13px;color:#756B54;}
   </table></div>
 
   <div class="note">
-    <strong>Yurt dışına aktarım hakkında açık olalım.</strong> Verilerinin saklandığı yer AB'dir. Ancak Era'ya yazdığın metin ve söylediğin ses, cevabın üretilebilmesi için ABD'de bulunan bir yapay zekâ sağlayıcısına anlık olarak gönderilir. Bu gönderimde yukarıda sayılan alanlar maskelenmiş olur; sağlayıcı veriyi saklamaz ve reklam amacıyla kullanmaz. Era'yı hiç kullanmazsan bu aktarım da gerçekleşmez; uygulamanın diğer tüm bölümleri Era'sız çalışır.
+    <strong>Yurt dışına aktarım hakkında açık olalım.</strong> Verilerinin saklandığı yer AB'dir. Ancak Era'ya yazdığın metin ve söylediğin ses, cevabın üretilebilmesi için ABD'de bulunan bir yapay zekâ sağlayıcısına anlık olarak gönderilir. Bu gönderimde yukarıdaki iki gruptaki alanlar (sağlık belgelerinin kişiye ait alanları ile kimlik ve iletişim anahtarları) maskelenmiş olur; sağlayıcı veriyi saklamaz ve reklam amacıyla kullanmaz. Era'yı hiç kullanmazsan bu aktarım da gerçekleşmez; uygulamanın diğer tüm bölümleri Era'sız çalışır.
   </div>
 
   <p>Verilerin hiçbir koşulda satılmaz, reklam ağlarıyla paylaşılmaz, veri simsarlarına verilmez.</p>
