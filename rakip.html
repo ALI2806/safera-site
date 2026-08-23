@@ -5,7 +5,7 @@
 <link rel="icon" type="image/png" href="img/icon.png">
 <link rel="apple-touch-icon" href="img/icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Safera — Rakip & Pazar Analizi · Haziran 2026</title>
+<title>Safera · Rakip ve Pazar Analizi · Ağustos 2026</title>
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -356,6 +356,45 @@ footer{border-top:1px solid var(--line);padding:2.5rem 0 3.5rem;background:var(-
 #lang-toggle .sep{opacity:.4}
 #lang-toggle [data-l]{opacity:.45;transition:opacity .2s}
 #lang-toggle [data-l].on{opacity:1;color:var(--accent);font-weight:600}
+
+/* ── v2 · hesap blokları ── */
+.calc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.6rem;margin-top:1.3rem}
+.calc h3{font-size:1.08rem;margin-bottom:.75rem;color:var(--accent-deep)}
+.calc p{font-size:.92rem;color:var(--ink-soft);line-height:1.62;margin-top:.85rem}
+.calc p b{color:var(--ink);font-weight:600}
+.calc .line{display:grid;grid-template-columns:1fr auto;gap:1rem;padding:.55rem 0;
+  border-bottom:1px dashed var(--line);font-size:.89rem;align-items:baseline}
+.calc .line:last-of-type{border-bottom:none}
+.calc .line .lbl{color:var(--ink-soft)}
+.calc .line .val{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--ink);white-space:nowrap}
+.calc .line.sum{border-top:1.5px solid var(--line-strong);border-bottom:none;margin-top:.35rem;padding-top:.7rem}
+.calc .line.sum .lbl{color:var(--ink);font-weight:600}
+.calc .line.sum .val{color:var(--gold);font-size:1.02rem}
+.warn{background:var(--gold-wash);border-radius:var(--radius-sm);padding:.7rem .9rem;
+  font-size:.84rem;color:var(--ink-soft);margin-top:.95rem;line-height:1.52}
+.warn b{color:#8a6f22;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;display:block;margin-bottom:.25rem}
+.take{background:var(--accent-wash);border-radius:var(--radius-sm);padding:.7rem .9rem;
+  font-size:.88rem;color:var(--ink);margin-top:.95rem;line-height:1.55}
+.take b{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;display:block;margin-bottom:.25rem}
+.tl-item .srcline{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--ink-faint);
+  margin-top:.4rem;line-height:1.6;word-break:break-word}
+.tl-item .srcline a{color:var(--ink-faint);text-decoration:none;border-bottom:1px dotted var(--line-strong)}
+.tl-item .srcline a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.caveat li a{color:var(--ink-soft);text-decoration:none;border-bottom:1px dotted var(--line-strong)}
+.caveat li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.seal{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:var(--radius);padding:1.5rem;margin-top:1.6rem}
+.seal h3{font-size:1.02rem;color:var(--accent-deep);margin-bottom:.7rem}
+.seal ul{list-style:none}
+.seal li{font-size:.88rem;color:var(--ink-soft);padding:.42rem 0 .42rem 1.1rem;position:relative;
+  border-top:1px solid var(--line);line-height:1.5}
+.seal li:first-of-type{border-top:none}
+.seal li::before{content:"";position:absolute;left:0;top:.85em;width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.seal li b{color:var(--ink);font-weight:600}
+.seal .note{font-size:.82rem;color:var(--ink-faint);margin-top:.9rem;line-height:1.55}
 </style>
 </head>
 <body>
@@ -366,12 +405,12 @@ footer{border-top:1px solid var(--line);padding:2.5rem 0 3.5rem;background:var(-
     <a href="./index.html" class="logo-link">
       <img src="logo.svg" alt="Safera" width="88" height="22">
     </a>
-    <span class="bar-tag" data-en="Competitor & Market Analysis · Jun 2026">Rakip & Pazar Analizi · Haz 2026</span>
+    <span class="bar-tag" data-en="Competitor &amp; Market Analysis · Aug 2026">Rakip &amp; Pazar Analizi · Ağu 2026</span>
     <nav class="bar-nav">
-      <a href="#pazar" class="hide-sm" data-en="Market">Pazar</a>
-      <a href="#global" class="hide-sm" data-en="Competitors">Rakipler</a>
-      <a href="#matris" class="hide-sm" data-en="Matrix">Matris</a>
-      <a href="#turkiye" class="hide-sm" data-en="Türkiye">Türkiye</a>
+      <a href="#ozet" class="hide-sm" data-en="Summary">Özet</a>
+      <a href="#hesaplar" class="hide-sm" data-en="Analysis">Hesaplar</a>
+      <a href="#kronoloji" class="hide-sm" data-en="Timeline">Kronoloji</a>
+      <a href="#rakipler" class="hide-sm" data-en="Competitors">Rakipler</a>
       <a href="#konum" class="hide-sm" data-en="Position">Konum</a>
       <a href="./deck.html" class="back-link">← Deck</a>
       <button id="lang-toggle" type="button" aria-label="Türkçe / English"><span data-l="tr">TR</span><span class="sep">·</span><span data-l="en">EN</span></button>
@@ -382,123 +421,157 @@ footer{border-top:1px solid var(--line);padding:2.5rem 0 3.5rem;background:var(-
 
 <!-- ══ HERO ══════════════════════════════════════════════════ -->
 <div class="wrap hero">
-  <span class="eyebrow reveal" data-en="Competitor & Market Analysis · June 2026">Rakip & Pazar Analizi · Haziran 2026</span>
-  <h1 class="reveal" style="--i:1" data-en="The intermediary-free era in OHS<br>has <span class='hero-accent'>begun.</span> So what about the competitors?">
-    İSG'de aracısız dönem<br>
-    <span class="hero-accent">başladı.</span> Peki rakipler?
+  <span class="eyebrow reveal" data-en="Competitor &amp; Market Analysis · version 2 · August 2026">Rakip &amp; Pazar Analizi · sürüm 2 · Ağustos 2026</span>
+  <h1 class="reveal" style="--i:1" data-en="The category is validated.<br>The real market is those who <span class='hero-accent'>cannot get served.</span>">
+    Kategori doğrulandı.<br>
+    Asıl pazar hizmet <span class="hero-accent">alamayanlarda.</span>
   </h1>
-  <p class="lead reveal" style="--i:2" data-en="In January 2025, Law 6331 expanded to 2.23 million workplaces. At the same time, an agentic AI wave hit the global EHS arena — five major launches in four months. The critical question for Türkiye: <b>who wins from this shift?</b> A two-layer map and an up-to-date competitor analysis.">
-    Ocak 2025'te 6331 sayılı Kanun 2,23 milyon işyerine genişledi.
-    Eş zamanlı olarak küresel EHS arenasında agentic AI dalgası kıyıya vurdu —
-    dört ayda beş büyük lansman. Türkiye için kritik soru: <b>bu değişimden kim kazanıyor?</b>
-    İki katmanlı harita ve güncel rakip analizi.
+  <p class="lead reveal" style="--i:2" data-en="This version rests on three additions: a clickable source behind every record, three structural calculations for the Turkish market, and a competition matrix built on buyer type rather than a vendor list. The most important finding did not come from competitors but from the numbers: in Türkiye there is a gap of roughly one and a half million workplaces between those required to receive OHS services and those actually receiving them. That gap is the real market.">
+    Bu sürüm üç şeye dayanıyor: her kayda tıklanabilir kaynak, Türkiye pazarının üç yapısal hesabı ve
+    rakip listesi yerine alıcı tipine kurulmuş bir rekabet matrisi. En önemli bulgu rakiplerden değil
+    rakamlardan çıktı: Türkiye'de İSG hizmeti almakla yükümlü işyeri sayısı ile fiilen hizmet alan işyeri
+    sayısı arasında yaklaşık bir buçuk milyonluk bir açık var. Asıl pazar bu açık.
   </p>
   <div class="stat-strip reveal" style="--i:3">
-    <div class="stat"><div class="v num" data-count="2.23" data-prefix="" data-suffix="M" data-dec="2">0</div><div class="k" data-en="workplaces — entered mandatory OHS scope in Jan 2025">işyeri — Oca 2025'te zorunlu İSG kapsamına girdi</div></div>
-    <div class="stat"><div class="v tealv num" data-count="5" data-suffix="">0</div><div class="k" data-en="global agentic EHS launches — in just 4 months (Oct 25 – Feb 26)">küresel agentic EHS lansmanı — yalnızca 4 ayda (Eki 25 – Şub 26)</div></div>
-    <div class="stat"><div class="v goldv num" data-count="0" data-suffix="">0</div><div class="k" data-en="Turkish solo-OHS agentic products — the window is open">Türk bireysel İSG agentic ürün — pencere açık</div></div>
-    <div class="stat"><div class="v num" data-count="4.5" data-prefix="$" data-suffix="B" data-dec="1">0</div><div class="k" data-en="2029 global EHS software market (Verdantix)">2029 küresel EHS yazılım pazarı (Verdantix)</div></div>
+    <div class="stat"><div class="v num" data-count="2.23" data-suffix="M" data-dec="2">0</div><div class="k" data-en="workplaces required to receive OHS services (Jan 2025, ÇSGB)">İSG hizmeti almakla yükümlü işyeri (Oca 2025, ÇSGB)</div></div>
+    <div class="stat"><div class="v tealv num" data-count="773" data-suffix="K">0</div><div class="k" data-en="workplaces actually receiving the service (Oct 2025)">Fiilen hizmet alan işyeri (Eki 2025)</div></div>
+    <div class="stat"><div class="v goldv num" data-count="1.45" data-suffix="M" data-dec="2">0</div><div class="k" data-en="the gap: required but not served, approximate">Aradaki açık: yükümlü ama hizmet almayan, yaklaşık</div></div>
+    <div class="stat"><div class="v num" data-count="145" data-suffix="K">0</div><div class="k" data-en="certified OHS professionals in Türkiye (end of 2024)">Türkiye'deki sertifikalı İSG profesyoneli (2024 sonu)</div></div>
   </div>
   <div class="scrollcue reveal" style="--i:4"><span class="ln"></span> <span data-en="scroll to read">kaydırarak oku</span></div>
 </div>
 
 
-
-<!-- ══ 0 · PAZAR & ÖZET ════════════════════════════════════════ -->
-<section class="s tint" id="pazar">
+<!-- ══ 1 · YÖNETİCİ ÖZETİ ═════════════════════════════════════ -->
+<section class="s tint" id="ozet">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow" data-en="Market & Executive Summary">Pazar &amp; Yönetici Özeti</span>
-      <h2 style="--i:1" data-en="A consolidated global oligopoly — and an open Turkish window.">Konsolide küresel oligopol — ve açık bir Türkiye penceresi.</h2>
-      <p style="--i:2" data-en="The global EHS software category consolidated around six enterprise platforms. By the end of 2025 most vendors shipped agentic AI — the market is shifting from record-keeping to work-doing agents. Safera is born at the Turkish + SME + solo-expert edge of that wave.">Küresel EHS yazılım kategorisi altı kurumsal platform etrafında konsolide oldu. 2025 sonunda çoğu satıcı agentic AI çıkardı — pazar "kayıt-tutan"dan "iş-yapan ajan"a dönüyor. Safera bu dalganın Türkçe + KOBİ + bireysel-uzman ucunda doğdu.</p>
+      <span class="eyebrow" data-en="Executive summary">Yönetici özeti</span>
+      <h2 style="--i:1" data-en="Eight findings, each tied to a decision.">Sekiz bulgu, her biri bir karara bağlı.</h2>
+      <p style="--i:2" data-en="Each item below opens up with its dated, linked source in the timeline and analysis sections.">Aşağıdaki her madde, kronoloji ve hesap bölümlerinde tarihli ve bağlantılı kaynağıyla açılıyor.</p>
     </div>
 
-    <div class="mkt">
-      <div class="mcard reveal"><div class="big num" data-count="2.24" data-prefix="$" data-suffix="B" data-dec="2">0</div><div class="lbl" data-en="Global EHS software market (2025) → $3.73B by 2030, 10.7% CAGR">Küresel EHS yazılım pazarı (2025) → 2030'da $3,73B, %10,7 CAGR</div><div class="src">Mordor Intelligence</div></div>
-      <div class="mcard reveal" style="--i:1"><div class="big">%37–44</div><div class="lbl" data-en="North America share · Europe 27–31% · APAC 22–23% (fastest) · MEA 6%">Kuzey Amerika payı · Avrupa %27–31 · APAC %22–23 (en hızlı) · MEA %6</div><div class="src">Verdantix / Mordor</div></div>
-      <div class="mcard reveal" style="--i:2"><div class="big num" data-count="2.23" data-suffix="M" data-dec="2">0</div><div class="lbl" data-en="Mandatory-OHS workplaces in Türkiye (Law 6331, full effect Jan 2025)">Türkiye'de İSG zorunlu işyeri (6331, Ocak 2025 tam yürürlük)</div><div class="src">ÇSGB</div></div>
-      <div class="mcard reveal" style="--i:3"><div class="big">~₺20B</div><div class="lbl" data-en="Estimated annual Turkish OHS spend (internal) — a newly opened market">TR İSG yıllık harcama tahmini (iç) — yeni açılan pazar</div><div class="src">Safera</div></div>
-    </div>
+    <div class="bento">
+      <div class="tcard reveal"><div class="n">01</div>
+        <h3 data-en="The market is in those who cannot get served">Pazar, hizmet alamayanlarda</h3>
+        <p data-en="2.23 million workplaces are required to receive the service; 773 thousand actually do. The difference is micro and small businesses that cannot afford the current service model. With the market anchor at 2,600 to 2,900 TL per month, the 499 and 999 TL tiers land exactly on this segment's capacity to pay.">Yükümlü işyeri 2,23 milyon, fiilen hizmet alan 773 bin. Aradaki fark, mevcut hizmet modelinin fiyatını karşılayamayan mikro ve küçük işletmeler. Piyasa çapası aylık 2.600 ile 2.900 TL bandındayken 499 ve 999 TL katmanı tam olarak bu segmentin ödeme kapasitesine denk geliyor.</p></div>
 
-    <div class="takeaway reveal">
-      <div class="tl-lbl" data-en="In one sentence">Tek cümle</div>
-      <p data-en="Global EHS software is an enterprise, English-only, consultant-dependent and expensive oligopoly (VelocityEHS, Cority, Enablon, Sphera, Intelex, Ideagen). Our closest <b>vision</b> rival is Ideagen <b>Mazlan</b> (agentic AI for EHSQ) — but it too targets large regulated enterprises in English. The Turkish side is an <b>IBYS-integrator + OSGB-software</b> ecosystem focused on data-transfer and paperwork automation — not guided, not agentic, not a marketplace. The gap: Turkish + SME &amp; solo-expert + free simulator + role-specific guidance + marketplace + approval-gated agentic Era. <b>We haven't identified another player holding that intersection.</b>">Global EHS yazılımı kurumsal, İngilizce, danışman-bağımlı ve pahalı bir oligopol (VelocityEHS, Cority, Enablon, Sphera, Intelex, Ideagen). En yakın <b>vizyon</b> rakibimiz Ideagen <b>Mazlan</b> (EHSQ için agentic AI) — ama o da büyük regülasyonlu kurumlara/İngilizceye odaklı. Türkiye tarafı ise <b>İBYS entegratörü + OSGB yazılımı</b> ekosistemi — veri-aktarımı/evrak otomasyonu odaklı; rehberli/agentic/pazar-yeri değil. Boşluk: Türkçe + KOBİ &amp; bireysel-uzman + ücretsiz simülatör + rol-özgün rehber + pazar yeri + onaylı agentic Era. <b>Bu kesişimi tutan başka bir oyuncu tespit etmedik.</b></p>
+      <div class="tcard reveal" style="--i:1"><div class="n">02</div>
+        <h3 data-en="Willingness to pay now has an arithmetic basis">Ödeme istekliliğinin aritmetik gerekçesi</h3>
+        <p data-en="There are about 145 thousand certified professionals, and the official assignment system caps each at 180 service hours per month. The real bottleneck, however, is paperwork time. A tool that cuts paperwork time directly raises the number of workplaces one professional can carry.">Sertifikalı profesyonel sayısı yaklaşık 145 bin ve resmî atama sistemi her profesyonele aylık 180 saat tavanı koyuyor. Gerçek darboğaz ise evrak süresi. Evrak süresini düşüren bir araç, bir profesyonelin taşıyabildiği işyeri sayısını doğrudan artırıyor.</p></div>
+
+      <div class="tcard reveal" style="--i:2"><div class="n">03</div>
+        <h3 data-en="The regulatory door reopened on 2 April 2026">Mevzuat kapısı 2 Nisan 2026'da açıldı</h3>
+        <p data-en="A thirteen year old training regulation was replaced in full. Induction training became a separate and mandatory item, basic training was tied to a three month limit, remote training received technical conditions, issuing training records with electronic signature and archiving them digitally was made explicitly possible, and content must now be prepared specifically for the workplace.">On üç yıllık eğitim yönetmeliği tamamen değişti. İşe başlama eğitimi ayrı ve zorunlu oldu, temel eğitim üç ay sınırına bağlandı, uzaktan eğitime teknik şartlar geldi, eğitim belgelerinin elektronik imza ile düzenlenip dijital arşivlenmesi açıkça mümkün kılındı ve içeriğin işyerine özgü hazırlanması zorunlu hâle geldi.</p></div>
+
+      <div class="tcard reveal" style="--i:3"><div class="n">04</div>
+        <h3 data-en="Document quality became the actual audit criterion">Denetimin ölçütü belge kalitesi oldu</h3>
+        <p data-en="Since 2022 the ministry has audited service providers largely through documentation, and around a thousand providers were audited in 2025. With field inspection limited, the quality of the record became the de facto measure. Safera's document engine and audit readiness module are the answer to that fact, not to a product idea.">2022'den itibaren bakanlık hizmet sağlayıcılarını ağırlıklı olarak evrak üzerinden denetliyor ve 2025'te yaklaşık bin sağlayıcı denetlendi. Saha denetimi sınırlı kalırken belge kalitesi fiili ölçüt hâline geldi. Safera'nın belge motoru ve denetim hazırlığı modülü bu gerçeğin karşılığı.</p></div>
+
+      <div class="tcard reveal" style="--i:4"><div class="n">05</div>
+        <h3 data-en="The health surveillance chain is broken">Sağlık gözetimi zinciri kopuk</h3>
+        <p data-en="In 2025, 766,625 occupational accidents were recorded while only 916 occupational disease diagnoses were made, and the records show no death attributed to occupational disease. This is a recording problem, not a detection problem: the product never makes a diagnosis, it makes the record and the periodic follow up easier.">2025'te 766.625 iş kazası kaydedilirken yalnız 916 meslek hastalığı tanısı konuldu ve kayıtlarda meslek hastalığı nedeniyle ölüm görünmüyor. Bu bir tespit değil kayıt sorunu: ürün teşhis koymaz, kaydın ve periyot takibinin eksiksiz tutulmasını kolaylaştırır.</p></div>
+
+      <div class="tcard reveal" style="--i:5"><div class="n">06</div>
+        <h3 data-en="Agentic compliance is now the entry ticket">Agentic uyum artık giriş bileti</h3>
+        <p data-en="Within twelve months a series of vendors moved the same way: live agents on stage, agent frameworks, a workplace safety agent placed into product strategy, the sector's first native MCP connector. The analyst warning is clear: the gap between positioning and actual capability is becoming the differentiator.">On iki ayda birçok satıcı aynı yöne hareket etti: sahnede canlı ajanlar, ajan çerçeveleri, ürün stratejisine konan işyeri güvenliği ajanı, sektörün ilk yerel MCP bağlayıcısı. Analist uyarısı net: konumlandırma ile gerçek yetenek arasındaki fark ayrıştırıcı oluyor.</p></div>
+
+      <div class="tcard reveal" style="--i:6"><div class="n">07</div>
+        <h3 data-en="The closest move came from the Gulf">En yakın hamle Körfez'den geldi</h3>
+        <p data-en="In May 2026 the technology arm of a Dubai based group launched a bilingual platform designed for GCC regulation, reaching SMEs through a network of local consultants. Local regulatory depth, SME focus and distribution through intermediary professionals: all three are our model. The difference is Turkish, the official assignment system, and the individual professional building their own income.">Mayıs 2026'da Dubai merkezli bir grubun teknoloji kolu, GCC mevzuatına özgü, KOBİ'ye danışman ağı üzerinden ulaşan iki dilli bir platform çıkardı. Yerel mevzuata gömülülük, KOBİ hedefi ve aracı profesyonel dağıtımı: üçü de bizim modelimiz. Fark Türkçe, resmî atama sistemi ve bireysel uzmanın kendi gelirini kurma boyutu.</p></div>
+
+      <div class="tcard reveal" style="--i:7"><div class="n">08</div>
+        <h3 data-en="Azerbaijan hardened as the first expansion candidate">Azerbaycan birinci genişleme adayı</h3>
+        <p data-en="The February 2026 Labour Code amendments create a safety engineer position at the fifty employee threshold, require an assignment or a specialist position below it, and define suspension from work tied to training and medical examination. The structure is close to the Turkish model. Kazakhstan is favourable in regulation but requires partnership.">Şubat 2026 İş Kanunu değişiklikleri elli çalışan eşiğiyle iş güvenliği mühendisi kadrosu kuruyor, altında görevlendirme veya uzman kadrosu şartı getiriyor, eğitim ve muayeneye bağlı işten uzaklaştırma yaptırımı tanımlıyor. Yapı Türkiye modeline yakın. Kazakistan mevzuat olarak elverişli ama ortaklık gerektiriyor.</p></div>
     </div>
-    <p class="mtx-hint" style="display:block" data-en="Market sizing varies by source (Mordor: $2.24B→$3.73B; CMI/Grand View give larger figures). VelocityEHS ~12% global share (20,000+ sites), SAP ~10%.">Pazar büyüklüğü kaynağa göre değişir (Mordor: $2,24B→$3,73B; CMI/Grand View daha büyük rakamlar verir). VelocityEHS ~%12 global pay (20.000+ saha), SAP ~%10.</p>
   </div>
 </section>
 
-<!-- ══ 1 · GLOBAL RAKİPLER ════════════════════════════════════ -->
-<section class="s" id="global">
+
+<!-- ══ 2 · ÜÇ YAPISAL HESAP ═══════════════════════════════════ -->
+<section class="s" id="hesaplar">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow" data-en="Global Competitors (50+)">Global Rakipler (50+)</span>
-      <h2 style="--i:1" data-en="Who is closest to our vision?">Vizyonumuza en yakın kim?</h2>
-      <p style="--i:2" data-en="Vision-proximity (V): 5 = agentic AI + SME/self-serve · 4 = mobile/self-serve · 3 = modular mid-market · 2 = enterprise · 1 = niche/infrastructure. Below: the strategically relevant players in detail, then the rest of the field grouped.">Vizyon yakınlığı (V): 5 = agentic AI + KOBİ/self-servis · 4 = mobil/self-servis · 3 = modüler mid-market · 2 = kurumsal · 1 = niş/altyapı. Aşağıda stratejik açıdan önemli oyuncular ayrıntılı, ardından kalan alan gruplu.</p>
+      <span class="eyebrow" data-en="Structural analysis">Yapısal analiz</span>
+      <h2 style="--i:1" data-en="Three calculations that redefine the market.">Pazar tanımını değiştiren üç hesap.</h2>
+      <p style="--i:2" data-en="Listing competitors is not analysis. Collecting raw numbers is not analysis either. Subtracting one number from another is.">Rakip listelemek analiz değildir. Ham rakam toplamak da değildir. İki rakamı birbirinden çıkarmak analizdir.</p>
     </div>
 
-    <div class="subhead reveal" data-en="Vision-near &amp; AI-forward">Vizyon-yakın &amp; AI-öncü</div>
-    <div class="grid">
-      <div class="ccard reveal" style="grid-column:1/-1;border-color:var(--accent);background:linear-gradient(135deg,var(--accent-wash),transparent)">
-        <div class="top"><h3>Ideagen — Mazlan <span style="color:var(--accent)">★ vizyon kıyas noktamız</span></h3><span class="badge b-live">V5 · AI · PoC</span></div>
-        <div class="desc" data-en="UK · EHSQ + GRC, 17,000+ customers, ~250M GBP revenue. <b>Ideagen was taken private by Hg Capital at a ~£1 billion valuation (2022)</b> and is a leader in UK OHS/compliance software. <b>Mazlan</b> is its agentic-AI move: an AI that runs the workflow (incident→regulation→compliance), not just records it. 9 acquisitions in 2025 (SafetyStratus, Casper, ProcessMAP).">İngiltere · EHSQ + GRC, 17.000+ müşteri, ~£250M ciro. <b>Ideagen, Hg Capital tarafından ~£1 milyar değerleme ile özelleştirildi (2022)</b> ve İngiltere İSG/uyum yazılımında lider. <b>Mazlan</b> onun agentic-AI hamlesi: işi sadece kaydetmeyen, <b>yürüten</b> bir yapay zekâ (kaza→mevzuat→uyum). 2025'te 9 satın alma (SafetyStratus, Casper, ProcessMAP).</div>
-        <div class="meta" data-en="<b>Why this is good news for us:</b> a ~£1B agentic-EHS player is living proof the category is real, fundable and inevitable — it de-risks our thesis. Mazlan validates &quot;agentic AI runs OHS&quot;; Safera takes that proven engine to the place Mazlan can’t reach: <b>Turkish + SME &amp; solo-expert + free simulator + marketplace.</b> We sit one notch ahead on that intersection — see the matrix below."><b>Bu neden bizim için iyi haber:</b> ~£1 milyarlık agentic-EHS oyuncusu, kategorinin gerçek, yatırım-alabilir ve kaçınılmaz olduğunun canlı kanıtı — tezimizin riskini düşürür. Mazlan “agentic AI İSG’yi yürütür”ü doğruluyor; Safera bu kanıtlanmış motoru Mazlan’ın ulaşamadığı yere taşıyor: <b>Türkçe + KOBİ &amp; bireysel-uzman + ücretsiz simülatör + pazar yeri.</b> O kesişimde bir adım öndeyiz — alttaki matrise bak.</div>
-      </div>
-      <div class="ccard reveal" style="--i:1">
-        <div class="top"><h3>SafetyCulture (iAuditor)</h3><span class="badge b-live">V4</span></div>
-        <div class="desc" data-en="Australia · mobile-first field operations platform; audits/checklists/hazard reports; SME + field-team friendly, self-serve. Adding AI features.">Avustralya · mobil-öncelikli saha operasyon platformu; denetim/checklist/hazard raporu; KOBİ + saha-ekibi dostu, self-servis. AI ekleniyor.</div>
-        <div class="meta" data-en="Self-serve adjacency — no Turkish regulation, no marketplace.">Self-servis komşuluk — Türkçe mevzuat yok, pazar yeri yok.</div>
-      </div>
-      <div class="ccard reveal" style="--i:2">
-        <div class="top"><h3>Benchmark Gensuite — Genie</h3><span class="badge b-live">V4 · AI</span></div>
-        <div class="desc" data-en="US · mid-market multi-site, modular; added the &quot;Genie&quot; AI assistant. Enterprise-leaning AI, not SME self-serve.">ABD · mid-market çok-sahalı, modüler; "Genie" AI asistanı ekledi. Kurumsala yakın AI, KOBİ self-servis değil.</div>
-        <div class="meta" data-en="AI wave proof — but enterprise distribution.">AI dalgası kanıtı — ama kurumsal dağıtım.</div>
-      </div>
+    <div class="calc reveal">
+      <h3 data-en="Calculation 1 · The compliance gap">Hesap 1 · Uyum açığı</h3>
+      <div class="line"><span class="lbl" data-en="Workplaces required to receive OHS services (Jan 2025, after scope expansion)">İSG hizmeti almakla yükümlü işyeri (Oca 2025, kapsam genişlemesi sonrası)</span><span class="val">2.230.000</span></div>
+      <div class="line"><span class="lbl" data-en="Workplaces actually receiving OHS services (Oct 2025)">Fiilen İSG hizmeti alan işyeri (Eki 2025)</span><span class="val">773.000</span></div>
+      <div class="line sum"><span class="lbl" data-en="Workplaces not served or unable to access service, approximate">Hizmet almayan veya erişemeyen işyeri, yaklaşık</span><span class="val">1.450.000</span></div>
+      <p data-en="This difference has no single cause: informality, micro scale, price inaccessibility and low audit density all work together. But the result is the same. Everyone selling OHS software in Türkiye is sharing the pie inside those 773 thousand workplaces. Safera's position is outside that pie, not inside it.">Bu fark tek bir nedenle açıklanamaz: kayıt dışılık, mikro ölçek, fiyat erişilemezliği ve denetim yoğunluğunun düşüklüğü birlikte çalışıyor. Ama sonuç aynı: Türkiye'de İSG yazılımı satan herkes 773 bin işyerinin içindeki pastayı bölüşüyor. Safera'nın konumu bu pastanın içinde değil, dışında.</p>
+      <p data-en="The market anchor is roughly 2,600 TL per month for the safety specialist and 2,900 TL for the workplace physician. For a low hazard business with five employees, minimum offers start around the 2,500 TL band. For a micro business that amount is not affordable, and it is on its own the strongest explanation for the decision not to receive service at all.">Piyasa çapası aylık işyeri başına yaklaşık 2.600 TL uzman ve 2.900 TL hekim bedeli. Beş çalışanı olan az tehlikeli bir işletme için asgari teklifler 2.500 TL bandından başlıyor. Bu tutar mikro işletme için karşılanabilir değil ve hizmet almama kararının tek başına en güçlü açıklaması.</p>
+      <div class="warn"><b data-en="Verification note">Doğrulama notu</b><span data-en="The two figures come from different sources and different definitions: one counts workplaces under obligation, the other counts workplaces receiving service. Registry based and workplace based counts may not overlap exactly. The gap should therefore be used as an order of magnitude, always with the word approximate and with its source.">İki rakam farklı kaynaklardan ve farklı tanımlardan geliyor: biri yükümlü işyeri, diğeri hizmet alan işyeri sayısı. Sicil bazlı ve işyeri bazlı sayımlar birebir örtüşmeyebilir. Bu yüzden fark kesin bir sayı olarak değil, büyüklük mertebesi olarak ve daima kaynağıyla kullanılmalı.</span></div>
+      <div class="take"><b data-en="What it means for Safera">Safera karşılığı</b><span data-en="The target market is not defined as workplaces already using OHS software. It is workplaces that are required to comply but cannot access the service, and the individual professionals who cannot reach them. That is also the rationale for the marketplace model: demand exists but is unmet, because the cost structure closes access.">Hedef pazar tanımı "İSG yazılımı kullanan işyerleri" değil, "yükümlü olduğu hâlde hizmet alamayan işyerleri ve onlara ulaşamayan bireysel profesyoneller". Pazar yeri modelinin gerekçesi de bu: talep var ama karşılanmıyor, çünkü aradaki maliyet yapısı erişimi kapatıyor.</span></div>
     </div>
 
-    <div class="subhead reveal" data-en="Enterprise oligopoly (leaders)">Kurumsal oligopol (liderler)</div>
-    <div class="tbl-scroll reveal">
-      <table class="main">
-        <thead><tr>
-          <th data-en="Company">Şirket</th><th data-en="Region">Bölge</th><th data-en="Role &amp; capabilities">Rol &amp; yapabildikleri</th><th>V</th>
-        </tr></thead>
-        <tbody>
-          <tr><td class="co">VelocityEHS</td><td>ABD</td><td data-en="Market leader (~12%, 20k+ sites); OSHA PSM, chemical management, ergonomics (Humantech), deep US regulation.">Pazar lideri (~%12, 20k+ saha); OSHA PSM, kimyasal yönetimi, ergonomi (Humantech), ABD regülasyon derinliği.</td><td><span class="badge b-soft">2</span></td></tr>
-          <tr><td class="co">Cority (Medgate)</td><td>Kanada</td><td data-en="Fortune 500; occupational health + ESG depth. Enterprise.">Fortune 500; mesleki sağlık + ESG derinliği. Kurumsal.</td><td><span class="badge b-soft">2</span></td></tr>
-          <tr><td class="co">Enablon (Wolters Kluwer)</td><td>Belçika/ABD</td><td data-en="Largest enterprise distribution scale; global standard, heavy enterprise.">En büyük kurumsal dağıtım ölçeği; global standart, ağır kurumsal.</td><td><span class="badge b-soft">1</span></td></tr>
-          <tr><td class="co">Sphera</td><td>ABD</td><td data-en="Asset-intensive (oil/gas, chemicals, mining); process safety + ESG/LCA.">Varlık-yoğun (petrol/gaz, kimya, maden); proses güvenliği + ESG/LCA.</td><td><span class="badge b-soft">2</span></td></tr>
-          <tr><td class="co">Intelex (Fortive)</td><td>Kanada</td><td data-en="Integrated EHSQ; medium-large operations.">Entegre EHSQ; orta-büyük operasyon.</td><td><span class="badge b-new">3</span></td></tr>
-          <tr><td class="co">EcoOnline</td><td>Norveç/UK</td><td data-en="EHSQ + chemicals + ESG; grew by acquisition; European SME-mid.">EHSQ + kimyasal + ESG; satın almalarla büyüdü; Avrupa KOBİ-orta.</td><td><span class="badge b-new">3</span></td></tr>
-          <tr><td class="co">Quentic (AMCS)</td><td>Almanya</td><td data-en="DACH/Europe leader; ISO 45001/14001, DGUV; 1,100+ customers.">DACH/Avrupa lideri; ISO 45001/14001, DGUV; 1.100+ müşteri.</td><td><span class="badge b-new">3</span></td></tr>
-          <tr><td class="co">Evotix</td><td>UK/ABD</td><td data-en="People-centric, mobile-first; behavioural safety, field teams.">İnsan-odaklı, mobil-öncelikli; davranışsal güvenlik, saha ekibi.</td><td><span class="badge b-live">4</span></td></tr>
-          <tr><td class="co">SAP EHS</td><td>Almanya</td><td data-en="ERP-integrated EHS; 100+ countries, ~10% share; large enterprise.">ERP-entegre EHS; 100+ ülke, ~%10 pay; büyük kurumsal.</td><td><span class="badge b-soft">1</span></td></tr>
-          <tr><td class="co">Safesite</td><td>ABD</td><td data-en="Free-tier SME safety app; self-serve. (Freemium precedent.)">Ücretsiz-katmanlı KOBİ güvenlik uygulaması; self-servis. (Freemium emsali.)</td><td><span class="badge b-live">4</span></td></tr>
-        </tbody>
-      </table>
+    <div class="calc reveal">
+      <h3 data-en="Calculation 2 · Capacity arithmetic behind willingness to pay">Hesap 2 · Kapasite aritmetiği ve ödeme istekliliği</h3>
+      <div class="line"><span class="lbl" data-en="Certified safety specialists and workplace physicians, end of 2024, approximate">Sertifikalı iş güvenliği uzmanı ve işyeri hekimi, 2024 sonu, yaklaşık</span><span class="val">145.000</span></div>
+      <div class="line"><span class="lbl" data-en="Authorised institutions, end of 2024, approximate">Yetkili kurum sayısı, 2024 sonu, yaklaşık</span><span class="val">2.570</span></div>
+      <div class="line"><span class="lbl" data-en="Monthly service ceiling per professional in the official assignment system">Resmî atama sisteminde profesyonel başına aylık hizmet tavanı</span><span class="val">180 saat</span></div>
+      <div class="line"><span class="lbl" data-en="Minimum monthly specialist time per employee, low hazard class">Az tehlikeli sınıfta çalışan başına aylık asgari uzman süresi</span><span class="val">10 dakika</span></div>
+      <div class="line sum"><span class="lbl" data-en="Theoretical low hazard employee capacity of one professional">Bir uzmanın teorik az tehlikeli çalışan kapasitesi</span><span class="val">≈ 1.080 çalışan</span></div>
+      <p data-en="The number says this: a professional's capacity is limited not by contracted hours but by the paperwork inside those hours. Ten minutes per employee does not cover the real documentation work of a workplace. Risk assessment, training plan, health surveillance follow up, emergency plan and audit preparation all spill outside that time, so the professional carries far fewer clients than the theoretical capacity.">Rakam şunu söylüyor: uzmanın kapasitesi sözleşme saatiyle değil, o saatin içindeki evrak yüküyle sınırlı. On dakikalık asgari süre bir işyerinin gerçek evrak işini karşılamıyor. Risk değerlendirmesi, eğitim planı, sağlık gözetimi takibi, acil durum planı ve denetim hazırlığı bu sürenin dışına taşıyor. Uzman bu yüzden teorik kapasitesinin çok altında müşteri taşıyor.</p>
+      <p data-en="One commercial sentence follows: <b>a tool that reduces paperwork time increases the number of workplaces a professional can carry.</b> Against a market anchor in the thousands of lira per workplace per month, a monthly tool price in the hundreds is a different order of magnitude.">Buradan tek bir ticari cümle çıkıyor: <b>evrak süresini düşüren araç, profesyonelin taşıyabildiği işyeri sayısını artırır.</b> İşyeri başına aylık binlerce liralık piyasa çapası karşısında, yüzlerce liralık aylık araç bedeli bambaşka bir mertebe.</p>
+      <div class="take"><b data-en="What it means for Safera">Safera karşılığı</b><span data-en="Willingness to pay stops being an emotional argument and becomes an arithmetic one. The single metric to measure in the pilot: how many more workplaces can a professional carry with this tool. Two questions belong in every discovery call: how many workplaces do you work with today, and how many hours a week does paperwork take.">Ödeme istekliliği duygusal değil aritmetik bir argümana dönüşüyor. Pilotta ölçülecek tek metrik: profesyonel bu araçla kaç işyeri daha taşıyabiliyor. Her keşif görüşmesine iki soru giriyor: bugün kaç işyeriyle çalışıyorsun ve evrak işi haftanın kaç saatini alıyor.</span></div>
     </div>
 
-    <div class="caveat reveal">
-      <h3 data-en="Rest of the field (≈50)">Kalan alan (≈50)</h3>
-      <ul>
-        <li data-en="<b>Ideagen portfolio:</b> ProcessMAP, SafetyStratus, Reactec, WorkSafe Guardian, Beakon, Envirosuite — acquired, AI-converging."><b>Ideagen portföyü:</b> ProcessMAP, SafetyStratus, Reactec, WorkSafe Guardian, Beakon, Envirosuite — satın alındı, AI'a yakınsıyor.</li>
-        <li data-en="<b>Mid-market / mobile:</b> SAI360, Riskonnect, HSI Donesafe, KPA, Vector Solutions, Origami Risk, SiteDocs, Salus, Vatix, Notify, Capptions, Evalu-8, EHS Insight."><b>Mid-market / mobil:</b> SAI360, Riskonnect, HSI Donesafe, KPA, Vector Solutions, Origami Risk, SiteDocs, Salus, Vatix, Notify, Capptions, Evalu-8, EHS Insight.</li>
-        <li data-en="<b>Environmental / quality niche:</b> Mapistry, Encamp, Locus, ETQ Reliance, Alcumus, Frontline, Dakota, Perillon, MasterControl, Pro-Sapien, IBM Maximo, Preventeo."><b>Çevresel / kalite niş:</b> Mapistry, Encamp, Locus, ETQ Reliance, Alcumus, Frontline, Dakota, Perillon, MasterControl, Pro-Sapien, IBM Maximo, Preventeo.</li>
-        <li data-en="<b>GCC / Middle East:</b> SmartQHSE (UAE, OSHAD-SF), Sodales (SAP+HR, high-risk MENA) — Arabic/Turkish AI guidance still empty."><b>GCC / Orta Doğu:</b> SmartQHSE (BAE, OSHAD-SF), Sodales (SAP+İK, yüksek-riskli MENA) — Arapça/Türkçe AI rehber hâlâ boş.</li>
-        <li data-en="None target the Turkish-regulation + SME + solo-expert + marketplace quartet.">Hiçbiri Türkçe-mevzuat + KOBİ + bireysel-uzman + pazar-yeri dörtlüsünü hedeflemiyor.</li>
-      </ul>
+    <div class="calc reveal">
+      <h3 data-en="Calculation 3 · The health surveillance blind spot">Hesap 3 · Sağlık gözetimi kör noktası</h3>
+      <div class="line"><span class="lbl" data-en="Occupational accidents recorded in 2025">2025'te kaydedilen iş kazası</span><span class="val">766.625</span></div>
+      <div class="line"><span class="lbl" data-en="Workers who lost their lives in occupational accidents in 2025">2025'te iş kazasında hayatını kaybeden</span><span class="val">1.944</span></div>
+      <div class="line"><span class="lbl" data-en="Workers unable to work for at least five days">En az beş gün iş göremez hâle gelen</span><span class="val">168.607</span></div>
+      <div class="line"><span class="lbl" data-en="Occupational disease diagnoses recorded">Konulan meslek hastalığı tanısı</span><span class="val">916</span></div>
+      <div class="line"><span class="lbl" data-en="Deaths attributed to occupational disease in the records">Kayıtlarda meslek hastalığı nedeniyle ölüm</span><span class="val">0</span></div>
+      <div class="line sum"><span class="lbl" data-en="Accident related deaths per hundred thousand workers (EU average 1.6)">Yüz bin çalışan başına iş kazası ölüm oranı (AB ortalaması 1,6)</span><span class="val">9,94</span></div>
+      <p data-en="Professional chambers read the picture plainly: in a country where millions work and exposure to noise, dust, radiation and chemicals is widespread, 916 diagnoses is not realistic. Accidents rising while diagnoses stay flat points to a recording problem rather than a detection one. The health surveillance chain breaks between the physician and the employer.">Meslek odalarının değerlendirmesi açık: milyonlarca çalışanın bulunduğu, gürültü, toz, radyasyon ve kimyasal maruziyetin yaygın olduğu bir ülkede 916 tanı gerçekçi değil. Kaza sayısı artarken tanı sayısının bu seviyede kalması, tespit değil kayıt sorununa işaret ediyor. Sağlık gözetimi zinciri hekim ile işveren arasında kopuyor.</p>
+      <p data-en="In the same period Kazakh legislation is digitalising exactly this chain: sending the worker a notification for screening tests and passing the relevant information to the employer is becoming a legal requirement. In Türkiye that flow is still solved on the product side rather than the regulatory side.">Aynı dönemde Kazakistan mevzuatı tam bu zinciri dijitalleştiriyor: tarama testleri için çalışana bildirim gönderilmesi ve ilgili bilginin işverene iletilmesi yasal hâle geliyor. Türkiye'de bu akış hâlâ ürün tarafında çözülüyor, mevzuat tarafında değil.</p>
+      <div class="warn"><b data-en="Language boundary">Dil sınırı</b><span data-en="This finding is never used to claim that the product increases the detection of occupational disease. The product does not diagnose; diagnosis belongs to the physician. The only sentence built on it: it makes complete and timely health surveillance records easier to keep.">Bu bulgu hiçbir zaman "ürün meslek hastalığı tespitini artırır" biçiminde kullanılmaz. Ürün teşhis koymaz, teşhis hekimindir. Kurulacak tek cümle: sağlık gözetimi kaydının eksiksiz ve zamanında tutulmasını kolaylaştırır.</span></div>
+      <div class="take"><b data-en="What it means for Safera">Safera karşılığı</b><span data-en="The weight of the physician role inside the product is higher than assumed. Periodic examination follow up, validity warnings and the status summary flowing to the employer land exactly on the weakest link of the market.">Hekim rolünün ürün içindeki ağırlığı düşünülenden yüksek. Periyodik muayene takibi, geçerlilik uyarısı ve işverene durum özeti akışı, pazarın en zayıf halkasına denk geliyor.</span></div>
     </div>
-    <p class="mtx-hint" style="display:block" data-en="List is for analysis; verifiable independent rankings are in Verdantix Green Quadrant, Gartner Peer Insights, G2/Capterra (see Sources).">Liste analiz-amaçlı; doğrulanabilir bağımsız sıralamalar Verdantix Green Quadrant, Gartner Peer Insights, G2/Capterra'dadır (Kaynaklar).</p>
   </div>
 </section>
 
-<!-- ══ 2 · YETENEK MATRİSİ ════════════════════════════════════ -->
+
+<!-- ══ 3 · REKABET MATRİSİ ════════════════════════════════════ -->
 <section class="s tint" id="matris">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow" data-en="Capability Matrix">Yetenek Matrisi</span>
-      <h2 style="--i:1" data-en="The five-way intersection no one holds.">Kimsenin tutmadığı beşli kesişim.</h2>
-      <p style="--i:2" data-en="Each category exists somewhere. The intersection of all of them — in Turkish, for SMEs and solo experts — does not. That intersection is the moat.">Her kategori bir yerde var. Hepsinin kesişimi — Türkçe, KOBİ ve bireysel uzman için — yok. Bu kesişim hendektir (moat).</p>
+      <span class="eyebrow" data-en="Competition matrix">Rekabet matrisi</span>
+      <h2 style="--i:1" data-en="Same word, different problem.">Aynı kelime, farklı problem.</h2>
+      <p style="--i:2" data-en="A competitor list only becomes meaningful when buyer type and solved problem are placed side by side. The matrix below shows who is actually sitting at the same table.">Rakip listesi ancak alıcı tipi ve çözülen problem birlikte konursa anlam kazanır. Aşağıdaki matris, kimin gerçekten aynı masada olduğunu gösteriyor.</p>
     </div>
+
+    <div class="tbl-scroll reveal">
+      <table class="main">
+        <thead><tr>
+          <th data-en="Layer">Katman</th>
+          <th data-en="Buyer">Alıcı</th>
+          <th data-en="Problem solved">Çözdüğü problem</th>
+          <th data-en="Price order">Fiyat mertebesi</th>
+          <th data-en="Shares our table">Masa paylaşımı</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="co" data-en="Global enterprise EHS">Küresel kurumsal İSG</td><td data-en="OHS unit of a multi site large organisation">Çok tesisli büyük kuruluşun İSG birimi</td><td data-en="Data consolidation at scale, corporate reporting, multi country compliance">Ölçekte veri birleştirme, kurumsal raporlama, çok ülkeli uyum</td><td data-en="Six figure USD per year">Yıllık altı haneli dolar</td><td class="no" data-en="None. The buyer is not even in the same room">Yok. Alıcı aynı odada değil</td></tr>
+          <tr><td class="co" data-en="Computer vision">Bilgisayarlı görü</td><td data-en="Manufacturing, warehouse and logistics site operations">Üretim, depo ve lojistik tesis operasyonu</td><td data-en="Seeing the hazard in real time">Tehlikeyi gerçek zamanlı görmek</td><td data-en="Five figure USD per site per year">Tesis başına yıllık beş haneli dolar</td><td class="no" data-en="None. Their problem is detection, ours is production">Yok. Problem tespit, bizimki üretim</td></tr>
+          <tr><td class="co" data-en="TR authorised integrator software">TR yetkili entegratör yazılımı</td><td data-en="Institutions and service chains">Kurum ve hizmet zinciri</td><td data-en="Sending data to the official system and keeping records">Resmî sisteme veri gönderimi ve kayıt tutma</td><td data-en="Annual licence tied to professional count">Yıllık lisans, profesyonel sayısına bağlı</td><td class="part" data-en="Partial. Same user, different job">Kısmî. Aynı kullanıcı, farklı iş</td></tr>
+          <tr><td class="co" data-en="TR training platforms">TR eğitim platformları</td><td data-en="Employers and existing consultants">İşveren ve mevcut danışmanlar</td><td data-en="Remote training content and LMS compatibility">Uzaktan eğitim içeriği ve LMS uyumu</td><td data-en="Self service, per user">Kullanıcı başına self servis</td><td class="part" data-en="Partnership candidate, not a rival">Ortaklık adayı, rakip değil</td></tr>
+          <tr><td class="co" data-en="Gulf local platform">Körfez yerel platformu</td><td data-en="Regional SME, through a consultant network">Bölge KOBİ'si, danışman ağı üzerinden</td><td data-en="HSEQ management aligned with local regulation">Yerel mevzuata uygun HSEQ yönetimi</td><td data-en="Not disclosed">Bilinmiyor</td><td class="part" data-en="High model similarity, different geography">Model benzerliği yüksek, coğrafya farklı</td></tr>
+          <tr class="us-row"><td class="co">Safera</td><td data-en="Individual specialist, workplace physician, and the SME that cannot get served">Bireysel uzman, işyeri hekimi ve hizmet alamayan KOBİ</td><td data-en="Removing the paperwork and regulation load, and producing compliance">Evrak ve mevzuat yükünü ortadan kaldırıp uyumu üretmek</td><td data-en="499 to 999 TL per month">Aylık 499 ile 999 TL</td><td data-en="reference row">referans satır</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mtx-hint">← <span data-en="scroll the table horizontally">tabloyu yatay kaydır</span></p>
+    <div class="takeaway reveal">
+      <div class="tl-lbl" data-en="Conclusion">Sonuç</div>
+      <p data-en="The answer to <b>why will they not crush you</b> is this matrix: no one is selling to our buyer and no one is solving our problem. The pressure comes not from competition but from the speed at which enterprise players move downmarket."><b>"Sizi neden onlar ezmesin"</b> sorusunun cevabı bu matris: kimse bizim alıcımıza satmıyor ve kimse bizim problemimizi çözmüyor. Baskı rekabetten değil, kurumsal oyuncuların aşağı inme hızından geliyor.</p>
+    </div>
+
+    <p class="subhead reveal" data-en="Capability intersection">Yetenek kesişimi</p>
     <div class="legend reveal">
       <span><span class="mark yes">✓</span> <span data-en="holds it">tutuyor</span></span>
       <span><span class="mark part">◐</span> <span data-en="partial / adjacent">kısmî / komşu</span></span>
@@ -509,225 +582,390 @@ footer{border-top:1px solid var(--line);padding:2.5rem 0 3.5rem;background:var(-
         <thead><tr>
           <th class="dim" data-en="Capability">Yetenek</th>
           <th class="saf">Safera</th>
-          <th>Ideagen<br>Mazlan</th>
-          <th>Safety<br>Culture</th>
-          <th>Benchmark<br>Genie</th>
-          <th data-en="TR IBYS<br>(Kontinus…)">TR İBYS<br>(Kontinus…)</th>
-          <th>OSGB</th>
+          <th data-en="Global<br>enterprise">Küresel<br>kurumsal</th>
+          <th data-en="UK agentic<br>compliance">UK agentic<br>uyum</th>
+          <th data-en="Computer<br>vision">Bilgisayarlı<br>görü</th>
+          <th data-en="TR authorised<br>integrator">TR yetkili<br>entegratör</th>
+          <th data-en="Gulf SME<br>platform">Körfez KOBİ<br>platformu</th>
         </tr></thead>
         <tbody>
-          <tr><td class="dim" data-en="Turkish legislation + IBYS/KATİP">Türkçe mevzuat + İBYS/KATİP</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark yes">✓</span></td><td><span class="mark yes">✓</span></td></tr>
-          <tr class="flip"><td class="dim" data-en="SME &amp; solo-expert focus">KOBİ &amp; bireysel-uzman odağı</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark no">–</span></td><td><span class="mark part">◐</span></td><td><span class="mark no">–</span></td><td><span class="mark part">◐</span></td><td><span class="mark part">◐</span></td></tr>
-          <tr><td class="dim" data-en="Free role-specific simulator">Ücretsiz rol-özgün simülatör</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td></tr>
-          <tr class="flip"><td class="dim" data-en="Approval-gated agentic AI">Onaylı agentic AI</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark yes">✓</span></td><td><span class="mark part">◐</span></td><td><span class="mark part">◐</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td></tr>
-          <tr><td class="dim" data-en="Deterministic marketplace (no intermediary)">Deterministik pazar yeri (aracısız)</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td></tr>
-          <tr class="flip"><td class="dim" data-en="Approval log + edit lock (audit-ready)">Onay kaydı + düzenleme kilidi (denetime hazır)</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark part">◐</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td></tr>
-          <tr><td class="dim" data-en="Mobile-first field use">Mobil-öncelikli saha kullanımı</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark part">◐</span></td><td><span class="mark yes">✓</span></td><td><span class="mark part">◐</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td></tr>
+          <tr><td class="dim" data-en="Turkish legislation and official assignment system">Türkçe mevzuat ve resmî atama sistemi</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark yes">✓</span></td><td><span class="mark no">–</span></td></tr>
+          <tr class="flip"><td class="dim" data-en="SME and solo professional focus">KOBİ ve bireysel profesyonel odağı</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark part">◐</span></td><td><span class="mark yes">✓</span></td></tr>
+          <tr><td class="dim" data-en="Usable by a zero knowledge user">Sıfır bilgi kullanıcısının kullanabilmesi</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark no">–</span></td><td><span class="mark part">◐</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark part">◐</span></td></tr>
+          <tr class="flip"><td class="dim" data-en="Approval gated agentic production">Onay kapılı agentic üretim</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark part">◐</span></td><td><span class="mark yes">✓</span></td><td><span class="mark part">◐</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td></tr>
+          <tr><td class="dim" data-en="Every legal reference from a verified source">Her mevzuat atfı doğrulanmış kaynaktan</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark part">◐</span></td><td><span class="mark part">◐</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td></tr>
+          <tr class="flip"><td class="dim" data-en="Direct matching with no commission">Komisyonsuz doğrudan eşleşme</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td></tr>
+          <tr><td class="dim" data-en="Approval record and edit lock (audit ready)">Onay kaydı ve düzenleme kilidi (denetime hazır)</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark part">◐</span></td><td><span class="mark part">◐</span></td><td><span class="mark no">–</span></td><td><span class="mark no">–</span></td><td><span class="mark part">◐</span></td></tr>
+          <tr class="flip"><td class="dim" data-en="Mobile first field use">Mobil öncelikli saha kullanımı</td><td class="saf"><span class="mark yes">✓</span></td><td><span class="mark part">◐</span></td><td><span class="mark part">◐</span></td><td><span class="mark yes">✓</span></td><td><span class="mark no">–</span></td><td><span class="mark part">◐</span></td></tr>
         </tbody>
       </table>
     </div>
-    <p class="mtx-cap reveal" data-en="Ideagen Mazlan is the closest on AI; the TR IBYS ecosystem is closest on Turkish compliance. We have not identified another player holding every one of these rows at once.">Ideagen Mazlan AI'da en yakın; TR İBYS ekosistemi Türkçe uyumda en yakın. Bu satırların tamamını birlikte tutan başka bir oyuncu tespit etmedik.</p>
+    <p class="mtx-cap reveal" data-en="The UK based agentic compliance player is closest on AI; the Turkish authorised integrator ecosystem is closest on local compliance. Within the scope and date of this scan we did not identify another product holding all of these rows at once.">UK merkezli agentic uyum oyuncusu yapay zekâda en yakın; TR yetkili entegratör ekosistemi yerel uyumda en yakın. Bu taramanın kapsamında ve tarihinde bu satırların tamamını birlikte tutan başka bir ürüne rastlamadık.</p>
     <p class="mtx-hint">← <span data-en="scroll the table horizontally">tabloyu yatay kaydır</span></p>
   </div>
 </section>
 
-<!-- ══ 3 · TÜRKİYE EKOSİSTEMİ ═════════════════════════════════ -->
-<section class="s" id="turkiye">
+
+<!-- ══ 4 · KRONOLOJİ ══════════════════════════════════════════ -->
+<section class="s" id="kronoloji">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow" data-en="Türkiye Ecosystem (30+)">Türkiye Ekosistemi (30+)</span>
-      <h2 style="--i:1" data-en="Three layers — none of them agentic.">Üç katman — hiçbiri agentic değil.</h2>
-      <p style="--i:2" data-en="In Türkiye the &quot;competitors&quot; come in three layers: (A) IBYS-integrator / OHS software (data-transfer + paperwork), (B) OSGB service chains (manpower), (C) training academies. The Ministry recognizes 71 authorized integrators / 77 software (official: ibys.csgb.gov.tr). None is an agentic agent + marketplace + free simulator.">TR'de "rakip" üç katman: (A) İBYS entegratör / İSG yazılımı (veri-aktarımı + evrak), (B) OSGB hizmet zincirleri (insan gücü), (C) eğitim akademileri. Bakanlık 71 yetkili entegratör / 77 yazılım tanımış (resmi: ibys.csgb.gov.tr). Hiçbiri agentic ajan + pazar yeri + ücretsiz simülatör değil.</p>
+      <span class="eyebrow" data-en="Reverse timeline">Ters kronoloji</span>
+      <h2 style="--i:1" data-en="From today backwards: what happened in this field.">Bugünden geriye: bu alanda ne oldu.</h2>
+      <p style="--i:2" data-en="Selected dated records from August 2026 back to August 2025. Every record carries its clickable source. Competitor performance figures are vendor statements unless otherwise noted.">Ağustos 2026'dan Ağustos 2025'e seçilmiş tarihli kayıtlar. Her kayıtta tıklanabilir kaynak var. Rakip performans rakamları aksi belirtilmedikçe üretici beyanıdır.</p>
+    </div>
+
+    <div class="tl">
+      <div class="tl-item reveal"><span class="tl-dot"></span>
+        <div class="tl-date">5 Ağu 2026</div>
+        <h3 data-en="Analyst view: agentic development is eroding the scale moat in enterprise software<span class='tl-tag ai'>Global</span>">Analist görüşü: agentic geliştirme kurumsal yazılımdaki ölçek hendeğini eritiyor<span class="tl-tag ai">Küresel</span></h3>
+        <p data-en="For years competition in enterprise software was built on scale: raise capital, hire engineers, build features, accumulate intellectual property. Artificial intelligence is breaking that equation and sharply increasing the speed at which enterprise applications can be built.">Yıllardır kurumsal yazılımda rekabet ölçekle kuruluyordu: sermaye topla, mühendis işe al, işlev inşa et, fikri mülkiyet biriktir. Yapay zekâ bu denklemi bozuyor ve kurumsal uygulama inşa hızını çarpıcı biçimde artırıyor.</p>
+        <p class="srcline">Kaynak: <a href="https://www.verdantix.com/client-portal/blog/ai-start-up-hsecai-points-to-the-big-shift-in-ehs-software-product-development" target="_blank" rel="noopener noreferrer">verdantix.com</a></p>
+      </div>
+
+      <div class="tl-item reveal"><span class="tl-dot gd"></span>
+        <div class="tl-date gold">Ağu 2026</div>
+        <h3 data-en="Kazakhstan: three waves of Labour Code amendments take effect<span class='tl-tag reg'>Central Asia</span>">Kazakistan: İş Kanunu'nda üç dalgalı değişiklik yürürlüğe girdi<span class="tl-tag reg">Orta Asya</span></h3>
+        <p data-en="The worker's duty to follow occupational health and safety rules was extended to cover cyber security requirements, and the employer became responsible for introducing internal rules and monitoring compliance through internal audit.">Çalışanın iş sağlığı ve güvenliği kurallarına uyma yükümlülüğü siber güvenlik gerekliliklerini kapsayacak biçimde genişletildi; işveren iç düzenlemeleri tanıtmak ve uyumu iç denetimle izlemekle yükümlü hâle geldi.</p>
+        <p class="srcline">Kaynak: <a href="https://www.mondaq.com/employee-rights-labour-relations/1828936/kazakhstan-employment-law-update-2026" target="_blank" rel="noopener noreferrer">mondaq.com</a></p>
+      </div>
+
+      <div class="tl-item reveal"><span class="tl-dot gd"></span>
+        <div class="tl-date gold">21 Tem 2026</div>
+        <h3 data-en="2025 social security statistics: 766 thousand accidents, 916 occupational disease diagnoses<span class='tl-tag reg'>Türkiye</span>">2025 sosyal güvenlik istatistikleri: 766 bin kaza, 916 meslek hastalığı tanısı<span class="tl-tag reg">Türkiye</span></h3>
+        <p data-en="The number of insured workers involved in an occupational accident rose 4.5 percent to 766,625; deaths rose 2.5 percent to 1,944; workers unable to work for at least five days reached 168,607. Occupational disease diagnoses stayed at 916 and the records show no related death.">İş kazası geçiren sigortalı sayısı yüzde 4,5 artarak 766.625'e ulaştı, hayatını kaybeden çalışan sayısı yüzde 2,5 artışla 1.944 oldu, en az beş gün iş göremez hâle gelen çalışan sayısı 168.607'ye yükseldi. Meslek hastalığı tanısı 916'da kaldı ve kayıtlarda ilgili ölüm bulunmuyor.</p>
+        <p class="srcline">Kaynak: <a href="https://www.sgk.gov.tr/Istatistik/Yillik/fcd5e59b-6af9-4d90-a451-ee7500eb1cb4/" target="_blank" rel="noopener noreferrer">sgk.gov.tr</a> · <a href="https://t24.com.tr/gundem/emekcinin-hastaligi-kayitlara-girmedi-uzmanlardan-gercek-disi-tepkisi,1337366" target="_blank" rel="noopener noreferrer">t24.com.tr</a></p>
+      </div>
+
+      <div class="tl-item reveal"><span class="tl-dot"></span>
+        <div class="tl-date">9 Tem 2026</div>
+        <h3 data-en="A vendor ships the sector's first native MCP connector<span class='tl-tag ai'>Global</span>">Bir satıcı sektörün ilk yerel MCP bağlayıcısını çıkardı<span class="tl-tag ai">Küresel</span></h3>
+        <p data-en="Alongside new compliance modules, a connector that securely exposes live OHS data to general purpose assistants went live. Users can query accidents, audits, corrective actions and training in natural language.">Yeni uyum modüllerinin yanında, canlı İSG verisini genel amaçlı asistanlara güvenli biçimde bağlayan bir bağlayıcı devreye alındı. Kullanıcı kazaları, denetimleri, düzeltici aksiyonları ve eğitimleri doğal dille sorgulayabiliyor.</p>
+        <p class="srcline">Kaynak: <a href="https://www.ehsinsight.com/blog/ehs-insight-q2-2026" target="_blank" rel="noopener noreferrer">ehsinsight.com</a> (üretici beyanı)</p>
+      </div>
+
+      <div class="tl-item reveal"><span class="tl-dot"></span>
+        <div class="tl-date">Tem 2026</div>
+        <h3 data-en="The agentic positioning wave and the shift towards partnership<span class='tl-tag ai'>Global</span>">Agentic konumlandırma dalgası ve ortaklık tercihi<span class="tl-tag ai">Küresel</span></h3>
+        <p data-en="One compliance software company rebranded around an agentic vision; others put intelligence layers forward under their existing brands; those avoiding acquisitions turned to partnerships. The analyst warning: as AI claims spread, the gap between positioning and performance becomes the critical differentiator.">Bir uyum yazılımı şirketi agentic vizyon etrafında yeniden markalandı; diğerleri mevcut markaları altında zekâ katmanlarını öne çıkardı; satın alma istemeyenler ortaklığa yöneldi. Analist uyarısı: yapay zekâ iddiaları pazara yayılırken konumlandırma ile performans arasındaki fark kritik ayrıştırıcı oluyor.</p>
+        <p class="srcline">Kaynak: <a href="https://www.verdantix.com/insights/blog/build--buy-or-partner--what-2026's-deal-activity-reveals-about-the-ehs-software-market" target="_blank" rel="noopener noreferrer">verdantix.com</a></p>
+      </div>
+
+      <div class="tl-item reveal"><span class="tl-dot gd"></span>
+        <div class="tl-date gold">3 Haz 2026</div>
+        <h3 data-en="Kazakhstan digitalises the health surveillance chain<span class='tl-tag reg'>Central Asia</span>">Kazakistan sağlık gözetimi zincirini dijitalleştiriyor<span class="tl-tag reg">Orta Asya</span></h3>
+        <p data-en="Amendments target the digitalisation of the interaction between health institutions, workers and employers, including sending the worker a notification for screening tests and passing the relevant information to the employer.">Değişiklikler sağlık kuruluşları, çalışanlar ve işverenler arasındaki etkileşimin dijitalleştirilmesini hedefliyor: tarama testleri için çalışana bildirim gönderilmesi ve ilgili bilginin işverene iletilmesi dahil.</p>
+        <p class="srcline">Kaynak: <a href="https://qazinform.com/news/kazakhstan-amends-labor-legislation-to-bolster-worker-rights-c4b70b" target="_blank" rel="noopener noreferrer">qazinform.com</a></p>
+      </div>
+
+      <div class="tl-item reveal"><span class="tl-dot"></span>
+        <div class="tl-date">24 May 2026</div>
+        <h3 data-en="Thirteen live AI agents shown at an enterprise EHS conference<span class='tl-tag ai'>Global</span>">Kurumsal bir İSG konferansında on üç canlı yapay zekâ ajanı gösterildi<span class="tl-tag ai">Küresel</span></h3>
+        <p data-en="Use cases included a medical record assistant and an environmental permit analyser. A finding was shared that more than two thousand OHS leaders adopted AI before formal governance structures were in place. The executive stressed that AI does not replace domain expertise but strengthens it.">Kullanım örnekleri arasında tıbbi kayıt asistanı ve çevre izni analizcisi vardı. İki binden fazla İSG liderinin resmî yönetişim yapıları kurulmadan önce yapay zekâyı benimsediği bulgusu paylaşıldı. Yönetici, yapay zekânın alan uzmanlığını ikame etmediğini güçlendirdiğini vurguladı.</p>
+        <p class="srcline">Kaynak: <a href="https://briefglance.com/companies/cority-software-inc/pulses/26177" target="_blank" rel="noopener noreferrer">briefglance.com</a> (üretici beyanı)</p>
+      </div>
+
+      <div class="tl-item reveal"><span class="tl-dot"></span>
+        <div class="tl-date">7 May 2026</div>
+        <h3 data-en="A bilingual HSEQ platform built for Gulf regulation, aimed at SMEs<span class='tl-tag ai'>Gulf</span>">Körfez mevzuatına özgü, KOBİ odaklı iki dilli HSEQ platformu çıktı<span class="tl-tag ai">Körfez</span></h3>
+        <p data-en="Designed from scratch around regional licensing and standards. According to the figures shared, 72 percent of companies with fewer than five hundred employees in the region manage safety operations manually, and the platform aims to reach that segment through a network of trusted local consultants rather than direct sales.">Bölge lisanslama ve standartlarına göre sıfırdan tasarlanmış. Aktarılan verilere göre bölgede beş yüzden az çalışanı olan şirketlerin yüzde yetmiş ikisi güvenlik operasyonunu elle yönetiyor ve platform bu segmente doğrudan satış yerine güvenilen yerel danışman ağı üzerinden ulaşmayı hedefliyor.</p>
+        <p class="srcline">Kaynak: <a href="https://www.technotime.net/13957" target="_blank" rel="noopener noreferrer">technotime.net</a> · <a href="https://menafn.com/1111080100/%E2%80%8EHi-Tech-Launches-The-First-Platform-For-Health-Safety-Environment-And-Quality-Management%E2%80%8E" target="_blank" rel="noopener noreferrer">menafn.com</a> (üretici beyanı)</p>
+      </div>
+
+      <div class="tl-item reveal"><span class="tl-dot"></span>
+        <div class="tl-date">8 Nis 2026</div>
+        <h3 data-en="A major enterprise software vendor puts a workplace safety agent into product strategy<span class='tl-tag ai'>Global</span>">Büyük bir kurumsal yazılım satıcısı işyeri güvenliği ajanını ürün stratejisine koydu<span class="tl-tag ai">Küresel</span></h3>
+        <p data-en="The agent turns safety observations into continuously reduced risks and up to date safety instructions, surfaces overlooked hazards, enriches risk assessments and proposes corrective and preventive action.">Ajan, güvenlik gözlemlerini sürekli azaltılan risklere ve güncel güvenlik talimatlarına dönüştürüyor, gözden kaçan tehlikeleri ortaya çıkarıyor, risk değerlendirmelerini zenginleştiriyor ve düzeltici önleyici aksiyon öneriyor.</p>
+        <p class="srcline">Kaynak: <a href="https://community.sap.com/t5/product-lifecycle-management-blog-posts-by-sap/agentic-ai-at-the-2026-sap-ehs-and-product-compliance-conference/ba-p/14368872" target="_blank" rel="noopener noreferrer">community.sap.com</a></p>
+      </div>
+
+      <div class="tl-item reveal"><span class="tl-dot gd"></span>
+        <div class="tl-date gold">2 Nis 2026</div>
+        <h3 data-en="Türkiye: the thirteen year old OHS training regulation was replaced in full<span class='tl-tag reg'>Türkiye</span>">Türkiye: on üç yıllık İSG eğitim yönetmeliği tamamen değişti<span class="tl-tag reg">Türkiye</span></h3>
+        <p data-en="Induction training became a separate type, mandatory for everyone including apprentices and interns, at least two hours, practical and face to face, and not counted within basic training. Basic training must be completed within three months of starting work. Minimum durations by hazard class are eight, twelve and sixteen lesson hours, and the lesson hour was defined for the first time. Issuing training records with electronic signature and archiving them digitally was made explicitly possible. Content must be prepared specifically for the job and the workplace, taking the risk assessment and the emergency plan into account.">İşe başlama eğitimi ayrı bir tür oldu; çırak ve stajyerler dahil herkes için zorunlu, en az iki saat, uygulamalı ve yüz yüze, temel eğitim süresinden sayılmıyor. Temel eğitim işe girişten en geç üç ay içinde tamamlanmak zorunda. Asgari süreler tehlike sınıfına göre sekiz, on iki ve on altı ders saati; ders saati ilk kez tanımlandı. Eğitim belgelerinin elektronik imza ile düzenlenmesi ve dijital arşivlenmesi açıkça mümkün kılındı. İçeriğin risk değerlendirmesi ve acil durum planı dikkate alınarak işe ve işyerine özgü hazırlanması gerekiyor.</p>
+        <p class="srcline">Kaynak: <a href="https://www.resmigazete.gov.tr/eskiler/2026/04/20260402-2.htm" target="_blank" rel="noopener noreferrer">resmigazete.gov.tr 33212</a> · <a href="https://www.alomaliye.com/2026/04/02/calisanlarin-is-sagligi-ve-guvenligi-egitimlerinin-usul-ve-esaslari-2026/" target="_blank" rel="noopener noreferrer">alomaliye.com</a></p>
+      </div>
+
+      <div class="tl-item reveal"><span class="tl-dot gd"></span>
+        <div class="tl-date gold">1 Nis 2026</div>
+        <h3 data-en="Amendment to the workplace hazard classes communiqué<span class='tl-tag reg'>Türkiye</span>">İşyeri Tehlike Sınıfları Tebliği'nde değişiklik<span class="tl-tag reg">Türkiye</span></h3>
+        <p data-en="Hazard class is the variable that determines almost every period in the system: training duration, examination interval, risk assessment renewal, and specialist and physician working times are all calculated from it.">Tehlike sınıfı sistemdeki neredeyse tüm periyotları belirleyen değişken: eğitim süresi, muayene aralığı, risk değerlendirmesi yenileme ve uzman ile hekim çalışma süreleri buradan hesaplanıyor.</p>
+        <p class="srcline">Kaynak: <a href="https://prozon.net/sirkuler/13-yillik-isg-egitim-yonetmeligi-yururlukten-kaldirildi-yeni-donem-basladi/" target="_blank" rel="noopener noreferrer">prozon.net</a></p>
+      </div>
+
+      <div class="tl-item reveal"><span class="tl-dot gd"></span>
+        <div class="tl-date gold">11 Şub 2026</div>
+        <h3 data-en="Azerbaijan Labour Code amendments: an OHS position at the fifty employee threshold<span class='tl-tag reg'>Central Asia</span>">Azerbaycan İş Kanunu değişiklikleri: elli çalışan eşiğiyle İSG kadrosu<span class="tl-tag reg">Orta Asya</span></h3>
+        <p data-en="Workplaces above fifty employees establish a safety engineer position. Below that threshold the safety work is added to the job description of an employee with safety knowledge, with their consent and by amending the employment contract; where this is not possible the employer establishes a specialist position.">Elli çalışanı aşan işyerlerinde iş güvenliği mühendisi kadrosu kuruluyor. Altında, iş güvenliği bilgisi olan bir çalışanın iş tanımına, rızasıyla ve sözleşme değişikliğiyle ekleniyor; mümkün değilse işveren bir uzman kadrosu kuruyor.</p>
+        <p class="srcline">Kaynak: <a href="https://www.caspianlegalcenter.az/news/more/emek-mecellesi-2026" target="_blank" rel="noopener noreferrer">caspianlegalcenter.az</a></p>
+      </div>
+
+      <div class="tl-item reveal"><span class="tl-dot gd"></span>
+        <div class="tl-date gold">2 Oca 2026</div>
+        <h3 data-en="2026 administrative fines updated by the revaluation rate<span class='tl-tag reg'>Türkiye</span>">2026 idari para cezaları yeniden değerleme oranıyla güncellendi<span class="tl-tag reg">Türkiye</span></h3>
+        <p data-en="Fines rise every year and business size affects the amount. The critical point highlighted in the compilations: if the official assignment was not made in the state system, the service is treated as non existent even when a physician or specialist is actually working, and the fine accrues monthly and can be collected retroactively.">Cezalar her yıl artıyor ve işletme büyüklüğü tutarı etkiliyor. Derlemelerde vurgulanan kritik nokta: resmî atama devlet sisteminde yapılmadıysa, fiilen bir hekim veya uzman çalışıyor olsa bile hizmet yok hükmünde sayılıyor; ceza aylık işliyor ve geriye dönük tahsil edilebiliyor.</p>
+        <p class="srcline">Kaynak: <a href="https://www.birosgb.com/2026-isg-cezalari-listesi/" target="_blank" rel="noopener noreferrer">2026 ceza listesi derlemesi</a></p>
+      </div>
+
+      <div class="tl-item reveal"><span class="tl-dot gd"></span>
+        <div class="tl-date gold">1 Oca 2026</div>
+        <h3 data-en="The transition exemption ended completely<span class='tl-tag reg'>Türkiye</span>">Geçiş dönemi muafiyeti tamamen bitti<span class="tl-tag reg">Türkiye</span></h3>
+        <p data-en="The obligation to assign a workplace physician and a safety specialist for public institutions and for low hazard workplaces with fewer than fifty employees came into force at the end of 2024. As of 2026 the transition is complete: regardless of hazard class, every workplace with at least one employee is covered. State support is also provided to hazardous and very hazardous workplaces with fewer than ten employees, conditional on an approved and ongoing contract in the official system.">Kamu kurumları ile elliden az çalışanı olan ve az tehlikeli sınıftaki işyerleri için görevlendirme zorunluluğu 2024 sonunda devreye girdi. 2026 itibarıyla geçiş tamamlandı: tehlike sınıfı fark etmeksizin en az bir çalışanı bulunan tüm işyerleri yükümlü. Ondan az çalışanı olan tehlikeli ve çok tehlikeli işyerlerine ayrıca devlet desteği sağlanıyor; şartı, resmî sistemde onaylı ve devam eden bir sözleşme.</p>
+        <p class="srcline">Kaynak: <a href="https://www.csgb.gov.tr/sikca-sorulan-sorular/is-sagligi-ve-guvenligi-genel-mudurlugu/" target="_blank" rel="noopener noreferrer">csgb.gov.tr</a></p>
+      </div>
+
+      <div class="tl-item reveal"><span class="tl-dot"></span>
+        <div class="tl-date">26 Ağu 2025</div>
+        <h3 data-en="Analyst forecast: by the end of 2026, 40 percent of enterprise applications will carry task specific agents<span class='tl-tag ai'>Global</span>">Analist tahmini: 2026 sonunda kurumsal uygulamaların yüzde kırkı göreve özgü ajan taşıyacak<span class="tl-tag ai">Küresel</span></h3>
+        <p data-en="The share was below five percent in 2025. The firm notes that software executives have a three to six month window to set their agentic strategy. This is a forecast and is presented as such.">Oran 2025'te yüzde beşin altındaydı. Firma, yazılım yöneticilerinin agentic stratejilerini belirlemek için üç ile altı aylık bir pencereleri olduğunu belirtiyor. Bu bir tahmindir ve tahmin olarak sunulur.</p>
+        <p class="srcline">Kaynak: <a href="https://www.gartner.com/en/newsroom/press-releases/2025-08-26-gartner-predicts-40-percent-of-enterprise-apps-will-feature-task-specific-ai-agents-by-2026-up-from-less-than-5-percent-in-2025" target="_blank" rel="noopener noreferrer">gartner.com</a> (tahmin)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ 5 · RAKİP HARİTASI ═════════════════════════════════════ -->
+<section class="s tint" id="rakipler">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Competitor map">Rakip haritası</span>
+      <h2 style="--i:1" data-en="Five layers, one empty intersection.">Beş katman, tek boş kesişim.</h2>
+      <p style="--i:2" data-en="Competitor performance figures are always vendor statements and have not been independently verified.">Rakip performans rakamları daima üretici beyanıdır ve bağımsız doğrulanmamıştır.</p>
+    </div>
+
+    <p class="subhead reveal" data-en="Global enterprise OHS platforms">Küresel kurumsal İSG platformları</p>
+    <div class="grid">
+      <div class="ccard reveal"><div class="top"><h3>Cority</h3><span class="badge b-soft" data-en="no overlap">kesişim yok</span></div>
+        <p class="desc" data-en="An intelligence layer branded Cortex and thirteen live agents shown in 2026. Established a regional centre in Saudi Arabia in January 2026. Reported in May 2026 that adoption is rising in leaner operations.">Cortex adlı zekâ katmanı ve 2026'da gösterilen on üç canlı ajan. Ocak 2026'da Suudi Arabistan'da bölge merkezi kurdu. Mayıs 2026'da yalın operasyonlarda benimsemenin arttığını bildirdi.</p>
+        <p class="meta" data-en="<b>Overlap:</b> negligible. The buyer is a large multi site organisation, the sales cycle runs for months, the price segment is entirely different."><b>Kesişim:</b> yok denecek kadar az. Alıcı büyük çok tesisli kuruluş, satış döngüsü aylarca, fiyat segmenti bambaşka.</p>
+        <p class="src"><a href="https://www.cority.com/reports/future-of-ai-enabled-ehs-software/" target="_blank" rel="noopener noreferrer">cority.com</a></p></div>
+
+      <div class="ccard reveal" style="--i:1"><div class="top"><h3>Benchmark Gensuite</h3><span class="badge b-new" data-en="philosophy close">felsefe yakın</span></div>
+        <p class="desc" data-en="Assistant and agent layers with an in platform agent centre. Started with permit and chemical management agents. Uses the language of autonomous operation while preserving human oversight.">Yardımcı ve asistan ajan katmanları, platform içi ajan merkezi. İzin ve kimyasal yönetim ajanlarıyla başladı. İnsan gözetimini koruyarak otonom çalışma dilini kullanıyor.</p>
+        <p class="meta" data-en="<b>Overlap:</b> similar architectural philosophy, different market. The approval gate approach validates our design."><b>Kesişim:</b> mimari felsefe benzer, pazar farklı. Onay kapısı yaklaşımı bizim tasarımımızı doğruluyor.</p>
+        <p class="src"><a href="https://benchmarkgensuite.com/ai-assistants/" target="_blank" rel="noopener noreferrer">benchmarkgensuite.com</a></p></div>
+
+      <div class="ccard reveal" style="--i:2"><div class="top"><h3>VelocityEHS</h3><span class="badge b-soft" data-en="no overlap">kesişim yok</span></div>
+        <p class="desc" data-en="Works the distinction between generative and agentic AI and the criteria for trustworthy AI at its August 2026 event.">Ağustos 2026 etkinliğinde üretken ile agentic yapay zekâ ayrımını ve güvenilir yapay zekâ ölçütlerini işliyor.</p>
+        <p class="meta" data-en="<b>Overlap:</b> none. Targets corporate OHS teams; the individual professional layer is out of scope."><b>Kesişim:</b> yok. Kurumsal İSG ekipleri hedefi; bireysel profesyonel katmanı kapsamda değil.</p>
+        <p class="src"><a href="https://www.ehs.com/events_and_webinars/ai-in-ehs-2026-virtual-event/" target="_blank" rel="noopener noreferrer">ehs.com</a></p></div>
+
+      <div class="ccard reveal" style="--i:3"><div class="top"><h3>EHS Insight</h3><span class="badge b-new" data-en="indirect but important">dolaylı ama önemli</span></div>
+        <p class="desc" data-en="Legal register and permit management modules, customisable data analysis agents, and the sector's first native MCP connector. Opens live data to general purpose assistants.">Hukuki kayıt defteri ve izin yönetimi modülleri, özelleştirilebilir veri analiz ajanları ve sektörde ilk yerel MCP bağlayıcısı. Canlı veriyi genel amaçlı asistanlara açıyor.</p>
+        <p class="meta" data-en="<b>Overlap:</b> indirect. Carries the risk of the assistant layer becoming a commodity; our defence is the verified Turkish corpus and official document format."><b>Kesişim:</b> dolaylı. Asistan katmanının metalaşma riskini taşıyor; savunmamız doğrulanmış Türkçe korpus ve resmî belge biçimi.</p>
+        <p class="src"><a href="https://www.ehsinsight.com/blog/ehs-insight-q2-2026" target="_blank" rel="noopener noreferrer">ehsinsight.com</a></p></div>
+
+      <div class="ccard reveal" style="--i:4"><div class="top"><h3>SAP</h3><span class="badge b-soft" data-en="no overlap">kesişim yok</span></div>
+        <p class="desc" data-en="A workplace safety agent and a planned classification and labelling agent, delivered embedded in its own enterprise customer base.">İşyeri güvenliği ajanı ve planlanan sınıflandırma etiketleme ajanı. Kendi kurumsal müşteri tabanına gömülü olarak sunulacak.</p>
+        <p class="meta" data-en="<b>Overlap:</b> none. A business without that enterprise resource planning system cannot reach this agent."><b>Kesişim:</b> yok. O kurumsal kaynak planlama sistemi olmayan işletme bu ajana erişemez.</p>
+        <p class="src"><a href="https://community.sap.com/t5/product-lifecycle-management-blog-posts-by-sap/agentic-ai-at-the-2026-sap-ehs-and-product-compliance-conference/ba-p/14368872" target="_blank" rel="noopener noreferrer">community.sap.com</a></p></div>
+
+      <div class="ccard reveal" style="--i:5"><div class="top"><h3 data-en="UK based agentic compliance player">İngiltere merkezli agentic uyum oyuncusu</h3><span class="badge b-new" data-en="closest vision">vizyonu en yakın</span></div>
+        <p class="desc" data-en="The compliance agent of a company of roughly a billion pounds in scale. Positioning: compliance systems were built for certification, and agentic AI turns that around, pushing complexity to the back and simplicity to the surface.">Yaklaşık bir milyar sterlinlik bir şirketin uyum ajanı. Konumlandırma: uyum sistemleri belgelendirme için kurulmuştu, agentic yapay zekâ bunu tersine çeviriyor, karmaşıklık arkaya, sadelik yüzeye.</p>
+        <p class="meta" data-en="<b>Overlap:</b> the closest in vision. But it serves corporate and English speaking markets."><b>Kesişim:</b> vizyon en yakın olan. Ama kurumsal ve İngilizce konuşan pazarlara hizmet ediyor.</p>
+        <p class="src"><a href="https://www.ideagen.com/thought-leadership/blog/agentic-ai-generative-ai-automation-ehs-practitioners" target="_blank" rel="noopener noreferrer">agentic ve üretken yapay zekâ ayrımı</a></p></div>
+    </div>
+
+    <p class="subhead reveal" data-en="Computer vision and field detection">Bilgisayarlı görü ve saha tespiti</p>
+    <div class="grid">
+      <div class="ccard reveal"><div class="top"><h3 data-en="Vision player with Turkish founders">Türk kökenli görü oyuncusu</h3><span class="badge b-soft" data-en="different problem">problem farklı</span></div>
+        <p class="desc" data-en="Real time hazard detection over existing cameras; a sixty four million dollar round in 2024, a hardware package in 2025, and recognition by a global forum community in 2026. Released an OHS trained assistant in late 2024.">Mevcut kameralar üzerinden gerçek zamanlı tehlike tespiti; 2024'te altmış dört milyon dolarlık tur, 2025'te donanım paketi, 2026'da küresel bir forum topluluğunda üst kademeye taşınma. 2024 sonunda İSG eğitimli bir asistan çıkardı.</p>
+        <p class="meta" data-en="<b>Overlap:</b> different problem. They see the hazard; we produce the document and the compliance."><b>Kesişim:</b> problem farklı. Onlar tehlikeyi görüyor, biz belgeyi ve uyumu üretiyoruz.</p>
+        <p class="src"><a href="https://www.intenseye.com/" target="_blank" rel="noopener noreferrer">intenseye.com</a> (üretici beyanı)</p></div>
+
+      <div class="ccard reveal" style="--i:1"><div class="top"><h3 data-en="Ireland based vision player">İrlanda merkezli görü oyuncusu</h3><span class="badge b-soft" data-en="no overlap">kesişim yok</span></div>
+        <p class="desc" data-en="Behavioural safety over existing camera infrastructure; a thirty six million dollar round in early 2025; edge processing and privacy first architecture; a copilot layer that queries data in natural language.">Mevcut kamera altyapısı üzerinden davranışsal güvenlik; 2025 başında otuz altı milyon dolarlık tur; uçta işleme ve gizlilik öncelikli mimari; doğal dille veri sorgulayan yardımcı pilot katmanı.</p>
+        <p class="meta" data-en="<b>Overlap:</b> none. Targets large site operations and corporate OHS teams."><b>Kesişim:</b> yok. Büyük tesis operasyonu ve kurumsal İSG ekibi hedefi.</p>
+        <p class="src"><a href="https://www.protex.ai/" target="_blank" rel="noopener noreferrer">protex.ai</a> (üretici beyanı)</p></div>
+
+      <div class="ccard reveal" style="--i:2"><div class="top"><h3 data-en="San Francisco based vision player">San Francisco merkezli görü oyuncusu</h3><span class="badge b-soft" data-en="no overlap">kesişim yok</span></div>
+        <p class="desc" data-en="Focused on ergonomics and vehicle pedestrian conflict; a forty four million dollar round in mid 2025; claims fast deployment and integration with existing cameras.">Ergonomi ve araç yaya çakışması odaklı; 2025 ortasında kırk dört milyon dolarlık tur; hızlı kurulum ve mevcut kamera entegrasyonu iddiası.</p>
+        <p class="meta" data-en="<b>Overlap:</b> none. Warehouse, cold chain and logistics verticals."><b>Kesişim:</b> yok. Depo, soğuk zincir ve lojistik dikeyleri.</p>
+        <p class="src"><a href="https://www.voxelai.com/resources" target="_blank" rel="noopener noreferrer">voxelai.com</a> (üretici beyanı)</p></div>
+    </div>
+
+    <p class="subhead reveal" data-en="Türkiye local layer">Türkiye yerel katmanı</p>
+    <div class="grid">
+      <div class="ccard reveal"><div class="top"><h3 data-en="Authorised integrator software">Yetkili entegratör yazılımları</h3><span class="badge b-new" data-en="medium overlap">kesişim orta</span></div>
+        <p class="desc" data-en="Packages centred on official data transfer and prescription submission. Annual licence, pricing by number of professionals, accounting and remote training modules, cloud archive. Some describe AI support in risk assessment preparation.">Resmî veri aktarımı ve reçete gönderimi merkezli paketler. Yıllık lisans, profesyonel sayısına göre fiyatlama, muhasebe ve uzaktan eğitim modülleri, bulut arşiv. Bazıları risk değerlendirmesi hazırlığında yapay zekâ desteği tanımlıyor.</p>
+        <p class="meta" data-en="<b>Overlap:</b> medium. They touch the same user, but the product logic is submission and record keeping, not guided production for a zero knowledge user. There is no marketplace and no commission free direct matching."><b>Kesişim:</b> orta. Aynı kullanıcıya dokunuyorlar ama ürün mantığı gönderim ve kayıt; sıfır bilgi kullanıcısı için rehberli üretim değil. Pazar yeri ve komisyonsuz doğrudan eşleşme yok.</p>
+        <p class="src"><a href="https://isgbys.com/" target="_blank" rel="noopener noreferrer">isgbys.com</a></p></div>
+
+      <div class="ccard reveal" style="--i:1"><div class="top"><h3 data-en="Enterprise OHS and environment software">Kurumsal İSG ve çevre yazılımları</h3><span class="badge b-soft" data-en="low overlap">kesişim düşük</span></div>
+        <p class="desc" data-en="Long established, referenced by large organisations, modular and role based packages. Some state that they are AI based and carry features such as voice recorded non conformities.">Uzun süredir sahada olan, büyük kuruluş referanslı, modüler ve rol tabanlı paketler. Bazıları yapay zekâ tabanlı olduğunu belirtiyor ve sesli uygunsuzluk kaydı gibi özellikler taşıyor.</p>
+        <p class="meta" data-en="<b>Overlap:</b> low. The buyer is the OHS unit of a large organisation; they do not answer the individual professional's need to build their own practice."><b>Kesişim:</b> düşük. Alıcı büyük kuruluşun İSG birimi; bireysel uzmanın kendi işini kurma ihtiyacına cevap vermiyorlar.</p>
+        <p class="src"><a href="https://www.isgsis.com.tr/" target="_blank" rel="noopener noreferrer">isgsis.com.tr</a></p></div>
+
+      <div class="ccard reveal" style="--i:2"><div class="top"><h3 data-en="Training and content platforms">Eğitim ve içerik platformları</h3><span class="badge b-live" data-en="partnership candidate">ortaklık adayı</span></div>
+        <p class="desc" data-en="Remote training providers positioning quickly after 2 April 2026: content aligned with the new regulation, claims of workplace specific content within forty eight hours, partnership and commission models selling to existing consultants, packages embeddable into corporate learning systems.">2 Nisan 2026 sonrası hızla konumlanan uzaktan eğitim sağlayıcıları. Yeni yönetmeliğe uyumlu içerik, kırk sekiz saatte işyerine özgü içerik üretimi iddiası, ortaklık ve komisyon modelleriyle mevcut danışmanlara satış, kurumsal öğrenme sistemlerine gömülebilen paketler.</p>
+        <p class="meta" data-en="<b>Overlap:</b> low but worth watching. They feed on the same regulatory wave and reach the same user. Complementary rather than rival."><b>Kesişim:</b> düşük ama dikkat gerektiriyor. Aynı mevzuat dalgasından besleniyorlar ve aynı kullanıcıya ulaşıyorlar. Rakip değil tamamlayıcı.</p>
+        <p class="src"><a href="https://yeniisgmevzuati.com/" target="_blank" rel="noopener noreferrer">yeniisgmevzuati.com</a> (iddialar üretici beyanı)</p></div>
+    </div>
+
+    <p class="subhead reveal" data-en="Gulf local layer">Körfez yerel katmanı</p>
+    <div class="grid-2">
+      <div class="ccard reveal"><div class="top"><h3 data-en="HSEQ platform built for GCC regulation">GCC mevzuatına özgü HSEQ platformu</h3><span class="badge b-new" data-en="highest model similarity">model benzerliği en yüksek</span></div>
+        <p class="desc" data-en="Launched in May 2026 by the technology arm of a Dubai based facility management group. Bilingual, designed around regional licensing and standards, combining nine core functions in a single cloud ecosystem. Reaches SMEs through a network of consultancy firms rather than directly.">Mayıs 2026'da Dubai merkezli bir tesis yönetim grubunun teknoloji kolu tarafından çıkarıldı. İki dilli, bölge lisans ve standartlarına göre tasarlanmış, dokuz temel işlevi tek bulut ekosisteminde birleştiriyor. KOBİ'ye doğrudan değil, danışmanlık firmaları ağı üzerinden ulaşıyor.</p>
+        <p class="meta" data-en="<b>Overlap:</b> the highest model similarity in this scan. The difference: no Turkish, no connection to the official assignment system, and no income building dimension for the individual professional."><b>Kesişim:</b> taramadaki en yüksek model benzerliği. Fark: Türkçe yok, resmî atama sistemine bağlanmıyor, bireysel profesyonelin gelir kurma boyutu yok.</p>
+        <p class="src"><a href="https://www.technotime.net/13957" target="_blank" rel="noopener noreferrer">technotime.net</a></p></div>
+
+      <div class="ccard reveal" style="--i:1"><div class="top"><h3 data-en="Gulf focused voice reporting platforms">Körfez odaklı sesli raporlama platformları</h3><span class="badge b-new" data-en="feature overlap">özellik örtüşmesi</span></div>
+        <p class="desc" data-en="Regional platforms offering voice based incident reporting, guided investigation and compliance tracking across Gulf countries.">Körfez ülkeleri için sesli olay bildirimi, rehberli soruşturma ve uyum takibi sunan bölgesel platformlar.</p>
+        <p class="meta" data-en="<b>Overlap:</b> there is overlap on the voice field reporting feature. It shows that a voice flow alone is not a differentiator in that region."><b>Kesişim:</b> sesli saha raporu özelliğinde örtüşme var. Sesli akışın bölgede tek başına ayrıştırıcı olmadığını gösteriyor.</p>
+        <p class="src"><a href="https://hse.saaiyetech.com/" target="_blank" rel="noopener noreferrer">saaiyetech.com</a></p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ 6 · BÖLGELER ═══════════════════════════════════════════ -->
+<section class="s" id="bolgeler">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Target regions">Hedef bölgeler</span>
+      <h2 style="--i:1" data-en="Five geographies, five different entry logics.">Beş coğrafya, beş farklı giriş mantığı.</h2>
+      <p style="--i:2" data-en="The same product cannot enter every market the same way. For each region: the regulatory door that opens the market, the local competition, and a realistic entry path.">Aynı ürün her pazara aynı şekilde giremez. Her bölge için pazarı açan mevzuat kapısı, yerel rekabet ve gerçekçi giriş yolu ayrı ayrı.</p>
     </div>
     <div class="tbl-scroll reveal">
       <table class="main">
-        <thead><tr><th data-en="Player">Oyuncu</th><th data-en="Layer">Katman</th><th data-en="Role &amp; capabilities">Rol &amp; yapabildikleri</th></tr></thead>
+        <thead><tr>
+          <th data-en="Region">Bölge</th>
+          <th data-en="Regulatory door">Mevzuat kapısı</th>
+          <th data-en="Local competition">Yerel rekabet</th>
+          <th data-en="Entry path">Giriş yolu</th>
+          <th data-en="Priority">Öncelik</th>
+        </tr></thead>
         <tbody>
-          <tr><td class="co">Kontinus</td><td>İBYS</td><td data-en="Ankara; IBYS + İSG-KATİP firm transfer, OHS process management.">Ankara; İBYS + İSG-KATİP firma aktarımı, İSG süreç yönetimi.</td></tr>
-          <tr><td class="co">Uludağ Bilişim — NBYS</td><td>İBYS</td><td data-en="Authorized integrator; comprehensive IBYS program.">Yetkili entegratör; kapsamlı İBYS programı.</td></tr>
-          <tr><td class="co">AKY Bilişim — İSGBYS</td><td>İBYS</td><td data-en="Full IBYS for OSGB/workplace/expert; Ministry-authorized.">OSGB/işyeri/uzman için tam İBYS; Bakanlık yetkili.</td></tr>
-          <tr><td class="co">Halim ASA — Healthy İSG</td><td>İBYS</td><td data-en="Bursa; İSG-KATİP contract/assignment tracking, ~300k training certificates submitted.">Bursa; İSG-KATİP sözleşme/atama takibi, ~300k eğitim sertifikası gönderimi.</td></tr>
-          <tr><td class="co">eRevir</td><td data-en="IBYS + health">İBYS + sağlık</td><td data-en="OSGB health + OHS single platform; e-Prescription, Medula, İSG-KATİP transfer.">OSGB sağlık + İSG tek platform; e-Reçete, Medula, İSG-KATİP aktarımı.</td></tr>
-          <tr><td class="co">İSGSİS · MedicoSoft · İSGERP · ModernİSG</td><td>İBYS</td><td data-en="IBYS-compliant OHS process / ERP-style management; integrator content.">İBYS-uyumlu İSG süreç / ERP-tarzı yönetim; entegratör içerik.</td></tr>
-          <tr><td class="co">71 yetkili entegratör / 77 yazılım</td><td data-en="IBYS registry">İBYS registry</td><td data-en="Ministry-approved, data-sharing contracted. Full list: ibys.csgb.gov.tr. Mostly data-transfer only.">Bakanlık onaylı, veri-paylaşım sözleşmeli. Tam liste: ibys.csgb.gov.tr. Çoğu yalnız veri-aktarımı.</td></tr>
-          <tr><td class="co">Net OSGB · General · Nida · Esem · Anka Tek · EYS</td><td data-en="OSGB chains">OSGB zincirleri</td><td data-en="Field service with expert + physician + health staff; assignment by hazard class.">Uzman + hekim + sağlık personeli ile saha hizmeti; tehlike sınıfına göre görevlendirme.</td></tr>
-          <tr><td class="co">İSGT · Bulut · Yöntem · Kariyer Akademi</td><td data-en="Training">Eğitim/akademi</td><td data-en="180-hour expert training + exam prep + consultancy.">180 saat uzmanlık eğitimi + sınav hazırlık + danışmanlık.</td></tr>
-          <tr><td class="co">turkiyeosgbplatformu · osgblistesi · birosgb</td><td data-en="Directory">Dizin</td><td data-en="OSGB company listings — passive directory (the opposite of Safera's active matching).">OSGB firma listeleri — pasif dizin (Safera'nın aktif eşleştirmesinin tersi).</td></tr>
+          <tr><td class="co" data-en="Türkiye<span class='co-tag'>core market</span>">Türkiye<span class="co-tag">ana pazar</span></td>
+            <td data-en="Scope complete, transition exemption over, workplaces with a single employee included. The 2 April 2026 training regulation forces every training record to be renewed. Without an official assignment the service counts as non existent. State support exists for hazardous workplaces with fewer than ten employees.">Kapsam tamamlandı, geçiş muafiyeti bitti, tek çalışanlı işyeri dahil yükümlü. 2 Nisan 2026 eğitim yönetmeliği tüm eğitim belgelerini yeniletiyor. Resmî atama yoksa hizmet yok hükmünde. Ondan az çalışanlı tehlikeli işyerlerine devlet desteği var.</td>
+            <td data-en="The authorised integrator and established software layer is crowded but institution focused and submission centred. We did not identify a structure centred on the individual professional and the zero knowledge user.">Yetkili entegratör ve yerleşik yazılım katmanı kalabalık ama kurum odaklı ve gönderim merkezli. Bireysel uzmanı ve sıfır bilgi kullanıcısını merkeze alan bir yapı tespit etmedik.</td>
+            <td data-en="Direct. The product is live, language and regulation are local, price is competitive. The one thing missing is proof of a paying user.">Doğrudan. Ürün canlı, dil ve mevzuat yerli, fiyat rekabetçi. Tek eksik ödeyen kullanıcı kanıtı.</td>
+            <td><b>1</b></td></tr>
+          <tr><td class="co" data-en="Azerbaijan<span class='co-tag'>expansion 1</span>">Azerbaycan<span class="co-tag">genişleme 1</span></td>
+            <td data-en="February 2026 amendments: a safety engineer position at the fifty employee threshold, assignment or a specialist position below it. Suspension from work tied to training and examination. Remote work safety defined in the contract.">Şubat 2026 değişiklikleri: elli çalışan eşiğiyle mühendis kadrosu, altında görevlendirme veya uzman kadrosu. Eğitim ve muayeneye bağlı işten uzaklaştırma. Uzaktan çalışmada İSG sözleşmede tanımlanıyor.</td>
+            <td data-en="No local software layer identified in the scan. International players sell to the energy sector at enterprise level; the SME layer is empty.">Taramada yerel yazılım katmanı tespit edilmedi. Uluslararası oyuncular enerji sektörüne kurumsal satış yapıyor, KOBİ katmanı boş.</td>
+            <td data-en="The closest market to Türkiye in language and regulatory structure. Making the rule engine country parameterised and localising the corpus would be enough. A local partner is needed.">Dil ve mevzuat yapısı Türkiye'ye en yakın pazar. Kural motorunun ülke parametreli hâle gelmesi ve korpusun yerelleşmesi yeterli. Yerel ortak gerekli.</td>
+            <td><b>2</b></td></tr>
+          <tr><td class="co" data-en="Kazakhstan<span class='co-tag'>expansion 2</span>">Kazakistan<span class="co-tag">genişleme 2</span></td>
+            <td data-en="2026 declared the year of digitalisation and AI. The Digital Code is in force. Electronic employment contracts move to a single system, health screening notification is being digitalised, a technical safety inspector role is arriving, and a risk based industrial standard is in preparation.">2026 dijitalleşme ve yapay zekâ yılı. Dijital Kod yürürlükte. Elektronik iş sözleşmesi tek sisteme taşınıyor, sağlık taraması bildirimi dijitalleşiyor, teknik iş güvenliği müfettişi rolü geliyor, risk tabanlı endüstriyel standart hazırlanıyor.</td>
+            <td data-en="No local software layer visible. Energy operators use their own systems. The national AI platform emphasis may filter foreign solutions.">Yerel yazılım katmanı görünmüyor. Enerji operatörleri kendi sistemlerini kullanıyor. Ulusal yapay zekâ platformu vurgusu yabancı çözümlere filtre kurabilir.</td>
+            <td data-en="Local partnership looks mandatory. Data residency and digital sovereignty requirements must be analysed in advance. Direct entry is not realistic.">Yerel ortaklık zorunlu görünüyor. Veri yerleşimi ve dijital egemenlik gereklilikleri önceden analiz edilmeli. Doğrudan giriş gerçekçi değil.</td>
+            <td><b>3</b></td></tr>
+          <tr><td class="co" data-en="Gulf and MENA<span class='co-tag'>capital door</span>">Körfez ve MENA<span class="co-tag">sermaye kapısı</span></td>
+            <td data-en="A national target of halving workplace deaths by 2030. Audits and penalties are tightening, health screening requirements are widening, under reporting is common.">2030'a kadar işyeri ölümlerinde yüzde elli azalma hedefi. Denetim ve ceza sıkılaşıyor, sağlık taraması gereklilikleri genişliyor, eksik bildirim yaygın.</td>
+            <td data-en="The most crowded region. An enterprise player set up a regional centre in January 2026. In May 2026 a locally regulated SME and consultant network platform launched. Regional voice reporting platforms also exist.">En yoğun bölge. Kurumsal bir oyuncu Ocak 2026'da bölge merkezini kurdu. Mayıs 2026'da yerel mevzuata özgü KOBİ ve danışman ağı odaklı platform çıktı. Sesli raporlama yapan bölgesel platformlar da var.</td>
+            <td data-en="To be used as an investor and partnership door rather than a sales market. The Turkish language and official assignment advantages do not apply here.">Ürün satışı için değil yatırımcı ve ortaklık kapısı olarak kullanılmalı. Türkçe ve resmî atama avantajı burada geçerli değil.</td>
+            <td><b>4</b></td></tr>
+          <tr><td class="co" data-en="Egypt, Morocco, Indonesia, Nigeria<span class='co-tag'>priority 2</span>">Mısır, Fas, Endonezya, Nijerya<span class="co-tag">öncelik 2</span></td>
+            <td data-en="Mandatory intermediary structures and a large SME base carry similarities; no dated regulatory movement was identified in this scan.">Zorunlu aracı yapısı ve büyük KOBİ tabanı benzerliği taşıyor; bu taramada tarihli mevzuat hareketi tespit edilmedi.</td>
+            <td data-en="No local agentic OHS platform visible in the scan.">Taramada yerel agentic İSG platformu görünmüyor.</td>
+            <td data-en="No action in this round. To be re evaluated after the pilot and first revenue, with the language and regulation cost calculated.">Bu turda aksiyon yok. Pilot ve ilk gelir sonrası, dil ve mevzuat maliyeti hesaplanarak yeniden değerlendirilir.</td>
+            <td><b>5</b></td></tr>
         </tbody>
       </table>
     </div>
-    <p class="mtx-hint" style="display:block" data-en="⚠ TR software names verified by live search; the full &amp; official record is the Ministry's 71-firm IBYS list. This layer is a &quot;compliance-paperwork automation&quot; market; the guided-simulation + solo-expert-marketplace + agentic-Era category is empty in Türkiye.">⚠ TR yazılım adları canlı aramayla doğrulandı; tam &amp; resmi kayıt Bakanlığın 71-firmalık İBYS listesidir. Bu katman "uyum-evrakı otomasyonu" pazarıdır; rehberli-simülasyon + bireysel-uzman-pazar-yeri + agentic-Era kategorisi TR'de boştur.</p>
+    <p class="mtx-hint">← <span data-en="scroll the table horizontally">tabloyu yatay kaydır</span></p>
   </div>
 </section>
 
-<!-- ══ 4 · MEVZUAT & SÜREÇ ════════════════════════════════════ -->
-<section class="s tint" id="mevzuat">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow" data-en="Legislation &amp; Manual Process">Mevzuat &amp; Manuel Süreç</span>
-      <h2 style="--i:1" data-en="Mandatory — but how, from whom, at what cost?">Zorunlu — ama nasıl, kimden, ne ücretle?</h2>
-    </div>
-    <div class="prob-grid">
-      <div class="pbox uzman reveal">
-        <span class="pbox-label" data-en="Legal backbone (6331)">Yasal omurga (6331)</span>
-        <h3 data-en="Mandatory for almost everyone since Jan 2025">Ocak 2025'ten beri neredeyse herkese zorunlu</h3>
-        <ul>
-          <li data-en="<b>Jan 2025:</b> full effect — low-hazard &lt;50 and single-employee workplaces + public sector require an OHS expert + workplace physician (opened after 5 postponements)."><b>Ocak 2025:</b> tam yürürlük — az tehlikeli &lt;50 ve tek-çalışanlı işyerleri + kamu, İSG uzmanı + işyeri hekimi gerektirir (5 ertelemeden sonra açıldı).</li>
-          <li data-en="<b>Hazard class:</b> Low / Hazardous / Very Hazardous → sets all obligations (training hours, risk-assessment cycle, exams)."><b>Tehlike sınıfı:</b> Az / Tehlikeli / Çok Tehlikeli → tüm yükümlülükleri belirler (eğitim saati, RAM periyodu, muayene).</li>
-          <li data-en="<b>Certification:</b> 180-hour training → ÖSYM exam (≥70) → class C → experience → B → A."><b>Sertifika:</b> 180 saat eğitim → ÖSYM sınavı (≥70) → C → deneyim → B → A.</li>
-          <li data-en="<b>Service time:</b> expert 10 min/employee/month · physician 5 min/employee/month."><b>Hizmet süresi:</b> uzman 10 dk/çalışan/ay · hekim 5 dk/çalışan/ay.</li>
-        </ul>
-      </div>
-      <div class="pbox sirket reveal" style="--i:1">
-        <span class="pbox-label" data-en="Manual service-procurement flow (today)">Manuel hizmet-alma akışı (bugün)</span>
-        <h3 data-en="Closed, manual, consultant-dependent">Kapalı, manuel, danışman-bağımlı</h3>
-        <ul>
-          <li data-en="Find an OSGB / freelance expert-physician (usually by phone/contacts).">OSGB / serbest uzman-hekim bul (genelde telefon/tanıdık).</li>
-          <li data-en="Sign a contract → mutual approval on <b>İSG-KATİP</b>.">Sözleşme imzala → <b>İSG-KATİP</b>'te karşılıklı onay.</li>
-          <li data-en="e-Beyan notification within <b>7 business days</b> (skipped = service deemed not received)."><b>7 iş günü</b> içinde e-Beyan bildirimi (atlanırsa hizmet alınmamış sayılır).</li>
-          <li data-en="Risk assessment, emergency plan, training, health surveillance → produce documents, transfer to the Ministry via IBYS.">RAM, acil durum planı, eğitim, sağlık gözetimi → evrak üret, İBYS ile Bakanlığa aktar.</li>
-          <li data-en="Gap at audit → heavy administrative fine.">Denetimde eksik → ağır idari para cezası.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="takeaway reveal">
-      <div class="tl-lbl" data-en="Safera's answer">Safera'nın cevabı</div>
-      <p data-en="This flow is opaque for the SME doing it for the first time / once a year. Safera makes it <b>guided + simulatable + self-serve</b> — Era prepares the documents, the human approves.">Bu akış ilk-kez/yılda-bir yapan KOBİ için opak. Safera bunu <b>rehberli + simüle-edilebilir + self-servis</b> yapıyor — Era evrakı hazırlar, insan onaylar.</p>
-    </div>
-  </div>
-</section>
 
-<!-- ══ 5 · SAHA İÇGÖRÜLERİ ════════════════════════════════════ -->
-<section class="s" id="saha">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow" data-en="Field Insights">Saha İçgörüleri</span>
-      <h2 style="--i:1" data-en="How you become an expert / how you buy the service.">Nasıl uzman olunur / nasıl hizmet alınır.</h2>
-    </div>
-    <div class="prob-grid">
-      <div class="pbox uzman reveal">
-        <span class="pbox-label" data-en="Solo-expert journey (supply side)">Bireysel uzman yolculuğu (arz)</span>
-        <ul>
-          <li data-en="Engineer/architect/technical-teacher/associate-OHS degree → 180 hours → exam → starts as <b>class C</b>.">Mühendis/mimar/teknik öğretmen/ön-lisans İSG → 180 saat → sınav → <b>C sınıfı</b> başlar.</li>
-          <li data-en="<b>Most start their career inside an institution</b> (many workplaces at once → fast experience) — an intermediated model."><b>Çoğu kariyere kurum bünyesinde başlar</b> (aynı anda çok işyeri → hızlı deneyim) — aracılı bir model.</li>
-          <li data-en="Salary: low at start (OSGB), rises with experience + class; different in the public sector.">Maaş: başta düşük (OSGB), deneyim + sınıf ile artar; kamuda farklı.</li>
-          <li data-en="<b>Insight:</b> the expert wants direct work + fair earnings + visibility → Safera marketplace thesis (no intermediary)."><b>İçgörü:</b> uzman doğrudan iş + adil kazanç + görünürlük istiyor → Safera pazar yeri tezi (aracısız).</li>
-        </ul>
-      </div>
-      <div class="pbox sirket reveal" style="--i:1">
-        <span class="pbox-label" data-en="SME / employer (demand side)">KOBİ / işveren (talep)</span>
-        <ul>
-          <li data-en="Most employers do OHS <b>for the first time or once a year</b> → the process is scary/unknown.">Çoğu işveren İSG'yi <b>ilk kez ya da yılda bir</b> yapıyor → süreç korkutucu/bilinmez.</li>
-          <li data-en="Cost is per-employee over gross minimum wage; OSGB for &lt;50, mixed-freelance advantageous for 50+.">Maliyet çalışan-başı brüt asgari ücret üzerinden; &lt;50 için OSGB, 50+ için serbest karma avantajlı.</li>
-          <li data-en="Those who think &quot;I got the service&quot; but skip e-Beyan/KATİP approval → fined.">"Hizmet aldım" sanıp e-Beyan/KATİP onayını atlayan → cezalı.</li>
-          <li data-en="<b>Insight:</b> guidance + &quot;see/try first&quot; + automatic KATİP/paperwork = the biggest pain → Safera Simulator + Era."><b>İçgörü:</b> rehber + "önce gör/dene" + otomatik KATİP/evrak = en büyük acı → Safera Simülatör + Era.</li>
-        </ul>
-      </div>
-    </div>
-    <p class="mtx-hint" style="display:block" data-en="The YouTube/blog ecosystem is full of &quot;how to become an OHS expert&quot; (cert/salary/exam) and &quot;how to buy OHS service&quot; (contract/KATİP/cost) — high search volume = high organic traction potential (the free simulator flows here).">YouTube/blog ekosistemi "nasıl İSG uzmanı olunur" (sertifika/maaş/sınav) ve "OSGB hizmeti nasıl alınır" (sözleşme/KATİP/maliyet) ile dolu — yüksek arama hacmi = yüksek organik traction (ücretsiz simülatör buraya akar).</p>
-  </div>
-</section>
-
-<!-- ══ 6 · BÖLGE & ÜLKE ═══════════════════════════════════════ -->
-<section class="s tint" id="bolge">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow" data-en="Region &amp; Country">Bölge &amp; Ülke</span>
-      <h2 style="--i:1" data-en="Where the demand — and the gaps — are.">Talep ve boşluklar nerede.</h2>
-    </div>
-    <div class="tbl-scroll reveal">
-      <table class="main">
-        <thead><tr><th data-en="Region / Country">Bölge / Ülke</th><th data-en="Market &amp; regulation">Pazar &amp; regülasyon</th><th data-en="Dominant players">Baskın oyuncular</th><th data-en="Need gap">İhtiyaç boşluğu</th></tr></thead>
-        <tbody>
-          <tr><td class="co">Kuzey Amerika</td><td data-en="37–44% share; mature OSHA culture, early AI adoption; PSM, chemicals.">%37–44 pay; olgun OSHA kültürü, erken AI; PSM, kimyasal.</td><td>VelocityEHS, Cority, Intelex</td><td data-en="Enterprise saturated; SME self-serve + AI still open.">Kurumsal doygun; KOBİ self-servis + AI hâlâ açık.</td></tr>
-          <tr><td class="co">Avrupa</td><td data-en="27–31%; ISO 45001/14001, CSRD/ESG, DGUV; EU directives.">%27–31; ISO 45001/14001, CSRD/ESG, DGUV; AB direktifleri.</td><td>Quentic, EcoOnline, Enablon</td><td data-en="Multi-country compliance + ESG integration; SME guidance.">Çoklu-ülke uyum + ESG; KOBİ rehberlik.</td></tr>
-          <tr><td class="co">APAC</td><td data-en="22–23%, fastest (~10% CAGR); industrialization + developing regulation.">%22–23, en hızlı (~%10 CAGR); sanayileşme + gelişen mevzuat.</td><td data-en="Global players' expansion + local">Global yayılım + yerel</td><td data-en="Local-regulation + mobile-field + affordable — big gap.">Yerel-mevzuat + mobil-saha + uygun fiyat — büyük boşluk.</td></tr>
-          <tr><td class="co">Orta Doğu / GCC</td><td data-en="UAE OSHAD-SF (Abu Dhabi), Federal 33/2021; Saudi 2025 (A/B/C, OHS officer 100+); heat-stress bans.">BAE OSHAD-SF (Abu Dabi), Federal 33/2021; S.Arabistan 2025 (A/B/C, OHS officer 100+); sıcaklık-stresi yasakları.</td><td>SmartQHSE, Sodales</td><td data-en="Multi-jurisdiction + heat + contractor; Arabic/Turkish AI guidance empty.">Çoklu-yargı + sıcaklık + yüklenici; Arapça/Türkçe AI rehber boş.</td></tr>
-          <tr class="us-row"><td class="co">Türkiye</td><td data-en="2.23M mandatory workplaces; 6331; İSG-KATİP/IBYS; newly opened + SME-heavy.">2,23M zorunlu işyeri; 6331; İSG-KATİP/İBYS; yeni-açılan + KOBİ-ağırlıklı.</td><td data-en="IBYS integrators + OSGB chains (paperwork/people)">İBYS entegratörleri + OSGB (evrak/insan)</td><td data-en="Agentic guidance + solo-expert marketplace + free simulator = SAFERA.">Agentic rehber + bireysel-uzman pazar yeri + ücretsiz simülatör = SAFERA.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 7 · ŞİRKET TÜRÜ İHTİYAÇLARI ════════════════════════════ -->
-<section class="s" id="ihtiyac">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow" data-en="Needs by Company Type">Şirket Türüne Göre İhtiyaç</span>
-      <h2 style="--i:1" data-en="Today's solution vs. the Safera answer.">Bugünkü çözüm vs. Safera karşılığı.</h2>
-    </div>
-    <div class="tbl-scroll reveal">
-      <table class="main">
-        <thead><tr><th data-en="Company type">Şirket türü</th><th data-en="Most critical need">En kritik ihtiyaç</th><th data-en="Solved today by">Bugün nasıl çözülüyor</th><th data-en="Safera answer">Safera karşılığı</th></tr></thead>
-        <tbody>
-          <tr><td class="co">Mikro/KOBİ — Az Tehlikeli</td><td data-en="Knowing what to do + cheap compliance + KATİP automation">Ne yapacağını bilme + ucuz uyum + KATİP otomasyonu</td><td data-en="Full-package to an OSGB (opaque), consultant-dependent">OSGB'ye tam-paket (opak), danışmana bağımlı</td><td data-en="Role-specific <b>Simulator</b> + free trial + find an expert + Era produces documents">Rol-özgün <b>Simülatör</b> + ücretsiz dene + uzman bul + Era evrak üretir</td></tr>
-          <tr><td class="co">KOBİ — Tehlikeli</td><td data-en="Risk assessment + training + periodic checks + audit prep">RAM + eğitim + periyodik kontrol + denetim hazırlık</td><td data-en="OSGB + Excel + manual paperwork">OSGB + Excel + manuel evrak</td><td data-en="Era risk-assessment/training/checks + <b>Audit Readiness</b> score">Era RAM/eğitim/kontrol + <b>Denetim Hazırlığı</b> skoru</td></tr>
-          <tr><td class="co">Çok Tehlikeli</td><td data-en="Deep risk + field evidence + occupational disease + inspector focus">Derin risk + saha kanıtı + meslek hastalığı + müfettiş odağı</td><td data-en="Senior consultant + enterprise software (expensive)">Senior danışman + kurumsal yazılım (pahalı)</td><td data-en="Sector-smart Era + <b>approved document archive</b> + audit-ready records">Sektör-zekâlı Era + <b>onaylı belge arşivi</b> + denetime hazır kayıt</td></tr>
-          <tr class="us-row"><td class="co">Bireysel uzman / hekim</td><td data-en="Direct work (no intermediary) + document generation + CRM + evidence">Doğrudan iş (aracısız) + belge üretimi + CRM + kanıt</td><td data-en="Tied to an OSGB (commission) or scattered tools">OSGB'ye bağlı (komisyon) veya dağınık araçlar</td><td data-en="<b>Marketplace</b> (deterministic matching) + Era documents + CRM + evidence"><b>Pazar yeri</b> (deterministik eşleşme) + Era belge + CRM + kanıt</td></tr>
-          <tr><td class="co">OSGB</td><td data-en="Expert pool + multi-client + IBYS transfer">Uzman havuzu + çok-müşteri + İBYS aktarım</td><td data-en="Existing IBYS software">İBYS yazılımı (mevcut)</td><td data-en="Not an enemy, a customer — uses Era for pool/compliance management">Düşman değil müşteri — Era'yı havuz/uyum yönetimi için kullanır</td></tr>
-          <tr><td class="co">Çoklu-ülke / GCC</td><td data-en="Multi-jurisdiction compliance (TR+GCC+ISO 45001)">Çoklu-yargı uyum (TR+GCC+ISO 45001)</td><td data-en="Several consultants/tools">Birden çok danışman/araç</td><td data-en="Expansion: i18n + country-regulation modules (Phase 4)">Genişleme: i18n + ülke-mevzuat modülleri (Faz 4)</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 8 · KONUMLANDIRMA & BOŞLUK ═════════════════════════════ -->
+<!-- ══ 7 · KONUMLANDIRMA ══════════════════════════════════════ -->
 <section class="s tint" id="konum">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow" data-en="Positioning &amp; Gap">Konumlandırma &amp; Boşluk</span>
-      <h2 style="--i:1" data-en="The moat: an intersection no one holds.">Hendek: kimsenin tutmadığı kesişim.</h2>
+      <span class="eyebrow" data-en="Positioning">Konumlandırma</span>
+      <h2 style="--i:1" data-en="The moat is not geography, it is focus meeting data.">Hendek coğrafyada değil, odak ile veri kesişiminde.</h2>
     </div>
+
     <div class="intersection reveal">
-      <p data-en="Enterprise global players are <b>English + large-company + expensive + consultant-led</b>; even the closest vision (Ideagen Mazlan) targets <b>large regulated enterprises</b>. The TR IBYS ecosystem automates <b>paperwork/data-transfer</b>; OSGBs are <b>manpower + intermediary</b>.">Kurumsal global oyuncular <b>İngilizce + büyük şirket + pahalı + danışman</b>; en yakın vizyon (Ideagen Mazlan) bile <b>büyük regülasyonlu kurum</b> odaklı. TR İBYS ekosistemi <b>evrak/veri-aktarımı</b> otomatikleştirir; OSGB'ler <b>insan-gücü + aracı</b>.</p>
-      <p style="margin-top:1rem" data-en="<b>Safera = Turkish + SME &amp; solo-expert + free role-specific Simulator (frictionless acquisition) + deterministic marketplace (no intermediary) + approval-gated agentic Era (turns bureaucracy into conversation) + audit-ready records.</b> We haven't identified a player holding this five-way intersection — global or Turkish."><b>Safera = Türkçe + KOBİ &amp; bireysel-uzman + ücretsiz rol-özgün Simülatör (sürtünmesiz edinim) + deterministik pazar yeri (aracısız) + onaylı agentic Era (bürokrasiyi sohbete çevirir) + denetime hazır kayıt düzeni.</b> Bu beşli kesişimi birlikte tutan bir oyuncu tespit etmedik — ne globalde ne TR'de.</p>
+      <p data-en="Global enterprise players are <b>English, large company, high price, consultant led</b>; even the closest vision serves <b>large regulated organisations</b>. The Turkish authorised integrator ecosystem automates <b>data transfer and record keeping</b>. Training platforms sell <b>content</b>. The Gulf platform built the same local depth in another language and another jurisdiction.">Küresel kurumsal oyuncular <b>İngilizce, büyük şirket, yüksek fiyat, danışman güdümlü</b>; en yakın vizyon bile <b>büyük regülasyonlu kurumlara</b> hizmet ediyor. TR yetkili entegratör ekosistemi <b>veri aktarımı ve kayıt tutmayı</b> otomatikleştiriyor. Eğitim platformları <b>içerik</b> satıyor. Körfez'deki platform aynı yerel derinliği başka bir dilde ve başka bir mevzuatta kurdu.</p>
+      <p style="margin-top:1rem" data-en="<b>Being local protects but does not defend.</b> What defends is being local together with focusing on a specific user, the individual professional, and a specific capability, production from a verified corpus."><b>Yerel olmak korur ama savunmaz.</b> Savunan şey, yerel olmakla birlikte belirli bir kullanıcıya, bireysel profesyonele, ve belirli bir yeteneğe, doğrulanmış korpustan üretime odaklanmaktır.</p>
     </div>
+
+    <div class="seal reveal">
+      <h3 data-en="In this scan we did not identify a product carrying all five of these at once">Bu taramada aşağıdaki beş özelliği aynı anda taşıyan ürün tespit edilmedi</h3>
+      <ul>
+        <li data-en="<b>Embedded in Turkish and Turkish regulation</b> · answers from a verified source, documents in official format"><b>Türkçe ve Türkiye mevzuatına gömülü</b> · doğrulanmış kaynaktan mevzuat cevabı, resmî biçime uygun belge</li>
+        <li data-en="<b>Built for the zero knowledge user</b> · a flow an employer who does not know the field and a newly certified specialist can complete"><b>Sıfır bilgi kullanıcısını hedefleyen</b> · alanı bilmeyen işverenin ve yeni sertifikalı uzmanın tamamlayabildiği akış</li>
+        <li data-en="<b>Supports the individual professional in building their own practice</b> · a tool working for one person, not a corporate unit"><b>Bireysel profesyonelin kendi işini kurmasını destekleyen</b> · kurumsal birime değil tek kişiye çalışan araç</li>
+        <li data-en="<b>Commission free direct matching</b> · no revenue is taken from the marketplace; revenue comes only from subscription"><b>Komisyonsuz doğrudan eşleşme</b> · pazar yerinden gelir alınmıyor, gelir yalnız abonelikten</li>
+        <li data-en="<b>Approval gated agentic production</b> · official submissions are never made, only prepared; every legal reference comes from a verified source"><b>Onay kapılı agentic üretim</b> · resmî gönderim yapılmıyor yalnız hazırlanıyor, her mevzuat atfı doğrulanmış kaynaktan</li>
+      </ul>
+      <p class="note" data-en="This is not a claim of having no competition. It is the observation that, within the scope and date of this scan, no product carrying these five together was found. The scan is limited to global analyst publications, regional press, provider sites and startup databases.">Bu bir "rakipsiz" iddiası değildir. Bu taramanın kapsamında ve tarihinde bu beş özelliği birlikte taşıyan bir ürüne rastlanmadığı tespitidir. Tarama küresel analist yayınları, bölgesel basın, sağlayıcı siteleri ve girişim veri tabanlarıyla sınırlıdır.</p>
+    </div>
+
     <div class="grid-2" style="margin-top:1.6rem">
       <div class="pbox uzman reveal">
-        <span class="pbox-label" data-en="Safera's advantage">Safera'nın avantajı</span>
+        <span class="pbox-label" data-en="What the scan confirms">Taramanın doğruladığı</span>
         <ul>
-          <li data-en="Frictionless entry to the newly opened 2.23M mandatory market (free simulator, low cash-CAC).">Yeni-açılan 2,23M zorunlu pazara sürtünmesiz giriş (ücretsiz simülatör, düşük nakit-CAC).</li>
-          <li data-en="Two-sided network effect (expert↔SME) + organic data → accident-prediction moat.">İki-taraflı ağ etkisi (uzman↔KOBİ) + organik veri → kaza-tahmin moat.</li>
-          <li data-en="Agentic Era + deterministic guardrail (trust you can sell in a regulated field).">Agentic Era + deterministik guardrail (regülasyonda satılabilir güven).</li>
-          <li data-en="Low COGS (Groq free tier + manual = 0 tokens) + mandatory regulation = low churn.">Düşük COGS (Groq ücretsiz katman + manuel = 0 token) + zorunlu regülasyon = düşük churn.</li>
+          <li data-en="The category is real: over twelve months many vendors moved towards agents, and analysts frame human verification as a requirement rather than a preference.">Kategori gerçek: on iki ayda birçok satıcı ajanlara yöneldi ve analistler insan doğrulamasını tercih değil şart olarak çerçeveliyor.</li>
+          <li data-en="The approval gate, the verified source and the prepare but never submit boundary are exactly what the sector reports list as the missing governance layer.">Onay kapısı, doğrulanmış kaynak ve hazırla ama gönderme sınırı, sektör raporlarının eksik yönetişim katmanı olarak saydığı şeyin tam karşılığı.</li>
+          <li data-en="The 2 April 2026 regulation makes workplace specific content a legal requirement rather than a convenience.">2 Nisan 2026 yönetmeliği, işyerine özgü içeriği bir kolaylık değil mevzuat gereği hâline getiriyor.</li>
+          <li data-en="Small teams can now ship serious products in this category; scale is no longer the moat it was.">Küçük ekipler bu kategoride ciddi ürün çıkarabiliyor; ölçek eskisi kadar hendek değil.</li>
         </ul>
       </div>
       <div class="pbox sirket reveal" style="--i:1">
-        <span class="pbox-label" data-en="Risks / to close">Riskler / kapatılacaklar</span>
+        <span class="pbox-label" data-en="What the scan warns about">Taramanın uyardığı</span>
         <ul>
-          <li data-en="Global players are turning agentic (Ideagen Mazlan, Gensuite Genie) → could come to TR; local-regulation + Turkish + SME depth is the defense.">Global oyuncular agentic'e dönüyor (Ideagen Mazlan, Gensuite Genie) → TR'ye inebilir; yerel-mevzuat + Türkçe + KOBİ derinliği savunma.</li>
-          <li data-en="IBYS integration (real KATİP) = lock-in; priority.">İBYS entegrasyonu (gerçek KATİP) = kilitlenme; öncelik.</li>
-          <li data-en="Make OSGBs a channel, not a rival (see Needs table).">OSGB'leri rakip değil kanal yap (İhtiyaç tablosu).</li>
-          <li data-en="Payments/live billing (Phase 2) + KVKK/local-server trust.">Ödeme/canlı tahsilat (Faz 2) + KVKK/yerel-sunucu güveni.</li>
+          <li data-en="The word agentic has inflated. From here on the story is told with evidence, not with the category name.">"Agentic" kelimesi enflasyona uğradı. Bundan sonra anlatı kategoriyle değil kanıtla kurulur.</li>
+          <li data-en="Enterprise players are moving downmarket. Language, price and the official assignment system still protect the Turkish SME segment, but that protection does not come from the product.">Kurumsal oyuncular aşağı iniyor. Dil, fiyat ve resmî atama sistemi TR KOBİ segmentini hâlâ koruyor ama bu koruma üründen gelmiyor.</li>
+          <li data-en="Opening compliance data to general purpose assistants may commoditise the assistant layer; the defence is the verified corpus and the document format, not the chat surface.">Uyum verisinin genel amaçlı asistanlara açılması asistan katmanını metalaştırabilir; savunma sohbet yüzeyi değil, doğrulanmış korpus ve belge biçimi.</li>
+          <li data-en="The same idea appears in other geographies at the same time. The idea itself is not a defensible asset; a working product and a paying user are.">Aynı fikir başka coğrafyalarda aynı anda çıkıyor. Fikrin kendisi savunulabilir bir varlık değil; çalışan ürün ve ödeyen kullanıcı öyle.</li>
         </ul>
       </div>
     </div>
+
     <div class="pitch-box reveal">
       <div class="lbl" data-en="Bottom line">Sonuç</div>
-      <p data-en="The category Safera competes in <b>does not yet exist</b> — we have to build it and educate the market. The closest threats are not the global agentic players but <b>the inertia of Excel/OSGB</b> and simple AI bolted onto existing IBYS software. Speed + local depth is the moat.">Safera'nın yarıştığı kategori <b>henüz yok</b> — onu inşa edip pazarı eğitmemiz gerek. En yakın tehdit global agentic oyuncular değil, <b>Excel/OSGB ataleti</b> ve mevcut İBYS yazılımına eklenmiş basit AI. Hız + yerel derinlik hendektir.</p>
+      <p data-en="A competitor scan does not measure willingness to pay. This document says how large the market is, who is doing what, and what changed. It does not say whether anyone will pay. That answer comes only from people, and <b>this document does not replace the discovery interview: it sharpens its questions.</b>">Rakip taraması ödeme istekliliğini ölçmez. Bu belge pazarın ne kadar büyük olduğunu, kimin ne yaptığını ve neyin değiştiğini söylüyor. Kimsenin ödeyip ödemeyeceğini söylemiyor. O cevap yalnız insandan gelir ve <b>bu belge keşif görüşmesinin yerine geçmez, onun sorularını keskinleştirir.</b></p>
     </div>
   </div>
 </section>
 
-<!-- ══ 9 · KAYNAKLAR ══════════════════════════════════════════ -->
+
+<!-- ══ 8 · KAYNAKLAR ══════════════════════════════════════════ -->
 <section class="s" id="kaynak">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow" data-en="Sources">Kaynaklar</span>
-      <h2 style="--i:1" data-en="Live web research, June 2026">Canlı web araması, Haziran 2026</h2>
+      <span class="eyebrow" data-en="Source index">Kaynak dizini</span>
+      <h2 style="--i:1" data-en="Every claim rests on a link in this list.">Her iddia bu listedeki bir bağlantıya dayanıyor.</h2>
+      <p style="--i:2" data-en="Web scan dated 22 August 2026; only dated and linked developments were included.">22 Ağustos 2026 tarihli web taraması; yalnız tarihli ve bağlantılı gelişmeler alındı.</p>
     </div>
     <div class="caveat reveal">
+      <h3 data-en="Türkiye legislation and official sources">Türkiye mevzuat ve resmî kaynak</h3>
       <ul>
-        <li data-en="EHS software rankings: gartner.com/reviews/market/ehs-software · verdantix.com (Green Quadrant 2025) · G2 / Capterra">EHS yazılım sıralama: gartner.com/reviews/market/ehs-software · verdantix.com (Green Quadrant 2025) · G2 / Capterra</li>
-        <li data-en="Ideagen / Mazlan / acquisitions: ideagen.com/products/ideagen-ehs · ideagen.com/company/news · verdantix.com (Mazlan agentic AI EHSQ)">Ideagen / Mazlan / satın almalar: ideagen.com/products/ideagen-ehs · ideagen.com/company/news · verdantix.com (Mazlan agentic AI EHSQ)</li>
-        <li data-en="Market size / region: mordorintelligence.com · custommarketinsights.com · grandviewresearch.com · marketsandmarkets.com">Pazar büyüklüğü / bölge: mordorintelligence.com · custommarketinsights.com · grandviewresearch.com · marketsandmarkets.com</li>
-        <li data-en="Europe / Quentic / Preventeo: quentic.com · verdantix.com (European EHS trends)">Avrupa / Quentic / Preventeo: quentic.com · verdantix.com (Avrupa EHS trendleri)</li>
-        <li data-en="GCC / UAE OSHAD-SF / Saudi: smartqhse.com · middleeastbriefing.com · sodalessolutions.com · u.ae">GCC / BAE OSHAD-SF / Suudi: smartqhse.com · middleeastbriefing.com · sodalessolutions.com · u.ae</li>
-        <li data-en="Türkiye IBYS/OSGB software: ibys.csgb.gov.tr/yetkilifirmalar.aspx · kontinus.com · uludagbilisim.com · isgbys.com · erevir.com · halimasa.com.tr · osgb.net">Türkiye İBYS/OSGB yazılım: ibys.csgb.gov.tr/yetkilifirmalar.aspx · kontinus.com · uludagbilisim.com · isgbys.com · erevir.com · halimasa.com.tr · osgb.net</li>
-        <li data-en="TR legislation / process / cost: csgb.gov.tr · turkiye.gov.tr/acshb-isg-katip · nidaosgb.com.tr · ankatekosgb.com.tr">TR mevzuat / süreç / maliyet: csgb.gov.tr · turkiye.gov.tr/acshb-isg-katip · nidaosgb.com.tr · ankatekosgb.com.tr</li>
-        <li data-en="Becoming an expert / buying service: isgtakademi.com · bulutakademi.com.tr · yontemakademi.com.tr · generalosgb.com · meslekmaas.com">Uzman olma / hizmet alma: isgtakademi.com · bulutakademi.com.tr · yontemakademi.com.tr · generalosgb.com · meslekmaas.com</li>
+        <li><a href="https://www.resmigazete.gov.tr/eskiler/2026/04/20260402-2.htm" target="_blank" rel="noopener noreferrer">Resmî Gazete 33212</a> · <span data-en="OHS training regulation, 2 April 2026">İSG eğitim yönetmeliği, 2 Nisan 2026</span></li>
+        <li><a href="https://www.alomaliye.com/2026/04/02/calisanlarin-is-sagligi-ve-guvenligi-egitimlerinin-usul-ve-esaslari-2026/" target="_blank" rel="noopener noreferrer">alomaliye.com</a> · <span data-en="full text and questions">tam metin ve soru cevap</span> &nbsp;·&nbsp; <a href="https://aksan.av.tr/blog/2-nisan-2026-tarihli-yeni-i-sg-egitim-yonetmeligi-kapsaminda-i-sverenler-acisindan-baslica-degisiklikler-1776842909474" target="_blank" rel="noopener noreferrer">aksan.av.tr</a> · <span data-en="employer obligations">işveren yükümlülükleri</span></li>
+        <li><a href="https://prozon.net/sirkuler/13-yillik-isg-egitim-yonetmeligi-yururlukten-kaldirildi-yeni-donem-basladi/" target="_blank" rel="noopener noreferrer">prozon.net</a> · <span data-en="hazard classes communiqué amendment">tehlike sınıfları tebliği değişikliği</span></li>
+        <li><a href="https://www.csgb.gov.tr/sikca-sorulan-sorular/is-sagligi-ve-guvenligi-genel-mudurlugu/" target="_blank" rel="noopener noreferrer">csgb.gov.tr</a> · <span data-en="scope, obligation and state support">kapsam, yükümlülük ve devlet desteği</span> &nbsp;·&nbsp; <a href="https://www.birosgb.com/2026-isg-cezalari-listesi/" target="_blank" rel="noopener noreferrer">2026 <span data-en="administrative fines list">idari para cezaları listesi</span></a></li>
+      </ul>
+    </div>
+    <div class="caveat reveal">
+      <h3 data-en="Türkiye market and statistics">Türkiye pazar ve istatistik</h3>
+      <ul>
+        <li><a href="https://www.sgk.gov.tr/Istatistik/Yillik/fcd5e59b-6af9-4d90-a451-ee7500eb1cb4/" target="_blank" rel="noopener noreferrer">sgk.gov.tr</a> · <span data-en="statistical yearbooks">istatistik yıllıkları</span> &nbsp;·&nbsp; <a href="https://t24.com.tr/gundem/emekcinin-hastaligi-kayitlara-girmedi-uzmanlardan-gercek-disi-tepkisi,1337366" target="_blank" rel="noopener noreferrer">t24.com.tr</a> · <span data-en="2025 accident and occupational disease data">2025 kaza ve meslek hastalığı verileri</span></li>
+        <li><a href="https://www.birgun.net/makale/osgb-ve-uzman-sayisi-artiyor-ama-is-cinayetleri-hiz-kesmiyor-674328" target="_blank" rel="noopener noreferrer">birgun.net</a> · <span data-en="institution, professional and served workplace counts">kurum, profesyonel ve hizmet alan işyeri sayıları</span></li>
+        <li><a href="https://www.isgdanismanlik.com.tr/is-guvenligi-uzmani-ve-isyeri-hekimi-kisi-basi-rakamlari-hakkinda-2026/" target="_blank" rel="noopener noreferrer">2026 <span data-en="per person price band">kişi başı fiyat bandı</span></a> &nbsp;·&nbsp; <a href="https://eforosgb.com/osgb-hizmet-suresi-hesaplama/" target="_blank" rel="noopener noreferrer"><span data-en="service time calculation rules">hizmet süresi hesaplama kuralları</span></a></li>
+        <li><a href="https://turkiye.ai/trai-ekosistemine-katilan-25-yeni-girisim/" target="_blank" rel="noopener noreferrer">turkiye.ai</a> · <span data-en="Turkish AI startup map">Türkiye yapay zekâ girişim haritası</span></li>
+      </ul>
+    </div>
+    <div class="caveat reveal">
+      <h3 data-en="Global sector and competitors">Küresel sektör ve rakipler</h3>
+      <ul>
+        <li><a href="https://www.verdantix.com/venture/report/future-of-ai-enabled-ehs-software-solutions" target="_blank" rel="noopener noreferrer">verdantix.com</a> · <span data-en="future of AI enabled OHS software">yapay zekâ destekli İSG yazılımının geleceği</span> &nbsp;·&nbsp; <a href="https://www.verdantix.com/insights/blog/build--buy-or-partner--what-2026's-deal-activity-reveals-about-the-ehs-software-market" target="_blank" rel="noopener noreferrer"><span data-en="2026 deal activity">2026 anlaşma faaliyeti</span></a></li>
+        <li><a href="https://www.wolterskluwer.com/en/expert-insights/agentic-ai-in-ehs-needs-a-human-in-the-loop-approach" target="_blank" rel="noopener noreferrer">wolterskluwer.com</a> · <span data-en="human in the loop requirement">insan döngüde şartı</span> &nbsp;·&nbsp; <a href="https://www.gartner.com/en/newsroom/press-releases/2025-08-26-gartner-predicts-40-percent-of-enterprise-apps-will-feature-task-specific-ai-agents-by-2026-up-from-less-than-5-percent-in-2025" target="_blank" rel="noopener noreferrer">gartner.com</a> · <span data-en="task specific agent forecast">göreve özgü ajan tahmini</span></li>
+        <li><a href="https://www.ishn.com/articles/115010-redefining-whats-possible-with-ai-in-ehs" target="_blank" rel="noopener noreferrer">ishn.com</a> · <span data-en="agent framework">ajan çerçevesi</span> &nbsp;·&nbsp; <a href="https://www.ehsinsight.com/blog/ehs-insight-q2-2026" target="_blank" rel="noopener noreferrer">ehsinsight.com</a> · <span data-en="MCP connector">MCP bağlayıcısı</span> &nbsp;·&nbsp; <a href="https://community.sap.com/t5/product-lifecycle-management-blog-posts-by-sap/agentic-ai-at-the-2026-sap-ehs-and-product-compliance-conference/ba-p/14368872" target="_blank" rel="noopener noreferrer">community.sap.com</a></li>
+        <li><a href="https://www.ey.com/en_gl/newsroom/2026/04/ey-launches-enterprise-scale-agentic-ai-to-redefine-the-audit-experience-for-the-ai-era" target="_blank" rel="noopener noreferrer">ey.com</a> · <span data-en="agentic AI in audit">denetimde agentic yapay zekâ</span> &nbsp;·&nbsp; <a href="https://tracxn.com/d/companies/protex-ai/__JsN_U9rSaKUvjDfgmx7Iy8XHAPWYM6cGV86ScIOKOkU" target="_blank" rel="noopener noreferrer">tracxn.com</a> · <span data-en="vision player capital records">görü oyuncuları sermaye kayıtları</span></li>
+      </ul>
+    </div>
+    <div class="caveat reveal">
+      <h3 data-en="Gulf, MENA and Central Asia">Körfez, MENA ve Orta Asya</h3>
+      <ul>
+        <li><a href="https://www.technotime.net/13957" target="_blank" rel="noopener noreferrer">technotime.net</a> &nbsp;·&nbsp; <a href="https://menafn.com/1111080100/%E2%80%8EHi-Tech-Launches-The-First-Platform-For-Health-Safety-Environment-And-Quality-Management%E2%80%8E" target="_blank" rel="noopener noreferrer">menafn.com</a> · <span data-en="GCC specific HSEQ platform launch">GCC'ye özgü HSEQ platformu lansmanı</span></li>
+        <li><a href="https://www.hrsd.gov.sa/en/knowledge-centre/articles/progress-saudi-labor-market" target="_blank" rel="noopener noreferrer">hrsd.gov.sa</a> &nbsp;·&nbsp; <a href="https://www.smartqhse.com/safety-blog/saudi-arabia-industrial-safety-statistics-2026" target="_blank" rel="noopener noreferrer">smartqhse.com</a> · <span data-en="Gulf safety data (estimate)">Körfez güvenlik verisi (tahmin)</span></li>
+        <li><a href="https://www.caspianlegalcenter.az/news/more/emek-mecellesi-2026" target="_blank" rel="noopener noreferrer">caspianlegalcenter.az</a> · <span data-en="Azerbaijan Labour Code 2026">Azerbaycan İş Kanunu 2026</span></li>
+        <li><a href="https://qazinform.com/news/kazakhstan-amends-labor-legislation-to-bolster-worker-rights-c4b70b" target="_blank" rel="noopener noreferrer">qazinform.com</a> &nbsp;·&nbsp; <a href="https://www.mondaq.com/employee-rights-labour-relations/1828936/kazakhstan-employment-law-update-2026" target="_blank" rel="noopener noreferrer">mondaq.com</a> &nbsp;·&nbsp; <a href="https://www.kinstellar.com/news-and-insights/detail/4081/the-year-of-digitalisation-and-ai-in-kazakhstan-new-regulations" target="_blank" rel="noopener noreferrer">kinstellar.com</a> · <span data-en="Kazakhstan regulation">Kazakistan mevzuat</span></li>
       </ul>
     </div>
   </div>
@@ -738,7 +976,7 @@ footer{border-top:1px solid var(--line);padding:2.5rem 0 3.5rem;background:var(-
   <div class="wrap foot-in">
     <a href="./index.html" class="foot-logo"><img src="logo.svg" alt="Safera"></a>
     <a href="./deck.html" class="back-link" style="font-family:'JetBrains Mono',monospace;color:var(--accent);border:1px solid rgba(26,106,91,.25);border-radius:99px;padding:.25rem .65rem;font-size:.67rem;text-decoration:none">← Deck</a>
-    <div class="foot-meta" data-en="Safera · Sector &amp; Competitor Analysis · June 2026 · Internal strategy.<br>Compiled via live web research; market figures vary by source. The official/complete record of TR software is ibys.csgb.gov.tr (71 firms / 77 software). Competitor scores are interpretation by Safera vision-proximity.">Safera · Sektörel &amp; Rakip Analizi · Haziran 2026 · İç strateji.<br>Canlı web aramasıyla derlendi; pazar rakamları kaynağa göre değişir. TR yazılımın resmi/eksiksiz kaydı ibys.csgb.gov.tr'dir (71 firma / 77 yazılım). Rakip skorları Safera vizyon-yakınlığına göre yorumdur.</div>
+    <div class="foot-meta" data-en="Safera · Competitor and Market Analysis · version 2 · August 2026.<br>Based on a web scan dated 22 August 2026; only dated and linked developments are included. Competitor performance and market size figures are vendor statements unless otherwise noted and have not been independently verified. Projections are labelled as forecasts. The calculations compare figures from different sources and should be read as orders of magnitude, not exact numbers.">Safera · Rakip ve Pazar Analizi · sürüm 2 · Ağustos 2026.<br>22 Ağustos 2026 tarihli web taramasına dayanır; yalnız tarihli ve bağlantılı gelişmeleri içerir. Rakip performans ve pazar büyüklüğü rakamları aksi belirtilmedikçe üretici beyanıdır ve bağımsız doğrulanmamıştır. Projeksiyonlar tahmin etiketiyle sunulmuştur. Hesaplar farklı kaynaklardan gelen rakamların karşılaştırılmasına dayanır; kesin sayı olarak değil büyüklük mertebesi olarak okunmalıdır.</div>
   </div>
 </footer>
 
