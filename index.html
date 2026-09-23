@@ -6,11 +6,11 @@
 <link rel="apple-touch-icon" href="img/icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Safera: İş sağlığı ve güvenliğinde yeni bir dönem</title>
-<meta name="description" content="Safera: İSG yazılımı. İş güvenliği uzmanı, işyeri hekimi ve şirketleri tek platformda buluşturur; evrakı ve mevzuat takibini Era yapay zekâ yönetir.">
+<meta name="description" content="Safera, şirketleri iş güvenliği uzmanları ve işyeri hekimleriyle buluşturur. Era belge ve uyum işlerini kolaylaştırır.">
 <link rel="canonical" href="https://safera.solutions/">
 <meta name="theme-color" content="#F8F5EE">
 <meta property="og:title" content="Safera: İş sağlığı ve güvenliğinde yeni bir dönem">
-<meta property="og:description" content="Safera: İSG yazılımı. İş güvenliği uzmanı, işyeri hekimi ve şirketleri tek platformda buluşturur; evrakı ve mevzuat takibini Era yapay zekâ yönetir.">
+<meta property="og:description" content="Şirketler ve İSG profesyonelleri doğrudan buluşur; Era belge ve uyum işlerini kolaylaştırır.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://safera.solutions/">
 <meta property="og:locale" content="tr_TR">
@@ -25,8 +25,8 @@
 <link rel="preload" as="font" type="font/woff2" href="fonts/fraunces-n-560-latin-ext.woff2" crossorigin>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"Organization","@id":"https://safera.solutions/#org","name":"Safera","url":"https://safera.solutions/","logo":"https://safera.solutions/img/icon.png","description":"İş sağlığı ve güvenliği platformu: şirketler ile İSG profesyonellerini buluşturur, operasyonu Era yapay zekâ ajanı yürütür."},
-{"@type":"SoftwareApplication","name":"Safera","applicationCategory":"BusinessApplication","operatingSystem":"Android 8+","inLanguage":"tr","publisher":{"@id":"https://safera.solutions/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"downloadUrl":"https://safera.solutions/safera.apk"}
+{"@type":"Organization","@id":"https://safera.solutions/#org","name":"Safera","url":"https://safera.solutions/","logo":"https://safera.solutions/img/icon.png","description":"Safera, şirketleri iş güvenliği uzmanları ve işyeri hekimleriyle buluşturur; Era belge ve uyum işlerini kolaylaştırır."},
+{"@type":"SoftwareApplication","name":"Safera","applicationCategory":"BusinessApplication","operatingSystem":"Android","inLanguage":"tr","publisher":{"@id":"https://safera.solutions/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"downloadUrl":"https://safera.solutions/safera.apk"}
 ]}
 </script>
 <style>
@@ -211,14 +211,6 @@ section{padding:128px 0;}
 }
 .card-note{font-size:13px;color:var(--ink-3);margin-top:10px;}
 
-/* ─── STAT ────────────────────────────────────────────────── */
-.stat{border-left:3px solid var(--accent);padding-left:16px;}
-.stat-num{
-  font-family:'JetBrains Mono','Inter',monospace;font-size:40px;line-height:1;
-  font-weight:600;letter-spacing:-.01em;color:var(--ink);display:block;
-}
-.stat-label{font-size:14px;line-height:1.45;color:var(--ink-3);margin-top:8px;display:block;}
-
 /* ─── PHONE MOCK ──────────────────────────────────────────── */
 .phone-shot{border-radius:var(--radius-screen);width:100%;height:auto;display:block;}
 .phone-wrap{position:relative;display:flex;align-items:center;justify-content:center;}
@@ -253,6 +245,7 @@ section{padding:128px 0;}
 html.js #lightbox .lb-fig{opacity:0;transform:scale(.96);transition:opacity .3s var(--ease-out),transform .3s var(--ease-out);}
 html.js #lightbox.in .lb-fig{opacity:1;transform:none;}
 #lightbox .lb-fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;max-width:min(92vw,420px);}
+#lightbox .lb-fig.is-wide{max-width:min(94vw,1160px);}
 #lightbox img{max-height:78vh;width:auto;max-width:100%;border-radius:24px;box-shadow:0 40px 90px rgba(0,0,0,.5);}
 #lightbox figcaption{color:rgba(255,255,255,.85);font-size:14px;text-align:center;line-height:1.5;}
 #lb-close{
@@ -262,31 +255,6 @@ html.js #lightbox.in .lb-fig{opacity:1;transform:none;}
 }
 #lb-close:hover{background:rgba(255,255,255,.16);}
 #lb-close:focus-visible{outline:2px solid var(--accent-mint);outline-offset:3px;}
-
-/* ─── EKRAN GALERİSİ ──────────────────────────────────────── */
-.shots-row{
-  display:grid;grid-auto-flow:column;grid-auto-columns:236px;gap:28px;
-  overflow-x:auto;scroll-snap-type:x proximity;
-  padding:12px 4px 20px;-webkit-overflow-scrolling:touch;
-}
-.shots-row::-webkit-scrollbar{height:8px;}
-.shots-row::-webkit-scrollbar-thumb{background:var(--hairline);border-radius:4px;}
-.shot{scroll-snap-align:center;}
-.shot .phone{width:236px;padding:7px;border-width:7px;border-radius:36px;box-shadow:0 24px 56px rgba(13,53,46,.16);}
-.shot .phone-shot{border-radius:29px;}
-.shot-cap{
-  margin-top:14px;text-align:center;font-size:13.5px;line-height:1.45;color:var(--ink-2);
-}
-.shot-cap b{display:block;font-size:14px;color:var(--ink);font-weight:600;margin-bottom:2px;}
-.shot-role{
-  font-family:'JetBrains Mono','Inter',monospace;font-size:10.5px;letter-spacing:.07em;
-  text-transform:uppercase;color:var(--accent);display:inline-block;margin-bottom:6px;
-  background:var(--accent-wash);padding:3px 9px;border-radius:var(--radius-pill);
-}
-.shot-role.ember{color:var(--ember-ink);background:rgba(192,89,60,.10);}
-.shot-role.gold{color:var(--gold-ink);background:var(--gold-wash);}
-.shots-hint{font-size:13px;color:var(--ink-3);text-align:center;margin-top:6px;}
-@media(max-width:640px){.shots-row{grid-auto-columns:200px;gap:20px;}.shot .phone{width:200px;}}
 
 /* ─── SKIP LINK + SR-ONLY ────────────────────────────────── */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
@@ -361,60 +329,9 @@ header.scrolled .nav-brand{transform:scale(.93);}
 .hero-trust span{display:flex;align-items:center;gap:5px;}
 .trust-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;flex-shrink:0;}
 
-/* ─── STATS GRID ──────────────────────────────────────────── */
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
-.stats-note{font-size:12.5px;color:var(--ink-3);margin-top:28px;}
-
-/* ─── STEPS ───────────────────────────────────────────────── */
-.step-num{
-  font-family:'JetBrains Mono','Inter',monospace;font-size:14px;font-weight:500;
-  color:var(--accent);margin-bottom:12px;display:block;
-}
-.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative;}
-.step-arrow{
-  position:absolute;top:50%;transform:translateY(-50%);
-  font-size:18px;color:var(--ink-3);pointer-events:none;
-}
-.step-arrow-1{left:calc(33.33% - 12px);}
-.step-arrow-2{left:calc(66.66% - 12px);}
-
 /* ─── BENTO ───────────────────────────────────────────────── */
 .bento{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
 .span-2{grid-column:span 2;}
-
-/* ─── ROLES ───────────────────────────────────────────────── */
-.roles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-.role-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
-.role-icon{
-  width:28px;height:28px;border-radius:6px;
-  background:var(--accent-wash);display:flex;align-items:center;justify-content:center;
-}
-.role-icon svg{color:var(--accent);}
-.role-head h3{font-size:20px;font-weight:600;letter-spacing:-.01em;color:var(--ink);}
-.honest-note{font-size:13px;color:var(--ink-3);margin-top:24px;text-align:center;}
-
-/* ─── WHY NOW ─────────────────────────────────────────────── */
-.timeline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
-.tl-date{
-  font-family:'JetBrains Mono','Inter',monospace;font-size:22px;font-weight:600;
-  color:var(--accent-mint);display:block;margin-bottom:12px;
-}
-.timeline-item p{font-size:16px;line-height:1.6;}
-.why-close{
-  text-align:center;font-size:18px;color:#fff !important;
-  max-width:720px;margin:48px auto 0;line-height:1.7;
-}
-
-/* ─── DIFF ────────────────────────────────────────────────── */
-.diff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
-
-/* ─── VISION ──────────────────────────────────────────────── */
-.vision-body{max-width:680px;}
-.vision-body p{font-size:17px;line-height:1.7;color:var(--ink-2);margin-bottom:20px;}
-.vision-body p strong{color:var(--ink);font-weight:600;}
-.vision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
-.vision-grid .stat-num{font-size:15px;font-family:'JetBrains Mono','Inter',monospace;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);}
-.vision-grid .stat-label{font-size:14.5px;color:var(--ink-2);line-height:1.55;}
 
 /* ─── PRICING ─────────────────────────────────────────────── */
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
@@ -461,66 +378,6 @@ html.js .seal{
 html.js .seal.in{opacity:1;transform:scale(1) rotate(-8deg);}
 @media(max-width:640px){.seal{position:static;margin:18px 0 0;width:68px;height:68px;}}
 
-/* ─── PİLOT FORM ─────────────────────────────────────────── */
-.pilot-form{
-  display:flex;gap:12px;flex-wrap:wrap;max-width:520px;
-}
-.pilot-form[hidden],.pilot-ok[hidden]{display:none;}
-.pilot-err{border-left-color:var(--ember);color:var(--ember-ink);font-weight:500;}
-.pilot-form input[type=email]{
-  flex:1;min-width:220px;font-family:'Inter',sans-serif;font-size:16px;color:var(--ink);
-  background:var(--bg-card);border:1px solid var(--hairline);border-radius:var(--radius-btn);
-  padding:13px 16px;
-}
-.pilot-form input[type=email]::placeholder{color:var(--ink-3);}
-.pilot-form input[type=email]:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent);}
-.pilot-note{font-size:13px;color:var(--ink-3);margin-top:14px;}
-.pilot-ok{
-  display:inline-flex;align-items:center;gap:10px;margin-top:8px;
-  font-size:16px;color:var(--accent-deep);font-weight:600;
-  border-left:3px solid var(--accent);padding-left:14px;
-}
-/* ─── TEAM ────────────────────────────────────────────────── */
-.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;}
-.team-member{text-align:center;}
-.team-avatar{
-  width:96px;height:96px;border-radius:50%;
-  background:var(--accent-wash);border:2px solid var(--hairline);
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 16px;
-}
-.team-avatar span{
-  font-family:'JetBrains Mono','Inter',monospace;font-size:24px;font-weight:600;color:var(--accent);
-}
-.team-member h3{font-size:18px;font-weight:600;color:var(--ink);margin-bottom:4px;}
-.team-role{
-  font-family:'JetBrains Mono','Inter',monospace;font-size:13px;color:var(--ink-3);
-  display:block;margin-bottom:12px;
-}
-.team-member p{font-size:15px;color:var(--ink-2);max-width:320px;margin:0 auto;}
-.team-narrative{
-  text-align:center;font-size:17px;color:var(--ink-2);
-  max-width:680px;margin:48px auto 0;line-height:1.7;
-}
-.team-narrative strong{color:var(--ink);font-weight:600;}
-
-/* ─── DOWNLOAD ────────────────────────────────────────────── */
-.dl-wrap{margin-top:48px;display:flex;flex-direction:column;align-items:center;gap:12px;}
-.dl-text{text-align:center;}
-.dl-meta{font-family:'JetBrains Mono','Inter',monospace;font-size:13px;margin-top:14px;}
-.dl-alt{font-size:14px;margin-top:10px;text-align:center;}
-.dl-guide{margin-top:26px;max-width:520px;width:100%;border-top:1px solid var(--hairline-d);padding-top:14px;}
-.dl-guide summary{
-  font-family:'JetBrains Mono','Inter',monospace;font-size:13px;letter-spacing:.05em;text-transform:uppercase;
-  color:var(--accent-mint);cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;
-}
-.dl-guide summary::-webkit-details-marker{display:none;}
-.dl-guide summary::before{content:'+';font-size:15px;transition:transform .3s var(--ease-out);}
-.dl-guide[open] summary::before{transform:rotate(45deg);}
-.dl-guide ol{margin:14px 0 0 18px;font-size:14.5px;line-height:1.8;}
-.dl-hash{font-family:'JetBrains Mono','Inter',monospace;font-size:11px;line-height:1.5;overflow-wrap:anywhere;color:rgba(255,255,255,.55) !important;margin-top:12px;}
-.dl-hash-not{font-size:11.5px;line-height:1.55;color:rgba(255,255,255,.5) !important;margin-top:6px;}
-
 /* ─── FOOTER ──────────────────────────────────────────────── */
 footer{background:var(--bg-dark);border-top:1px solid var(--hairline-d);padding:48px 0;}
 footer .container{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
@@ -551,39 +408,6 @@ body::after{
   content:'';position:fixed;inset:0;z-index:2400;pointer-events:none;opacity:.045;
   background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
   background-size:240px 240px;
-}
-
-/* ─── VİTRİN — masaüstü sticky ekran turu ────────────────── */
-.vitrine{display:none;}
-@media(min-width:900px){
-  .shots-row,.shots-hint{display:none;}
-  .vitrine{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:64px;align-items:start;}
-  .vitrine-steps{list-style:none;padding-bottom:8vh;}
-  .vstep{
-    min-height:44vh;display:flex;flex-direction:column;justify-content:center;
-    padding:24px 32px 24px 24px;border-left:1px solid var(--hairline);
-    opacity:.32;cursor:pointer;position:relative;
-    transition:opacity .45s var(--ease-out);
-  }
-  .vstep::before{
-    content:'';position:absolute;left:-1px;top:50%;width:2px;height:0;
-    background:var(--accent);
-    transition:height .5s var(--ease-out),top .5s var(--ease-out);
-  }
-  .vstep.on{opacity:1;}
-  .vstep.on::before{top:22%;height:56%;}
-  .vstep-num{font-family:'JetBrains Mono','Inter',monospace;font-size:12px;color:var(--ink-3);display:block;margin-bottom:10px;letter-spacing:.06em;}
-  .vstep .shot-role{margin-bottom:10px;align-self:flex-start;}
-  .vstep h3{font-family:'Fraunces',Georgia,serif;font-size:23px;font-weight:600;letter-spacing:-.01em;color:var(--ink);margin-bottom:8px;line-height:1.2;}
-  .vstep p{font-size:15px;line-height:1.6;color:var(--ink-2);max-width:400px;}
-  .vitrine-stage{position:sticky;top:max(84px,7.5vh);display:flex;justify-content:center;}
-  .vitrine-stage .phone{width:min(300px,37vh);}
-  .vscreen{display:grid;}
-  .vscreen .phone-shot{
-    grid-area:1/1;opacity:0;pointer-events:none;visibility:hidden;
-    transition:opacity .55s var(--ease-out),visibility 0s linear .55s;
-  }
-  .vscreen .phone-shot.on{opacity:1;pointer-events:auto;visibility:visible;transition:opacity .55s var(--ease-out),visibility 0s;}
 }
 
 /* ─── RESPONSIVE TABLET ──────────────────────────────────── */
@@ -630,8 +454,206 @@ body::after{
 #lang-toggle{font-family:'JetBrains Mono','Inter',monospace;font-size:13px;letter-spacing:.04em;background:transparent;border:1px solid var(--hairline);color:var(--ink-2);padding:5px 12px;min-height:40px;border-radius:var(--radius-pill);cursor:pointer;display:inline-flex;gap:5px;align-items:center;line-height:1;}
 #lang-toggle:hover{border-color:var(--accent);color:var(--accent);}
 #lang-toggle .sep{opacity:.4;}
-#lang-toggle [data-l]{opacity:.45;transition:opacity .2s;}
+#lang-toggle [data-l]{opacity:1;color:var(--ink-2);transition:color .2s;}
 #lang-toggle [data-l].on{opacity:1;color:var(--accent);font-weight:600;}
+
+/* ─── ÖNİZLEME: canlı kimlik, daha kısa akış, kullanıcı kontrollü hareket ─── */
+section{padding:84px 0;}
+.pad-lg{padding:96px 0;}
+#hero{padding:106px 0 90px;overflow:hidden;}
+.hero-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(32px,5vw,68px);}
+.hero-text{max-width:610px;}
+.hero-secondary{font-weight:600;color:var(--accent-deep);white-space:nowrap;}
+.nav-links a{color:#49463F;}
+.nav-links a.on,.nav-links a:hover{color:#0C3C34;}
+.hero-secondary span,.closing-link span{display:inline-block;transition:transform .3s var(--ease-out);}
+.hero-secondary:hover span,.closing-link:hover span{transform:translate(3px,-3px);}
+.phone-wrap::before{
+  width:min(46vw,540px);height:min(46vw,540px);
+  background:radial-gradient(circle at 42% 45%,rgba(116,180,166,.19),rgba(176,138,60,.10) 37%,transparent 69%);
+  filter:blur(10px);animation:hero-aura 14s ease-in-out infinite alternate;
+}
+.phone-wrap::after{
+  content:'';position:absolute;width:min(44vw,495px);height:min(44vw,495px);
+  border:1px solid rgba(26,106,91,.12);border-radius:50%;pointer-events:none;
+}
+@keyframes hero-aura{from{transform:translate(-18px,10px) scale(.93)}to{transform:translate(20px,-12px) scale(1.09)}}
+
+.bento{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.bento .span-2{grid-column:auto;}
+.bento .card{min-height:220px;padding:30px;background:linear-gradient(145deg,#fffdf9,#f8f7f1);}
+.bento .card:first-child{background:linear-gradient(145deg,#eff8f5,#fffdf9 76%);border-color:rgba(26,106,91,.22);}
+.bento .card-icon{display:none;}
+.bento .card-tag{margin-bottom:34px;color:var(--accent);}
+.bento .card h3{font-family:'Fraunces',Georgia,serif;font-size:25px;}
+.bento .card p{font-size:15px;max-width:29ch;}
+
+#ekranlar .section-desc{margin-bottom:36px;}
+.showcase{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(350px,.95fr);
+  min-height:650px;overflow:hidden;border:1px solid rgba(26,106,91,.16);
+  border-radius:28px;background:#fffdf9;
+  box-shadow:0 32px 85px rgba(16,60,51,.08);
+}
+.showcase-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(30px,4vw,58px);min-width:0;}
+.showcase-label{font:500 11px 'JetBrains Mono','Inter',monospace;letter-spacing:.09em;color:var(--gold-ink);margin-bottom:12px;}
+.showcase-roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:5px;border:1px solid var(--hairline);border-radius:15px;background:#f4f2eb;margin-bottom:24px;}
+.showcase-role{min-height:48px;padding:8px 5px;border:0;border-radius:10px;background:transparent;color:var(--ink-2);font:600 13px 'Inter',sans-serif;cursor:pointer;transition:background .25s var(--ease-out),color .25s var(--ease-out),box-shadow .25s var(--ease-out);}
+.showcase-role:hover{color:var(--accent-deep);}
+.showcase-role.is-on{background:#fffdf9;color:var(--accent-deep);box-shadow:0 2px 12px rgba(13,53,46,.1);}
+.showcase-choices{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;}
+.showcase-choice{
+  width:100%;min-width:0;min-height:66px;display:grid;grid-template-columns:38px minmax(0,1fr);align-items:center;gap:10px;
+  text-align:left;background:transparent;color:var(--ink-2);border:1px solid var(--hairline);
+  border-radius:14px;padding:12px 18px;
+  cursor:pointer;position:relative;font:inherit;
+  transition:background .27s var(--ease-out),color .27s var(--ease-out),border-color .27s var(--ease-out),box-shadow .27s var(--ease-out);
+}
+.showcase-choice::before{
+  content:'';position:absolute;left:0;top:11px;bottom:11px;width:3px;border-radius:3px;
+  background:var(--accent);transform:scaleY(0);transform-origin:center;
+  transition:transform .32s var(--ease-out);
+}
+.showcase-choice:hover{background:rgba(26,106,91,.04);}
+.showcase-choice.is-on{color:var(--accent-deep);background:rgba(26,106,91,.055);border-color:rgba(26,106,91,.38);box-shadow:0 8px 20px rgba(13,53,46,.07);}
+.showcase-choice.is-on::before{transform:scaleY(1);}
+.showcase-choice:focus-visible,.showcase-role:focus-visible,.showcase-controls button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;z-index:1;}
+.showcase-number{font-family:'JetBrains Mono','Inter',monospace;font-size:11px;color:var(--gold-ink);}
+.showcase-choice-body{min-width:0;}
+.showcase-choice-body strong{display:block;font-family:'Fraunces',Georgia,serif;font-size:clamp(19px,2vw,24px);font-weight:600;line-height:1.25;color:var(--ink);}
+.showcase-story{font-size:16px;line-height:1.55;color:var(--ink-2);min-height:4.65em;margin-top:18px;max-width:36ch;}
+.showcase-controls{display:flex;align-items:center;gap:14px;margin-top:16px;}
+.showcase-controls button{
+  width:46px;height:46px;border-radius:50%;border:1px solid var(--hairline);
+  background:#fffdf9;color:var(--accent-deep);font-size:23px;line-height:1;
+  cursor:pointer;transition:background .3s var(--ease-out),transform .3s var(--ease-out);
+}
+.showcase-controls button:hover{background:var(--accent-wash);transform:translateY(-2px);}
+#showcase-position{font:500 12px 'JetBrains Mono','Inter',monospace;letter-spacing:.06em;color:var(--ink-3);min-width:55px;text-align:center;}
+.showcase-hint{font-size:12px;color:var(--ink-3);margin-top:14px;max-width:42ch;line-height:1.55;}
+.showcase-stage{
+  --glow-x:0px;--glow-y:0px;--tilt-x:0deg;--tilt-y:0deg;position:relative;min-height:650px;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  isolation:isolate;overflow:hidden;touch-action:pan-y;
+  background:radial-gradient(circle at 50% 50%,rgba(116,180,166,.19),transparent 42%),
+    linear-gradient(155deg,#e8f2ee,#f6f2e9 57%,#eef6f2);
+}
+.showcase-stage::before{
+  content:'';position:absolute;inset:0;z-index:-1;opacity:.4;
+  background-image:linear-gradient(rgba(26,106,91,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(26,106,91,.09) 1px,transparent 1px);
+  background-size:52px 52px;mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+}
+.stage-beam{position:absolute;z-index:0;top:50%;left:50%;width:min(460px,90%);aspect-ratio:1;border:1px solid rgba(26,106,91,.35);border-radius:50%;opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.8);}
+.stage-loading{position:absolute;z-index:3;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--accent),var(--gold),transparent);opacity:0;transform:scaleX(.2);transform-origin:left;pointer-events:none;}
+.showcase-stage[aria-busy="true"] .stage-loading{opacity:1;animation:stage-loading 1s ease-in-out infinite alternate;}
+@keyframes stage-loading{to{transform:scaleX(1)}}
+.stage-aura{
+  position:absolute;z-index:-1;width:min(490px,100%);aspect-ratio:1;border-radius:50%;
+  background:conic-gradient(from 25deg,rgba(116,180,166,.12),rgba(176,138,60,.20),rgba(26,106,91,.12),rgba(116,180,166,.12));
+  filter:blur(14px);transform:translate3d(var(--glow-x),var(--glow-y),0);transition:transform .18s ease-out;will-change:transform;
+}
+.device-frame{position:absolute;z-index:1;top:calc(50% - 22px);left:50%;width:min(265px,65%);aspect-ratio:0.49;padding:8px;border:8px solid #1A1714;border-radius:40px;background:#1A1714;box-shadow:0 38px 76px rgba(13,53,46,.24),0 0 0 1px rgba(255,255,255,.5);opacity:0;visibility:hidden;pointer-events:none;transform:translate(-50%,-50%) scale(.97);transition:transform .36s var(--ease-out);}
+.device-frame.on{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,-50%) perspective(1100px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));}
+.showcase-stage.is-tracking .device-frame.on{transition:transform .12s ease-out;}
+.device-tablet{width:min(94%,590px);aspect-ratio:1.55;border-radius:25px;padding:7px;}
+.vscreen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:27px;background:#FCFAF5;}
+.device-tablet .vscreen{border-radius:13px;}
+.vscreen .phone-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;visibility:hidden;pointer-events:none;transform:scale(1.008);transition:transform .3s var(--ease-out);}
+.vscreen .phone-shot.on{opacity:1;visibility:visible;pointer-events:auto;transform:none;}
+.stage-caption{position:absolute;z-index:2;bottom:20px;font:500 11px 'JetBrains Mono','Inter',monospace;letter-spacing:.02em;color:var(--accent-deep);text-align:center;padding:0 10px;}
+
+.roles-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;}
+.role-card{min-height:205px;width:100%;text-align:left;font:inherit;cursor:pointer;display:block;}
+#roller a.role-card{background-image:none;padding-bottom:28px;text-decoration:none;color:inherit;}
+.role-card:focus-visible{outline:2px solid var(--accent);outline-offset:4px;}
+.role-card::after{content:'↗';position:absolute;right:24px;top:24px;color:var(--accent);opacity:0;transform:translate(-5px,5px);transition:opacity .3s var(--ease-out),transform .3s var(--ease-out);}
+.role-card:hover::after,.role-card:focus-visible::after{opacity:1;transform:none;}
+.role-index{font:500 12px 'JetBrains Mono','Inter',monospace;color:var(--gold-ink);display:block;margin-bottom:30px;}
+.role-card h3{font-family:'Fraunces',Georgia,serif;font-size:25px;}
+.role-card p{max-width:31ch;}
+.price-grid{gap:16px;}
+.price-lead{font-size:14px;color:var(--ink-2);margin:-2px 0 24px;max-width:62ch;}
+.price-card{min-height:230px;padding:30px;}
+.plan-price{margin-bottom:20px;}
+.plan-summary{font-size:15px;line-height:1.6;color:var(--ink-2);max-width:27ch;}
+.price-note{max-width:700px;margin:26px auto 0;line-height:1.55;}
+.seal{width:65px;height:65px;}
+.seal b{font-size:17px;color:var(--ember-ink);}
+.closing-grid{max-width:1120px;display:grid;grid-template-columns:minmax(0,1fr) minmax(310px,.82fr);gap:clamp(30px,6vw,90px);align-items:center;}
+.closing-grid>div{min-width:0;}
+.closing-grid h2{font-family:'Fraunces',Georgia,serif;font-size:clamp(38px,5vw,60px);line-height:1.08;font-weight:600;color:#fff;margin-bottom:22px;}
+.closing-grid .section-desc{margin-bottom:30px;}
+.closing-actions{display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.closing-link{font-weight:600;text-decoration:none;}
+.closing-note{font-size:12px;margin-top:18px;}
+.pilot-panel{padding:clamp(22px,3vw,34px);border:1px solid rgba(255,255,255,.19);border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.035));box-shadow:0 26px 60px rgba(0,0,0,.13);backdrop-filter:blur(10px);}
+.pilot-panel h3{font-family:'Fraunces',Georgia,serif;font-size:27px;font-weight:600;margin-bottom:6px;}
+.pilot-panel>p{font-size:14px;margin-bottom:23px;}
+.pilot-form{display:flex;flex-direction:column;gap:10px;}
+.pilot-form label{font-size:13px;font-weight:600;color:#f2f5f0;}
+.pilot-form label span{font-weight:400;color:rgba(255,255,255,.68);}
+.pilot-form input:not([type=hidden]),.pilot-form textarea{width:100%;font:inherit;font-size:15px;line-height:1.45;color:var(--ink);background:#fffdf9;border:1px solid rgba(255,255,255,.7);border-radius:11px;padding:13px 14px;outline:none;resize:vertical;}
+.pilot-form input:not([type=hidden]):focus-visible,.pilot-form textarea:focus-visible{border-color:var(--accent-mint);box-shadow:0 0 0 3px rgba(116,180,166,.33);}
+.pilot-form textarea{min-height:92px;max-height:190px;}
+.pilot-form .btn-primary{width:100%;justify-content:center;margin-top:6px;}
+.pilot-form .btn-primary:disabled{opacity:.65;cursor:wait;transform:none;}
+.pilot-status{min-height:1.5em;font-size:13px;line-height:1.5;margin-top:3px;}
+.pilot-status[data-state="ok"]{color:#b8e6d9;}
+.pilot-status[data-state="error"],.pilot-status[data-state="inactive"]{color:#ffd0bd;}
+.pilot-note{font-size:12px;line-height:1.5;margin-top:9px;}
+.copy-email{font:inherit;font-size:12px;font-weight:600;color:var(--accent-mint);background:none;border:0;border-bottom:1px solid currentColor;cursor:pointer;padding:1px 0;}
+.copy-email:focus-visible{outline:2px solid var(--accent-mint);outline-offset:4px;}
+@media(max-width:899px){
+  .showcase{grid-template-columns:1fr;min-height:0;}
+  .showcase-stage{min-height:650px;}
+  .showcase-copy{padding:34px;}
+  .closing-grid{grid-template-columns:1fr;gap:36px;}
+  .pilot-panel{max-width:600px;}
+}
+@media(max-width:760px){
+  .bento{grid-template-columns:1fr;}
+  .bento .card{min-height:0;}
+  .bento .card-tag{margin-bottom:18px;}
+  .roles-grid{grid-template-columns:1fr;gap:14px;}
+  .role-card{min-height:0;}
+  .role-index{margin-bottom:16px;}
+  .price-grid{grid-template-columns:1fr;}
+  .price-card{min-height:0;}
+  .seal{display:none;}
+}
+@media(max-width:640px){
+  section{padding:64px 0;}.pad-lg{padding:76px 0;}
+  #hero{padding:54px 0 60px;}
+  .hero-grid{grid-template-columns:1fr;gap:42px;}
+  .hero-text{max-width:100%;}
+  .hero-sub{margin-bottom:24px;}
+  .phone-wrap::before{width:340px;height:340px;}
+  .phone-wrap::after{width:318px;height:318px;}
+  .showcase{border-radius:20px;}
+  .showcase-stage{min-height:clamp(500px,145vw,570px);}
+  .device-phone{width:min(245px,68%);}
+  .device-tablet{width:min(94%,540px);}
+  .showcase-copy{padding:24px;}
+  .showcase-roles{margin-bottom:20px;}
+  .showcase-choice{min-height:60px;padding:10px 14px;gap:6px;grid-template-columns:32px minmax(0,1fr);}
+  .showcase-choice-body strong{font-size:clamp(18px,5vw,22px);}
+  .showcase-story{margin-top:17px;min-height:4.65em;}
+  .showcase-hint{margin-top:15px;}
+  .closing-actions{gap:20px;}
+}
+@media(max-width:330px){
+  header .container{padding:0 12px;}
+  header .nav-name{display:none;}
+  .btn-nav{padding:8px 11px;font-size:13px;}
+  #lang-toggle{margin-left:8px;padding:5px 9px;}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .phone-wrap::before,.stage-loading{animation:none!important;}
+  .stage-aura{transition:none;transform:none;}
+  .vscreen .phone-shot,.vscreen .phone-shot.on{transform:none;}
+  .device-frame.on{transform:translate(-50%,-50%);}
+}
 </style>
 </head>
 <body>
@@ -650,7 +672,7 @@ body::after{
       <a href="#ekranlar" data-spy="ekranlar" data-en="Screens">Ekranlar</a>
       <a href="#fiyat" data-spy="fiyat" data-en="Pricing">Fiyat</a>
     </nav>
-    <a class="btn-primary btn-nav" href="#indir" data-en="Download">İndir</a>
+    <a class="btn-primary btn-nav" href="#indir" data-en="Android">Android</a>
     <button id="lang-toggle" type="button" aria-label="Dil: Türkçe. Switch to English"><span data-l="tr">TR</span><span class="sep">·</span><span data-l="en">EN</span></button>
     <span id="scroll-progress" aria-hidden="true"></span>
   </div>
@@ -666,17 +688,12 @@ body::after{
       <div class="hero-text">
         <span class="eyebrow reveal" style="transition-delay:0ms" data-en="OHS PLATFORM">İSG PLATFORMU</span>
         <h1 id="hero-title" data-en="A <em class='fx-em'>new era</em> in occupational<br><span class='h1-gold'>health &amp; safety.</span>">İş sağlığı ve güvenliğinde<br><span class="h1-gold fx-em">yeni bir dönem.</span></h1>
-        <p class="hero-sub reveal" style="transition-delay:160ms" data-en="In Türkiye, receiving OHS services is a legal requirement for every workplace. Safera turns that burden into results: the company reaches the right professional in minutes and becomes audit-ready; the expert and the physician hand the paperwork to Era and get back to the field. Matching is <strong>free, with no commission</strong>; the decision always stays with people.">
-          Türkiye'de her işyerinin İSG hizmeti alması yasal bir zorunluluk. Safera bu yükü sonuca çevirir: şirket dakikalar içinde doğru profesyonele ulaşır ve denetime hazır hâle gelir; uzman ve hekim evrakı Era'ya bırakıp sahaya döner. Eşleşme <strong>ücretsiz ve komisyonsuz</strong>; karar her zaman insanda.
+        <p class="hero-sub reveal" style="transition-delay:160ms" data-en="Companies meet OHS experts and workplace physicians directly. Era helps with documents and compliance; you stay in control. Matching is <strong>free, with no commission.</strong>">
+          Şirketler iş güvenliği uzmanı ve işyeri hekimiyle doğrudan buluşur. Era belge ve uyum işlerini kolaylaştırır; karar sizde kalır. Eşleşme <strong>ücretsiz ve komisyonsuz.</strong>
         </p>
         <div class="hero-cta reveal" style="transition-delay:240ms">
-          <a class="btn-primary" href="#indir" data-en="Download the App">Uygulamayı İndir</a>
-          <span class="hero-meta" data-en="Android · APK · Free">Android · APK · Ücretsiz</span>
-        </div>
-        <div class="hero-trust reveal" style="transition-delay:320ms">
-          <span data-en="<span class='trust-dot' aria-hidden='true'></span> The right match in minutes"><span class="trust-dot" aria-hidden="true"></span> Dakikalar içinde doğru eşleşme</span>
-          <span data-en="<span class='trust-dot' aria-hidden='true'></span> The paperwork lives with Era"><span class="trust-dot" aria-hidden="true"></span> Evrak yükü Era'da</span>
-          <span data-en="<span class='trust-dot' aria-hidden='true'></span> Audit-ready records"><span class="trust-dot" aria-hidden="true"></span> Denetime hazır kayıtlar</span>
+          <a class="btn-primary" href="#ekranlar" data-en="Explore the App">Uygulamayı Gör</a>
+          <a class="hero-secondary" href="#indir" data-en="Android version <span aria-hidden='true'>↗</span>">Android sürümü <span aria-hidden="true">↗</span></a>
         </div>
       </div>
       <div class="phone-wrap reveal" style="transition-delay:120ms">
@@ -688,101 +705,31 @@ body::after{
   </div>
 </section>
 
-<!-- SORUN -->
-<section class="bg-subtle">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow reveal" data-en="THE PROBLEM">SORUN</span>
-      <h2 class="reveal" data-en="The heavy lifting of compliance still rests on people's shoulders.">Uyumun ağır işi hâlâ insanların sırtında.</h2>
-      <p class="section-desc reveal">
-<span data-en="Independent OHS professionals have to handle client acquisition, paperwork, regulatory tracking, planning and reporting on their own. That's why the model can't scale in practice. Companies, in turn, must manage compliance risk and find the right professional. Regulation demands more documents every year; contracts and assignments now run digitally on İSG-KATİP. Doing this by hand is no longer sustainable.">Bireysel İSG profesyonelleri; müşteri bulma, evrak, mevzuat takibi, planlama ve raporlamayı tek başına yürütmek zorunda. Bu yüzden model pratikte ölçeklenemiyor. Şirketler ise uyum riskini yönetmek ve doğru profesyoneli bulmak zorunda. Mevzuat her yıl daha fazla belge istiyor; sözleşme ve görevlendirmeler artık İSG-KATİP üzerinden dijital yürütülüyor. Bu işi elle yürütmek artık sürdürülebilir değil.</span>
-      </p>
-    </div>
-    <div class="stats-grid">
-      <div class="stat reveal" style="transition-delay:0ms">
-        <span class="stat-num" data-en="2.23M">2,23M</span>
-        <span class="stat-label" data-en="Total workplaces under mandatory OHS coverage since the January 2025 full rollout">Ocak 2025 tam yürürlüğüyle zorunlu İSG hizmeti kapsamındaki toplam işyeri</span>
-      </div>
-      <div class="stat reveal" style="transition-delay:60ms">
-        <span class="stat-num" data-en="12+">12+</span>
-        <span class="stat-label" data-en="Separate compliance and document areas to maintain for a single workplace">Tek bir işyeri için tutulması gereken ayrı uyum ve belge alanı</span>
-      </div>
-      <div class="stat reveal" style="transition-delay:120ms">
-        <span class="stat-num" data-en="₺111,263">111.263 ₺</span>
-        <span class="stat-label" data-en="Monthly administrative fine for not assigning an OHS expert or physician (2026 base amount)">Uzman veya hekim görevlendirmeyen işyeri için aylık idari para cezası (2026 taban tutar)</span>
-      </div>
-      <div class="stat reveal" style="transition-delay:180ms">
-        <span class="stat-num" data-en="İSG-KATİP">İSG-KATİP</span>
-        <span class="stat-label" data-en="Contracts and assignments now run digitally; the compliance flow is rapidly going digital">Sözleşme ve görevlendirmeler artık dijital yürütülüyor; uyum süreci hızla dijitalleşiyor</span>
-      </div>
-    </div>
-    <p class="stats-note reveal" data-en="Sources: SGK workplace statistics · Law 6331 art. 26 administrative fines, 2026 revaluation (Ministry of Labour and Social Security).">Kaynak: SGK işyeri istatistikleri · 6331 sayılı Kanun m.26 idari para cezaları, 2026 yeniden değerleme (ÇSGB).</p>
-  </div>
-</section>
-
-<!-- NASIL ÇALIŞIR -->
-<section>
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow reveal" data-en="HOW IT WORKS">NASIL ÇALIŞIR</span>
-      <h2 class="reveal" data-en="Three steps for company and expert.">Şirket ve uzman için üç adım.</h2>
-    </div>
-    <div class="steps-grid">
-      <span class="step-arrow step-arrow-1" aria-hidden="true">→</span>
-      <span class="step-arrow step-arrow-2" aria-hidden="true">→</span>
-      <div class="card reveal" style="transition-delay:0ms">
-        <span class="step-num">01</span>
-        <h3 data-en="Define">Tanımla</h3>
-        <p data-en="The company enters its sector, headcount and hazard class; the expert or physician opens a profile. Era produces the legally required OHS plan in seconds: what's missing and what's needed is in front of you from the first minute.">Şirket sektörünü, çalışan sayısını ve tehlike sınıfını girer; uzman ya da hekim profilini açar. Era saniyeler içinde yasal İSG planını çıkarır: ne eksik, ne gerekli, ilk dakikadan önündedir.</p>
-      </div>
-      <div class="card reveal" style="transition-delay:60ms">
-        <span class="step-num">02</span>
-        <h3 data-en="Match">Eşleş</h3>
-        <p data-en="The best-fit party ranks first by % fit score; a search that used to take weeks comes down to minutes. Matching is free.">En uygun taraf % uyum skoruyla önde gelir; haftalar süren arayış dakikalara iner. Eşleşme ücretsizdir.</p>
-      </div>
-      <div class="card reveal" style="transition-delay:120ms">
-        <span class="step-num">03</span>
-        <h3 data-en="Era does the work">Era işi yapar</h3>
-        <p data-en="Risk plans, reports, CAPAs, checklists and reminders are generated automatically; all parties see the same compliance picture.">Risk planı, rapor, DÖF, checklist ve hatırlatmalar otomatik üretilir; tüm taraflar aynı uyum tablosunu görür.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- PLATFORM -->
 <section id="platform" class="bg-subtle pad-lg">
   <div class="container">
     <div class="section-head">
       <span class="eyebrow reveal">PLATFORM</span>
-      <h2 class="reveal" data-en="A platform that runs OHS end to end.">İSG'yi uçtan uca yürüten bir platform.</h2>
+      <h2 class="reveal" data-en="Less admin. More room for real work.">Daha az idari yük. İşe daha çok alan.</h2>
     </div>
     <div class="bento">
 
       <div class="card span-2 reveal">
         <span class="card-tag">ERA</span>
-        <div class="card-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        </div>
-        <h3 data-en="Ask; the rest gets done">Sor; gerisi tamamlanır</h3>
-        <p data-en="“What am I missing?” Era finds the answer in your own data, prepares the needed document, and starts the right step. Your status is in front of you at any moment; approval stays with you.">“Eksiğim ne?” diye sorarsınız. Era cevabı sizin verinizden bulur, gereken belgeyi hazırlar, doğru adımı başlatır. Durumunuz her an önünüzde; onay sizde kalır.</p>
+        <h3 data-en="Ask Era">Era'ya sor</h3>
+        <p data-en="Era finds the next step and prepares a document draft in context. The professional reviews and approves it.">Era sıradaki adımı bulur, bağlama uygun belge taslağı hazırlar. Uzman veya hekim inceler ve onaylar.</p>
       </div>
 
       <div class="card reveal" style="transition-delay:0ms">
         <span class="card-tag" data-en="THE FEED">AKIŞ</span>
-        <div class="card-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h3 data-en="The right match in minutes, free">Dakikalar içinde doğru eşleşme, ücretsiz</h3>
-        <p data-en="The % fit score brings the best-fit party to the top; listing, application and agreement flow in one stream. Matching is free; the earnings stay with the people doing the work.">% uyum skoru en uygun tarafı öne getirir; ilan, başvuru ve anlaşma tek akışta ilerler. Eşleşme ücretsiz; kazanç tarafların.</p>
+        <h3 data-en="Meet directly">Doğrudan buluş</h3>
+        <p data-en="Fit scores bring relevant people and work forward. Application and conversation stay in one flow; matching has no commission.">Uyum puanı ilgili kişi ve işleri öne getirir. Başvuru ve konuşma tek akışta ilerler; eşleşmede komisyon yoktur.</p>
       </div>
 
       <div class="card reveal" style="transition-delay:60ms">
         <span class="card-tag" data-en="OPERATIONS">OPERASYON</span>
-        <div class="card-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-        </div>
-        <h3 data-en="No deadline slips, no inspection surprises">Hiçbir tarih kaçmaz, denetim sürpriz olmaz</h3>
-        <p data-en="Audit Readiness scores you before any inspection; documents are tracked with approval and validity; tasks and the calendar never let a deadline slip. A brand-new company sees its legal roadmap within minutes.">Denetim Hazırlığı denetimden önce puanınızı verir; belgeler onay ve geçerlilikle izlenir; görevler ve takvim son tarih kaçırtmaz. Sıfırdan başlayan bir şirket yasal yol haritasını dakikalar içinde görür.</p>
+        <h3 data-en="See what needs attention">Gerekeni gör</h3>
+        <p data-en="Documents, requests, deadlines and audit-readiness findings have a clear place. Companies request; professionals prepare and approve.">Belgeler, talepler, son tarihler ve denetim bulguları bir yerde. Şirket talep eder; profesyonel hazırlar ve onaylar.</p>
       </div>
 
     </div>
@@ -793,247 +740,93 @@ body::after{
 <section id="ekranlar">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow reveal" data-en="INSIDE THE APP">UYGULAMADAN KARELER</span>
-      <h2 class="reveal" data-en="Real screens, <em class='fx-em'>live product.</em>">Gerçek ekranlar, <em class="fx-em">canlı ürün.</em></h2>
-      <p class="section-desc reveal" data-en="Every frame is a screenshot from the running product: the three core functions (Era, the feed, operations) plus a few deep dives. Tap any screen to enlarge.">Her kare çalışan üründen alınmış ekran görüntüsü: üç ana işlev (Era, akış, operasyon) ve birkaç derinlemesine bakış. Büyütmek için karelere dokunabilirsin.</p>
+      <span class="eyebrow reveal" data-en="THE APP, FOR REAL">UYGULAMADAN</span>
+      <h2 class="reveal" data-en="The product speaks for itself.">Ürün kendini anlatsın.</h2>
+      <p class="section-desc reveal" data-en="Screens captured from the running Android app. Choose the view that matters to you; nothing advances on its own.">Çalışan Android uygulamasından gerçek ekranlar. Merak ettiğiniz görünümü siz seçin.</p>
     </div>
-    <!-- masaüstü: sticky ekran turu -->
-    <div class="vitrine">
-      <ol class="vitrine-steps">
-        <li class="vstep on" data-i="0">
-          <span class="vstep-num">01</span>
-          <span class="shot-role ember">ERA</span>
-          <h3 data-en="The day opens with Era">Era ile açılan gün</h3>
-          <p data-en="Income, contracts and pending items, summarized on arrival">Gelir, sözleşmeler ve bekleyenler özetle karşınızda</p>
-        </li>
-        <li class="vstep" data-i="1">
-          <span class="vstep-num">02</span>
-          <span class="shot-role" data-en="THE FEED">AKIŞ</span>
-          <h3 data-en="Matching by % fit">% uyumla eşleşme</h3>
-          <p data-en="The best-fit job and professional come first">En uygun iş ve profesyonel öne gelir</p>
-        </li>
-        <li class="vstep" data-i="2">
-          <span class="vstep-num">03</span>
-          <span class="shot-role" data-en="OPERATIONS">OPERASYON</span>
-          <h3 data-en="Everything in one place">Her şey bir arada</h3>
-          <p data-en="Documents, tasks, team, employees and the calendar">Belgeler, görevler, ekip, çalışanlar ve takvim</p>
-        </li>
-        <li class="vstep" data-i="3">
-          <span class="vstep-num">04</span>
-          <span class="shot-role ember">ERA</span>
-          <h3 data-en="Ask; the answer is ready">Sorun, cevap hazır</h3>
-          <p data-en="The gap is found in your live data; the needed document is prepared">Eksik canlı verinizden bulunur; gereken belge hazırlanır</p>
-        </li>
-        <li class="vstep" data-i="4">
-          <span class="vstep-num">05</span>
-          <span class="shot-role gold" data-en="DOCUMENTS">BELGELER</span>
-          <h3 data-en="A living archive">Yaşayan arşiv</h3>
-          <p data-en="Approval and validity on every file; expiring documents are flagged at once">Onay ve geçerlilik her dosyanın üstünde; biten süre hemen fark edilir</p>
-        </li>
-        <li class="vstep" data-i="5">
-          <span class="vstep-num">06</span>
-          <span class="shot-role gold">CRM</span>
-          <h3 data-en="Income at a glance">Gelir tek bakışta</h3>
-          <p data-en="Clients, contracts and renewals move along automatically">Müşteri, sözleşme ve yenileme takibi otomatik ilerler</p>
-        </li>
-      </ol>
-      <div class="vitrine-stage reveal">
-        <div class="phone">
+    <div class="showcase">
+      <div class="showcase-copy">
+        <p class="showcase-label" data-en="CHOOSE YOUR VIEW">ROLÜNÜ SEÇ</p>
+        <div class="showcase-roles" role="group" aria-label="Rol seç" data-en-aria="Choose a role">
+          <button class="showcase-role is-on" type="button" data-role="sirket" aria-pressed="true" data-en="Company">Şirket</button>
+          <button class="showcase-role" type="button" data-role="uzman" aria-pressed="false" data-en="Expert">Uzman</button>
+          <button class="showcase-role" type="button" data-role="hekim" aria-pressed="false" data-en="Physician">Hekim</button>
+        </div>
+        <p class="showcase-label" data-en="CHOOSE A SPACE">BİR ALAN SEÇ</p>
+        <div class="showcase-choices" role="group" aria-label="Uygulama ekranını seç" data-en-aria="Choose an app screen">
+          <button class="showcase-choice is-on" type="button" data-i="0" aria-pressed="true">
+            <span class="showcase-number">01</span>
+            <span class="showcase-choice-body"><strong data-en="Feed">Akış</strong></span>
+          </button>
+          <button class="showcase-choice" type="button" data-i="1" aria-pressed="false">
+            <span class="showcase-number">02</span>
+            <span class="showcase-choice-body"><strong>Era</strong></span>
+          </button>
+          <button class="showcase-choice" type="button" data-i="2" aria-pressed="false">
+            <span class="showcase-number">03</span>
+            <span class="showcase-choice-body"><strong data-en="Operations">Operasyon</strong></span>
+          </button>
+        </div>
+        <p class="showcase-story" id="showcase-story" aria-live="polite">Uygun uzman ve hekimleri uyum puanıyla karşılaştırın.</p>
+        <div class="showcase-controls">
+          <button type="button" id="showcase-prev" aria-label="Önceki ekran" data-en-aria="Previous screen">←</button>
+          <span id="showcase-position">01 / 03</span>
+          <button type="button" id="showcase-next" aria-label="Sonraki ekran" data-en-aria="Next screen">→</button>
+        </div>
+        <p class="showcase-hint" data-en="Tap a screen to enlarge. On touchscreens, swipe between views.">Büyütmek için ekrana dokunun; yana kaydırarak geçin.</p>
+      </div>
+      <div class="showcase-stage" data-role="sirket">
+        <div class="stage-aura" aria-hidden="true"></div>
+        <div class="stage-beam" aria-hidden="true"></div>
+        <div class="stage-loading" aria-hidden="true"></div>
+        <div class="device-frame device-phone on">
           <div class="vscreen">
-            <img class="phone-shot on" src="img/app/uzman-ozet.webp" alt="Era ile açılan günlük özet ekranı" width="330" height="715" loading="lazy">
-            <img class="phone-shot" src="img/app/uzman-akis.webp" alt="Akış: % uyum skorlu iş ilanları" width="330" height="715" loading="lazy">
-            <img class="phone-shot" src="img/app/sirket-operasyon.webp" alt="Operasyon merkezi" width="330" height="715" loading="lazy">
-            <img class="phone-shot" src="img/app/era-chat.webp" alt="Era sohbeti: eksik belgelerin canlı tespiti" width="330" height="715" loading="lazy">
-            <img class="phone-shot" src="img/app/sirket-belgeler.webp" alt="Belgeler: onay ve geçerlilik takibi" width="330" height="715" loading="lazy">
-            <img class="phone-shot" src="img/app/uzman-crm.webp" alt="Çalıştıklarım: müşteri ve gelir takibi" width="330" height="715" loading="lazy">
+            <img class="phone-shot on" data-role="sirket" data-feature="0" src="img/product/sirket-akis-4006.png" alt="Şirket Akışı: örnek uzman ve hekim kartları, uyum puanları" data-en-alt="Company feed: demo expert and physician cards with fit scores" data-description-tr="Uygun uzman ve hekimleri uyum puanıyla karşılaştırın." data-description-en="Compare relevant experts and physicians by fit score." width="828" height="1792" loading="eager" fetchpriority="low">
+            <img class="phone-shot" data-role="sirket" data-feature="1" data-src="img/product/sirket-era-4006.png" alt="Şirket Era özeti: uyum ve eksiklerin görünümü" data-en-alt="Company Era summary: compliance and missing items" data-description-tr="Uyum durumunu ve açık eksikleri tek bakışta görün." data-description-en="See compliance and open gaps at a glance." width="828" height="1792" aria-hidden="true" tabindex="-1">
+            <img class="phone-shot" data-role="sirket" data-feature="2" data-src="img/product/sirket-operasyon-4006.png" alt="Şirket Operasyonu: işyerleri, ilanlar, ekip ve belgeler" data-en-alt="Company Operations: workplaces, listings, team and documents" data-description-tr="İşyeri, ilan, ekip ve belgelerinize bir yerden ulaşın." data-description-en="Reach workplaces, listings, team and documents in one place." width="828" height="1792" aria-hidden="true" tabindex="-1">
+            <img class="phone-shot" data-role="uzman" data-feature="0" data-src="img/product/uzman-akis-4006.png" alt="İSG uzmanı Akışı: örnek işyeri ilanları ve uyum puanları" data-en-alt="OHS expert feed: demo workplace listings and fit scores" data-description-tr="Size uygun işyeri ilanlarını görün." data-description-en="See workplace listings that fit you." width="1080" height="2400" aria-hidden="true" tabindex="-1">
+            <img class="phone-shot" data-role="uzman" data-feature="1" data-src="img/product/uzman-era-4006.png" alt="İSG uzmanı Era özeti: işyerleri, ekip ve yaklaşan işler" data-en-alt="OHS expert Era summary: workplaces, team and upcoming work" data-description-tr="İşyerlerini ve bekleyen ekip işlerini tek bakışta görün." data-description-en="See workplaces and pending team work at a glance." width="1080" height="2400" aria-hidden="true" tabindex="-1">
+            <img class="phone-shot" data-role="uzman" data-feature="2" data-src="img/product/uzman-operasyon-4006.png" alt="İSG uzmanı Operasyonu: denetim, ekip, belgeler ve takvim" data-en-alt="OHS expert Operations: audits, team, documents and calendar" data-description-tr="Denetim, belge ve takvime doğrudan geçin." data-description-en="Go straight to audits, documents and calendar." width="1080" height="2400" aria-hidden="true" tabindex="-1">
           </div>
         </div>
+        <div class="device-frame device-tablet">
+          <div class="vscreen">
+            <img class="phone-shot" data-role="hekim" data-feature="0" data-src="img/product/hekim-akis-4006.png" alt="İşyeri hekimi Akışı: örnek hekim ilanları ve uyum puanları" data-en-alt="Workplace physician feed: demo listings and fit scores" data-description-tr="Uygun hekim görevlerini karşılaştırın." data-description-en="Compare workplace physician opportunities." width="2560" height="1600" aria-hidden="true" tabindex="-1">
+            <img class="phone-shot" data-role="hekim" data-feature="1" data-src="img/product/hekim-era-4006.png" alt="İşyeri hekimi Era özeti: işyerleri, ekip ve sağlık gözetimi" data-en-alt="Workplace physician Era summary: workplaces, team and health surveillance" data-description-tr="İşyerleri, ekip ve sağlık gözetimini görün." data-description-en="See workplaces, team and health surveillance." width="2560" height="1600" aria-hidden="true" tabindex="-1">
+            <img class="phone-shot" data-role="hekim" data-feature="2" data-src="img/product/hekim-operasyon-4006.png" alt="İşyeri hekimi Operasyonu: sağlık gözetimi, belgeler ve görevler" data-en-alt="Workplace physician Operations: health surveillance, documents and tasks" data-description-tr="Muayene, belge ve görevleri tek yerden açın." data-description-en="Open examinations, documents and tasks in one place." width="2560" height="1600" aria-hidden="true" tabindex="-1">
+          </div>
+        </div>
+        <p class="stage-caption" data-en="Real app · demo data">Gerçek uygulama · örnek veri</p>
       </div>
     </div>
-    <!-- mobil/tablet: yatay film şeridi -->
-    <div class="shots-row reveal" tabindex="0" role="region" aria-label="Uygulama ekranları, yatay kaydırılabilir galeri">
-      <figure class="shot">
-        <div class="phone"><img class="phone-shot" src="img/app/uzman-ozet.webp" alt="Era ile açılan günlük özet ekranı" width="236" height="511" loading="lazy"></div>
-        <figcaption class="shot-cap"><span class="shot-role ember">ERA</span><b data-en="The day opens with Era">Era ile açılan gün</b><span data-en="Income, contracts and pending items, summarized on arrival">Gelir, sözleşmeler ve bekleyenler özetle karşınızda</span></figcaption>
-      </figure>
-      <figure class="shot">
-        <div class="phone"><img class="phone-shot" src="img/app/uzman-akis.webp" alt="Akış: % uyum skorlu iş ilanları" width="236" height="511" loading="lazy"></div>
-        <figcaption class="shot-cap"><span class="shot-role">AKIŞ</span><b data-en="Matching by % fit">% uyumla eşleşme</b><span data-en="The best-fit job and professional come first">En uygun iş ve profesyonel öne gelir</span></figcaption>
-      </figure>
-      <figure class="shot">
-        <div class="phone"><img class="phone-shot" src="img/app/sirket-operasyon.webp" alt="Operasyon merkezi" width="236" height="511" loading="lazy"></div>
-        <figcaption class="shot-cap"><span class="shot-role">OPERASYON</span><b data-en="Everything in one place">Her şey bir arada</b><span data-en="Documents, tasks, team, employees and the calendar">Belgeler, görevler, ekip, çalışanlar ve takvim</span></figcaption>
-      </figure>
-      <figure class="shot">
-        <div class="phone"><img class="phone-shot" src="img/app/era-chat.webp" alt="Era sohbeti: eksik belgelerin canlı tespiti" width="236" height="511" loading="lazy"></div>
-        <figcaption class="shot-cap"><span class="shot-role ember">ERA</span><b data-en="Ask; the answer is ready">Sorun, cevap hazır</b><span data-en="The gap is found in your live data; the needed document is prepared">Eksik canlı verinizden bulunur; gereken belge hazırlanır</span></figcaption>
-      </figure>
-      <figure class="shot">
-        <div class="phone"><img class="phone-shot" src="img/app/sirket-belgeler.webp" alt="Belgeler: onay ve geçerlilik takibi" width="236" height="511" loading="lazy"></div>
-        <figcaption class="shot-cap"><span class="shot-role gold">BELGELER</span><b data-en="A living archive">Yaşayan arşiv</b><span data-en="Approval and validity on every file; expiring documents are flagged at once">Onay ve geçerlilik her dosyanın üstünde; biten süre hemen fark edilir</span></figcaption>
-      </figure>
-      <figure class="shot">
-        <div class="phone"><img class="phone-shot" src="img/app/uzman-crm.webp" alt="Çalıştıklarım: müşteri ve gelir takibi" width="236" height="511" loading="lazy"></div>
-        <figcaption class="shot-cap"><span class="shot-role gold">CRM</span><b data-en="Income at a glance">Gelir tek bakışta</b><span data-en="Clients, contracts and renewals move along automatically">Müşteri, sözleşme ve yenileme takibi otomatik ilerler</span></figcaption>
-      </figure>
-    </div>
-    <p class="shots-hint reveal" data-en="Scroll sideways for more screens →">Daha fazla ekran için yana kaydır →</p>
   </div>
 </section>
-
 <!-- KİMLER İÇİN -->
-<section>
+<section id="roller">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow reveal" data-en="WHO IT'S FOR">KİMLER İÇİN</span>
-      <h2 class="reveal" data-en="One platform for everyone involved.">Tüm taraflara tek platform.</h2>
+      <span class="eyebrow reveal" data-en="THREE ROLES, ONE CLEAR FLOW">ÜÇ ROL, TEK AKIŞ</span>
+      <h2 class="reveal" data-en="The right next step for everyone.">Herkes için sıradaki adım belli.</h2>
     </div>
     <div class="roles-grid">
-      <div class="card reveal" style="transition-delay:0ms">
-        <div class="role-head">
-          <div class="role-icon" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          </div>
-          <h3 data-en="OHS Expert">İSG Uzmanı</h3>
-        </div>
-        <ul>
-          <li data-en="Hand the paperwork to Era; keep your evenings">Evrak yükünü Era'ya bırak, akşamların sana kalsın</li>
-          <li data-en="Report by voice in the field; leave no work for the desk">Sahada sesle raporla, ofise iş bırakma</li>
-          <li data-en="Clients, contracts and income at a glance">Müşterin, sözleşmen ve gelirin tek bakışta</li>
-          <li data-en="Jobs that fit you find you first">Sana uyan iş seni önce bulur</li>
-        </ul>
-      </div>
-      <div class="card reveal" style="transition-delay:60ms">
-        <div class="role-head">
-          <div class="role-icon" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M16 11h6M19 8v6"/></svg>
-          </div>
-          <h3 data-en="Workplace Physician">İşyeri Hekimi</h3>
-        </div>
-        <ul>
-          <li data-en="No periodic examination is ever missed">Hiçbir periyodik muayene atlanmaz</li>
-          <li data-en="You hear about regulation changes as they happen">Mevzuat değiştiğinde haberin olur</li>
-          <li data-en="Reports ready in a single tap">Raporlar tek dokunuşla hazır</li>
-          <li data-en="Contract directly with the company">Şirketle doğrudan sözleşme yap</li>
-          <li data-en="<em>e-Prescription integration (soon)</em>"><em>e-Reçete entegrasyonu (yakında)</em></li>
-        </ul>
-      </div>
-      <div class="card reveal" style="transition-delay:120ms">
-        <div class="role-head">
-          <div class="role-icon" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          </div>
-          <h3 data-en="Company">Şirket</h3>
-        </div>
-        <ul>
-          <li data-en="Reach the right professional in minutes">Doğru profesyonele dakikalar içinde ulaş</li>
-          <li data-en="Even starting from zero, you see what's required">Sıfırdan başlasan bile ne gerektiğini gör</li>
-          <li data-en="See your score before any inspection; close the gaps">Denetimden önce puanını gör, eksiği kapat</li>
-          <li data-en="Your entire compliance on one panel, always current">Uyumun tamamı tek panelde, hep güncel</li>
-        </ul>
-      </div>
-    </div>
-    <p class="honest-note reveal" data-en="Workplace Nurse, DSP and Employee roles coming soon.">İşyeri Hemşiresi, DSP ve Çalışan rolleri yakında.</p>
-  </div>
-</section>
-
-<!-- NEDEN ŞİMDİ -->
-<section class="bg-dark pad-lg">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow reveal" data-en="WHY NOW">NEDEN ŞİMDİ</span>
-      <h2 class="reveal" data-en="Demand is mandatory, the load is growing, the technology is ready.">Talep zorunlu, yük büyüyor, teknoloji hazır.</h2>
-    </div>
-    <div class="timeline-grid">
-      <div class="timeline-item reveal" style="transition-delay:0ms">
-        <span class="tl-date" data-en="DEMAND">TALEP</span>
-        <p data-en="In January 2025, Law 6331 came fully into force: all 2.23 million workplaces are now required to receive OHS services. Demand multiplied overnight; the number of professionals stayed the same.">Oca 2025'te 6331 tam yürürlüğe girdi: 2,23 milyon işyerinin tamamı İSG hizmeti yükümlüsü. Talep bir gecede katlandı; profesyonel sayısı aynı kaldı.</p>
-      </div>
-      <div class="timeline-item reveal" style="transition-delay:60ms">
-        <span class="tl-date" data-en="LOAD">YÜK</span>
-        <p data-en="Contracts and assignments run digitally on İSG-KATİP, and regulation asks for more documents every year. Handling this by hand doesn't scale; the gap for a purpose-built tool is wide open.">Sözleşme ve görevlendirmeler İSG-KATİP'te dijital yürüyor; mevzuat her yıl daha fazla belge istiyor. Bunu elle yürütmek ölçeklenmiyor; amaca uygun bir aracın boşluğu ortada.</p>
-      </div>
-      <div class="timeline-item reveal" style="transition-delay:120ms">
-        <span class="tl-date" data-en="TECHNOLOGY">TEKNOLOJİ</span>
-        <p data-en="AI no longer just answers; it can run processes from start to finish. Connecting that capability to the field's actual workload is possible exactly now.">Yapay zekâ artık yalnızca yanıt vermiyor; süreçleri baştan sona yürütebiliyor. Bu kapasiteyi İSG'nin saha ihtiyacına bağlamak tam şimdi mümkün.</p>
-      </div>
-    </div>
-    <p class="why-close reveal" data-en="Mandatory demand, a growing load and matured technology are crossing at the same moment. Safera was built for this window: it carries the load, and matches all parties for free.">Zorunlu talep, büyüyen yük ve olgunlaşan teknoloji aynı anda kesişiyor. Safera bu pencere için kuruldu: yükü taşıyor, tarafları ücretsiz eşleştiriyor.</p>
-  </div>
-</section>
-
-<!-- FARK -->
-<section>
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow reveal" data-en="THE EDGE">FARK</span>
-      <h2 class="reveal" data-en="Why <em class='fx-em'>Safera?</em>">Neden <em class="fx-em">Safera?</em></h2>
-      <p class="section-desc reveal">
-<span data-en="Not a feature list; the value it produces: who does the heavy lifting, who keeps the earnings, how fast results arrive.">Özellik listesi değil, ürettiği değer: ağır tarafı kim çekiyor, kazanç kimde kalıyor, sonuç ne kadar sürede geliyor.</span>
-      </p>
-    </div>
-    <div class="diff-grid">
-      <div class="card reveal" style="transition-delay:0ms">
-        <div class="card-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        </div>
-        <h3 data-en="Era takes the grunt work; the call is yours">Emek Era'da, karar sizde</h3>
-        <p data-en="Era prepares the document, finds the gap, and points to the next step. In the field, speaking is enough; the record and the report write themselves.">Era belgeyi hazırlar, eksiği bulur, sıradaki adımı gösterir. Sahada konuşmanız yeter; kayıt ve rapor kendiliğinden oluşur.</p>
-      </div>
-      <div class="card reveal" style="transition-delay:60ms">
-        <div class="card-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
-        </div>
-        <h3 data-en="Matching is free; the earnings are yours">Eşleşme ücretsiz, kazanç sizin</h3>
-        <p data-en="The right professional and the right workplace meet by % fit score. No commission is taken; the full value stays with the people doing the work.">Doğru profesyonel ile doğru işyeri % uyum skoruyla buluşur. Komisyon alınmaz; ürettiğiniz değerin tamamı sizde kalır.</p>
-      </div>
-      <div class="card reveal" style="transition-delay:0ms">
-        <div class="card-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <h3 data-en="Months of work, down to minutes">Aylar süren iş, dakikalara iner</h3>
-        <p data-en="From setup to inspection: a process that drags on with scattered folders comes together on one panel. Deadlines are reminded automatically; an overdue file becomes visible at once.">Kurulumdan denetime: dağınık klasörlerle uzayan süreç tek panelde toparlanır. Son tarihler otomatik hatırlatılır; süresi geçen belge anında görünür.</p>
-      </div>
-      <div class="card reveal" style="transition-delay:60ms">
-        <div class="card-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
-        </div>
-        <h3 data-en="Order that maintains itself">Düzen kendini korur</h3>
-        <p data-en="Risk, training, documents and reporting live in one place. Compliance isn't set up once and left alone; it is kept alive every day.">Risk, eğitim, belge ve rapor aynı yerde yaşar. Uyum bir kez kurulup bırakılmaz; her gün canlı tutulur.</p>
-      </div>
+      <a class="card role-card reveal" href="#ekranlar" data-showcase-role="uzman" aria-label="İSG Uzmanı ekranlarını göster" data-en-aria="Show OHS Expert screens">
+        <span class="role-index">01 / 03</span>
+        <h3 data-en="OHS Expert">İSG Uzmanı</h3>
+        <p data-en="Find suitable work; review and approve document drafts.">Uygun işi bulun; belge taslaklarını inceleyip onaylayın.</p>
+      </a>
+      <a class="card role-card reveal" href="#ekranlar" data-showcase-role="hekim" aria-label="İşyeri Hekimi ekranlarını göster" data-en-aria="Show Workplace Physician screens" style="transition-delay:70ms">
+        <span class="role-index">02 / 03</span>
+        <h3 data-en="Workplace Physician">İşyeri Hekimi</h3>
+        <p data-en="Track examinations and requests; see what needs your attention.">Muayene ve talepleri izleyin; gereken adımı görün.</p>
+      </a>
+      <a class="card role-card reveal" href="#ekranlar" data-showcase-role="sirket" aria-label="Şirket ekranlarını göster" data-en-aria="Show Company screens" style="transition-delay:140ms">
+        <span class="role-index">03 / 03</span>
+        <h3 data-en="Company">Şirket</h3>
+        <p data-en="Meet professionals, request documents and track compliance.">Profesyonel bulun, belge talep edin, uyumu izleyin.</p>
+      </a>
     </div>
   </div>
 </section>
-
-<!-- VİZYON -->
-<section>
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow reveal" data-en="VISION">VİZYON</span>
-      <h2 class="reveal" data-en="The field teaches, Era <em class='fx-em'>remembers.</em>">Alan öğretir, Era <em class="fx-em">hatırlar.</em></h2>
-    </div>
-    <div class="vision-body">
-      <p class="reveal" data-en="Today Era does the heavy lifting of compliance. But the real point is what comes next. Everything that happens in the field (visits, near-misses, periodic checks, records) turns into structured <strong>real field data</strong>.">Bugün Era, uyumun ağır tarafını sırtlanıyor. Ama asıl mesele bundan sonrası. Sahada olup biten her şey: ziyaretler, ramak kalalar, periyodik kontroller, kayıtlar; tümü yapılandırılmış <strong>gerçek alan verisine</strong> dönüşüyor.</p>
-      <p class="reveal" data-en="As this data accumulates across many workplaces, patterns emerge on their own: which conditions recur before an accident, which measure actually works. Just as in clinical medicine, knowledge comes not from pre-written rules but from accumulated cases.">Bu veri çok sayıda işyerinde biriktikçe örüntüler kendiliğinden belirir: hangi koşullar bir kazadan önce tekrar eder, hangi önlem işe yarar. Tıpkı klinik tıpta bilginin önceden yazılmış kurallardan değil, biriken vakalardan gelmesi gibi.</p>
-      <p class="reveal" data-en="Era's long-term role is to turn these patterns into <strong>foresight</strong>: to flag risk before an accident happens. Era doesn't replace the expert's judgment; it strengthens it. The decision always stays with the human.">Era'nın uzun vadeli rolü bu örüntüleri <strong>öngörüye</strong> çevirmek: bir kaza olmadan riski işaret etmek. Era uzmanın yargısının yerine geçmez; onu güçlendirir. Karar her zaman insanda kalır.</p>
-    </div>
-    <div class="vision-grid">
-      <div class="stat reveal" style="transition-delay:0ms">
-        <span class="stat-num" data-en="Today">Bugün</span>
-        <span class="stat-label" data-en="Do the work of compliance; match company and professional directly.">Uyumun işini yap; şirketle profesyoneli doğrudan eşleştir.</span>
-      </div>
-      <div class="stat reveal" style="transition-delay:60ms">
-        <span class="stat-num" data-en="Near term">Yakın vade</span>
-        <span class="stat-label" data-en="Patterns from accumulated field data: smart reminders, risk prioritization, a sharper Audit Readiness score.">Biriken alan verisinden örüntü: akıllı hatırlatma, risk önceliklendirme, isabeti artan Denetim Hazırlığı puanı.</span>
-      </div>
-      <div class="stat reveal" style="transition-delay:120ms">
-        <span class="stat-num" data-en="Long term">Uzun vade</span>
-        <span class="stat-label" data-en="Foresight: warning before an accident, evidence-based prevention advice. Human decision at the center.">Öngörü: kaza olmadan uyarı, kanıta dayalı önlem önerisi. İnsan kararı merkezde.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FİYATLANDIRMA -->
 <section id="fiyat" class="bg-subtle">
   <div class="container">
@@ -1042,128 +835,62 @@ body::after{
       <h2 class="reveal" data-en="No commission. Transparent subscription.">Komisyon yok. Şeffaf abonelik.</h2>
       <span class="seal" aria-hidden="true"><b>%0</b><span data-en="COMMISSION">KOMİSYON</span></span>
     </div>
+    <p class="price-lead reveal" data-en="Planned subscription prices · in-app purchases are not yet available.">Planlanan abonelik fiyatları · uygulama içi satın alma henüz açık değil.</p>
     <div class="price-grid">
       <div class="price-card reveal" style="transition-delay:0ms">
         <span class="plan-name">Free</span>
         <span class="plan-price" data-en="₺0">0 ₺</span>
-        <ul class="plan-features">
-          <li data-en="Basic matching">Temel eşleşme</li>
-          <li data-en="View profiles and listings">Profil ve ilan görüntüleme</li>
-          <li data-en="Limited modules">Sınırlı modüller</li>
-          <li data-en="Manual work is always unlimited and free">Elle işler her zaman sınırsız ve ücretsiz</li>
-        </ul>
-        <p class="plan-note" data-en="Upgrade in-app.">Uygulama içinden yükselt.</p>
+        <p class="plan-summary" data-en="Explore profiles and listings; handle manual work without a subscription.">Profil ve ilanları keşfedin; elle yürüttüğünüz işler için abonelik gerekmez.</p>
       </div>
       <div class="price-card featured reveal" style="transition-delay:60ms">
         <span class="plan-name">Pro</span>
         <span class="plan-price" data-en="₺499<small> /mo</small>">499 ₺<small> /ay</small></span>
-        <ul class="plan-features">
-          <li data-en="Generous Era usage allowance (renews each period)">Geniş Era kullanım hakkı (dönemsel yenilenir)</li>
-          <li data-en="Report by voice in the field">Sahada sesle raporlama</li>
-          <li data-en="As many listings and applications as you need">Dilediğin kadar ilan ve başvuru</li>
-          <li data-en="All compliance modules">Tüm uyum modülleri</li>
-          <li data-en="Client and income tracking (Solo CRM)">Müşteri ve gelir takibi (Solo CRM)</li>
-        </ul>
-        <p class="plan-note" data-en="Upgrade in-app.">Uygulama içinden yükselt.</p>
+        <p class="plan-summary" data-en="A higher Era usage allowance for regular work.">Düzenli kullanım için daha yüksek Era hakkı.</p>
       </div>
       <div class="price-card reveal" style="transition-delay:120ms">
         <span class="plan-name" data-en="Full Pro">Tam Pro</span>
         <span class="plan-price" data-en="₺999<small> /mo</small>">999 ₺<small> /ay</small></span>
-        <ul class="plan-features">
-          <li data-en="The highest Era usage allowance, all modules">En yüksek Era kullanım hakkı, tüm modüller</li>
-          <li data-en="No cap on user count">Kullanıcı sayısında üst sınır yok</li>
-          <li data-en="Bulk listings &amp; reporting">Toplu ilan &amp; raporlama</li>
-        </ul>
-        <p class="plan-note" data-en="Upgrade in-app.">Uygulama içinden yükselt.</p>
+        <p class="plan-summary" data-en="The highest Era usage allowance in the plan.">Planlar içindeki en yüksek Era kullanım hakkı.</p>
       </div>
     </div>
-    <p class="price-note reveal" data-en="Usage allowances renew each period; the earnings are all yours.">Kullanım hakları dönemsel yenilenir; kazancın tamamı senin.</p>
+    <p class="price-note reveal" data-en="Matching stays free and commission-free.">Eşleşme ücretsiz ve komisyonsuz kalır.</p>
   </div>
 </section>
 
-<!-- EKİP -->
-<section>
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow reveal" data-en="TEAM">EKİP</span>
-      <h2 class="reveal" data-en="A team that builds the product themselves.">Ürünü bizzat inşa eden bir ekip.</h2>
-    </div>
-    <div class="team-grid">
-      <div class="team-member reveal" style="transition-delay:0ms">
-        <div class="team-avatar"><span aria-hidden="true">FK</span></div>
-        <h3>Dr. Furkan Kızılışık</h3>
-        <span class="team-role">CEO</span>
-        <p data-en="Background in workplace medicine and neuroscience.">İşyeri hekimliği ve nörobilim arka planı.</p>
-      </div>
-      <div class="team-member reveal" style="transition-delay:60ms">
-        <div class="team-avatar"><span aria-hidden="true">AA</span></div>
-        <h3>Dr. Ali Aday</h3>
-        <span class="team-role">CTO</span>
-        <p data-en="Flutter developer.">Flutter geliştiricisi.</p>
-      </div>
-    </div>
-    <p class="team-narrative reveal">
-<span data-en="The founders are two emergency physicians; they design and code the product themselves.">Kurucular acil serviste çalışan iki hekim; ürünü bizzat tasarlayıp kodluyorlar.</span>
-    </p>
-  </div>
-</section>
-
-<!-- PİLOT -->
-<section id="pilot" class="bg-subtle">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow reveal" data-en="PILOT PROGRAM">PİLOT PROGRAMI</span>
-      <h2 class="reveal" data-en="Safera is taking shape with its <em class='fx-em'>first users.</em>">Safera ilk kullanıcılarıyla <em class="fx-em">şekilleniyor.</em></h2>
-      <p class="section-desc reveal" data-en="Useful from day one: as a company you see your missing documents and legal roadmap within minutes; as an expert or physician you hand the paperwork to Era and focus on the field. Pilot participants reach the founders directly, get priority support and keep permanent early-access terms. Using iPhone, or not ready to install yet? Leave your e-mail; we'll write when it's ready.">İlk günden işe yarar: şirketsen eksik belgelerini ve yasal yol haritanı dakikalar içinde görürsün; uzman ya da hekimsen evrak yükünü Era'ya bırakır, sahaya odaklanırsın. Pilot katılımcıları kuruculara doğrudan ulaşır, öncelikli destek ve kalıcı erken-erişim koşulları alır. iPhone mu kullanıyorsun ya da kurulum için erken mi? E-postanı bırak, hazır olunca yazalım.</p>
-    </div>
-    <form class="pilot-form reveal" action="https://formsubmit.co/iletisim@safera.solutions" method="POST">
-      <input type="hidden" name="_subject" value="Safera pilot kaydı">
-      <input type="hidden" name="_next" value="https://safera.solutions/?pilot=ok#pilot">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <label class="sr-only" for="pilot-email" data-en="Your e-mail">E-posta adresin</label>
-      <input id="pilot-email" type="email" name="email" required autocomplete="email" placeholder="e-posta adresin" data-en-placeholder="your e-mail">
-      <button class="btn-primary" type="submit" data-en="Join the pilot">Pilota katıl</button>
-    </form>
-    <p class="pilot-ok" id="pilot-ok" hidden data-en="Received. We'll be in touch soon.">Alındı. Yakında yazacağız.</p>
-    <p class="pilot-ok pilot-err" id="pilot-err" hidden data-en="Couldn't send right now. You can write to us directly: &lt;a href='mailto:iletisim@safera.solutions'&gt;iletisim@safera.solutions&lt;/a&gt;">Şu anda gönderilemedi. Doğrudan yazabilirsin: <a href="mailto:iletisim@safera.solutions">iletisim@safera.solutions</a></p>
-    <p class="pilot-note reveal" data-en="Your e-mail is used only for pilot communication; details on the &lt;a href='gizlilik.html'&gt;privacy page&lt;/a&gt;.">E-postan yalnız pilot iletişimi için kullanılır; ayrıntı için <a href="gizlilik.html">gizlilik sayfası</a>.</p>
-  </div>
-</section>
-
-<!-- İNDİR -->
+<!-- İNDİR / PİLOT -->
 <section id="indir" class="bg-dark pad-lg">
-  <div class="container">
-    <div class="section-head" style="margin-bottom:0">
-      <span class="eyebrow reveal" data-en="GET STARTED">BAŞLA</span>
-      <h2 class="reveal" data-en="Download Safera today.">Safera'yı bugün indir.</h2>
-      <p class="section-desc reveal" style="margin-bottom:0" data-en="Free for Android. One tap to download, start right away.">Android için ücretsiz. Tek tıkla indir, hemen başla.</p>
-    </div>
-    <div class="dl-wrap">
-      <div class="dl-text reveal">
-        <a class="btn-primary btn-lg" href="./safera.apk" download="safera.apk">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span data-en="Download the APK">APK'yı İndir</span>
-        </a>
-        <!-- Boyut ve ozet ELLE yazilmaz: tools/claims/olcum_kaynak.py --yaz
-             yayimlanan site/safera.apk dosyasindan hesaplayip buraya basar. -->
-        <p class="dl-meta"><span data-en="v1.1 · Aug 2026 · ">v1.1 · Ağu 2026 · </span><span data-olcum="apk_mib">86,5 MiB</span><span data-en=" · Android 8+"> · Android 8+</span></p>
-        <p class="dl-alt" data-en="Using iPhone? &lt;a href='#pilot'&gt;Join the pilot list&lt;/a&gt;; we'll let you know when iOS is ready.">iPhone mu kullanıyorsun? <a href="#pilot">Pilot listesine yazıl</a>, iOS hazır olunca haber verelim.</p>
+  <div class="container closing-grid">
+    <div>
+      <span class="eyebrow reveal" data-en="START WITH SAFERA">SAFERA'YLA BAŞLA</span>
+      <h2 class="reveal" data-en="One place to begin.">Başlamak için tek yer.</h2>
+      <p class="section-desc reveal" data-en="Download the Android app or get in touch about the pilot.">Android uygulamasını indirin veya pilot için bize yazın.</p>
+      <div class="closing-actions reveal">
+        <a class="btn-primary btn-lg" href="./safera.apk" download="safera.apk" data-en="Download Android APK">Android APK’yı indir</a>
+        <a class="closing-link" href="#pilot" data-en="Ask about the pilot <span aria-hidden='true'>↗</span>">Pilotu sor <span aria-hidden="true">↗</span></a>
       </div>
-      <details class="dl-guide reveal">
-        <summary data-en="Installation takes 30 seconds">Kurulum 30 saniye</summary>
-        <ol>
-          <li data-en="Tap “Download the APK”; when the download finishes, open the notification.">“APK'yı İndir”e dokun; indirme bitince bildirimi aç.</li>
-          <li data-en="If Android asks, allow installs from this source once.">Android sorarsa bu kaynağa bir defalık izin ver.</li>
-          <li data-en="Tap “Install”, then open Safera and sign up for free.">“Yükle”ye dokun; Safera'yı aç ve ücretsiz kaydol.</li>
-        </ol>
-        <p class="dl-hash">SHA-256: <span data-olcum="apk_sha256">eec1e03fe164ce76988e0813ed5926c3486d8c9b04b7dc083f11fa2a2abe1e27</span></p>
-        <p class="dl-hash-not"><span data-en="This digest is computed from the published file at publish time. If it does not match your download, do not install the file.">Bu özet, yayım anında yayımlanan dosyanın kendisinden hesaplanır. İndirdiğin dosyanın özeti buradakiyle aynı değilse dosyayı kurma.</span></p>
-      </details>
+      <p class="closing-note" data-en="Pilot/beta · v1.1.0 (4006) · 40.1 MiB · Android APK">Pilot/beta · v1.1.0 (4006) · 40,1 MiB · Android APK</p>
+    </div>
+    <div class="pilot-panel" id="pilot">
+      <h3 data-en="Talk to us about the pilot">Pilot için bize yazın</h3>
+      <p data-en="Leave your address and, if you like, a note. We'll reply by e-mail.">Adresinizi bırakın; isterseniz bir not ekleyin. E-postayla döneceğiz.</p>
+      <form class="pilot-form" action="https://formsubmit.co/iletisim@safera.solutions" method="POST">
+        <input type="hidden" name="_subject" value="Safera pilot isteği">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_url" value="https://safera.solutions/">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label for="pilot-email" data-en="Your e-mail">E-posta adresiniz</label>
+        <input id="pilot-email" type="email" name="email" required autocomplete="email" maxlength="254" placeholder="ad@ornek.com" data-en-placeholder="name@example.com">
+        <label for="pilot-message" data-en="Your note <span>(optional)</span>">Notunuz <span>(isteğe bağlı)</span></label>
+        <textarea id="pilot-message" name="message" maxlength="1200" rows="3" placeholder="Nasıl yardımcı olabiliriz?" data-en-placeholder="How can we help?"></textarea>
+        <button class="btn-primary" type="submit" data-en="Send request">İsteği gönder</button>
+        <p class="pilot-status" id="pilot-status" role="status" aria-live="polite"></p>
+      </form>
+      <p class="pilot-note" data-en="Only for pilot communication. Details in our <a href='gizlilik.html'>privacy notice</a>.">Yalnız pilot iletişimi için. Ayrıntılar <a href="gizlilik.html">gizlilik metninde</a>.</p>
+      <button class="copy-email" id="copy-email" type="button" data-en="Copy e-mail address">E-posta adresini kopyala</button>
+      <span id="copy-status" class="pilot-note" role="status" aria-live="polite"></span>
     </div>
   </div>
 </section>
-
 </main>
 
 <footer>
@@ -1172,12 +899,12 @@ body::after{
       <img src="img/icon.png" alt="" class="footer-icon">
       <span style="font-size:15px;font-weight:600;color:rgba(255,255,255,.62);letter-spacing:-.01em;">Safera</span>
     </div>
-    <p class="footer-slogan" data-en="Occupational safety, digital and audit-ready.">İş güvenliği, dijital ve denetime hazır.</p>
+    <p class="footer-slogan" data-en="OHS work, together in one place.">İSG işleri, tek yerde.</p>
     <nav class="footer-links" aria-label="Alt bağlantılar">
       <a href="gizlilik.html" data-en="Privacy">Gizlilik</a>
       <a href="kosullar.html" data-en="Terms">Koşullar</a>
       <a href="hesap-silme.html" data-en="Delete account">Hesap silme</a>
-      <a href="mailto:iletisim@safera.solutions">iletisim@safera.solutions</a>
+      <a href="#pilot" aria-label="İletişim formuna git" data-en-aria="Go to the contact form" data-en="Contact form">İletişim formu</a>
     </nav>
     <p class="footer-copy" data-en="© 2026 Safera. All rights reserved.">© 2026 Safera. Tüm hakları saklıdır.</p>
   </div>
@@ -1226,48 +953,10 @@ function splitHero(){
   requestAnimationFrame(function(){requestAnimationFrame(function(){h.classList.add('hl-go');});});
 }
 
-/* ── count-up: rakamlar görünür olunca sayarak gelir ── */
-var fxCounts=[];
-function fxStopCounts(){fxCounts.forEach(function(c){c();});fxCounts=[];}
-function countUp(el){
-  if(RM||el.dataset.counted)return;
-  el.dataset.counted='1';
-  var txt=el.textContent,m=txt.match(/\d[\d.,]*\d|\d/);
-  if(!m)return;
-  el.setAttribute('aria-label',txt); /* SR daima nihai değeri okur */
-  var raw=m[0],dec=null,grp=null;
-  var lastDot=raw.lastIndexOf('.'),lastCom=raw.lastIndexOf(',');
-  if(lastDot>-1&&lastCom>-1){dec=lastDot>lastCom?'.':',';grp=dec==='.'?',':'.';}
-  else if(lastDot>-1){if(raw.length-lastDot-1===3){grp='.';}else{dec='.';}}
-  else if(lastCom>-1){if(raw.length-lastCom-1===3){grp=',';}else{dec=',';}}
-  var clean=raw;
-  if(grp){clean=clean.split(grp).join('');}
-  if(dec&&dec!=='.'){clean=clean.replace(dec,'.');}
-  var target=parseFloat(clean);
-  if(isNaN(target))return;
-  var decimals=dec?(raw.length-Math.max(lastDot,lastCom)-1):0;
-  function fmt(n){
-    var s=n.toFixed(decimals),pp=s.split('.'),ip=pp[0];
-    if(grp)ip=ip.replace(/\B(?=(\d{3})+(?!\d))/g,grp);
-    return dec?ip+dec+pp[1]:ip;
-  }
-  var t0=null,dur=900,alive=true;
-  fxCounts.push(function(){ if(alive){alive=false;el.textContent=txt;el.removeAttribute('aria-label');} }); /* iptalde tam değer geri yazılır */
-  function step(ts){
-    if(!alive)return;
-    if(!t0)t0=ts;
-    var p=Math.min(1,(ts-t0)/dur),e=1-Math.pow(1-p,3);
-    el.textContent=txt.replace(raw,fmt(target*e));
-    if(p<1){requestAnimationFrame(step);}else{alive=false;el.removeAttribute('aria-label');}
-  }
-  requestAnimationFrame(step);
-}
-
 /* ── reveal: perde açılır, bitince maske kalkar ── */
 function markIn(el){
   el.classList.add('in');
   setTimeout(function(){el.classList.add('done');},1200);
-  el.querySelectorAll('.stat-num').forEach(countUp);
 }
 var io=new IntersectionObserver(function(entries){
   entries.forEach(function(en){
@@ -1299,6 +988,9 @@ function onScroll(){
   requestAnimationFrame(function(){
     var y=window.scrollY||document.documentElement.scrollTop;
     if(hd)hd.classList.toggle('scrolled',y>10);
+    if(y<Math.max(120,heroSec.offsetHeight*.35)){
+      document.querySelectorAll('.nav-links a.on').forEach(function(a){a.classList.remove('on');});
+    }
     if(!RM&&heroWrap&&heroSec&&y>0&&y<heroSec.offsetTop+heroSec.offsetHeight){
       heroWrap.style.transform='translate3d(0,'+(y*.08).toFixed(1)+'px,0)';
     }
@@ -1338,7 +1030,7 @@ onScroll();
   var sio=new IntersectionObserver(function(es){
     es.forEach(function(en){
       var a=map[en.target.id];
-      if(a&&en.isIntersecting){
+      if(a&&en.isIntersecting&&(window.scrollY||document.documentElement.scrollTop)>=Math.max(120,heroSec.offsetHeight*.35)){
         as.forEach(function(x){x.classList.remove('on');});
         a.classList.add('on');
       }
@@ -1354,7 +1046,7 @@ onScroll();
 (function(){
   var lb=document.getElementById('lightbox');
   if(!lb)return;
-  var im=lb.querySelector('img'),cap=lb.querySelector('figcaption'),
+  var im=lb.querySelector('img'),cap=lb.querySelector('figcaption'),fig=lb.querySelector('.lb-fig'),
       btn=document.getElementById('lb-close'),last=null,tid=null;
   var zoom=[].slice.call(document.querySelectorAll('.vscreen .phone-shot, .shot .phone-shot'));
   window.fxRelabel=function(){
@@ -1367,9 +1059,10 @@ onScroll();
     if(e.key==='Escape'){shut();}
     else if(e.key==='Tab'){e.preventDefault();btn.focus();} /* tek odak durağı — tuzak */
   }
-  function open(src,alt){
+  function open(src,alt,wide){
     clearTimeout(tid);
     im.src=src;im.alt=alt;cap.textContent=alt;
+    fig.classList.toggle('is-wide',!!wide);
     lb.hidden=false;
     requestAnimationFrame(function(){lb.classList.add('in');});
     last=document.activeElement;
@@ -1387,9 +1080,9 @@ onScroll();
   zoom.forEach(function(p){
     p.classList.add('zoomable');
     p.setAttribute('tabindex','0');p.setAttribute('role','button');
-    p.addEventListener('click',function(){open(p.currentSrc||p.src,p.alt);});
+    p.addEventListener('click',function(){open(p.currentSrc||p.src,p.alt,p.naturalWidth>p.naturalHeight);});
     p.addEventListener('keydown',function(e){
-      if(e.key==='Enter'||e.key===' '){e.preventDefault();open(p.currentSrc||p.src,p.alt);}
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();open(p.currentSrc||p.src,p.alt,p.naturalWidth>p.naturalHeight);}
     });
   });
   window.fxRelabel();
@@ -1397,70 +1090,237 @@ onScroll();
   btn.addEventListener('click',shut);
 }());
 
-/* ── pilot formu: fetch ile gönder, hata durumunda mailto'ya düş ── */
+/* ── ürün ekranları: yalnızca açık kullanıcı eylemiyle değişir ── */
 (function(){
-  var f=document.querySelector('.pilot-form'),
-      ok=document.getElementById('pilot-ok'),
-      er=document.getElementById('pilot-err');
-  if(location.search.indexOf('pilot=ok')>-1){ /* JS'siz native dönüş yolu */
-    if(f)f.hidden=true;
-    if(ok)ok.hidden=false;
-    return;
-  }
-  if(!f||!window.fetch)return;
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    var em=document.getElementById('pilot-email'),
-        btn=f.querySelector('button[type=submit]');
-    if(er)er.hidden=true;
-    btn.disabled=true;
-    fetch('https://formsubmit.co/ajax/iletisim@safera.solutions',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({email:em.value,_subject:'Safera pilot kaydı'})
-    }).then(function(r){
-      if(!r.ok)throw new Error(r.status);
-      return r.json();
-    }).then(function(){
-      f.hidden=true;
-      if(ok)ok.hidden=false;
-    }).catch(function(){
-      btn.disabled=false;
-      if(er)er.hidden=false;
-    });
-  });
-}());
-
-/* ── vitrin: scroll'a bağlı sticky ekran turu ── */
-(function(){
-  var steps=[].slice.call(document.querySelectorAll('.vstep'));
+  var roles=[].slice.call(document.querySelectorAll('.showcase-role'));
+  var choices=[].slice.call(document.querySelectorAll('.showcase-choice'));
   var shots=[].slice.call(document.querySelectorAll('.vscreen .phone-shot'));
-  if(!steps.length)return;
-  function act(i){
-    steps.forEach(function(s,k){
-      s.classList.toggle('on',k===i);
-      if(k===i){s.setAttribute('aria-current','step');}else{s.removeAttribute('aria-current');}
+  var stage=document.querySelector('.showcase-stage');
+  var story=document.getElementById('showcase-story');
+  var position=document.getElementById('showcase-position');
+  var prev=document.getElementById('showcase-prev');
+  var next=document.getElementById('showcase-next');
+  var beam=stage&&stage.querySelector('.stage-beam');
+  if(roles.length!==3||choices.length!==3||shots.length!==9)return;
+  var role='sirket',feature=0,requestedRole='sirket',requestedFeature=0,touchStart=null,serial=0,suppressClick=false,raf=0,pointer=null,beamAnimation=null,storyError=false;
+  function findShot(r,i){return shots.find(function(shot){return shot.dataset.role===r&&Number(shot.dataset.feature)===i;});}
+  function loadShot(shot){
+    if(!shot.getAttribute('src'))shot.src=shot.dataset.src;
+    if(shot.complete&&shot.naturalWidth)return Promise.resolve();
+    if(shot.decode)return shot.decode().catch(function(err){if(shot.complete&&shot.naturalWidth)return;throw err;});
+    return new Promise(function(resolve,reject){shot.addEventListener('load',resolve,{once:true});shot.addEventListener('error',reject,{once:true});});
+  }
+  function pressControls(r,i){
+    roles.forEach(function(btn){
+      var on=btn.dataset.role===r;
+      btn.classList.toggle('is-on',on);
+      btn.setAttribute('aria-pressed',String(on));
     });
-    shots.forEach(function(s,k){
-      s.classList.toggle('on',k===i);
-      s.setAttribute('tabindex',k===i?'0':'-1');
-      if(k===i){s.removeAttribute('aria-hidden');}else{s.setAttribute('aria-hidden','true');}
+    choices.forEach(function(btn,k){
+      var on=k===i;
+      btn.classList.toggle('is-on',on);
+      btn.setAttribute('aria-pressed',String(on));
     });
   }
-  var vio=new IntersectionObserver(function(es){
-    es.forEach(function(en){if(en.isIntersecting)act(+en.target.getAttribute('data-i'));});
-  },{rootMargin:'-42% 0px -42% 0px',threshold:0});
-  steps.forEach(function(s){
-    vio.observe(s);
-    s.setAttribute('tabindex','0');
-    function go(){s.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'});}
-    s.addEventListener('click',go);
-    s.addEventListener('keydown',function(e){
-      if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}
+  function relabel(){
+    var shot=findShot(requestedRole,requestedFeature),en=document.documentElement.lang==='en';
+    story.textContent=storyError?(en?'This screen could not load. Try again.':'Bu ekran yüklenemedi. Tekrar deneyin.'):
+      (shot?shot.getAttribute(en?'data-description-en':'data-description-tr'):'');
+    position.textContent=String(requestedFeature+1).padStart(2,'0')+' / 03';
+  }
+  window.fxShowcaseRelabel=relabel;
+  function choose(r,i){
+    if(!roles.some(function(button){return button.dataset.role===r;}))return;
+    i=(i+3)%3;
+    var target=findShot(r,i),ticket=++serial;
+    if(!target)return;
+    requestedRole=r;requestedFeature=i;
+    storyError=false;
+    pressControls(r,i);
+    relabel();
+    stage.setAttribute('aria-busy','true');
+    loadShot(target).then(function(){
+      if(ticket!==serial)return;
+      var old=shots.find(function(shot){return shot.classList.contains('on');});
+      role=r;feature=i;
+      shots.forEach(function(shot){
+        var on=shot===target;
+        if(shot===old&&shot!==target)shot.style.zIndex='1';
+        if(shot===target)shot.style.zIndex='2';
+        shot.classList.toggle('on',on);
+        shot.setAttribute('aria-hidden',String(!on));
+        shot.setAttribute('tabindex',on?'0':'-1');
+      });
+      [].forEach.call(stage.querySelectorAll('.device-frame'),function(frame){
+        var on=frame.contains(target);
+        frame.style.zIndex=on?'2':'1';
+        frame.classList.toggle('on',on);
+      });
+      stage.dataset.role=role;
+      stage.removeAttribute('aria-busy');
+      if(!RM&&old!==target&&beam&&beam.animate){
+        if(beamAnimation)beamAnimation.cancel();
+        beamAnimation=beam.animate([
+          {opacity:0,transform:'translate(-50%,-50%) scale(.72)'},
+          {opacity:.4,transform:'translate(-50%,-50%) scale(.96)',offset:.35},
+          {opacity:0,transform:'translate(-50%,-50%) scale(1.22)'}
+        ],{duration:540,easing:'cubic-bezier(.22,.61,.36,1)'});
+      }
+      shots.filter(function(shot){return shot.dataset.role===role&&shot!==target;}).forEach(function(shot){
+        var warm=function(){loadShot(shot).catch(function(){});};
+        if('requestIdleCallback' in window)requestIdleCallback(warm,{timeout:2500});
+        else setTimeout(warm,700);
+      });
+    }).catch(function(){
+      if(ticket!==serial)return;
+      stage.removeAttribute('aria-busy');
+      requestedRole=role;requestedFeature=feature;storyError=true;
+      pressControls(role,feature);relabel();
+    });
+  }
+  window.fxChooseShowcase=function(r){choose(r,0);};
+  document.querySelectorAll('[data-showcase-role]').forEach(function(card){
+    card.addEventListener('click',function(event){
+      event.preventDefault();
+      choose(card.dataset.showcaseRole,0);
+      document.getElementById('ekranlar').scrollIntoView({behavior:RM?'auto':'smooth'});
+      setTimeout(function(){
+        var button=roles.find(function(item){return item.dataset.role===card.dataset.showcaseRole;});
+        if(button)button.focus({preventScroll:true});
+      },RM?0:450);
     });
   });
+  roles.forEach(function(btn,k){
+    btn.addEventListener('click',function(){choose(btn.dataset.role,requestedFeature);});
+    btn.addEventListener('pointerenter',function(){loadShot(findShot(btn.dataset.role,requestedFeature)).catch(function(){});});
+    btn.addEventListener('keydown',function(e){
+      var target;
+      if(e.key==='ArrowRight')target=k+1;
+      else if(e.key==='ArrowLeft')target=k-1;
+      else if(e.key==='Home')target=0;
+      else if(e.key==='End')target=roles.length-1;
+      else return;
+      e.preventDefault();target=(target+roles.length)%roles.length;
+      choose(roles[target].dataset.role,requestedFeature);roles[target].focus();
+    });
+  });
+  choices.forEach(function(btn,k){
+    btn.addEventListener('click',function(){choose(requestedRole,k);});
+    btn.addEventListener('keydown',function(e){
+      var target;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown')target=k+1;
+      else if(e.key==='ArrowLeft'||e.key==='ArrowUp')target=k-1;
+      else if(e.key==='Home')target=0;
+      else if(e.key==='End')target=choices.length-1;
+      else return;
+      e.preventDefault();
+      target=(target+choices.length)%choices.length;
+      choose(requestedRole,target);
+      choices[target].focus();
+    });
+  });
+  prev.addEventListener('click',function(){choose(requestedRole,requestedFeature-1);});
+  next.addEventListener('click',function(){choose(requestedRole,requestedFeature+1);});
+  stage.addEventListener('pointerdown',function(e){
+    if(e.pointerType==='touch')touchStart={x:e.clientX,y:e.clientY};
+  },{passive:true});
+  stage.addEventListener('pointerup',function(e){
+    if(!touchStart||e.pointerType!=='touch')return;
+    var dx=e.clientX-touchStart.x,dy=e.clientY-touchStart.y;
+    touchStart=null;
+    if(Math.abs(dx)>48&&Math.abs(dx)>Math.abs(dy)*1.3){
+      suppressClick=true;
+      setTimeout(function(){suppressClick=false;},450);
+      choose(requestedRole,requestedFeature+(dx<0?1:-1));
+    }
+  },{passive:true});
+  stage.addEventListener('click',function(e){
+    if(suppressClick){e.preventDefault();e.stopImmediatePropagation();suppressClick=false;}
+  },true);
+  if(!RM&&window.matchMedia&&matchMedia('(pointer:fine)').matches){
+    stage.addEventListener('pointermove',function(e){
+      pointer={x:e.clientX,y:e.clientY};
+      if(raf)return;
+      raf=requestAnimationFrame(function(){
+        raf=0;
+        var b=stage.getBoundingClientRect(),x=(pointer.x-b.left)/b.width,y=(pointer.y-b.top)/b.height;
+        stage.classList.add('is-tracking');
+        stage.style.setProperty('--glow-x',((x-.5)*36).toFixed(1)+'px');
+        stage.style.setProperty('--glow-y',((y-.5)*36).toFixed(1)+'px');
+        stage.style.setProperty('--tilt-x',((.5-y)*4).toFixed(2)+'deg');
+        stage.style.setProperty('--tilt-y',((x-.5)*4).toFixed(2)+'deg');
+      });
+    },{passive:true});
+    stage.addEventListener('pointerleave',function(){
+      if(raf){cancelAnimationFrame(raf);raf=0;}
+      stage.classList.remove('is-tracking');
+      stage.style.setProperty('--glow-x','0px');stage.style.setProperty('--glow-y','0px');
+      stage.style.setProperty('--tilt-x','0deg');stage.style.setProperty('--tilt-y','0deg');
+    });
+  }
+  relabel();
+  choose('sirket',0);
 }());
-
+/* ── pilot: sayfa içi form, açık gönderim durumu ve kopyalanabilir adres ── */
+(function(){
+  var form=document.querySelector('.pilot-form'),email=document.getElementById('pilot-email');
+  var status=document.getElementById('pilot-status'),copy=document.getElementById('copy-email');
+  var copyStatus=document.getElementById('copy-status');
+  if(!form||!email||!status)return;
+  var submit=form.querySelector('[type=submit]'),state='',copyState='';
+  var messages={
+    sending:{tr:'Gönderiliyor…',en:'Sending…'},
+    ok:{tr:'İsteğiniz alındı. E-postayla döneceğiz.',en:'Request received. We will reply by e-mail.'},
+    error:{tr:'Gönderilemedi. Yeniden deneyin veya adresimizi kopyalayın.',en:'Could not send. Please retry or copy our address.'},
+    inactive:{tr:'Pilot formu henüz etkin değil. Aşağıdan e-posta adresini kopyalayın.',en:'The pilot form is not active yet. Copy our e-mail address below.'}
+  };
+  function relabel(){
+    var en=document.documentElement.lang==='en';
+    status.textContent=state?messages[state][en?'en':'tr']:'';
+    copyStatus.textContent=copyState==='copied'?(en?' · Copied':' · Kopyalandı'):(copyState==='failed'?' · iletisim@safera.solutions':'');
+  }
+  window.fxPilotRelabel=relabel;
+  function setState(next){state=next;status.dataset.state=next;relabel();}
+  form.querySelector('[name="_url"]').value=location.origin+location.pathname;
+  document.querySelectorAll('a[href="#pilot"]').forEach(function(link){
+    link.addEventListener('click',function(){setTimeout(function(){email.focus({preventScroll:true});},RM?0:350);});
+  });
+  form.addEventListener('input',function(){if(state==='ok'||state==='error'||state==='inactive')setState('');});
+  if(window.fetch){
+    form.addEventListener('submit',function(event){
+      event.preventDefault();
+      if(!form.reportValidity())return;
+      if(form.querySelector('[name="_honey"]').value)return;
+      submit.disabled=true;setState('sending');
+      var fields=new FormData(form),payload={};
+      fields.forEach(function(value,key){payload[key]=value;});
+      fetch('https://formsubmit.co/ajax/iletisim@safera.solutions',{
+        method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify(payload)
+      }).then(function(response){
+        if(!response.ok)throw new Error('HTTP '+response.status);
+        return response.json();
+      }).then(function(data){
+        if(data&&(data.success===false||data.success==='false')&&/activation/i.test(String(data.message||''))){
+          setState('inactive');return;
+        }
+        if(!data||(data.success!==true&&data.success!=='true'))throw new Error('Unconfirmed response');
+        form.reset();setState('ok');
+      }).catch(function(){setState('error');}).finally(function(){submit.disabled=false;});
+    });
+  }
+  if(copy){
+    copy.addEventListener('click',function(){
+      var address='iletisim@safera.solutions';
+      if(!navigator.clipboard||!navigator.clipboard.writeText){
+        copyState='failed';relabel();return;
+      }
+      navigator.clipboard.writeText(address).then(function(){
+        copyState='copied';relabel();
+      }).catch(function(){copyState='failed';relabel();});
+    });
+  }
+}());
 /* ── i18n · TR ⇄ EN in-place toggle ── */
 (function(){
   var KEY='safera-lang',first=true;
@@ -1470,7 +1330,6 @@ onScroll();
   var lang=stored();
   function apply(l){
     lang=l;
-    fxStopCounts();
     document.documentElement.lang=l;
     document.querySelectorAll('[data-en]').forEach(function(el){
       if(el.getAttribute('data-tr')===null) el.setAttribute('data-tr', el.innerHTML);
@@ -1480,6 +1339,12 @@ onScroll();
       if(el.getAttribute('data-tr-placeholder')===null) el.setAttribute('data-tr-placeholder', el.getAttribute('placeholder')||'');
       el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-placeholder') : el.getAttribute('data-tr-placeholder'));
     });
+    document.querySelectorAll('[data-en-alt],[data-en-aria]').forEach(function(el){
+      var attr=el.hasAttribute('data-en-alt')?'alt':'aria-label';
+      var tr='data-tr-'+attr;
+      if(!el.hasAttribute(tr))el.setAttribute(tr,el.getAttribute(attr)||'');
+      el.setAttribute(attr,l==='en'?el.getAttribute('data-en-'+(attr==='alt'?'alt':'aria')):el.getAttribute(tr));
+    });
     var ts=document.querySelectorAll('#lang-toggle [data-l]');
     for(var i=0;i<ts.length;i++) ts[i].classList.toggle('on', ts[i].getAttribute('data-l')===l);
     var b=document.getElementById('lang-toggle');
@@ -1487,6 +1352,8 @@ onScroll();
     try{ localStorage.setItem(KEY,l); }catch(e){}
     splitHero();
     if(window.fxRelabel)window.fxRelabel();
+    if(window.fxShowcaseRelabel)window.fxShowcaseRelabel();
+    if(window.fxPilotRelabel)window.fxPilotRelabel();
     var st=document.getElementById('lang-status');
     if(st&&!first) st.textContent = l==='en' ? 'English selected' : 'Türkçe seçildi';
     first=false;
